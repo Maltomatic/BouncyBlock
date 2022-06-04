@@ -10,7 +10,13 @@ export class Player extends cc.Component {
     maplist: cc.Node = null;
 
     @property(cc.Prefab)
-    secPrefab: cc.Prefab = null;
+    sec0: cc.Prefab = null;
+    @property(cc.Prefab)
+    sec1: cc.Prefab = null;
+    @property(cc.Prefab)
+    sec3: cc.Prefab = null;
+
+    private sec_list = [];
 
     private dir: number = 0;
     private section_count = 0;      // on contact with marker, if section_count * 1920 < this.node.x: init next section and section_count ++
@@ -36,7 +42,10 @@ export class Player extends cc.Component {
             if(this.node.x >= this.section_count*1920){
                 console.log("init next section");
                 this.section_count++;
-                var next_section = cc.instantiate(this.secPrefab);
+                var rand = Math.floor(Math.random() * 3)
+                console.log(rand);
+                console.log("To instantiate: " + this.sec_list[rand].name);
+                var next_section = cc.instantiate(this.sec_list[rand]);
                 next_section.x = 1920 * this.section_count;
                 next_section.y = 0;
                 this.maplist.addChild(next_section);
@@ -46,6 +55,7 @@ export class Player extends cc.Component {
 
     start () {
         this.dir = 0;
+        this.sec_list = [this.sec0, this.sec1, this.sec3];
     }
 
     update (dt) {
