@@ -6,7 +6,14 @@ export class Player extends cc.Component {
     @property(cc.Node)
     camera: cc.Node = null;
 
+    @property(cc.Node)
+    maplist: cc.Node = null;
+
+    @property(cc.Prefab)
+    secPrefab: cc.Prefab = null;
+
     private dir: number = 0;
+    private section_count = 0;      // on contact with marker, if section_count * 1920 < this.node.x: init next section and section_count ++
 
     // LIFE-CYCLE CALLBACKS:
 
@@ -14,6 +21,7 @@ export class Player extends cc.Component {
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
         this.dir = 0;
+        this.section_count = 0;
     }
 
     onDestroy () {
@@ -21,6 +29,20 @@ export class Player extends cc.Component {
         cc.systemEvent.off(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
     }
 
+    onBeginContact(contact, self, other){
+        // console.log("hit node with color " + other.node.getComponent(cc.TiledTile).gid);
+        if(other.tag == 1000){
+            console.log("hit marker");
+            if(this.node.x >= this.section_count*1920){
+                console.log("init next section");
+                this.section_count++;
+                var next_section = cc.instantiate(this.secPrefab);
+                next_section.x = 1920 * this.section_count;
+                next_section.y = 0;
+                this.maplist.addChild(next_section);
+            }else console.log(this.node.x, this.section_count);
+        }
+    }
 
     start () {
         this.dir = 0;
@@ -35,7 +57,6 @@ export class Player extends cc.Component {
 
     camera_track(){
         if(this.node.x < 100) this.camera.x = 0;
-        else if(this.node.x > 3940) this.camera.x = 3840;
         else this.camera.x = this.node.x - 100;
     }
 
