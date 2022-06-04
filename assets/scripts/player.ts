@@ -63,6 +63,28 @@ export class Player extends cc.Component {
         this.node.x += this.dir * 200 * dt;
         this.node.scaleX = (this.dir >= 0) ? 1 : -1;
         var dy = this.getComponent(cc.RigidBody).linearVelocity.y;
+        //----------sparkle-----------------------------------------
+        if(this.dir!=0||dy>10) this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).emissionRate=100;
+        else this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).emissionRate=0;
+        //----------------------------------------------------
+
+        
+        
+        //---------player spin---------------
+        if((dy>10)&&this.dir==1) this.spin_right();
+        else if((dy>10)&&this.dir==-1) this.spin_left();
+        else if(this.node.angle!=0) this.node.angle=0;
+        //------------------------------------
+
+
+    }
+    spin_right()
+    {
+        this.node.angle-=10;
+    }
+    spin_left()
+    {
+        this.node.angle+=10;
     }
 
     camera_track(){
@@ -75,8 +97,16 @@ export class Player extends cc.Component {
         if(event.keyCode == cc.macro.KEY.space){
             this.jump();
         }
-        if(event.keyCode == cc.macro.KEY.left) this.dir = -1;
-        else if(event.keyCode == cc.macro.KEY.right) this.dir = 1;
+        if(event.keyCode == cc.macro.KEY.left) 
+        {
+            this.dir = -1;
+            
+        }
+        else if(event.keyCode == cc.macro.KEY.right)
+        {
+            this.dir = 1;
+            
+        }
         
         if(event.keyCode == cc.macro.KEY.p){
             cc.audioEngine.pauseAll();
@@ -90,14 +120,16 @@ export class Player extends cc.Component {
         switch(event.keyCode){
             case cc.macro.KEY.left:
                 this.dir = 0;
+                
                 break;
             case cc.macro.KEY.right:
                 this.dir = 0;
+                
                 break;
         }
     }
 
-    jump(){
+    jump(){    
         this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 600);
     }
 }
