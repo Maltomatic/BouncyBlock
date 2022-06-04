@@ -20,6 +20,7 @@ export class Player extends cc.Component {
 
     private dir: number = 0;
     private section_count = 0;      // on contact with marker, if section_count * 1920 < this.node.x: init next section and section_count ++
+    private canJump: boolean = true;
 
     // LIFE-CYCLE CALLBACKS:
 
@@ -37,6 +38,8 @@ export class Player extends cc.Component {
 
     onBeginContact(contact, self, other){
         // console.log("hit node with color " + other.node.getComponent(cc.TiledTile).gid);
+        var touch = contact.getWorldManifold().normal;
+        if(touch.y < 0) this.canJump = true;
         if(other.tag == 1000){
             console.log("hit marker");
             if(this.node.x >= this.section_count*1920){
@@ -93,7 +96,7 @@ export class Player extends cc.Component {
     onKeyDown(event){
         
         if(event.keyCode == cc.macro.KEY.space){
-            this.jump();
+            if(this.canJump) this.jump();
         }
         if(event.keyCode == cc.macro.KEY.left){
             this.dir = -1;
@@ -121,7 +124,8 @@ export class Player extends cc.Component {
         }
     }
 
-    jump(){    
+    jump(){ 
+        this.canJump = false;   
         this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 600);
     }
 }
