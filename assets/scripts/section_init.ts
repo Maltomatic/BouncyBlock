@@ -46,16 +46,15 @@ export default class Section extends cc.Component {
             var y_size = obj.height / 48;
             var colors = [1052, 1053, 1054, 1055, 1056]
             var color = Math.floor(Math.random() * 5)
-            console.log(obj.x, obj.y, x_size, y_size);
+            // console.log(obj.x, obj.y, x_size, y_size);
+            console.log("Create colored block with gid " + colors[color]);
 
             for(i = obj.x / 48; i < (obj.x / 48 + x_size); i++){
                 for(j = 10 - (obj.y/48); j < (10 - (obj.y/48) + y_size); j++){
-                    console.log(i, j);
                     var FloorTile = floor.getTiledTileAt(i, j, true);
                     FloorTile.gid = colors[color];
                 }
             }
         });
-        console.log("Ground init complete. Creating mounds");
     }
 }

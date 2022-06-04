@@ -1,7 +1,9 @@
 {
   "group-list": [
     "default",
-    "ground"
+    "ground",
+    "player",
+    "enemies"
   ],
   "collision-matrix": [
     [
@@ -9,6 +11,20 @@
     ],
     [
       false,
+      false,
+      true,
+      true
+    ],
+    [
+      false,
+      true,
+      false,
+      true
+    ],
+    [
+      false,
+      true,
+      true,
       false
     ]
   ],
