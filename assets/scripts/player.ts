@@ -76,16 +76,18 @@ export class Player extends cc.Component {
                 next_section.y = 0;
                 this.maplist.addChild(next_section);
             } //else console.log(this.node.x, this.section_count);
-        }else if(other.node.group == 'mound') {
-            if(other.node.getComponent(cc.TiledTile).gid == this.color + this.base && touch.x && !touch.y) {
-                this.node.getChildByName('eye').active = false;
-                // this.last_x = this.node.x;
-            }
-        }else if(other.node.group == 'ground'){
+        }else if(other.node.group == 'ground' || other.node.group == 'mound'){
             if(touch.y && this.fly_state == -1){
                 this.stick = true;
                 this.fly_state = 0;
             }
+
+            if(other.node.group == 'mound') {
+                if(other.node.getComponent(cc.TiledTile).gid == this.color + this.base && touch.x && !touch.y) {
+                    this.node.getChildByName('eye').active = false;
+                    // this.last_x = this.node.x;
+                }
+            }    
         }
 
     }
