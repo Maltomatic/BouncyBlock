@@ -114,7 +114,6 @@ export class Player extends cc.Component {
         this.node.x += this.dir * 200 * dt;
         this.node.scaleX = (this.dir >= 0) ? 1 : -1;
         var dy = this.getComponent(cc.RigidBody).linearVelocity.y;
-
         //----------sparkle-----------------------------------------
         if(this.dir!=0||dy>10) this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).emissionRate=100;
         else this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).emissionRate=0;
