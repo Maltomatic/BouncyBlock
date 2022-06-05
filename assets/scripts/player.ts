@@ -33,7 +33,7 @@ export class Player extends cc.Component {
     color: number = 0;
     strip: number = 0;
     base: number = 0;
-    last_x: any = 0.0;
+    last_x: number = 0.0;
 
     // color info of new_tileset
     color_list: any = {7: "#2b3a67",8: "#496a81",9: "#66999b", 10: "#b3af8f", 11: "#ffc582",
@@ -57,6 +57,7 @@ export class Player extends cc.Component {
     }
 
     onBeginContact(contact, self, other){
+        console.log(other.node.group);
         // console.log("hit node with color " + other.node.getComponent(cc.TiledTile).gid);
         if(other.tag == 1000){
             //console.log("hit marker");
@@ -72,20 +73,18 @@ export class Player extends cc.Component {
                 this.maplist.addChild(next_section);
             } //else console.log(this.node.x, this.section_count);
         }
-        else if( other.node.group == 'ground') {
-            if(other.node.getComponent(cc.TiledTile).gid == this.color + this.base &&
-                 (contact.getWorldManifold().normal.x==-1 || contact.getWorldManifold().normal.x == 1) && contact.getWorldManifold().normal.y == 0) {
+        else if( other.node.group == 'mound') {
+            if(other.node.getComponent(cc.TiledTile).gid == this.color + this.base && contact.getWorldManifold().normal.x && !contact.getWorldManifold().normal.y) {
                 this.node.getChildByName('eye').active = false;
-                this.last_x = this.node.x;
+                // this.last_x = this.node.x;
             }
         }
 
     }
     onEndContact(contact, self, other) {
-
-        //a bug happens when the color of ground is same as the color of player, not solved yet 
-        if(this.last_x > this.node.x + 5 || this.last_x < this.node.x - 5 || this.getComponent(cc.RigidBody).linearVelocity.y != 0) this.node.getChildByName('eye').active = true;
-        else if( other.node.group == 'ground') {
+        //a bug happens when the color of mound is same as the color of player, not solved yet 
+        if(/*this.last_x > this.node.x + 5 || this.last_x < this.node.x - 5 ||*/ this.getComponent(cc.RigidBody).linearVelocity.y != 0) this.node.getChildByName('eye').active = true;
+        else if( other.node.group == 'mound') {
             if(other.node.getComponent(cc.TiledTile).gid == this.color + this.base && other.tag == 10) {
                 this.node.getChildByName('eye').active = true;
             }

@@ -51,6 +51,7 @@ export default class Section extends cc.Component {
                     FloorTile.gid = this.base;
                     // console.log("draw ground box for tile (" + i + ", " + j + ")");
                     FloorTile.node.group = "ground";
+                    console.log("created tile with " + FloorTile.node.group)
                     var body = FloorTile.node.addComponent(cc.RigidBody);
                     body.type = cc.RigidBodyType.Static;
                     body.fixedRotation = true;
@@ -61,6 +62,17 @@ export default class Section extends cc.Component {
                 }
             }
         }
+        console.log("tile init complete, marking mounds")
+        for(var i = 1; i < layerSz.width-1; i++){
+            for(var j = 0; j < layerSz.height; j++){
+                var FloorTile = floor.getTiledTileAt(i, j, true);
+                if(FloorTile.gid != 0 && (floor.getTiledTileAt(i+1, j, true).gid == 0 || floor.getTiledTileAt(i-1, j, true).gid == 0)){
+                    FloorTile.node.group = "mound";
+                    console.log("marked mound at tile (" + i + ", " + j + ")");
+                }
+            }
+        }
+
         var obj_list = map.getObjectGroup("colors").getObjects();
         obj_list.forEach((obj) => {
             var x_size = obj.width / 48;
