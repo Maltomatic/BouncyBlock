@@ -26,6 +26,9 @@ export class Player extends cc.Component {
     private sec_list = [];
 
     private dir: number = 0;
+    private prev_dir: number = 0;
+    private fly_state: number = 0;  // 0 for on ground, 1 for flying, -1 for falling
+    private stick: boolean = false;
     private section_count = 0;      // on contact with marker, if section_count * 1920 < this.node.x: init next section and section_count ++
 
     score: number = 0;
@@ -57,7 +60,8 @@ export class Player extends cc.Component {
     }
 
     onBeginContact(contact, self, other){
-        console.log(other.node.group);
+        // console.log(other.node.group);
+        var touch = contact.getWorldManifold().normal;
         // console.log("hit node with color " + other.node.getComponent(cc.TiledTile).gid);
         if(other.tag == 1000){
             //console.log("hit marker");
@@ -72,11 +76,15 @@ export class Player extends cc.Component {
                 next_section.y = 0;
                 this.maplist.addChild(next_section);
             } //else console.log(this.node.x, this.section_count);
-        }
-        else if( other.node.group == 'mound') {
-            if(other.node.getComponent(cc.TiledTile).gid == this.color + this.base && contact.getWorldManifold().normal.x && !contact.getWorldManifold().normal.y) {
+        }else if(other.node.group == 'mound') {
+            if(other.node.getComponent(cc.TiledTile).gid == this.color + this.base && touch.x && !touch.y) {
                 this.node.getChildByName('eye').active = false;
                 // this.last_x = this.node.x;
+            }
+        }else if(other.node.group == 'ground'){
+            if(touch.y && this.fly_state == -1){
+                this.stick = true;
+                this.fly_state = 0;
             }
         }
 
@@ -117,6 +125,14 @@ export class Player extends cc.Component {
     update (dt) {
         this.camera_track();
         this.node.x += this.dir * 200 * dt;
+        if(this.fly_state == 1){
+            this.node.x -= this.prev_dir * 0.4;
+            this.fly_state = -1;
+        }else if(this.stick){
+            console.log("stick");
+            this.node.x += this.prev_dir * 0.4;
+            this.stick = false;
+        }
         this.node.scaleX = (this.dir >= 0) ? 1 : -1;
         var dy = this.getComponent(cc.RigidBody).linearVelocity.y;
         //----------sparkle emission rate is 0 when didnt move-----------------------------------------
@@ -147,6 +163,8 @@ export class Player extends cc.Component {
     }
 
     camera_track(){
+        if(this.fly_state && !this.dir) return;
+
         if(this.node.x < 100) this.camera.x = 0;
         else this.camera.x = this.node.x - 100;
     }
@@ -158,9 +176,11 @@ export class Player extends cc.Component {
         }
         if(event.keyCode == cc.macro.KEY.left){
             this.dir = -1;
+            this.prev_dir = this.dir;
         }
         else if(event.keyCode == cc.macro.KEY.right){
             this.dir = 1;
+            this.prev_dir = this.dir;
         }
         
         if(event.keyCode == cc.macro.KEY.p){
@@ -184,5 +204,7 @@ export class Player extends cc.Component {
 
     jump(){    
         this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 600);
+        this.fly_state = 1;
+        console.log(this.prev_dir + "fly state: " + this.fly_state);
     }
 }
