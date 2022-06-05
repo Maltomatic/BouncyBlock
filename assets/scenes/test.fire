@@ -1135,7 +1135,7 @@
     "_custom": true,
     "_file": null,
     "_spriteFrame": {
-      "__uuid__": "bb42ed8e-0867-4584-ad63-b6f84f83bba8"
+      "__uuid__": "29158224-f8dd-4661-a796-1ffab537140e"
     },
     "_texture": null,
     "_stopped": false,
@@ -1148,9 +1148,9 @@
     "lifeVar": 0,
     "_startColor": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 12,
+      "g": 3,
+      "b": 3,
       "a": 255
     },
     "_startColorVar": {
@@ -1162,9 +1162,9 @@
     },
     "_endColor": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 5,
+      "g": 3,
+      "b": 3,
       "a": 0
     },
     "_endColorVar": {
@@ -1176,7 +1176,7 @@
     },
     "angle": 90,
     "angleVar": 20,
-    "startSize": 50,
+    "startSize": 15,
     "startSizeVar": 0,
     "endSize": 0,
     "endSizeVar": 0,

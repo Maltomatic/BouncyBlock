@@ -107,6 +107,12 @@ export class Player extends cc.Component {
         var color = new cc.Color(255,255,255);
         this.Color.node.color = color.fromHEX(color_str);
         //-------------------------------------------------
+        
+        //------------sparkle color------------------------
+        this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).startColor= this.Color.node.color;
+        this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).endColor= this.Color.node.color;
+        this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).endColorVar= this.Color.node.color;
+        //-------------------------------------------------
     }
 
     update (dt) {
@@ -114,7 +120,7 @@ export class Player extends cc.Component {
         this.node.x += this.dir * 200 * dt;
         this.node.scaleX = (this.dir >= 0) ? 1 : -1;
         var dy = this.getComponent(cc.RigidBody).linearVelocity.y;
-        //----------sparkle-----------------------------------------
+        //----------sparkle emission rate is 0 when didnt move-----------------------------------------
         if(this.dir!=0||dy>10) this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).emissionRate=100;
         else this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).emissionRate=0;
         //----------------------------------------------------
