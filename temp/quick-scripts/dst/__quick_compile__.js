@@ -1,6 +1,6 @@
 
 (function () {
-var scripts = [{"deps":{"./assets/scripts/root":3,"./assets/scripts/searchlight":4,"./assets/scripts/section_init":1,"./assets/scripts/enemy moving sharp":5,"./assets/scripts/player":2},"path":"preview-scripts/__qc_index__.js"},{"deps":{},"path":"preview-scripts/assets/scripts/section_init.js"},{"deps":{},"path":"preview-scripts/assets/scripts/player.js"},{"deps":{},"path":"preview-scripts/assets/scripts/root.js"},{"deps":{},"path":"preview-scripts/assets/scripts/searchlight.js"},{"deps":{},"path":"preview-scripts/assets/scripts/enemy moving sharp.js"}];
+var scripts = [{"deps":{"./assets/scripts/root":1,"./assets/scripts/section_init":2,"./assets/scripts/player":3,"./assets/scripts/enemy moving sharp":4,"./assets/scripts/searchlight":5},"path":"preview-scripts/__qc_index__.js"},{"deps":{},"path":"preview-scripts/assets/scripts/root.js"},{"deps":{},"path":"preview-scripts/assets/scripts/section_init.js"},{"deps":{},"path":"preview-scripts/assets/scripts/player.js"},{"deps":{},"path":"preview-scripts/assets/scripts/enemy moving sharp.js"},{"deps":{},"path":"preview-scripts/assets/scripts/searchlight.js"}];
 var entries = ["preview-scripts/__qc_index__.js"];
 var bundleScript = 'preview-scripts/__qc_bundle__.js';
 

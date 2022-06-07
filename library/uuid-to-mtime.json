@@ -5,8 +5,8 @@
     "relativePath": "maps"
   },
   "240792ee-e159-498e-9d53-7f96c7aafa0b": {
-    "asset": 1654594278000,
-    "meta": 1654610205510,
+    "asset": 1654610469075,
+    "meta": 1654614149897,
     "relativePath": "scripts"
   },
   "14296c85-75c6-49ed-bfd8-f18d9cc51d28": {
@@ -20,19 +20,14 @@
     "relativePath": "prefabs"
   },
   "e8cb6686-0da8-4260-99a8-b5d5b8aac11c": {
-    "asset": 1654594278000,
-    "meta": 1654610205510,
+    "asset": 1654612200756,
+    "meta": 1654614149897,
     "relativePath": "scenes"
   },
   "152599d9-02ee-4bb1-886f-d81f4d1e22d9": {
     "asset": 1654594278000,
     "meta": 1654610205555,
     "relativePath": "backgrounds/back.png"
-  },
-  "04cfd6d9-41d6-4ada-8a5b-fc5bd8ed6a7d": {
-    "asset": 1654611866206,
-    "meta": 1654611866209,
-    "relativePath": "scenes/test.fire"
   },
   "d05d8487-6ff2-4c51-8f5e-ab24f73ed039": {
     "asset": 1654594278000,
@@ -55,8 +50,8 @@
     "relativePath": "prefabs/section1.prefab"
   },
   "f440d094-9e58-4029-9a31-9d4057e5e2ee": {
-    "asset": 1654594278000,
-    "meta": 1654610205508,
+    "asset": 1654610877722,
+    "meta": 1654614149896,
     "relativePath": "image"
   },
   "8565d3b0-5f4c-455b-afd6-90c22b09988d": {
@@ -698,5 +693,10 @@
     "asset": 1641824999000,
     "meta": 1654611940057,
     "relativePath": "model/primitives.fbx"
+  },
+  "04cfd6d9-41d6-4ada-8a5b-fc5bd8ed6a7d": {
+    "asset": 1654614136823,
+    "meta": 1654614136828,
+    "relativePath": "scenes/test.fire"
   }
 }
