@@ -83,14 +83,26 @@ var Section = /** @class */ (function (_super) {
             }
         }
         console.log("tile init complete, marking mounds");
+        for (j = 0; j < layerSz.height; j++) {
+            var FloorTile = floor.getTiledTileAt(layerSz.width - 1, j, true);
+            if (FloorTile.gid) {
+                FloorTile.node.group = "mound";
+                FloorTile.getComponent(cc.PhysicsBoxCollider).enabled = false;
+            }
+        }
         for (var i = 1; i < layerSz.width - 1; i++) {
             for (var j = 0; j < layerSz.height; j++) {
                 var FloorTile = floor.getTiledTileAt(i, j, true);
                 if (FloorTile.gid != 0 && (floor.getTiledTileAt(i + 1, j, true).gid == 0 || floor.getTiledTileAt(i - 1, j, true).gid == 0)) {
                     FloorTile.node.group = "mound";
+                    FloorTile.getComponent(cc.PhysicsBoxCollider).enabled = false;
                     console.log("marked mound at tile (" + i + ", " + j + ")");
                 }
             }
+        }
+        for (j = 3; j < layerSz.height; j++) {
+            if (floor.getTiledTileAt(i, j, true).gid)
+                floor.getTiledTileAt(i, j, true).node.group = "mound";
         }
         var obj_list = map.getObjectGroup("colors").getObjects();
         obj_list.forEach(function (obj) {
@@ -103,8 +115,6 @@ var Section = /** @class */ (function (_super) {
                 for (j = 10 - (obj.y / 48); j < (10 - (obj.y / 48) + y_size); j++) {
                     var FloorTile = floor.getTiledTileAt(i, j, true);
                     FloorTile.gid = _this.base + color;
-                    var collider = FloorTile.node.getComponent(cc.PhysicsBoxCollider);
-                    collider.tag = 10;
                 }
             }
         });

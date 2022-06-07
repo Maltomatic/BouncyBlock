@@ -102,7 +102,7 @@ var Player = /** @class */ (function (_super) {
         if ( /*this.last_x > this.node.x + 5 || this.last_x < this.node.x - 5 ||*/this.getComponent(cc.RigidBody).linearVelocity.y != 0)
             this.node.getChildByName('eye').active = true;
         else if (other.node.group == 'mound') {
-            if (other.node.getComponent(cc.TiledTile).gid == this.color + this.base && other.tag == 10) {
+            if (other.node.getComponent(cc.TiledTile).gid == this.color + this.base) {
                 this.node.getChildByName('eye').active = true;
             }
         }
