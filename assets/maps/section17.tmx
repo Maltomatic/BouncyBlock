@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.8" tiledversion="1.8.5" orientation="orthogonal" renderorder="right-down" width="40" height="10" tilewidth="48" tileheight="48" infinite="0" nextlayerid="4" nextobjectid="6">
- <tileset firstgid="1" source="new_tileset"/>
+ <tileset firstgid="1" name="new_tileset" tilewidth="48" tileheight="48" tilecount="60" columns="6">
+  <image source="new_tileset.png" width="288" height="480"/>
+ </tileset>
  <tileset firstgid="61" name="tileset_expand" tilewidth="48" tileheight="48" tilecount="1204" columns="43">
   <image source="tileset_expand.png" width="2064" height="1350"/>
  </tileset>

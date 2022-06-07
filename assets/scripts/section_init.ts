@@ -75,8 +75,8 @@ export default class Section extends cc.Component {
                 var FloorTile = floor.getTiledTileAt(i, j, true);
                 if(FloorTile.gid != 0 && (floor.getTiledTileAt(i+1, j, true).gid == 0 || floor.getTiledTileAt(i-1, j, true).gid == 0)){
                     FloorTile.node.group = "mound";
-                    FloorTile.getComponent(cc.PhysicsBoxCollider).enabled = false;
-                    console.log("marked mound at tile (" + i + ", " + j + ")");
+                    // FloorTile.getComponent(cc.PhysicsBoxCollider).enabled = false;
+                    // console.log("marked mound at tile (" + i + ", " + j + ")");
                 }
             }
         }
