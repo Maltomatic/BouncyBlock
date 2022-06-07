@@ -8,11 +8,13 @@
     {
       "__uuid__": "d05d8487-6ff2-4c51-8f5e-ab24f73ed039"
     },
-    null
+    {
+      "__uuid__": "e7026dbe-3dcf-47b8-b37f-05b12e04a31b"
+    }
   ],
   "textureNames": [
     "new_tileset.png",
-    "../../../bouncy_block-main/assets/maps/tileset_expand.png"
+    "tileset_expand.png"
   ],
   "textureSizes": [
     {
@@ -22,8 +24,8 @@
     },
     {
       "__type__": "cc.Size",
-      "width": 0,
-      "height": 0
+      "width": 2064,
+      "height": 1350
     }
   ],
   "imageLayerTextures": [],
