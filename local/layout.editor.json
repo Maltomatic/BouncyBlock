@@ -13,13 +13,13 @@
         "type": "dock-h",
         "children": [
           {
-            "width": 235,
-            "height": 707,
+            "width": 232.3828125,
+            "height": 680,
             "type": "dock-v",
             "children": [
               {
-                "width": 235,
-                "height": 462,
+                "width": 232.3828125,
+                "height": 444.28125,
                 "type": "panel",
                 "active": 0,
                 "children": [
@@ -27,8 +27,8 @@
                 ]
               },
               {
-                "width": 235,
-                "height": 242,
+                "width": 232.3828125,
+                "height": 232.71875,
                 "type": "panel",
                 "active": 0,
                 "children": [
@@ -38,13 +38,13 @@
             ]
           },
           {
-            "width": 583,
-            "height": 707,
+            "width": 576.515625,
+            "height": 680,
             "type": "dock-v",
             "children": [
               {
-                "width": 583,
-                "height": 358,
+                "width": 576.515625,
+                "height": 344.2734375,
                 "type": "panel",
                 "active": 0,
                 "children": [
@@ -52,8 +52,8 @@
                 ]
               },
               {
-                "width": 583,
-                "height": 346,
+                "width": 576.515625,
+                "height": 332.7265625,
                 "type": "panel",
                 "active": 0,
                 "children": [
@@ -65,8 +65,8 @@
             ]
           },
           {
-            "width": 351,
-            "height": 707,
+            "width": 347.09375,
+            "height": 680,
             "type": "panel",
             "active": 0,
             "children": [
@@ -86,7 +86,8 @@
         "inspector",
         "cocos-services"
       ]
-    }
+    },
+    " common-asset-worker-worker": {}
   },
   "panels": {},
   "panelLabelWidth": {}
