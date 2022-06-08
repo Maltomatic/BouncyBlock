@@ -23,6 +23,7 @@ export default class searchlight extends cc.Component {
     onLoad () {
         this.physicManager = cc.director.getPhysicsManager();
         this.physicManager.enabled = true;
+        this.wander();
     }
 
     start () {
@@ -30,6 +31,14 @@ export default class searchlight extends cc.Component {
     }
 
     update (dt) {
-        this.node.x+= this.searchlight_speed * dt;
+        //this.node.x+= this.searchlight_speed * dt;
+    }
+    wander(){
+        cc.tween(this.node).repeatForever(
+            cc.tween(this.node)
+            .by(1, {x: this.node.position.x-100})  
+            .by(1, {x: this.node.position.x+100})
+        ).start();
+        
     }
 }

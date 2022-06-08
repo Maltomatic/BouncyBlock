@@ -44,12 +44,18 @@ var searchlight = /** @class */ (function (_super) {
     searchlight.prototype.onLoad = function () {
         this.physicManager = cc.director.getPhysicsManager();
         this.physicManager.enabled = true;
+        this.wander();
     };
     searchlight.prototype.start = function () {
         //this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.searchlight_speed,0);
     };
     searchlight.prototype.update = function (dt) {
-        this.node.x += this.searchlight_speed * dt;
+        //this.node.x+= this.searchlight_speed * dt;
+    };
+    searchlight.prototype.wander = function () {
+        cc.tween(this.node).repeatForever(cc.tween(this.node)
+            .by(1, { x: this.node.position.x - 100 })
+            .by(1, { x: this.node.position.x + 100 })).start();
     };
     __decorate([
         property()
