@@ -22,12 +22,14 @@ export class Player extends cc.Component {
     @property(cc.Sprite)
     Color: cc.Sprite = null;
 
+    debug_mode: boolean = true;
 
     private sec_list = [];
 
     private dir: number = 0;
     private prev_dir: number = 0;
     private fly_state: number = 0;  // 0 for on ground, 1 for flying, -1 for falling
+    private on_floor: boolean = true;
     private stick: boolean = false;
     private section_count = 0;      // on contact with marker, if section_count * 1920 < this.node.x: init next section and section_count ++
 
@@ -80,6 +82,7 @@ export class Player extends cc.Component {
             if(touch.y && this.fly_state == -1){
                 this.stick = true;
                 this.fly_state = 0;
+                if(!this.on_floor && touch.y < 0) this.on_floor = true;
             }
 
             if(other.node.group == 'mound') {
@@ -111,9 +114,9 @@ export class Player extends cc.Component {
         //random choose player color
         this.strip = cc.find('Canvas/root').getComponent('root').color_strip;
         this.base = 1 + 6*this.strip;
-        this.color = Math.floor(Math.random() * 5);
+        this.color = 1 + Math.floor(Math.random() * 4);
         //console.log(this.base +  Math.floor(Math.random() * 5));
-        var color_str = this.color_list[this.base +  this.color];
+        var color_str = this.color_list[this.base + this.color];
         var color = new cc.Color(255,255,255);
         this.Color.node.color = color.fromHEX(color_str);
         //-------------------------------------------------
@@ -175,7 +178,7 @@ export class Player extends cc.Component {
     onKeyDown(event){
         
         if(event.keyCode == cc.macro.KEY.space){
-            this.jump();
+            if(this.on_floor) this.jump();
         }
         if(event.keyCode == cc.macro.KEY.left){
             this.dir = -1;
@@ -208,6 +211,7 @@ export class Player extends cc.Component {
     jump(){    
         this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 600);
         this.fly_state = 1;
+        if(!this.debug_mode) this.on_floor = false;
         console.log(this.prev_dir + "fly state: " + this.fly_state);
     }
 }

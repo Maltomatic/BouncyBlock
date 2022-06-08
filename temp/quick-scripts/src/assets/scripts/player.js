@@ -36,10 +36,12 @@ var Player = /** @class */ (function (_super) {
         _this.sec2 = null;
         _this.Score = null;
         _this.Color = null;
+        _this.debug_mode = true;
         _this.sec_list = [];
         _this.dir = 0;
         _this.prev_dir = 0;
         _this.fly_state = 0; // 0 for on ground, 1 for flying, -1 for falling
+        _this.on_floor = true;
         _this.stick = false;
         _this.section_count = 0; // on contact with marker, if section_count * 1920 < this.node.x: init next section and section_count ++
         _this.score = 0;
@@ -88,6 +90,8 @@ var Player = /** @class */ (function (_super) {
             if (touch.y && this.fly_state == -1) {
                 this.stick = true;
                 this.fly_state = 0;
+                if (!this.on_floor && touch.y < 0)
+                    this.on_floor = true;
             }
             if (other.node.group == 'mound') {
                 if (other.node.getComponent(cc.TiledTile).gid == this.color + this.base && touch.x && !touch.y) {
@@ -116,7 +120,7 @@ var Player = /** @class */ (function (_super) {
         //random choose player color
         this.strip = cc.find('Canvas/root').getComponent('root').color_strip;
         this.base = 1 + 6 * this.strip;
-        this.color = Math.floor(Math.random() * 5);
+        this.color = 1 + Math.floor(Math.random() * 4);
         //console.log(this.base +  Math.floor(Math.random() * 5));
         var color_str = this.color_list[this.base + this.color];
         var color = new cc.Color(255, 255, 255);
@@ -177,7 +181,8 @@ var Player = /** @class */ (function (_super) {
     };
     Player.prototype.onKeyDown = function (event) {
         if (event.keyCode == cc.macro.KEY.space) {
-            this.jump();
+            if (this.on_floor)
+                this.jump();
         }
         if (event.keyCode == cc.macro.KEY.left) {
             this.dir = -1;
@@ -209,6 +214,8 @@ var Player = /** @class */ (function (_super) {
     Player.prototype.jump = function () {
         this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 600);
         this.fly_state = 1;
+        if (!this.debug_mode)
+            this.on_floor = false;
         console.log(this.prev_dir + "fly state: " + this.fly_state);
     };
     __decorate([
