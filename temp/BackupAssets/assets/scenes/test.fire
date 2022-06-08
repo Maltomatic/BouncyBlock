@@ -646,9 +646,6 @@
         "__id__": 46
       },
       {
-        "__id__": 47
-      },
-      {
         "__id__": 57
       }
     ],
@@ -1927,7 +1924,11 @@
     "_parent": {
       "__id__": 13
     },
-    "_children": [],
+    "_children": [
+      {
+        "__id__": 47
+      }
+    ],
     "_active": true,
     "_components": [],
     "_prefab": null,
@@ -1983,7 +1984,7 @@
     "_name": "searchlight",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 13
+      "__id__": 46
     },
     "_children": [
       {
@@ -2037,7 +2038,7 @@
         1,
         0.5,
         0.5,
-        1
+        0.5
       ]
     },
     "_eulerAngles": {

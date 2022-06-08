@@ -113,7 +113,7 @@ export class Player extends cc.Component {
         //-----------player color----------------------
         //random choose player color
         this.strip = cc.find('Canvas/root').getComponent('root').color_strip;
-        this.base = 1 + 6*this.strip;
+        this.base = 6*this.strip;
         this.color = 1 + Math.floor(Math.random() * 4);
         //console.log(this.base +  Math.floor(Math.random() * 5));
         var color_str = this.color_list[this.base + this.color];

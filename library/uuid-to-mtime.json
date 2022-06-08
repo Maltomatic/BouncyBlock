@@ -660,8 +660,8 @@
     "relativePath": "scripts\\root.ts"
   },
   "04cfd6d9-41d6-4ada-8a5b-fc5bd8ed6a7d": {
-    "asset": 1654669376827,
-    "meta": 1654669376839,
+    "asset": 1654672097808,
+    "meta": 1654672097826,
     "relativePath": "scenes\\test.fire"
   },
   "62469ddb-e363-4636-b98f-c9ccf13dfcbe": {
@@ -710,8 +710,8 @@
     "relativePath": "backgrounds\\gray.jpg"
   },
   "a4fb5ce8-16f2-4ec9-b773-3d70ce77a8e4": {
-    "asset": 1654669946179,
-    "meta": 1654669948347,
+    "asset": 1654671863765,
+    "meta": 1654671865618,
     "relativePath": "scripts\\player.ts"
   }
 }
