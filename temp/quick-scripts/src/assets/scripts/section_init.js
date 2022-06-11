@@ -119,7 +119,6 @@ var Section = /** @class */ (function (_super) {
                 for (j = 10 - (obj.y / 48); j < (10 - (obj.y / 48) + y_size); j++) {
                     var FloorTile = floor.getTiledTileAt(i, j, true);
                     FloorTile.gid = col;
-                    // TODO: introduce bias to increase player color match rate
                 }
             }
         });

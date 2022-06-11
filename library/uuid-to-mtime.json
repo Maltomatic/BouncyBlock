@@ -675,8 +675,8 @@
     "relativePath": "image\\search_black.png"
   },
   "04cfd6d9-41d6-4ada-8a5b-fc5bd8ed6a7d": {
-    "asset": 1654921827685,
-    "meta": 1654921827703,
+    "asset": 1654922478548,
+    "meta": 1654922478564,
     "relativePath": "scenes\\test.fire"
   },
   "f8de63f6-a9f6-4925-b675-6ae32e30e9ca": {
@@ -710,8 +710,8 @@
     "relativePath": "scripts\\root.ts"
   },
   "f86b1eb1-1093-461a-a9c8-46b312ad29da": {
-    "asset": 1654922323321,
-    "meta": 1654922325588,
+    "asset": 1654922431022,
+    "meta": 1654922470152,
     "relativePath": "scripts\\section_init.ts"
   }
 }
