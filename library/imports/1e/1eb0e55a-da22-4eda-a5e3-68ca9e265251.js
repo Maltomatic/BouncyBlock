@@ -32,8 +32,13 @@ var root = /** @class */ (function (_super) {
         _this.color_strip = 0;
         return _this;
     }
-    root.prototype.start = function () {
+    // private player = Player;
+    // private sec = Section;
+    root.prototype.onLoad = function () {
         this.color_strip = 1 + Math.floor(Math.random() * 5);
+    };
+    root.prototype.start = function () {
+        // this.color_strip = 1 + Math.floor(Math.random() * 5);
         //set background color according to different strips. 
         var skyColorList = [0, 30, 30, 60, 0, 30];
         cc.director.setClearColor(cc.color(skyColorList[this.color_strip], skyColorList[this.color_strip], skyColorList[this.color_strip]));

@@ -36,10 +36,19 @@ var searchlight = /** @class */ (function (_super) {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.searchlight_speed = 10;
         _this.spark = null;
+        _this.vis_time = 0;
+        _this.attack = false;
         _this.eye_pos = null;
         // LIFE-CYCLE CALLBACKS:
         _this.physicManager = null;
         return _this;
+        ////////////////////////////////// TODO //////////////////////////////////
+        // edge detection: time the amount of time the player takes from appearing in light range to eyes closing (vis_time)
+        // (t == 0): just move away
+        // else: light swing over to player
+        // (0 < t <= 0.3): hover over player briefly, then move on
+        // else: attack player; projectile speed should be equal to player move speed and fire once per 0.6 ~ 1.2sec depending on player score
+        // spotlight 
     }
     searchlight.prototype.onLoad = function () {
         this.physicManager = cc.director.getPhysicsManager();

@@ -16,6 +16,9 @@ export default class searchlight extends cc.Component {
     @property(cc.ParticleSystem)
     spark : cc.ParticleSystem = null;
 
+    private vis_time: number = 0;
+    private attack: boolean = false;
+
     @property(cc.Node)
     eye_pos : cc.Node = null;
     // LIFE-CYCLE CALLBACKS:
@@ -41,4 +44,12 @@ export default class searchlight extends cc.Component {
         ).start();
         
     }
+
+    ////////////////////////////////// TODO //////////////////////////////////
+    // edge detection: time the amount of time the player takes from appearing in light range to eyes closing (vis_time)
+    // (t == 0): just move away
+    // else: light swing over to player
+        // (0 < t <= 0.3): hover over player briefly, then move on
+        // else: attack player; projectile speed should be equal to player move speed and fire once per 0.6 ~ 1.2sec depending on player score
+            // spotlight 
 }

@@ -23,6 +23,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Section = void 0;
 var _a = cc._decorator, ccclass = _a.ccclass, property = _a.property;
 var Section = /** @class */ (function (_super) {
     __extends(Section, _super);
@@ -30,6 +31,7 @@ var Section = /** @class */ (function (_super) {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.base = 6;
         _this.strip = 1;
+        _this.player_col = 0;
         return _this;
     }
     Section.prototype.onLoad = function () {
@@ -83,11 +85,10 @@ var Section = /** @class */ (function (_super) {
             }
         }
         console.log("tile init complete, marking mounds");
-        for (j = 0; j < layerSz.height; j++) {
+        for (j = 3; j < layerSz.height; j++) {
             var FloorTile = floor.getTiledTileAt(layerSz.width - 1, j, true);
             if (FloorTile.gid) {
                 FloorTile.node.group = "mound";
-                FloorTile.getComponent(cc.PhysicsBoxCollider).enabled = false;
             }
         }
         for (var i = 1; i < layerSz.width - 1; i++) {
@@ -100,21 +101,25 @@ var Section = /** @class */ (function (_super) {
                 }
             }
         }
-        for (j = 3; j < layerSz.height; j++) {
-            if (floor.getTiledTileAt(i, j, true).gid)
-                floor.getTiledTileAt(i, j, true).node.group = "mound";
-        }
         var obj_list = map.getObjectGroup("colors").getObjects();
+        this.player_col = 6 * this.strip + cc.find('Canvas/root/player').getComponent('player').color;
+        console.log("bias towards " + this.player_col);
         obj_list.forEach(function (obj) {
             var x_size = obj.width / 48;
             var y_size = obj.height / 48;
-            var color = Math.floor(Math.random() * 5);
+            var cannot_hide = Math.floor(Math.random() * 3);
+            var col = 0;
+            if (cannot_hide)
+                col = _this.base + Math.floor(Math.random() * 5);
+            else
+                col = _this.player_col;
             // console.log(obj.x, obj.y, x_size, y_size);
             // console.log("Create colored block with gid " + this.base + color);
             for (i = obj.x / 48; i < (obj.x / 48 + x_size); i++) {
                 for (j = 10 - (obj.y / 48); j < (10 - (obj.y / 48) + y_size); j++) {
                     var FloorTile = floor.getTiledTileAt(i, j, true);
-                    FloorTile.gid = _this.base + color;
+                    FloorTile.gid = col;
+                    // TODO: introduce bias to increase player color match rate
                 }
             }
         });
@@ -124,6 +129,6 @@ var Section = /** @class */ (function (_super) {
     ], Section);
     return Section;
 }(cc.Component));
-exports.default = Section;
+exports.Section = Section;
 
 cc._RF.pop();

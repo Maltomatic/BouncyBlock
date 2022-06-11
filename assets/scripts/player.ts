@@ -49,7 +49,21 @@ export class Player extends cc.Component {
 
     // LIFE-CYCLE CALLBACKS:
 
+    setcolor() {
+        //-----------player color----------------------
+        //random choose player color
+        this.strip = cc.find('Canvas/root').getComponent('root').color_strip;
+        this.base = 6*this.strip;
+        this.color = 1 + Math.floor(Math.random() * 4);
+        //console.log(this.base +  Math.floor(Math.random() * 5));
+        var color_str = this.color_list[this.base + this.color];
+        var color = new cc.Color(255,255,255);
+        this.Color.node.color = color.fromHEX(color_str);
+        //-------------------------------------------------
+    }
+
     onLoad () {
+        this.setcolor();
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
         this.dir = 0;
@@ -109,17 +123,6 @@ export class Player extends cc.Component {
         this.dir = 0;
         this.sec_list = [this.sec0, this.sec1, this.sec2];
         this.score = 0;
-
-        //-----------player color----------------------
-        //random choose player color
-        this.strip = cc.find('Canvas/root').getComponent('root').color_strip;
-        this.base = 6*this.strip;
-        this.color = 1 + Math.floor(Math.random() * 4);
-        //console.log(this.base +  Math.floor(Math.random() * 5));
-        var color_str = this.color_list[this.base + this.color];
-        var color = new cc.Color(255,255,255);
-        this.Color.node.color = color.fromHEX(color_str);
-        //-------------------------------------------------
         
         //------------sparkle color------------------------
         this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).startColor= this.Color.node.color;

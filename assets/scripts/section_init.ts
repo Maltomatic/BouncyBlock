@@ -3,10 +3,11 @@ import { Player } from "./player";
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class Section extends cc.Component {
+export class Section extends cc.Component {
 
     private base: number = 6;
     private strip: number = 1;
+    private player_col: number = 0;
 
     onLoad () {
         cc.director.getCollisionManager().enabled = true;
@@ -63,11 +64,10 @@ export default class Section extends cc.Component {
             }
         }
         console.log("tile init complete, marking mounds")
-        for(j = 0; j < layerSz.height; j++){
+        for(j = 3; j < layerSz.height; j++){
             var FloorTile = floor.getTiledTileAt(layerSz.width-1, j, true);
             if(FloorTile.gid){
                 FloorTile.node.group = "mound";
-                FloorTile.getComponent(cc.PhysicsBoxCollider).enabled = false;
             }
         }
         for(var i = 1; i < layerSz.width-1; i++){
@@ -80,22 +80,25 @@ export default class Section extends cc.Component {
                 }
             }
         }
-        for(j = 3; j < layerSz.height; j++){
-            if(floor.getTiledTileAt(i, j, true).gid) floor.getTiledTileAt(i, j, true).node.group = "mound";
-        }
 
         var obj_list = map.getObjectGroup("colors").getObjects();
+        this.player_col = 6*this.strip + cc.find('Canvas/root/player').getComponent('player').color
+        console.log("bias towards " + this.player_col);
         obj_list.forEach((obj) => {
             var x_size = obj.width / 48;
             var y_size = obj.height / 48;
-            var color = Math.floor(Math.random() * 5)
+            
+            var cannot_hide = Math.floor(Math.random() * 3);
+            var col = 0;
+            if(cannot_hide) col = this.base + Math.floor(Math.random() * 5);
+            else col = this.player_col;
             // console.log(obj.x, obj.y, x_size, y_size);
             // console.log("Create colored block with gid " + this.base + color);
 
             for(i = obj.x / 48; i < (obj.x / 48 + x_size); i++){
                 for(j = 10 - (obj.y/48); j < (10 - (obj.y/48) + y_size); j++){
                     var FloorTile = floor.getTiledTileAt(i, j, true);
-                    FloorTile.gid = this.base + color;
+                    FloorTile.gid = col;
                 }
             }
         });
