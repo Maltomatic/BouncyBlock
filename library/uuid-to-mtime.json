@@ -675,8 +675,8 @@
     "relativePath": "image\\search_black.png"
   },
   "04cfd6d9-41d6-4ada-8a5b-fc5bd8ed6a7d": {
-    "asset": 1654922478548,
-    "meta": 1654922478564,
+    "asset": 1655102180146,
+    "meta": 1655102180156,
     "relativePath": "scenes\\test.fire"
   },
   "f8de63f6-a9f6-4925-b675-6ae32e30e9ca": {
@@ -704,14 +704,14 @@
     "meta": 1654921826191,
     "relativePath": "scripts\\root.ts"
   },
-  "f86b1eb1-1093-461a-a9c8-46b312ad29da": {
-    "asset": 1654922431022,
-    "meta": 1654922470152,
-    "relativePath": "scripts\\section_init.ts"
-  },
   "a4fb5ce8-16f2-4ec9-b773-3d70ce77a8e4": {
-    "asset": 1655098880432,
-    "meta": 1655098918394,
+    "asset": 1655100057306,
+    "meta": 1655100061666,
     "relativePath": "scripts\\player.ts"
+  },
+  "f86b1eb1-1093-461a-a9c8-46b312ad29da": {
+    "asset": 1655102613393,
+    "meta": 1655102614792,
+    "relativePath": "scripts\\section_init.ts"
   }
 }

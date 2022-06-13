@@ -100,6 +100,7 @@ var Player = /** @class */ (function (_super) {
             } //else console.log(this.node.x, this.section_count);
         }
         else if (other.node.group == 'ground' || other.node.group == 'mound') {
+            console.log(other.node.group + " (" + touch.x + ", " + touch.y + ")");
             if (touch.y && this.fly_state == -1) {
                 this.stick = true;
                 this.fly_state = 0;

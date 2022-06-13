@@ -42,6 +42,7 @@ export class Section extends cc.Component {
         collider.apply();
 
         var sz = map.getTileSize();
+        console.log(sz);
 
         var floor = map.getLayer("ground");
         var layerSz = floor.getLayerSize();
@@ -52,34 +53,61 @@ export class Section extends cc.Component {
                     FloorTile.gid = this.base;
                     // console.log("draw ground box for tile (" + i + ", " + j + ")");
                     FloorTile.node.group = "ground";
-                    console.log("created tile with " + FloorTile.node.group)
+                    // console.log("created tile with " + FloorTile.node.group)
                     var body = FloorTile.node.addComponent(cc.RigidBody);
                     body.type = cc.RigidBodyType.Static;
                     body.fixedRotation = true;
+
                     var collider = FloorTile.node.addComponent(cc.PhysicsBoxCollider);
                     collider.offset = cc.v2(sz.width/2, sz.height/2);
-                    collider.size = sz;
+                    if(floor.getTiledTileAt(i, j-1, true).gid) collider.size = cc.size(47.8, 48);
+                    else collider.size = sz;
                     collider.apply();
                 }
             }
         }
         console.log("tile init complete, marking mounds")
-        for(j = 3; j < layerSz.height; j++){
-            var FloorTile = floor.getTiledTileAt(layerSz.width-1, j, true);
-            if(FloorTile.gid){
-                FloorTile.node.group = "mound";
-            }
+        // for(j = 3; j < layerSz.height; j++){
+        var FloorTile = floor.getTiledTileAt(layerSz.width-1, 7, true);
+        if(FloorTile.gid){
+            FloorTile.node.group = "mound";
+            var col = FloorTile.node.getComponent(cc.PhysicsBoxCollider);
+            col.size = cc.size(47.8, 48);
+            col.apply();
+            console.log("shrink collider size of tile(" + 39 + ", " + 7 + ") to "+ col.size.width + ", "+ col.size.height);
         }
+        // }
         for(var i = 1; i < layerSz.width-1; i++){
             for(var j = 0; j < layerSz.height; j++){
                 var FloorTile = floor.getTiledTileAt(i, j, true);
-                if(FloorTile.gid != 0 && (floor.getTiledTileAt(i+1, j, true).gid == 0 || floor.getTiledTileAt(i-1, j, true).gid == 0)){
+                if(FloorTile.gid != 0 && ((floor.getTiledTileAt(i+1, j, true).gid == 0 && floor.getTiledTileAt(i+1, j+1, true).gid != 0) || (floor.getTiledTileAt(i-1, j, true).gid == 0 && floor.getTiledTileAt(i-1, j+1, true).gid != 0))){
                     FloorTile.node.group = "mound";
-                    // FloorTile.getComponent(cc.PhysicsBoxCollider).enabled = false;
-                    // console.log("marked mound at tile (" + i + ", " + j + ")");
+                    var col = FloorTile.node.getComponent(cc.PhysicsBoxCollider);
+                    col.size = cc.size(47.8, 48);
+                    col.apply();
+                    console.log("shrink collider size of tile(" + 39 + ", " + 7 + ") to "+ col.size.width + ", "+ col.size.height);
                 }
             }
         }
+
+        // console.log("shrinking mound sizes to avoid sticking");
+        // for(var i = 0; i < layerSz.width; i++){
+        //     for(var j = 0; j < layerSz.height; j++){
+        //         var FloorTile = floor.getTiledTileAt(i, j, true);
+        //         if(FloorTile.node.group == "mound"){
+        //             var collider = FloorTile.node.addComponent(cc.PhysicsBoxCollider);
+        //             collider.offset = cc.v2(sz.width/2, sz.height/2);
+        //             collider.size = cc.size(47.8, 48);
+        //             collider.apply();
+        //             console.log(" collider size of mound(" + i + ", " + j + ") set to "+ collider.size.width + ", "+ collider.size.height);
+        //         }else if(FloorTile.node.group == "ground"){
+        //             var collider = FloorTile.node.addComponent(cc.PhysicsBoxCollider);
+        //             collider.offset = cc.v2(sz.width/2, sz.height/2);
+        //             collider.size = sz;
+        //             collider.apply();
+        //         }
+        //     }
+        // }
 
         var obj_list = map.getObjectGroup("colors").getObjects();
         this.player_col = 6*this.strip + cc.find('Canvas/root/player').getComponent('player').color
