@@ -107,7 +107,7 @@ var Player = /** @class */ (function (_super) {
                     this.on_floor = true;
             }
             if (other.node.group == 'mound') {
-                if (other.node.getComponent(cc.TiledTile).gid == this.color + this.base && touch.x && !touch.y) {
+                if (other.node.getComponent(cc.TiledTile).gid == this.color + this.base && touch.x /* && !touch.y*/) {
                     this.node.getChildByName('eye').active = false;
                     // this.last_x = this.node.x;
                 }
