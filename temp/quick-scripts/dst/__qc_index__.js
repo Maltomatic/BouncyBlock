@@ -10,6 +10,7 @@
                     };
                     function __define (exports, require, module) {
                         if (!nodeEnv) {__quick_compile_project__.registerModule(__filename, module);}
+require('./assets/scripts/bird_map_init');
 require('./assets/scripts/enemy moving sharp');
 require('./assets/scripts/player');
 require('./assets/scripts/root');

@@ -1,6 +1,6 @@
 
 (function () {
-var scripts = [{"deps":{"./assets/scripts/root":1,"./assets/scripts/searchlight":2,"./assets/scripts/section_init":4,"./assets/scripts/enemy moving sharp":5,"./assets/scripts/player":3},"path":"preview-scripts/__qc_index__.js"},{"deps":{},"path":"preview-scripts/assets/scripts/root.js"},{"deps":{},"path":"preview-scripts/assets/scripts/searchlight.js"},{"deps":{},"path":"preview-scripts/assets/scripts/player.js"},{"deps":{},"path":"preview-scripts/assets/scripts/section_init.js"},{"deps":{},"path":"preview-scripts/assets/scripts/enemy moving sharp.js"}];
+var scripts = [{"deps":{"./assets/scripts/player":2,"./assets/scripts/root":3,"./assets/scripts/searchlight":4,"./assets/scripts/section_init":5,"./assets/scripts/bird_map_init":6,"./assets/scripts/enemy moving sharp":1},"path":"preview-scripts/__qc_index__.js"},{"deps":{},"path":"preview-scripts/assets/scripts/enemy moving sharp.js"},{"deps":{},"path":"preview-scripts/assets/scripts/player.js"},{"deps":{},"path":"preview-scripts/assets/scripts/root.js"},{"deps":{},"path":"preview-scripts/assets/scripts/searchlight.js"},{"deps":{},"path":"preview-scripts/assets/scripts/section_init.js"},{"deps":{},"path":"preview-scripts/assets/scripts/bird_map_init.js"}];
 var entries = ["preview-scripts/__qc_index__.js"];
 var bundleScript = 'preview-scripts/__qc_bundle__.js';
 

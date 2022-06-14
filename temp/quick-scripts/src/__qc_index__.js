@@ -1,4 +1,5 @@
 
+require('./assets/scripts/bird_map_init');
 require('./assets/scripts/enemy moving sharp');
 require('./assets/scripts/player');
 require('./assets/scripts/root');
