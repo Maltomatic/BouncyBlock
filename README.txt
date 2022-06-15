@@ -8,14 +8,27 @@ Project node heiarchy for game scenes:
 
 TODOS:
     1. main menu
-    2. color selector (skin selection menu? color/skin store --> may require cloud integration)
-    3. power-ups
-    4. searchlight eyes track player along parabola on body
-    5. searchlight prefab
-    6. semi-random searchlight movement range --> random decision within range determined by difficulty stage
-    7. semi-random searchlight spawn --> random decision within range determined by difficulty stage
-    8. pause screen (pause/resume function can already be enabled by keypress), game over screen
-    9. searchlight attack
-    10. player eye blinking? --> purely aesthetic purposes
-    11. searchlight eye squint? --> purely aesthetic purposes
-    12. leaderboard
+        >> color selector (skin selection menu? color/skin store --> may require cloud integration)
+        >> mode selector (bird, multiplayer (?), daylight (?))
+        >> login (or offline; multiplayer mode unavailable if logged out)
+    2. power-ups
+        >> coins, color change
+            >> daylight: coins, knock (draw parent away), flashlight (stun)
+    3. searchlight
+        >> eyes track player along parabola on body
+        >> swinging beam to detect player
+            >> edge movement: leniency via timer
+            >> place in front of all objects with lower opacity
+        >> attack speed & consistency
+            >> stop attack once player out of range, but track light beam based on player movement direction
+        >> spawn rules & range
+        >> prefab-ify & auto-generation
+    4. spikes
+        >> prefab-ify & map-based spawn
+    5. spider
+        >> spawn rules & range
+        >> prefab-ify & auto-generation
+    6. pause screen (pause/resume function can already be enabled by keypress), game over screen
+    7. player eye blinking? --> purely aesthetic purposes
+    8. searchlight eye squint? --> purely aesthetic purposes
+    9. leaderboard
