@@ -5,8 +5,8 @@
     "relativePath": "maps"
   },
   "14296c85-75c6-49ed-bfd8-f18d9cc51d28": {
-    "asset": 1655308780296,
-    "meta": 1655308849454,
+    "asset": 1655310092591,
+    "meta": 1655317202184,
     "relativePath": "backgrounds"
   },
   "6f12df5d-d5da-4eec-857a-07fadfdfc319": {
@@ -120,13 +120,13 @@
     "relativePath": "maps\\section19.tmx"
   },
   "f440d094-9e58-4029-9a31-9d4057e5e2ee": {
-    "asset": 1654668369446,
-    "meta": 1654920410271,
+    "asset": 1655310092591,
+    "meta": 1655317202185,
     "relativePath": "image"
   },
   "e8cb6686-0da8-4260-99a8-b5d5b8aac11c": {
-    "asset": 1655308812904,
-    "meta": 1655308849455,
+    "asset": 1655313110221,
+    "meta": 1655317202187,
     "relativePath": "scenes"
   },
   "240792ee-e159-498e-9d53-7f96c7aafa0b": {
@@ -170,19 +170,14 @@
     "relativePath": "image\\search_black.png"
   },
   "04cfd6d9-41d6-4ada-8a5b-fc5bd8ed6a7d": {
-    "asset": 1655312919961,
-    "meta": 1655312919977,
+    "asset": 1655320716429,
+    "meta": 1655320716442,
     "relativePath": "scenes\\test.fire"
   },
   "95efbaed-8261-45a8-a968-2742e4eb97be": {
     "asset": 1654669284594,
     "meta": 1654920410471,
     "relativePath": "backgrounds\\gray.jpg"
-  },
-  "a4fb5ce8-16f2-4ec9-b773-3d70ce77a8e4": {
-    "asset": 1655100057306,
-    "meta": 1655100061666,
-    "relativePath": "scripts\\player.ts"
   },
   "f51a59a5-a0f4-4c8b-a82a-a1c5afdf7bfb": {
     "asset": 1655308836848,
@@ -769,16 +764,6 @@
     "meta": 1655310073313,
     "relativePath": "image\\beam.png"
   },
-  "f86b1eb1-1093-461a-a9c8-46b312ad29da": {
-    "asset": 1655311822393,
-    "meta": 1655311823604,
-    "relativePath": "scripts\\section_init.ts"
-  },
-  "62469ddb-e363-4636-b98f-c9ccf13dfcbe": {
-    "asset": 1655312979448,
-    "meta": 1655312980575,
-    "relativePath": "scripts\\searchlight.ts"
-  },
   "f8de63f6-a9f6-4925-b675-6ae32e30e9ca": {
     "asset": 1654326898855,
     "meta": 1655313190162,
@@ -793,5 +778,25 @@
     "asset": 1655313110220,
     "meta": 1655313190171,
     "relativePath": "scenes\\day.fire"
+  },
+  "a4fb5ce8-16f2-4ec9-b773-3d70ce77a8e4": {
+    "asset": 1655317553827,
+    "meta": 1655317610417,
+    "relativePath": "scripts\\player.ts"
+  },
+  "f86b1eb1-1093-461a-a9c8-46b312ad29da": {
+    "asset": 1655319983183,
+    "meta": 1655320234844,
+    "relativePath": "scripts\\section_init.ts"
+  },
+  "46fe3e40-486d-4367-9aee-9c5cf3c195d8": {
+    "asset": 1655320606754,
+    "meta": 1655320712787,
+    "relativePath": "scripts\\light.ts"
+  },
+  "62469ddb-e363-4636-b98f-c9ccf13dfcbe": {
+    "asset": 1655320664198,
+    "meta": 1655320712816,
+    "relativePath": "scripts\\searchlight.ts"
   }
 }

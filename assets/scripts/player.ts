@@ -23,6 +23,7 @@ export class Player extends cc.Component {
     Color: cc.Sprite = null;
 
     debug_mode: boolean = true;
+    hidden: boolean = false;
 
     private sec_list = [];
 
@@ -103,6 +104,7 @@ export class Player extends cc.Component {
             if(other.node.group == 'mound') {
                 if(other.node.getComponent(cc.TiledTile).gid == this.color + this.base && touch.x/* && !touch.y*/) {
                     this.node.getChildByName('eye').active = false;
+                    this.hidden = true;
                     // this.last_x = this.node.x;
                 }
             }    
@@ -112,10 +114,13 @@ export class Player extends cc.Component {
     onEndContact(contact, self, other) {
         //a bug happens when the color of mound is same as the color of player, not solved yet 
         // fixed with mound. player should now check collisions with mound
-        if(this.getComponent(cc.RigidBody).linearVelocity.y != 0) this.node.getChildByName('eye').active = true;
-        else if( other.node.group == 'mound') {
+        if(this.getComponent(cc.RigidBody).linearVelocity.y != 0){
+            this.node.getChildByName('eye').active = true;
+            this.hidden = false;
+        }else if( other.node.group == 'mound') {
             if(other.node.getComponent(cc.TiledTile).gid == this.color + this.base) {
                 this.node.getChildByName('eye').active = true;
+                this.hidden = false;
             }
         }
     }

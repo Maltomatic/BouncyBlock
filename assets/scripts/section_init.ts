@@ -42,7 +42,7 @@ export class Section extends cc.Component {
         collider.apply();
 
         var sz = map.getTileSize();
-        console.log(sz);
+        // console.log(sz);
 
         var floor = map.getLayer("ground");
         var layerSz = floor.getLayerSize();
@@ -66,7 +66,7 @@ export class Section extends cc.Component {
                 }
             }
         }
-        console.log("tile init complete, marking mounds")
+        // console.log("tile init complete, marking mounds")
         // for(j = 3; j < layerSz.height; j++){
         var FloorTile = floor.getTiledTileAt(layerSz.width-1, 7, true);
         if(FloorTile.gid){
@@ -74,7 +74,7 @@ export class Section extends cc.Component {
             var col = FloorTile.node.getComponent(cc.PhysicsBoxCollider);
             col.size = cc.size(47.8, 48);
             col.apply();
-            console.log("shrink collider size of tile(" + 39 + ", " + 7 + ") to "+ col.size.width + ", "+ col.size.height);
+            // console.log("shrink collider size of tile(" + 39 + ", " + 7 + ") to "+ col.size.width + ", "+ col.size.height);
         }
         // }
         for(var i = 1; i < layerSz.width-1; i++){
@@ -85,7 +85,7 @@ export class Section extends cc.Component {
                     var col = FloorTile.node.getComponent(cc.PhysicsBoxCollider);
                     col.size = cc.size(47.8, 48);
                     col.apply();
-                    console.log("shrink collider size of tile(" + 39 + ", " + 7 + ") to "+ col.size.width + ", "+ col.size.height);
+                    // console.log("shrink collider size of tile(" + 39 + ", " + 7 + ") to "+ col.size.width + ", "+ col.size.height);
                 }
             }
         }

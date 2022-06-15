@@ -25,6 +25,8 @@ export default class searchlight extends cc.Component {
     private leftbound: number = 0;
     private rightbound: number = 0;
 
+    private lockon: boolean = false;
+
     @property(cc.Node)
     eye_pos : cc.Node = null;
     @property(cc.Node)
@@ -44,11 +46,22 @@ export default class searchlight extends cc.Component {
     }
 
     update (dt) {
-        this.node.x += this.searchlight_speed * dt * this.dir;
-        this.lightbeam.x += this.searchlight_speed * dt * this.dir / (2 * this.range/40);
-        this.eye_pos.angle += this.dir * 0.7 * this.range/50 / (this.searchlight_speed/60);
-        this.lightbeam.angle += this.dir * 0.2 * this.range/50 / (this.searchlight_speed/60);
-        if(this.node.x <= this.leftbound || this.node.x >= this.rightbound) this.dir *= -1;
+        if(this.lightbeam.getComponent('light').alert_level == 0){
+            this.lockon = false;
+            console.log("no target yet");
+            this.node.x += this.searchlight_speed * dt * this.dir;
+            this.lightbeam.x += this.searchlight_speed * dt * this.dir / (2 * this.range/40);
+            this.eye_pos.angle += this.dir * 0.7 * this.range/50 / (this.searchlight_speed/60);
+            this.lightbeam.angle += this.dir * 0.2 * this.range/50 / (this.searchlight_speed/60);
+            if(this.node.x <= this.leftbound || this.node.x >= this.rightbound) this.dir *= -1;
+        }else{
+            if(!this.lockon){
+                this.lockon = true;
+                console.log("searchlight:: locked on");
+                // move to be straight over player
+                this.lightbeam.angle += 0.5 * this.dir;
+            }
+        }
     }
     // wander(){
     //     cc.tween(this.node).repeatForever(
@@ -58,12 +71,4 @@ export default class searchlight extends cc.Component {
     //     ).start();
         
     // }
-
-    ////////////////////////////////// TODO //////////////////////////////////
-    // edge detection: time the amount of time the player takes from appearing in light range to eyes closing (vis_time)
-    // (t == 0): just move away
-    // else: light swing over to player
-        // (0 < t <= 0.3): hover over player briefly, then move on
-        // else: attack player; projectile speed should be equal to player move speed and fire once per 0.6 ~ 1.2sec depending on player score
-            // spotlight 
 }
