@@ -729,16 +729,6 @@
     "meta": 1655307777344,
     "relativePath": "model\\primitives.fbx"
   },
-  "f8de63f6-a9f6-4925-b675-6ae32e30e9ca": {
-    "asset": 1654326898855,
-    "meta": 1655308648280,
-    "relativePath": "animations"
-  },
-  "45c35b9d-44c9-419a-9bc9-50941610f879": {
-    "asset": 1654326909986,
-    "meta": 1655308648282,
-    "relativePath": "audio"
-  },
   "1eb0e55a-da22-4eda-a5e3-68ca9e265251": {
     "asset": 1655308629656,
     "meta": 1655308648302,
@@ -769,11 +759,6 @@
     "meta": 1655308790248,
     "relativePath": "backgrounds\\yellow.jpg"
   },
-  "f6799f9a-26cc-4b32-864a-a82252dd189f": {
-    "asset": 1655308811623,
-    "meta": 1655308812911,
-    "relativePath": "scenes\\day.fire"
-  },
   "8fd84a5b-4e15-4fe4-b925-ce9bf2f9053a": {
     "asset": 1655309318721,
     "meta": 1655309334041,
@@ -793,5 +778,20 @@
     "asset": 1655312979448,
     "meta": 1655312980575,
     "relativePath": "scripts\\searchlight.ts"
+  },
+  "f8de63f6-a9f6-4925-b675-6ae32e30e9ca": {
+    "asset": 1654326898855,
+    "meta": 1655313190162,
+    "relativePath": "animations"
+  },
+  "45c35b9d-44c9-419a-9bc9-50941610f879": {
+    "asset": 1654326909986,
+    "meta": 1655313190166,
+    "relativePath": "audio"
+  },
+  "e19b5114-6ae0-44c7-aaf8-d3a9a5a14998": {
+    "asset": 1655313110220,
+    "meta": 1655313190171,
+    "relativePath": "scenes\\day.fire"
   }
 }
