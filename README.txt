@@ -8,8 +8,9 @@ Project node heiarchy for game scenes:
 
 TODOS:
     1. main menu
+        >> store (unlock colors & buy powerups with coins)
         >> color selector (skin selection menu? color/skin store --> may require cloud integration)
-        >> mode selector (bird, multiplayer (?), daylight (?))
+        >> mode selector (nighttime (default), bird, multiplayer (?), daylight (?))
         >> login (or offline; multiplayer mode unavailable if logged out)
     2. power-ups
         >> coins, color change
