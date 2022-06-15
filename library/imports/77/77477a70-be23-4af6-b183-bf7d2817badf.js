@@ -38,7 +38,7 @@ var BirdBase = /** @class */ (function (_super) {
         cc.director.getCollisionManager().enabledDrawBoundingBox = true;
         cc.director.getPhysicsManager().enabled = true;
         // cc.director.getPhysicsManager().debugDrawFlags = 1;
-        cc.director.getPhysicsManager().gravity = cc.v2(0, -500);
+        cc.director.getPhysicsManager().gravity = cc.v2(0, -600);
     };
     BirdBase.prototype.onDestroy = function () {
         cc.director.getCollisionManager().enabled = false;
@@ -94,11 +94,25 @@ var BirdBase = /** @class */ (function (_super) {
             }
             console.log("tile init complete, digging path(s)");
             var pathrange = [2, 17]; // path should be range between j = 2 and j = 17
-            for (var i = 1; i < layerSz.width - 1; i++) {
-                for (var j = 0; j < layerSz.height; j++) {
-                    var FloorTile = floor.getTiledTileAt(i, j, true);
-                    // set gid to 0 for path
+            for (var i = 0; i < layerSz.width; i++) {
+                // set gid to 0 for path
+                var range = Math.floor(Math.random() * 6);
+                var up_range_min = Math.max(2, pathrange[0] - range);
+                var down_range_min = Math.min(17, pathrange[1] + range);
+                range = Math.floor(Math.random() * 6);
+                var up_range_max = Math.min(pathrange[1] - range, pathrange[0] + range);
+                var down_range_max = Math.max(pathrange[0] + range, pathrange[1] - range);
+                var down_bound = Math.floor(Math.random() * (down_range_max - down_range_min)) + down_range_min;
+                var up_bound = Math.floor(Math.random() * (up_range_max - up_range_min)) + up_range_min;
+                if (down_bound - up_bound < 4) {
+                    down_bound++;
+                    up_bound--;
                 }
+                console.log(up_bound, down_bound);
+                for (var k = up_bound; k < down_bound; k++)
+                    floor.getTiledTileAt(i, k, true).gid = 0;
+                pathrange[0] = up_bound;
+                pathrange[1] = down_bound;
             }
             for (var i = 1; i < layerSz.width - 1; i++) {
                 for (var j = 0; j < layerSz.height; j++) {
