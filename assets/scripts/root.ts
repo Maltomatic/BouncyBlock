@@ -19,6 +19,8 @@ export class root extends cc.Component {
 
         //set background color according to different strips. 
         var skyColorList = [0, 30,30,60,0, 30]
+
+        
         cc.director.setClearColor(cc.color(skyColorList[this.color_strip], skyColorList[this.color_strip], skyColorList[this.color_strip]));
 
     }
