@@ -32,3 +32,5 @@ TODOS:
     7. player eye blinking? --> purely aesthetic purposes
     8. searchlight eye squint? --> purely aesthetic purposes
     9. leaderboard
+    10. tutorial
+        >> animation or demo pictures
