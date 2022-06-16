@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "lego_record",
+    "texture": "d300a2f3-aef5-407a-8406-c92116f9e7cb",
+    "atlas": "",
+    "rect": [
+      15,
+      8,
+      775,
+      646
+    ],
+    "offset": [
+      3.5,
+      1
+    ],
+    "originalSize": [
+      798,
+      664
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}
