@@ -10,8 +10,8 @@
     "relativePath": "backgrounds"
   },
   "6f12df5d-d5da-4eec-857a-07fadfdfc319": {
-    "asset": 1655200605386,
-    "meta": 1655200704169,
+    "asset": 1655403510061,
+    "meta": 1655404628180,
     "relativePath": "prefabs"
   },
   "152599d9-02ee-4bb1-886f-d81f4d1e22d9": {
@@ -125,13 +125,13 @@
     "relativePath": "image"
   },
   "e8cb6686-0da8-4260-99a8-b5d5b8aac11c": {
-    "asset": 1655313110221,
-    "meta": 1655317202187,
+    "asset": 1655404591979,
+    "meta": 1655404628183,
     "relativePath": "scenes"
   },
   "240792ee-e159-498e-9d53-7f96c7aafa0b": {
-    "asset": 1655317285699,
-    "meta": 1655361803600,
+    "asset": 1655404591989,
+    "meta": 1655404628185,
     "relativePath": "scripts"
   },
   "b8958c2d-20a6-47fe-9cfb-b1650490139b": {
@@ -168,11 +168,6 @@
     "asset": 1654667978240,
     "meta": 1654920410417,
     "relativePath": "image\\search_black.png"
-  },
-  "04cfd6d9-41d6-4ada-8a5b-fc5bd8ed6a7d": {
-    "asset": 1655389497308,
-    "meta": 1655389497328,
-    "relativePath": "scenes\\test.fire"
   },
   "95efbaed-8261-45a8-a968-2742e4eb97be": {
     "asset": 1654669284594,
@@ -780,23 +775,43 @@
     "relativePath": "scenes\\day.fire"
   },
   "f86b1eb1-1093-461a-a9c8-46b312ad29da": {
-    "asset": 1655319983183,
-    "meta": 1655320234844,
+    "asset": 1655399484920,
+    "meta": 1655399822172,
     "relativePath": "scripts\\section_init.ts"
   },
+  "f4d6aceb-0bd1-4f1b-87d4-9d11f7db2495": {
+    "asset": 1655403510059,
+    "meta": 1655403541193,
+    "relativePath": "prefabs\\light_enemy.prefab"
+  },
+  "a4a53cbd-0f6d-4b3d-92f8-ed645e865ebe": {
+    "asset": 1655403510061,
+    "meta": 1655403541196,
+    "relativePath": "prefabs\\missile.prefab"
+  },
   "46fe3e40-486d-4367-9aee-9c5cf3c195d8": {
-    "asset": 1655388946369,
-    "meta": 1655388954418,
+    "asset": 1655404591980,
+    "meta": 1655404597487,
     "relativePath": "scripts\\light.ts"
   },
+  "a4fb5ce8-16f2-4ec9-b773-3d70ce77a8e4": {
+    "asset": 1655404591988,
+    "meta": 1655404597556,
+    "relativePath": "scripts\\player.ts"
+  },
   "62469ddb-e363-4636-b98f-c9ccf13dfcbe": {
-    "asset": 1655389131907,
-    "meta": 1655389133094,
+    "asset": 1655404591990,
+    "meta": 1655404597583,
     "relativePath": "scripts\\searchlight.ts"
   },
-  "a4fb5ce8-16f2-4ec9-b773-3d70ce77a8e4": {
-    "asset": 1655389327802,
-    "meta": 1655389340583,
-    "relativePath": "scripts\\player.ts"
+  "04cfd6d9-41d6-4ada-8a5b-fc5bd8ed6a7d": {
+    "asset": 1655404695893,
+    "meta": 1655404695911,
+    "relativePath": "scenes\\test.fire"
+  },
+  "a2251356-048c-402e-b545-6c4cbe1cf897": {
+    "asset": 1655404675578,
+    "meta": 1655404676608,
+    "relativePath": "scripts\\missile.ts"
   }
 }

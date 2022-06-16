@@ -10,8 +10,10 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export class Lightbeam extends cc.Component {
 
-    @property(cc.Node)
-    character: cc.Node = null;
+    private character: cc.Node = null;
+
+    @property(cc.Prefab)
+    bullet: cc.Prefab = null;
 
     alert_level: number = 0;        // 0: don't see   1: stare, pass by  2: attack
     private watch: boolean = false;
@@ -23,6 +25,7 @@ export class Lightbeam extends cc.Component {
 
     onLoad () {
         cc.director.getPhysicsManager().enabled = true;
+        this.character = cc.find('Canvas/root/player');
     }
 
     start () {
@@ -60,14 +63,14 @@ export class Lightbeam extends cc.Component {
     update (dt) {
         if(this.alert_level == 0 && !this.watch) this.allclear();
         else if(this.watch){
-            if(this.character.x != this.watch_x || this.character.y != this.watch_y || !this.character.getComponent('player').hidden) this.alert_level = Math.max(1, this.alert_level);
+            if((this.character.x != this.watch_x || this.character.y != this.watch_y) && !this.character.getComponent('player').hidden) this.alert_level = Math.max(1, this.alert_level);
         }
 
         if(this.alert_level == 1 && !this.armed){
             this.armed = true;
             this.scheduleOnce(() =>{
                 var vis = !(this.character.getComponent('player').hidden);
-                console.log("visible from alert level 1? " + vis);
+                // console.log("visible from alert level 1? " + vis);
                 if(vis){
                     console.log("raise alert level to attack");
                     this.alert_level = 2;
@@ -78,28 +81,31 @@ export class Lightbeam extends cc.Component {
                 }
             }, 0.3);
         }else if(this.alert_level == 2){
-            // what to do after raising alert_level
-            // take turns shooting
             if(this.armed){
-                this.shoot();
                 this.armed = false;
-            }else{
                 this.scheduleOnce(()=> {
-                    var vis = !(this.character.getComponent('player').hidden);
-                    console.log("visible from alert level 2? " + vis)
-                    if(vis){
-                        this.armed = true;
-                        this.alert_level = 2;
-                    }else{
-                        this.allclear();
-                    }
+                    // var vis = !(this.character.getComponent('player').hidden);
+                    // // console.log("visible from alert level 2? " + vis)
+                    // if(vis){
+                    //     this.armed = true;
+                    //     this.shoot();
+                    //     this.alert_level = 2;
+                    // }else{
+                    //     this.allclear();
+                    // }
+                    this.armed = true;
+                    this.shoot();
+                    this.alert_level = 2;
                 }, 0.5);
             }
         }
     }
 
     shoot(){
-        //
+        console.log("shooting")
+        var bullet = cc.instantiate(this.bullet);
+        bullet.setPosition(this.node.x, this.node.y+5);
+        cc.find("Canvas/root").addChild(bullet);
     }
 
     ////////////////////////////////// TODO //////////////////////////////////

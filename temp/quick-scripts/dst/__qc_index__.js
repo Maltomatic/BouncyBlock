@@ -14,6 +14,7 @@ require('./assets/scripts/bird_map_init');
 require('./assets/scripts/bird_player');
 require('./assets/scripts/enemy moving sharp');
 require('./assets/scripts/light');
+require('./assets/scripts/missile');
 require('./assets/scripts/player');
 require('./assets/scripts/root');
 require('./assets/scripts/searchlight');

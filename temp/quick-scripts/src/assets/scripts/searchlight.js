@@ -29,14 +29,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.searchlight = void 0;
 var _a = cc._decorator, ccclass = _a.ccclass, property = _a.property;
 var searchlight = /** @class */ (function (_super) {
     __extends(searchlight, _super);
     function searchlight() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.searchlight_speed = 10;
+        _this.searchlight_speed = 70;
         _this.range = 50;
         _this.spark = null;
+        _this.character = null;
+        _this.eye_pos = null;
+        _this.lightbeam = null;
+        _this.beambottom = null;
         _this.vis_time = 0;
         _this.attack = false;
         _this.state = 0; // 0: normal movement, 1: track, 2: attack
@@ -44,11 +49,11 @@ var searchlight = /** @class */ (function (_super) {
         _this.leftbound = 0;
         _this.rightbound = 0;
         _this.lockon = false;
-        _this.eye_pos = null;
-        _this.lightbeam = null;
         // LIFE-CYCLE CALLBACKS:
         _this.physicManager = null;
         return _this;
+        // this.lightbeam.x = this.node.x;
+        //}
         // wander(){
         //     cc.tween(this.node).repeatForever(
         //         cc.tween(this.node)
@@ -60,6 +65,7 @@ var searchlight = /** @class */ (function (_super) {
     searchlight.prototype.onLoad = function () {
         this.physicManager = cc.director.getPhysicsManager();
         this.physicManager.enabled = true;
+        this.character = cc.find('Canvas/root/player');
         // this.wander();
     };
     searchlight.prototype.start = function () {
@@ -68,32 +74,49 @@ var searchlight = /** @class */ (function (_super) {
         this.rightbound = this.node.x + this.range;
     };
     searchlight.prototype.update = function (dt) {
-        console.log("alert level: " + this.lightbeam.getComponent('light').alert_level);
+        // console.log("alert level: " + this.lightbeam.getComponent('light').alert_level);
         if (this.lightbeam.getComponent('light').alert_level == 0) {
             this.state = 0;
             this.lockon = false;
-            // console.log("no target yet");
+            console.log("no target");
             this.node.x += this.searchlight_speed * dt * this.dir;
             // this.lightbeam.x += this.searchlight_speed * dt * this.dir / (2 * this.range/40);
             this.lightbeam.x = this.node.x;
-            this.eye_pos.angle += this.dir * 0.6 * this.range / 50 / (this.searchlight_speed / 60);
-            this.lightbeam.angle += this.dir * 0.2 * this.range / 50 / (this.searchlight_speed / 60);
-            if (this.node.x <= this.leftbound || this.node.x >= this.rightbound)
-                this.dir *= -1;
+            this.lightbeam.angle += this.dir * 0.2 * this.range / 50;
+            if (this.node.x <= this.leftbound)
+                this.dir = 1;
+            else if (this.node.x >= this.rightbound)
+                this.dir = -1;
+            if (this.lightbeam.angle > 40)
+                this.lightbeam.angle = 40;
+            if (this.lightbeam.angle < -40)
+                this.lightbeam.angle = -40;
         }
         else {
-            if (!this.lockon) {
-                this.lockon = true;
-                console.log("searchlight:: locked on");
-                // move to be straight over player
-                // this.lightbeam.angle += 0.5 * this.dir;
-            }
+            //if(this.lightbeam.getComponent('light').alert_level){
+            console.log("tracking");
+            var shift_dir = 0;
+            if (this.node.x > this.character.x + 3)
+                shift_dir = -1;
+            else if (this.node.x < this.character.x - 3)
+                shift_dir = 1;
+            this.node.x += 3 * this.searchlight_speed * dt * shift_dir;
+            this.lightbeam.x = this.node.x;
+            // var diff = {
+            //     'dx' : this.character.x - this.node.x,
+            //     'dy':this.character.y - this.node.y 
+            // };
+            // var angle = Math.atan2(diff.dy, diff.dx) * -57.2958/4;
+            // var roto = cc.rotateTo(0.05, angle);
+            // this.lightbeam.runAction(roto);
+            if (this.beambottom.x > this.character.x + 3)
+                shift_dir = 1;
+            else if (this.beambottom.x < this.character.x - 3)
+                shift_dir = -1;
+            this.lightbeam.angle += 2 * dt * shift_dir;
         }
-        // this.lightbeam.x = this.node.x;
+        this.eye_pos.angle = this.lightbeam.angle;
     };
-    __decorate([
-        property()
-    ], searchlight.prototype, "searchlight_speed", void 0);
     __decorate([
         property()
     ], searchlight.prototype, "range", void 0);
@@ -106,11 +129,14 @@ var searchlight = /** @class */ (function (_super) {
     __decorate([
         property(cc.Node)
     ], searchlight.prototype, "lightbeam", void 0);
+    __decorate([
+        property(cc.Node)
+    ], searchlight.prototype, "beambottom", void 0);
     searchlight = __decorate([
         ccclass
     ], searchlight);
     return searchlight;
 }(cc.Component));
-exports.default = searchlight;
+exports.searchlight = searchlight;
 
 cc._RF.pop();

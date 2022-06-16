@@ -108,6 +108,13 @@ export class Player extends cc.Component {
                     // this.last_x = this.node.x;
                 }
             }    
+        }else if(other.node.name == 'missile'){
+            // die
+            // deploy white particles
+            this.node.active = false;
+            this.scheduleOnce(() => {
+                cc.director.loadScene("lose")
+            }, 0.3);
         }
 
     }
