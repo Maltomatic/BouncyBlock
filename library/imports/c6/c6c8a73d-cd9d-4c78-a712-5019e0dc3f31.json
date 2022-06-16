@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "bird_tilest",
+    "texture": "64e83b61-2765-441b-8b37-456bfcf608c7",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      192,
+      192
+    ],
+    "offset": [
+      0,
+      64
+    ],
+    "originalSize": [
+      192,
+      320
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}
