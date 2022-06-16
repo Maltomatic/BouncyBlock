@@ -20,6 +20,7 @@ export default class searchlight extends cc.Component {
 
     private vis_time: number = 0;
     private attack: boolean = false;
+    private state: number = 0;      // 0: normal movement, 1: track, 2: attack
 
     private dir: number = 1;
     private leftbound: number = 0;
@@ -46,12 +47,15 @@ export default class searchlight extends cc.Component {
     }
 
     update (dt) {
+        console.log("alert level: " + this.lightbeam.getComponent('light').alert_level);
         if(this.lightbeam.getComponent('light').alert_level == 0){
+            this.state = 0;
             this.lockon = false;
-            console.log("no target yet");
+            // console.log("no target yet");
             this.node.x += this.searchlight_speed * dt * this.dir;
-            this.lightbeam.x += this.searchlight_speed * dt * this.dir / (2 * this.range/40);
-            this.eye_pos.angle += this.dir * 0.7 * this.range/50 / (this.searchlight_speed/60);
+            // this.lightbeam.x += this.searchlight_speed * dt * this.dir / (2 * this.range/40);
+            this.lightbeam.x = this.node.x;
+            this.eye_pos.angle += this.dir * 0.6 * this.range/50 / (this.searchlight_speed/60);
             this.lightbeam.angle += this.dir * 0.2 * this.range/50 / (this.searchlight_speed/60);
             if(this.node.x <= this.leftbound || this.node.x >= this.rightbound) this.dir *= -1;
         }else{
@@ -59,9 +63,10 @@ export default class searchlight extends cc.Component {
                 this.lockon = true;
                 console.log("searchlight:: locked on");
                 // move to be straight over player
-                this.lightbeam.angle += 0.5 * this.dir;
+                // this.lightbeam.angle += 0.5 * this.dir;
             }
         }
+        // this.lightbeam.x = this.node.x;
     }
     // wander(){
     //     cc.tween(this.node).repeatForever(

@@ -36,61 +36,70 @@ export class Lightbeam extends cc.Component {
             this.watch_x = other.node.x;
             this.watch_y = other.node.y;
             console.log("contact player");
-            var is_visible = !(this.character.getComponent('player').hidden);
-            if(is_visible){
+            if(!(this.character.getComponent('player').hidden)){
                 this.alert_level = 1;
-                console.log("spotted player");
+                this.armed = false;
+                // console.log("spotted player");
             }
         }
     }
-    // onPostSolve(contact, self, other){
-    //     this.watch = false;
-    //     if(other.node.name == 'player'){
-    //         console.log("postsolve player");
-    //         var is_visible = !(cc.find('Canvas/root/player').getComponent('player').hidden);
-    //         if(is_visible){
-    //             this.alert_level = 1;
-    //             // console.log("spotted player");
-    //             this.scheduleOnce(() =>{
-    //                 if(!(cc.find('Canvas/root/player').getComponent('player').hidden)){
-    //                     // console.log("can attack");
-    //                     this.alert_level = 2;
-    //                 }else{
-    //                     // console.log("player has hidden");
-    //                     this.alert_level = 0;
-    //                 }
-    //             }, 0.3);
-    //         }
-    //     }
-    // }
     onEndContact(contact, self, other){
         if(other.node.name == 'player'){
-            this.alert_level = 0;
-            this.watch = false;
-            this.armed = false;
+            console.log("player out of range");
+            this.allclear();
         }
     }
 
+    allclear(){
+        this.alert_level = 0;
+        this.watch = false;
+        this.armed = false;
+        this.unscheduleAllCallbacks();
+    }
+
     update (dt) {
-        if(this.watch){
-            if(this.character.x != this.watch_x || this.character.y != this.watch_y) this.alert_level = 1;
+        if(this.alert_level == 0 && !this.watch) this.allclear();
+        else if(this.watch){
+            if(this.character.x != this.watch_x || this.character.y != this.watch_y || !this.character.getComponent('player').hidden) this.alert_level = Math.max(1, this.alert_level);
         }
+
         if(this.alert_level == 1 && !this.armed){
             this.armed = true;
             this.scheduleOnce(() =>{
-                if(!(this.character.getComponent('player').hidden)){
-                    console.log("can attack");
+                var vis = !(this.character.getComponent('player').hidden);
+                console.log("visible from alert level 1? " + vis);
+                if(vis){
+                    console.log("raise alert level to attack");
                     this.alert_level = 2;
+                    this.armed = true;
                 }else{
-                    console.log("player has hidden");
-                    this.alert_level = 0;
-                    this.armed = false;
+                    console.log("cease attack");
+                    this.allclear();
                 }
             }, 0.3);
         }else if(this.alert_level == 2){
             // what to do after raising alert_level
             // take turns shooting
+            if(this.armed){
+                this.shoot();
+                this.armed = false;
+            }else{
+                this.scheduleOnce(()=> {
+                    var vis = !(this.character.getComponent('player').hidden);
+                    console.log("visible from alert level 2? " + vis)
+                    if(vis){
+                        this.armed = true;
+                        this.alert_level = 2;
+                    }else{
+                        this.allclear();
+                    }
+                }, 0.5);
+            }
         }
+    }
+
+    shoot(){
+        //
     }
 
     ////////////////////////////////// TODO //////////////////////////////////

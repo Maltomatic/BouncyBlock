@@ -63,10 +63,10 @@ var Lightbeam = /** @class */ (function (_super) {
             this.watch_x = other.node.x;
             this.watch_y = other.node.y;
             console.log("contact player");
-            var is_visible = !(this.character.getComponent('player').hidden);
-            if (is_visible) {
+            if (!(this.character.getComponent('player').hidden)) {
                 this.alert_level = 1;
-                console.log("spotted player");
+                this.armed = false;
+                // console.log("spotted player");
             }
         }
     };
@@ -92,35 +92,64 @@ var Lightbeam = /** @class */ (function (_super) {
     // }
     Lightbeam.prototype.onEndContact = function (contact, self, other) {
         if (other.node.name == 'player') {
-            this.alert_level = 0;
-            this.watch = false;
-            this.armed = false;
+            console.log("player out of range");
+            this.allclear();
         }
+    };
+    Lightbeam.prototype.allclear = function () {
+        this.alert_level = 0;
+        this.watch = false;
+        this.armed = false;
+        this.unscheduleAllCallbacks();
     };
     Lightbeam.prototype.update = function (dt) {
         var _this = this;
-        if (this.watch) {
-            if (this.character.x != this.watch_x || this.character.y != this.watch_y)
-                this.alert_level = 1;
+        if (this.alert_level == 0 && !this.watch)
+            this.allclear();
+        else if (this.watch) {
+            if (this.character.x != this.watch_x || this.character.y != this.watch_y || !this.character.getComponent('player').hidden)
+                this.alert_level = Math.max(1, this.alert_level);
         }
         if (this.alert_level == 1 && !this.armed) {
             this.armed = true;
             this.scheduleOnce(function () {
-                if (!(_this.character.getComponent('player').hidden)) {
-                    console.log("can attack");
+                var vis = !(_this.character.getComponent('player').hidden);
+                console.log("visible from alert level 1? " + vis);
+                if (vis) {
+                    console.log("raise alert level to attack");
                     _this.alert_level = 2;
+                    _this.armed = true;
                 }
                 else {
-                    console.log("player has hidden");
-                    _this.alert_level = 0;
-                    _this.armed = false;
+                    console.log("cease attack");
+                    _this.allclear();
                 }
             }, 0.3);
         }
         else if (this.alert_level == 2) {
             // what to do after raising alert_level
             // take turns shooting
+            if (this.armed) {
+                this.shoot();
+                this.armed = false;
+            }
+            else {
+                this.scheduleOnce(function () {
+                    var vis = !(_this.character.getComponent('player').hidden);
+                    console.log("visible from alert level 2? " + vis);
+                    if (vis) {
+                        _this.armed = true;
+                        _this.alert_level = 2;
+                    }
+                    else {
+                        _this.allclear();
+                    }
+                }, 0.5);
+            }
         }
+    };
+    Lightbeam.prototype.shoot = function () {
+        //
     };
     __decorate([
         property(cc.Node)
