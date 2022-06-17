@@ -131,7 +131,7 @@ var Lightbeam = /** @class */ (function (_super) {
     Lightbeam.prototype.shoot = function () {
         console.log("shooting");
         var bullet = cc.instantiate(this.bullet);
-        bullet.setPosition(this.node.x, this.node.y + 10);
+        bullet.setPosition(this.node.x, 190);
         console.log("create bullet by light at " + this.node.x, this.node.y);
         cc.find("Canvas/root").addChild(bullet);
     };
