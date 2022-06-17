@@ -13,6 +13,7 @@ export default class NewClass extends cc.Component {
     @property(cc.Label)
     now_score:cc.Label;
     before_x:number;
+    
     onLoad () {
         cc.director.getPhysicsManager().enabled = true;
         cc.director.getCollisionManager().enabled = true;

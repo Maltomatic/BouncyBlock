@@ -5,21 +5,21 @@
       "main": true,
       "url": "app://editor/index.html",
       "windowType": "dockable",
-      "x": -8,
-      "y": -8,
-      "width": 1520,
-      "height": 978,
+      "x": 0,
+      "y": 0,
+      "width": 1440,
+      "height": 852,
       "layout": {
         "type": "dock-h",
         "children": [
           {
-            "width": 341.3125,
-            "height": 861,
+            "width": 324.203125,
+            "height": 735.5,
             "type": "dock-v",
             "children": [
               {
-                "width": 341.3125,
-                "height": 550.09375,
+                "width": 324.203125,
+                "height": 469.5546875,
                 "type": "panel",
                 "active": 0,
                 "children": [
@@ -27,8 +27,8 @@
                 ]
               },
               {
-                "width": 341.3125,
-                "height": 307.90625,
+                "width": 324.203125,
+                "height": 262.9453125,
                 "type": "panel",
                 "active": 0,
                 "children": [
@@ -38,13 +38,13 @@
             ]
           },
           {
-            "width": 744.5104370117188,
-            "height": 861,
+            "width": 706.234375,
+            "height": 735.5,
             "type": "dock-v",
             "children": [
               {
-                "width": 744.5104370117188,
-                "height": 534.2708740234375,
+                "width": 706.234375,
+                "height": 456.2109375,
                 "type": "panel",
                 "active": 0,
                 "children": [
@@ -52,10 +52,10 @@
                 ]
               },
               {
-                "width": 744.5104370117188,
-                "height": 323.72918701171875,
+                "width": 706.234375,
+                "height": 276.2890625,
                 "type": "panel",
-                "active": 0,
+                "active": 1,
                 "children": [
                   "console",
                   "timeline",
@@ -65,8 +65,8 @@
             ]
           },
           {
-            "width": 412.1770935058594,
-            "height": 861,
+            "width": 390.5625,
+            "height": 735.5,
             "type": "panel",
             "active": 0,
             "children": [
@@ -87,8 +87,7 @@
         "cocos-services"
       ]
     },
-    " common-asset-worker-worker": {},
-    "window-1655474668471": {}
+    " common-asset-worker-worker": {}
   },
   "panels": {
     "project-settings": {

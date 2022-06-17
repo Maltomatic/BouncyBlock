@@ -41,7 +41,7 @@ var Section = /** @class */ (function (_super) {
         cc.director.getCollisionManager().enabled = true;
         cc.director.getCollisionManager().enabledDrawBoundingBox = true;
         cc.director.getPhysicsManager().enabled = true;
-        cc.director.getPhysicsManager().debugDrawFlags = 1;
+        //cc.director.getPhysicsManager().debugDrawFlags = 1;
         cc.director.getPhysicsManager().gravity = cc.v2(0, -500);
         this.lv = parseInt(this.node.name.replace('section', ''));
     };
@@ -177,7 +177,8 @@ var Section = /** @class */ (function (_super) {
             var enemy = cc.instantiate(this.searchlight);
             enemy.getChildByName('searchlight').getComponent('searchlight').range = range;
             enemy.setPosition(offset + (1920 / (lightcount + 1)) * i + (Math.floor(Math.random() * 400) - 200), 200);
-            cc.find("Canvas/root/Enemy_collection").addChild(enemy);
+            if (cc.director.getScene().name != "day")
+                cc.find("Canvas/root/Enemy_collection").addChild(enemy);
         }
     };
     __decorate([
