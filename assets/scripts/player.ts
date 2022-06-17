@@ -128,8 +128,7 @@ export class Player extends cc.Component {
         } else if(other.node.group == 'coin'){ // @@ 
             this.update_coin(1);
             other.node.destroy();
-        }
-        else if(other.node.group == 'bubble'){ // @@ 
+        }else if(other.node.group == 'bubble'){ // @@ 
            if(other.tag == 1){ // bubble banana
             console.log("banana");
                 this.update_banana(1);
@@ -139,6 +138,13 @@ export class Player extends cc.Component {
                 this.update_lego(1);
                 other.node.destroy();
            }
+        }else if(other.node.name == 'missile'){
+            // die
+            // deploy white particles
+            this.node.active = false;
+            this.scheduleOnce(() => {
+                cc.director.loadScene("lose")
+            }, 0.3);
         }
 
     }

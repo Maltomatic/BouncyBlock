@@ -140,6 +140,14 @@ var Player = /** @class */ (function (_super) {
                 other.node.destroy();
             }
         }
+        else if (other.node.name == 'missile') {
+            // die
+            // deploy white particles
+            this.node.active = false;
+            this.scheduleOnce(function () {
+                cc.director.loadScene("lose");
+            }, 0.3);
+        }
     };
     Player.prototype.onEndContact = function (contact, self, other) {
         //a bug happens when the color of mound is same as the color of player, not solved yet 
