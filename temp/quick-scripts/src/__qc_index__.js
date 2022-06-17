@@ -2,6 +2,7 @@
 require('./assets/scripts/bird_map_init');
 require('./assets/scripts/bird_player');
 require('./assets/scripts/bubble_item');
+require('./assets/scripts/bubble_item_in_dayscene');
 require('./assets/scripts/enemy moving sharp');
 require('./assets/scripts/light');
 require('./assets/scripts/parent');
