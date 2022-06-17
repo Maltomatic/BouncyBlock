@@ -170,11 +170,11 @@ export class Section extends cc.Component {
         }
         //coin 不知為甚麼只有第一個可以成功  後面都說instantiate null
         var offset = lv_diff * 1920 + ((lv_diff == 0)? 400 : 0);
-        for(i =0;i<Math.random()*10;i++)
+        for(i =0;i<Math.random()*11;i++)
         {
             var money=cc.instantiate(this.coin_pre);
-            money.x=Math.random()*400+offset;
-            money.y=200;
+            money.x=Math.random()*1920+offset;
+            money.y=500;
             cc.find("Canvas/root/powerups").addChild(money);
         }
 

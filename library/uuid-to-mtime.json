@@ -960,8 +960,8 @@
     "relativePath": "scenes\\test.fire"
   },
   "f86b1eb1-1093-461a-a9c8-46b312ad29da": {
-    "asset": 1655495128255,
-    "meta": 1655495130695,
+    "asset": 1655495337438,
+    "meta": 1655495341164,
     "relativePath": "scripts\\section_init.ts"
   }
 }
