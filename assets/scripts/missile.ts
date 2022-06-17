@@ -12,7 +12,7 @@ export class Missile extends cc.Component {
         this.player = cc.find('Canvas/root/player');
         this.tgt_x = this.player.x;
         this.tgt_y = this.player.y;
-        console.log("bulelt spawn at " + this.node.x, this.node.y);
+        
         // var diff = {
         //     'dx': this.player.x - this.node.x,
         //     'dy': this.player.y - this.node.y 
@@ -24,9 +24,7 @@ export class Missile extends cc.Component {
     }
 
     start () {
-        console.log("bullet in action");
-        var offset = (this.player.x < this.node.x)? -20 : 20;
-        this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2((offset + this.player.x - this.node.x), (this.player.y - 15 - this.node.y)).normalizeSelf().multiply(cc.v2(700, 700));
+        // console.log("bulelt spawn at " + this.node.x, this.node.y);
     }
 
     onPostSolve(contact, self, other){
@@ -37,5 +35,7 @@ export class Missile extends cc.Component {
         }
     }
 
-    // update (dt) {}
+    update (dt) {
+        if(this.node.y < -3500) this.node.destroy();
+    }
 }

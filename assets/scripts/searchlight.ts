@@ -26,10 +26,6 @@ export class searchlight extends cc.Component {
     @property(cc.Node)
     beambottom: cc.Node = null;
 
-    private vis_time: number = 0;
-    private attack: boolean = false;
-    private state: number = 0;      // 0: normal movement, 1: track, 2: attack
-
     private dir: number = 1;
     private leftbound: number = 0;
     private rightbound: number = 0;
@@ -54,7 +50,6 @@ export class searchlight extends cc.Component {
     update (dt) {
         // console.log("alert level: " + this.lightbeam.getComponent('light').alert_level);
         if(this.lightbeam.getComponent('light').alert_level == 0){
-            this.state = 0;
             this.lockon = false;
             console.log("no target");
             this.node.x += this.searchlight_speed * dt * this.dir;
@@ -67,29 +62,21 @@ export class searchlight extends cc.Component {
             if(this.lightbeam.angle > 30) this.lightbeam.angle = 30;
             if(this.lightbeam.angle < -30) this.lightbeam.angle = -30;
         }else{
-            //if(this.lightbeam.getComponent('light').alert_level){
-                console.log("tracking");
-                var shift_dir = 0;
-                if(this.node.x > this.character.x + 3) shift_dir = -1;
-                else if(this.node.x < this.character.x - 3) shift_dir = 1;
-                this.node.x += 3 * this.searchlight_speed * dt * shift_dir;
-                this.lightbeam.x = this.node.x;
-                // var diff = {
-                //     'dx' : this.character.x - this.node.x,
-                //     'dy':this.character.y - this.node.y 
-                // };
-                // var angle = Math.atan2(diff.dy, diff.dx) * -57.2958/4;
-                // var roto = cc.rotateTo(0.05, angle);
-                // this.lightbeam.runAction(roto);
-                if(this.beambottom.x > this.character.x + 3) shift_dir = 1;
-                else if(this.beambottom.x < this.character.x - 3) shift_dir = -1;
-                this.lightbeam.angle += 2 * dt * shift_dir;
-            }
+            console.log("tracking");
+            var shift_dir = 0;
+            if(this.beambottom.x > this.character.x && this.node.x < this.character.x) shift_dir = -1;
+            else if(this.beambottom.x < this.character.x && this.node.x > this.character.x) shift_dir = 1;
+            else if(this.beambottom.x < this.character.x && this.node.x < this.character.x) shift_dir = 1;
+            else if(this.beambottom.x > this.character.x && this.node.x > this.character.x) shift_dir = -1;
+            this.node.x += 3 * this.searchlight_speed * dt * shift_dir;
+            this.lightbeam.x = this.node.x;
+            console.log("player movement [dir, prev_dir]: " + this.character.getComponent('player').dir, this.character.getComponent('player').prev_dir);
+            // if(this.lightbeam.getComponent('light').alert_level == 1) shift_dir = (this.character.getComponent('player').dir)? this.character.getComponent('player').prev_dir : this.character.getComponent('player').prev_dir*-1;
+            // else shift_dir = this.character.getComponent('player').dir;
+            this.lightbeam.angle += 5 * dt * shift_dir;
+        }
         this.eye_pos.angle = this.lightbeam.angle;
     }
-        
-        // this.lightbeam.x = this.node.x;
-    //}
     // wander(){
     //     cc.tween(this.node).repeatForever(
     //         cc.tween(this.node)
