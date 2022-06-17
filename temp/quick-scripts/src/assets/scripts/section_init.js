@@ -34,6 +34,7 @@ var Section = /** @class */ (function (_super) {
         _this.player_col = 0;
         _this.searchlight = null;
         _this.sharp = null;
+        _this.coin_pre = null;
         _this.lv = 0;
         return _this;
     }
@@ -176,11 +177,17 @@ var Section = /** @class */ (function (_super) {
             for (var i = 0; i < lightcount; i++) {
                 var range = range_arr[(lightcount - 1) * 2 + Math.floor(Math.random() * 2)];
                 var enemy = cc.instantiate(this.searchlight);
-                enemy.getComponent('enemy_wrapper').range = range;
+                if (enemy.getComponent('enemy_wrapper'))
+                    enemy.getComponent('enemy_wrapper').range = range;
                 enemy.setPosition(offset + (1920 / (lightcount + 1)) * i + (Math.floor(Math.random() * 400) - 200), 200);
                 cc.find("Canvas/root/Enemy_collection").addChild(enemy);
             }
         }
+        //coin
+        var money = cc.instantiate(this.coin_pre);
+        money.x = Math.random() * 400 + offset;
+        money.y = 200;
+        cc.find("Canvas/root/powerups").addChild(money);
     };
     __decorate([
         property(cc.Prefab)
@@ -188,6 +195,9 @@ var Section = /** @class */ (function (_super) {
     __decorate([
         property(cc.Prefab)
     ], Section.prototype, "sharp", void 0);
+    __decorate([
+        property(cc.Prefab)
+    ], Section.prototype, "coin_pre", void 0);
     Section = __decorate([
         ccclass
     ], Section);

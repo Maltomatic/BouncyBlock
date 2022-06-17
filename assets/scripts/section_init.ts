@@ -15,6 +15,9 @@ export class Section extends cc.Component {
     @property(cc.Prefab)
     sharp: cc.Prefab = null;
 
+    @property(cc.Prefab)
+    coin_pre: cc.Prefab = null;
+
     private lv: number = 0;
 
     onLoad () {
@@ -160,10 +163,16 @@ export class Section extends cc.Component {
             for(var i = 0; i < lightcount; i++){
                 var range = range_arr[(lightcount-1) * 2 + Math.floor(Math.random() * 2)];
                 var enemy = cc.instantiate(this.searchlight);
-                enemy.getComponent('enemy_wrapper').range = range;
+                if(enemy.getComponent('enemy_wrapper'))enemy.getComponent('enemy_wrapper').range = range;
                 enemy.setPosition(offset + (1920/(lightcount+1))*i + (Math.floor(Math.random()*400) -200), 200);
                 cc.find("Canvas/root/Enemy_collection").addChild(enemy);
             }
         }
+        //coin 不知為甚麼只有第一個可以成功  後面都說instantiate null
+        var money=cc.instantiate(this.coin_pre);
+        money.x=Math.random()*400+offset;
+        money.y=200;
+        cc.find("Canvas/root/powerups").addChild(money);
+
     }
 }

@@ -1709,6 +1709,9 @@
     "_enabled": true,
     "searchlight": null,
     "sharp": null,
+    "coin_pre": {
+      "__uuid__": "6444cc76-5ef6-4a3c-926c-a09987c9319c"
+    },
     "_id": "9fYSDOLtBJn4nGiinKOkBN"
   },
   {
