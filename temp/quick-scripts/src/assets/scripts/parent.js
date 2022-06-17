@@ -38,20 +38,23 @@ var NewClass = /** @class */ (function (_super) {
     NewClass.prototype.onLoad = function () {
         cc.director.getPhysicsManager().enabled = true;
         cc.director.getCollisionManager().enabled = true;
+        this.before_x = this.node.x;
     };
     NewClass.prototype.onBeginContact = function (contact, self, other) {
         var touch = contact.getWorldManifold().normal;
-        this.jump();
     };
     // LIFE-CYCLE CALLBACKS:
     // onLoad () {}
     NewClass.prototype.update = function (dt) {
         this.node.x += 1;
+        if (Math.abs(this.node.x - this.before_x) <= 0.5)
+            this.jump();
+        this.before_x = this.node.x;
     };
     NewClass.prototype.start = function () {
     };
     NewClass.prototype.jump = function () {
-        this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 800);
+        this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 600);
     };
     NewClass = __decorate([
         ccclass
