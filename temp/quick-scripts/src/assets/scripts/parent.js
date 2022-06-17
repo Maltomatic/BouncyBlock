@@ -33,22 +33,26 @@ var _a = cc._decorator, ccclass = _a.ccclass, property = _a.property;
 var NewClass = /** @class */ (function (_super) {
     __extends(NewClass, _super);
     function NewClass() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.label = null;
-        _this.text = 'hello';
-        return _this;
-        // update (dt) {}
+        return _super !== null && _super.apply(this, arguments) || this;
     }
+    NewClass.prototype.onLoad = function () {
+        cc.director.getPhysicsManager().enabled = true;
+        cc.director.getCollisionManager().enabled = true;
+    };
+    NewClass.prototype.onBeginContact = function (contact, self, other) {
+        var touch = contact.getWorldManifold().normal;
+        this.jump();
+    };
     // LIFE-CYCLE CALLBACKS:
     // onLoad () {}
+    NewClass.prototype.update = function (dt) {
+        this.node.x += 1;
+    };
     NewClass.prototype.start = function () {
     };
-    __decorate([
-        property(cc.Label)
-    ], NewClass.prototype, "label", void 0);
-    __decorate([
-        property
-    ], NewClass.prototype, "text", void 0);
+    NewClass.prototype.jump = function () {
+        this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 800);
+    };
     NewClass = __decorate([
         ccclass
     ], NewClass);
