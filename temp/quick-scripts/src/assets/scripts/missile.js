@@ -51,7 +51,7 @@ var Missile = /** @class */ (function (_super) {
     Missile.prototype.start = function () {
         console.log("bullet in action");
         var offset = (this.player.x < this.node.x) ? -20 : 20;
-        this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2((offset + this.player.x - this.node.x), (this.player.y - 15 - this.node.y)).normalizeSelf().multiply(cc.v2(850, 850));
+        this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2((offset + this.player.x - this.node.x), (this.player.y - 15 - this.node.y)).normalizeSelf().multiply(cc.v2(700, 700));
     };
     Missile.prototype.onPostSolve = function (contact, self, other) {
         if (other.node.group == 'ground' || other.node.group == 'mound' || other.node.name == 'player' || other.node.name == 'enemies') {

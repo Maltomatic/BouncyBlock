@@ -9,12 +9,18 @@ export class Section extends cc.Component {
     private strip: number = 1;
     private player_col: number = 0;
 
+    @property(cc.Prefab)
+    searchlight: cc.Prefab = null;
+
+    private lv: number = 0;
+
     onLoad () {
         cc.director.getCollisionManager().enabled = true;
         cc.director.getCollisionManager().enabledDrawBoundingBox = true;
         cc.director.getPhysicsManager().enabled = true;
         // cc.director.getPhysicsManager().debugDrawFlags = 1;
         cc.director.getPhysicsManager().gravity = cc.v2(0, -500);
+        this.lv = parseInt(this.node.name.replace('section', ''));
     }
     onDestroy () {
         cc.director.getCollisionManager().enabled = false;

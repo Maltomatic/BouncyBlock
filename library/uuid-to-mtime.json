@@ -224,11 +224,6 @@
     "meta": 1655455637216,
     "relativePath": "scenes\\multi_pairing.fire"
   },
-  "f86b1eb1-1093-461a-a9c8-46b312ad29da": {
-    "asset": 1655409964843,
-    "meta": 1655455637418,
-    "relativePath": "scripts\\section_init.ts"
-  },
   "ea24dbc3-4a1a-4c24-b0fd-07002cd3fae2": {
     "asset": 1655409964825,
     "meta": 1655455637105,
@@ -330,8 +325,8 @@
     "relativePath": "prefabs\\banana.prefab"
   },
   "e6a81e79-dcbb-452c-be86-6dfecd3c0365": {
-    "asset": 1655409964812,
-    "meta": 1655455636928,
+    "asset": 1655457168439,
+    "meta": 1655457168456,
     "relativePath": "prefabs\\lego.prefab"
   },
   "e19b5114-6ae0-44c7-aaf8-d3a9a5a14998": {
@@ -340,8 +335,8 @@
     "relativePath": "scenes\\day.fire"
   },
   "04cfd6d9-41d6-4ada-8a5b-fc5bd8ed6a7d": {
-    "asset": 1655456201694,
-    "meta": 1655456201707,
+    "asset": 1655457393174,
+    "meta": 1655457393191,
     "relativePath": "scenes\\test.fire"
   },
   "9836134e-b892-4283-b6b2-78b5acf3ed45": {
@@ -855,8 +850,8 @@
     "relativePath": "scripts\\parent.ts"
   },
   "afa0ae6e-e30f-48f4-b52f-5ebaeef7d236": {
-    "asset": 1655455574965,
-    "meta": 1655455636925,
+    "asset": 1655457151738,
+    "meta": 1655457151758,
     "relativePath": "prefabs\\bubble lego.prefab"
   },
   "b241435f-9b61-4cf8-bbc2-f2476218c711": {
@@ -865,8 +860,8 @@
     "relativePath": "scripts\\bubble_item_in_dayscene.ts"
   },
   "6444cc76-5ef6-4a3c-926c-a09987c9319c": {
-    "asset": 1655455574966,
-    "meta": 1655455636926,
+    "asset": 1655457156830,
+    "meta": 1655457156847,
     "relativePath": "prefabs\\coin.prefab"
   },
   "f8de63f6-a9f6-4925-b675-6ae32e30e9ca": {
@@ -878,16 +873,6 @@
     "asset": 1654326909986,
     "meta": 1655455636675,
     "relativePath": "audio"
-  },
-  "46fe3e40-486d-4367-9aee-9c5cf3c195d8": {
-    "asset": 1655455765542,
-    "meta": 1655455771023,
-    "relativePath": "scripts\\light.ts"
-  },
-  "ce3ddca4-722d-408d-8de5-464fa4ed290f": {
-    "asset": 1655455789399,
-    "meta": 1655455967297,
-    "relativePath": "scripts\\missile.ts"
   },
   "a4fb5ce8-16f2-4ec9-b773-3d70ce77a8e4": {
     "asset": 1655455935461,
@@ -904,9 +889,24 @@
     "meta": 1655456145587,
     "relativePath": "prefabs\\missile.prefab"
   },
-  "085e1bed-4750-4c56-9969-f8a80301ac32": {
-    "asset": 1655456200027,
-    "meta": 1655456200034,
-    "relativePath": "prefabs\\light_enemy.prefab"
+  "f86b1eb1-1093-461a-a9c8-46b312ad29da": {
+    "asset": 1655456603059,
+    "meta": 1655456652257,
+    "relativePath": "scripts\\section_init.ts"
+  },
+  "70927b47-0977-4055-b8c2-e6a9e6488850": {
+    "asset": 1655456823380,
+    "meta": 1655456833992,
+    "relativePath": "prefabs\\light_enemy .prefab"
+  },
+  "ce3ddca4-722d-408d-8de5-464fa4ed290f": {
+    "asset": 1655456910655,
+    "meta": 1655456929407,
+    "relativePath": "scripts\\missile.ts"
+  },
+  "46fe3e40-486d-4367-9aee-9c5cf3c195d8": {
+    "asset": 1655457347643,
+    "meta": 1655457350838,
+    "relativePath": "scripts\\light.ts"
   }
 }

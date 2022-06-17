@@ -32,6 +32,8 @@ var Section = /** @class */ (function (_super) {
         _this.base = 6;
         _this.strip = 1;
         _this.player_col = 0;
+        _this.searchlight = null;
+        _this.lv = 0;
         return _this;
     }
     Section.prototype.onLoad = function () {
@@ -40,6 +42,7 @@ var Section = /** @class */ (function (_super) {
         cc.director.getPhysicsManager().enabled = true;
         // cc.director.getPhysicsManager().debugDrawFlags = 1;
         cc.director.getPhysicsManager().gravity = cc.v2(0, -500);
+        this.lv = parseInt(this.node.name.replace('section', ''));
     };
     Section.prototype.onDestroy = function () {
         cc.director.getCollisionManager().enabled = false;
@@ -151,6 +154,9 @@ var Section = /** @class */ (function (_super) {
             }
         });
     };
+    __decorate([
+        property(cc.Prefab)
+    ], Section.prototype, "searchlight", void 0);
     Section = __decorate([
         ccclass
     ], Section);

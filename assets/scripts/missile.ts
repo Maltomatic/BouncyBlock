@@ -26,7 +26,7 @@ export class Missile extends cc.Component {
     start () {
         console.log("bullet in action");
         var offset = (this.player.x < this.node.x)? -20 : 20;
-        this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2((offset + this.player.x - this.node.x), (this.player.y - 15 - this.node.y)).normalizeSelf().multiply(cc.v2(850, 850));
+        this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2((offset + this.player.x - this.node.x), (this.player.y - 15 - this.node.y)).normalizeSelf().multiply(cc.v2(700, 700));
     }
 
     onPostSolve(contact, self, other){

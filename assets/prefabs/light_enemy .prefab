@@ -1,7 +1,7 @@
 [
   {
     "__type__": "cc.Prefab",
-    "_name": "light_enemy",
+    "_name": "",
     "_objFlags": 0,
     "_native": "",
     "data": {
@@ -129,7 +129,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        201.787,
+        0,
         0,
         0,
         0,
@@ -401,7 +401,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        201.787,
+        0,
         0,
         0,
         0,
