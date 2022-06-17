@@ -1573,7 +1573,7 @@
         "__id__": 41
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [],
     "_prefab": {
       "__id__": 56
@@ -1621,8 +1621,8 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "_groupIndex": 0,
-    "groupIndex": 0,
+    "_groupIndex": 3,
+    "groupIndex": 3,
     "_id": "5fTy3TPBFH2oxKXv1sn6WM"
   },
   {
@@ -1698,8 +1698,8 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "_groupIndex": 0,
-    "groupIndex": 0,
+    "_groupIndex": 3,
+    "groupIndex": 3,
     "_id": "669NyvOvpOq7pfIbI/DyW1"
   },
   {
@@ -1758,8 +1758,8 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "_groupIndex": 0,
-    "groupIndex": 0,
+    "_groupIndex": 3,
+    "groupIndex": 3,
     "_id": "85AU4zpuhHCY+Z05tXfQxs"
   },
   {
@@ -1970,8 +1970,8 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "_groupIndex": 0,
-    "groupIndex": 0,
+    "_groupIndex": 3,
+    "groupIndex": 3,
     "_id": "b63DIw0Q9Ce6qaayPoZgKo"
   },
   {
@@ -2034,8 +2034,8 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "_groupIndex": 0,
-    "groupIndex": 0,
+    "_groupIndex": 3,
+    "groupIndex": 3,
     "_id": "f0G38XMLpNM5TN4/ZVVS4V"
   },
   {
@@ -2212,8 +2212,8 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "_groupIndex": 0,
-    "groupIndex": 0,
+    "_groupIndex": 3,
+    "groupIndex": 3,
     "_id": "60tw0rDXVGEJ539dsMgHup"
   },
   {
@@ -2388,8 +2388,8 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "_groupIndex": 0,
-    "groupIndex": 0,
+    "_groupIndex": 3,
+    "groupIndex": 3,
     "_id": "6aTTMcCbZGSa1L7u9hHIfy"
   },
   {
@@ -2495,8 +2495,8 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "_groupIndex": 0,
-    "groupIndex": 0,
+    "_groupIndex": 3,
+    "groupIndex": 3,
     "_id": "70NR0DYWVBuqI+bazPNFrN"
   },
   {
@@ -3015,8 +3015,12 @@
       "__id__": 58
     },
     "_enabled": true,
-    "searchlight": null,
-    "sharp": null,
+    "searchlight": {
+      "__uuid__": "70927b47-0977-4055-b8c2-e6a9e6488850"
+    },
+    "sharp": {
+      "__uuid__": "09ce6a93-eb1a-4bd0-bdf0-7a2033be6d79"
+    },
     "_id": "9fYSDOLtBJn4nGiinKOkBN"
   },
   {

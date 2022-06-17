@@ -41,7 +41,7 @@ var Section = /** @class */ (function (_super) {
         cc.director.getCollisionManager().enabled = true;
         cc.director.getCollisionManager().enabledDrawBoundingBox = true;
         cc.director.getPhysicsManager().enabled = true;
-        // cc.director.getPhysicsManager().debugDrawFlags = 1;
+        cc.director.getPhysicsManager().debugDrawFlags = 1;
         cc.director.getPhysicsManager().gravity = cc.v2(0, -500);
         this.lv = parseInt(this.node.name.replace('section', ''));
     };
@@ -115,24 +115,6 @@ var Section = /** @class */ (function (_super) {
                 }
             }
         }
-        // console.log("shrinking mound sizes to avoid sticking");
-        // for(var i = 0; i < layerSz.width; i++){
-        //     for(var j = 0; j < layerSz.height; j++){
-        //         var FloorTile = floor.getTiledTileAt(i, j, true);
-        //         if(FloorTile.node.group == "mound"){
-        //             var collider = FloorTile.node.addComponent(cc.PhysicsBoxCollider);
-        //             collider.offset = cc.v2(sz.width/2, sz.height/2);
-        //             collider.size = cc.size(47.8, 48);
-        //             collider.apply();
-        //             console.log(" collider size of mound(" + i + ", " + j + ") set to "+ collider.size.width + ", "+ collider.size.height);
-        //         }else if(FloorTile.node.group == "ground"){
-        //             var collider = FloorTile.node.addComponent(cc.PhysicsBoxCollider);
-        //             collider.offset = cc.v2(sz.width/2, sz.height/2);
-        //             collider.size = sz;
-        //             collider.apply();
-        //         }
-        //     }
-        // }
         var obj_list = map.getObjectGroup("colors").getObjects();
         this.player_col = 6 * this.strip + cc.find('Canvas/root/player').getComponent('player').color;
         console.log("bias towards " + this.player_col);
@@ -172,6 +154,31 @@ var Section = /** @class */ (function (_super) {
             }
         }
         map_layer.enabled = false;
+        // enemy init
+        var lv_diff = cc.find("Canvas/root/player").getComponent('player').section_count;
+        var range_arr = [120, 100, 100, 80, 60, 50, 30, 20]; // 100 or 80 if one light spawned, 60 or 50 if two, 30 or 20 if three
+        var lightcount = 0;
+        if (lv_diff >= 12) {
+            lightcount = 3;
+        }
+        else if (lv_diff >= 6) {
+            lightcount = 2 + (Math.floor(Math.random() * (lv_diff - 6))) ? 1 : 0;
+        }
+        else if (lv_diff >= 2) {
+            lightcount = 1 + (Math.floor(Math.random() * (lv_diff - 2))) ? 1 : 0;
+        }
+        else
+            lightcount = Math.floor(Math.random() * 2);
+        if (Math.floor(Math.random() * 2))
+            lightcount++;
+        var offset = lv_diff * 1920;
+        for (var i = 0; i < lightcount; i++) {
+            var range = range_arr[(lightcount - 1) * 2 + Math.floor(Math.random() * 2)];
+            var enemy = cc.instantiate(this.searchlight);
+            enemy.getChildByName('searchlight').getComponent('searchlight').range = range;
+            enemy.setPosition(offset + (1920 / (lightcount + 1)) * i + (Math.floor(Math.random() * 400) - 200), 200);
+            cc.find("Canvas/root/Enemy_collection").addChild(enemy);
+        }
     };
     __decorate([
         property(cc.Prefab)

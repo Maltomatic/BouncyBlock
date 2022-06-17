@@ -35,8 +35,8 @@
     "relativePath": "prefabs\\section0.prefab"
   },
   "f92cc07b-8eab-4337-81c1-6d905f32c3da": {
-    "asset": 1655471815769,
-    "meta": 1655471841477,
+    "asset": 1655475868235,
+    "meta": 1655475868257,
     "relativePath": "prefabs\\section1.prefab"
   },
   "0a3c3163-d3ad-4bfc-af5d-517a56e6cac9": {
@@ -50,13 +50,13 @@
     "relativePath": "maps\\section2.tmx"
   },
   "bdd1f8d0-f8fd-4430-a483-e2cb247f5002": {
-    "asset": 1655471815780,
-    "meta": 1655471841506,
+    "asset": 1655475875481,
+    "meta": 1655475875500,
     "relativePath": "prefabs\\section2.prefab"
   },
   "644fec1f-f6d7-46ce-a38b-7111bcb6e812": {
-    "asset": 1655471815781,
-    "meta": 1655471841520,
+    "asset": 1655475885913,
+    "meta": 1655475885932,
     "relativePath": "prefabs\\section3.prefab"
   },
   "66cdf547-41f2-45fa-ac9c-1b5b51f06cee": {
@@ -325,8 +325,8 @@
     "relativePath": "scenes\\day.fire"
   },
   "04cfd6d9-41d6-4ada-8a5b-fc5bd8ed6a7d": {
-    "asset": 1655471815789,
-    "meta": 1655471842309,
+    "asset": 1655475840715,
+    "meta": 1655475840729,
     "relativePath": "scenes\\test.fire"
   },
   "9836134e-b892-4283-b6b2-78b5acf3ed45": {
@@ -854,11 +854,6 @@
     "meta": 1655471841462,
     "relativePath": "prefabs\\coin.prefab"
   },
-  "a4fb5ce8-16f2-4ec9-b773-3d70ce77a8e4": {
-    "asset": 1655471815790,
-    "meta": 1655471842172,
-    "relativePath": "scripts\\player.ts"
-  },
   "b017801e-19be-481a-bd31-621c66b41480": {
     "asset": 1655456145558,
     "meta": 1655471841484,
@@ -873,11 +868,6 @@
     "asset": 1655457692615,
     "meta": 1655471842002,
     "relativePath": "scripts\\missile.ts"
-  },
-  "62469ddb-e363-4636-b98f-c9ccf13dfcbe": {
-    "asset": 1655458028228,
-    "meta": 1655471842241,
-    "relativePath": "scripts\\searchlight.ts"
   },
   "9e45da6a-cbd3-416d-8e81-5769c5066ca2": {
     "asset": 1655471815762,
@@ -895,54 +885,49 @@
     "relativePath": "maps\\section3.tmx"
   },
   "86e3541c-b787-4688-957c-da9bae98cbce": {
-    "asset": 1655471815782,
-    "meta": 1655471841522,
+    "asset": 1655475893503,
+    "meta": 1655475893521,
     "relativePath": "prefabs\\section4.prefab"
   },
   "5fd9114a-53a7-4005-82c1-8cb76fa79541": {
-    "asset": 1655471815784,
-    "meta": 1655471841526,
+    "asset": 1655475899544,
+    "meta": 1655475899561,
     "relativePath": "prefabs\\section5.prefab"
   },
   "cb1d8429-52ef-4643-ae87-34487c2b8968": {
-    "asset": 1655471815770,
-    "meta": 1655471841480,
+    "asset": 1655475907524,
+    "meta": 1655475907542,
     "relativePath": "prefabs\\section10.prefab"
   },
   "78fa0203-e186-4c48-a7a5-b7f62b0d2661": {
-    "asset": 1655471815771,
-    "meta": 1655471841487,
+    "asset": 1655476207286,
+    "meta": 1655476207309,
     "relativePath": "prefabs\\section11.prefab"
   },
   "e3858673-ef97-4f8a-9e1d-dff0e9297e80": {
-    "asset": 1655471815773,
-    "meta": 1655471841492,
+    "asset": 1655476211996,
+    "meta": 1655476212008,
     "relativePath": "prefabs\\section12.prefab"
   },
   "6d525d07-660e-4be4-ac75-4e4a33bb9837": {
-    "asset": 1655471815774,
-    "meta": 1655471841496,
+    "asset": 1655476222346,
+    "meta": 1655476222369,
     "relativePath": "prefabs\\section13.prefab"
   },
   "2a417590-576c-476c-951f-c5f739a33479": {
-    "asset": 1655471815776,
-    "meta": 1655471841508,
+    "asset": 1655476228446,
+    "meta": 1655476228469,
     "relativePath": "prefabs\\section17.prefab"
   },
   "d09d9b0e-7931-4c46-8d70-5a482ea08eec": {
-    "asset": 1655471815777,
-    "meta": 1655471841499,
+    "asset": 1655476237812,
+    "meta": 1655476237829,
     "relativePath": "prefabs\\section18.prefab"
   },
   "cbfa4e4d-f8fd-416e-be8b-c0fd3083f9a3": {
-    "asset": 1655471815778,
-    "meta": 1655471841502,
+    "asset": 1655476244802,
+    "meta": 1655476244817,
     "relativePath": "prefabs\\section19.prefab"
-  },
-  "f86b1eb1-1093-461a-a9c8-46b312ad29da": {
-    "asset": 1655471815791,
-    "meta": 1655471842301,
-    "relativePath": "scripts\\section_init.ts"
   },
   "ba0d8075-6e80-4841-b6b9-1efc7b7c04fe": {
     "asset": 1655471815765,
@@ -968,5 +953,20 @@
     "asset": 1655471911455,
     "meta": 1655471913203,
     "relativePath": "scripts\\light.ts"
+  },
+  "a4fb5ce8-16f2-4ec9-b773-3d70ce77a8e4": {
+    "asset": 1655473453511,
+    "meta": 1655474603888,
+    "relativePath": "scripts\\player.ts"
+  },
+  "62469ddb-e363-4636-b98f-c9ccf13dfcbe": {
+    "asset": 1655475749554,
+    "meta": 1655475751027,
+    "relativePath": "scripts\\searchlight.ts"
+  },
+  "f86b1eb1-1093-461a-a9c8-46b312ad29da": {
+    "asset": 1655476076662,
+    "meta": 1655476090261,
+    "relativePath": "scripts\\section_init.ts"
   }
 }

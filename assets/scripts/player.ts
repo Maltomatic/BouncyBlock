@@ -70,7 +70,7 @@ export class Player extends cc.Component {
     private fly_state: number = 0;  // 0 for on ground, 1 for flying, -1 for falling
     private on_floor: boolean = true;
     private stick: boolean = false;
-    private section_count = 0;      // on contact with marker, if section_count * 1920 < this.node.x: init next section and section_count ++
+    section_count = 0;      // on contact with marker, if section_count * 1920 < this.node.x: init next section and section_count ++
 
     score: number = 0;
 

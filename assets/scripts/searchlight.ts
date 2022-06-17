@@ -45,6 +45,7 @@ export class searchlight extends cc.Component {
     }
 
     start () {
+        console.log("enemy init with range: " + this.range + "  at " + this.node.x, this.node.y);
         //this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.searchlight_speed,0);
         this.leftbound = this.node.x - this.range;
         this.rightbound = this.node.x + this.range;
