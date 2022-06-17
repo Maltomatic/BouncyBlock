@@ -1,7 +1,7 @@
 {
   "cc1c7d0d-7ff3-47e5-bb5b-2500847f2b54": {
-    "asset": 1655469542880,
-    "meta": 1655469543043,
+    "asset": 1655470036522,
+    "meta": 1655470054523,
     "relativePath": "maps"
   },
   "14296c85-75c6-49ed-bfd8-f18d9cc51d28": {
@@ -10,8 +10,8 @@
     "relativePath": "backgrounds"
   },
   "6f12df5d-d5da-4eec-857a-07fadfdfc319": {
-    "asset": 1655466980889,
-    "meta": 1655469543044,
+    "asset": 1655470036525,
+    "meta": 1655470054524,
     "relativePath": "prefabs"
   },
   "152599d9-02ee-4bb1-886f-d81f4d1e22d9": {
@@ -30,13 +30,13 @@
     "relativePath": "maps\\tileset_expand.png"
   },
   "d99a68f9-0fab-40c9-96c8-4baa1d8e84f8": {
-    "asset": 1655464601337,
-    "meta": 1655464601380,
+    "asset": 1655470036523,
+    "meta": 1655470054715,
     "relativePath": "prefabs\\section0.prefab"
   },
   "f92cc07b-8eab-4337-81c1-6d905f32c3da": {
-    "asset": 1655464606445,
-    "meta": 1655464606484,
+    "asset": 1655470036524,
+    "meta": 1655470054550,
     "relativePath": "prefabs\\section1.prefab"
   },
   "0a3c3163-d3ad-4bfc-af5d-517a56e6cac9": {
@@ -50,13 +50,13 @@
     "relativePath": "maps\\section2.tmx"
   },
   "bdd1f8d0-f8fd-4430-a483-e2cb247f5002": {
-    "asset": 1655464611868,
-    "meta": 1655464611888,
+    "asset": 1655470036524,
+    "meta": 1655470054807,
     "relativePath": "prefabs\\section2.prefab"
   },
   "644fec1f-f6d7-46ce-a38b-7111bcb6e812": {
-    "asset": 1655465336257,
-    "meta": 1655465336277,
+    "asset": 1655470036525,
+    "meta": 1655470054805,
     "relativePath": "prefabs\\section3.prefab"
   },
   "66cdf547-41f2-45fa-ac9c-1b5b51f06cee": {
@@ -115,13 +115,13 @@
     "relativePath": "image"
   },
   "e8cb6686-0da8-4260-99a8-b5d5b8aac11c": {
-    "asset": 1655466980920,
-    "meta": 1655469543045,
+    "asset": 1655470036526,
+    "meta": 1655470054525,
     "relativePath": "scenes"
   },
   "240792ee-e159-498e-9d53-7f96c7aafa0b": {
-    "asset": 1655466980959,
-    "meta": 1655469543046,
+    "asset": 1655470036528,
+    "meta": 1655470054526,
     "relativePath": "scripts"
   },
   "b8958c2d-20a6-47fe-9cfb-b1650490139b": {
@@ -320,13 +320,13 @@
     "relativePath": "prefabs\\lego.prefab"
   },
   "e19b5114-6ae0-44c7-aaf8-d3a9a5a14998": {
-    "asset": 1655466162770,
-    "meta": 1655466162781,
+    "asset": 1655470036526,
+    "meta": 1655470054811,
     "relativePath": "scenes\\day.fire"
   },
   "04cfd6d9-41d6-4ada-8a5b-fc5bd8ed6a7d": {
-    "asset": 1655466183577,
-    "meta": 1655466183587,
+    "asset": 1655470036527,
+    "meta": 1655470054816,
     "relativePath": "scenes\\test.fire"
   },
   "9836134e-b892-4283-b6b2-78b5acf3ed45": {
@@ -855,8 +855,8 @@
     "relativePath": "prefabs\\coin.prefab"
   },
   "a4fb5ce8-16f2-4ec9-b773-3d70ce77a8e4": {
-    "asset": 1655464166302,
-    "meta": 1655464337763,
+    "asset": 1655470036527,
+    "meta": 1655470054714,
     "relativePath": "scripts\\player.ts"
   },
   "b017801e-19be-481a-bd31-621c66b41480": {
@@ -895,8 +895,8 @@
     "relativePath": "prefabs\\sharp.prefab"
   },
   "8153b830-e19d-4dbb-a883-7b51582abd19": {
-    "asset": 1655458151000,
-    "meta": 1655464546706,
+    "asset": 1655470036522,
+    "meta": 1655470054824,
     "relativePath": "maps\\section3.tmx"
   },
   "86e3541c-b787-4688-957c-da9bae98cbce": {
@@ -945,13 +945,18 @@
     "relativePath": "prefabs\\section19.prefab"
   },
   "f86b1eb1-1093-461a-a9c8-46b312ad29da": {
-    "asset": 1655465785197,
-    "meta": 1655465787343,
+    "asset": 1655470036528,
+    "meta": 1655470054801,
     "relativePath": "scripts\\section_init.ts"
   },
   "ba0d8075-6e80-4841-b6b9-1efc7b7c04fe": {
     "asset": 1655458151000,
     "meta": 1655469543067,
     "relativePath": "maps\\section3-2.tmx"
+  },
+  "71295989-2e66-4dd6-9887-aee3caf4e380": {
+    "asset": 1655469891076,
+    "meta": 1655470054822,
+    "relativePath": "maps\\section3_2.tmx"
   }
 }
