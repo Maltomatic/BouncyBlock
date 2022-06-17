@@ -13,13 +13,13 @@
         "type": "dock-h",
         "children": [
           {
-            "width": 342.75,
+            "width": 341.8625183105469,
             "height": 708.2000122070312,
             "type": "dock-v",
             "children": [
               {
-                "width": 342.75,
-                "height": 452.32501220703125,
+                "width": 341.8625183105469,
+                "height": 452.125,
                 "type": "panel",
                 "active": 0,
                 "children": [
@@ -27,8 +27,8 @@
                 ]
               },
               {
-                "width": 342.75,
-                "height": 252.875,
+                "width": 341.8625183105469,
+                "height": 253.0749969482422,
                 "type": "panel",
                 "active": 0,
                 "children": [
@@ -38,13 +38,13 @@
             ]
           },
           {
-            "width": 745.1500244140625,
+            "width": 745.7000122070312,
             "height": 708.2000122070312,
             "type": "dock-v",
             "children": [
               {
-                "width": 745.1500244140625,
-                "height": 439.20001220703125,
+                "width": 745.7000122070312,
+                "height": 439.125,
                 "type": "panel",
                 "active": 0,
                 "children": [
@@ -52,8 +52,8 @@
                 ]
               },
               {
-                "width": 745.1500244140625,
-                "height": 266,
+                "width": 745.7000122070312,
+                "height": 266.07501220703125,
                 "type": "panel",
                 "active": 0,
                 "children": [
@@ -65,7 +65,7 @@
             ]
           },
           {
-            "width": 412.51251220703125,
+            "width": 412.8374938964844,
             "height": 708.2000122070312,
             "type": "panel",
             "active": 0,
@@ -86,8 +86,7 @@
         "inspector",
         "cocos-services"
       ]
-    },
-    " common-asset-worker-worker": {}
+    }
   },
   "panels": {
     "project-settings": {
