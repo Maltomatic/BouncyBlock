@@ -159,7 +159,7 @@ export class Section extends cc.Component {
         for(var i = 0; i < lightcount; i++){
             var range = range_arr[(lightcount-1) * 2 + Math.floor(Math.random() * 2)];
             var enemy = cc.instantiate(this.searchlight);
-            enemy.getChildByName('searchlight').getComponent('searchlight').range = range;
+            if(enemy.getChildByName('searchlight'))enemy.getChildByName('searchlight').getComponent('searchlight').range = range;
             enemy.setPosition(offset + (1920/(lightcount+1))*i + (Math.floor(Math.random()*400) -200), 200);
             if(cc.director.getScene().name!="day")cc.find("Canvas/root/Enemy_collection").addChild(enemy);
         }

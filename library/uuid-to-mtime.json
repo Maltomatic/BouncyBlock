@@ -319,16 +319,6 @@
     "meta": 1655479823470,
     "relativePath": "prefabs\\lego.prefab"
   },
-  "e19b5114-6ae0-44c7-aaf8-d3a9a5a14998": {
-    "asset": 1655483475753,
-    "meta": 1655483475765,
-    "relativePath": "scenes\\day.fire"
-  },
-  "04cfd6d9-41d6-4ada-8a5b-fc5bd8ed6a7d": {
-    "asset": 1655479695532,
-    "meta": 1655479824260,
-    "relativePath": "scenes\\test.fire"
-  },
   "9836134e-b892-4283-b6b2-78b5acf3ed45": {
     "asset": 1650294465578,
     "meta": 1655479790036,
@@ -844,11 +834,6 @@
     "meta": 1655479823857,
     "relativePath": "scripts\\bubble_item_in_dayscene.ts"
   },
-  "6444cc76-5ef6-4a3c-926c-a09987c9319c": {
-    "asset": 1655471781724,
-    "meta": 1655479823451,
-    "relativePath": "prefabs\\coin.prefab"
-  },
   "b017801e-19be-481a-bd31-621c66b41480": {
     "asset": 1655471781725,
     "meta": 1655479823465,
@@ -949,14 +934,29 @@
     "meta": 1655480660300,
     "relativePath": "scripts\\parent.ts"
   },
-  "f86b1eb1-1093-461a-a9c8-46b312ad29da": {
-    "asset": 1655483151518,
-    "meta": 1655483154097,
-    "relativePath": "scripts\\section_init.ts"
-  },
   "a4fb5ce8-16f2-4ec9-b773-3d70ce77a8e4": {
-    "asset": 1655484134482,
-    "meta": 1655484135507,
+    "asset": 1655488228096,
+    "meta": 1655488229469,
     "relativePath": "scripts\\player.ts"
+  },
+  "6444cc76-5ef6-4a3c-926c-a09987c9319c": {
+    "asset": 1655491676465,
+    "meta": 1655491686228,
+    "relativePath": "prefabs\\coin.prefab"
+  },
+  "e19b5114-6ae0-44c7-aaf8-d3a9a5a14998": {
+    "asset": 1655491676469,
+    "meta": 1655491686231,
+    "relativePath": "scenes\\day.fire"
+  },
+  "04cfd6d9-41d6-4ada-8a5b-fc5bd8ed6a7d": {
+    "asset": 1655491676470,
+    "meta": 1655491686234,
+    "relativePath": "scenes\\test.fire"
+  },
+  "f86b1eb1-1093-461a-a9c8-46b312ad29da": {
+    "asset": 1655492052685,
+    "meta": 1655492060627,
+    "relativePath": "scripts\\section_init.ts"
   }
 }
