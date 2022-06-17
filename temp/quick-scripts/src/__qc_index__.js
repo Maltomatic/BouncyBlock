@@ -13,3 +13,4 @@ require('./assets/scripts/root');
 require('./assets/scripts/searchlight');
 require('./assets/scripts/section_init');
 require('./assets/scripts/sharp');
+require('./assets/scripts/spider');

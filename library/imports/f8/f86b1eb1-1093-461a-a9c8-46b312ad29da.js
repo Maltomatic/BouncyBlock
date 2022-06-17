@@ -34,6 +34,7 @@ var Section = /** @class */ (function (_super) {
         _this.player_col = 0;
         _this.searchlight = null;
         _this.sharp = null;
+        _this.spider = null;
         _this.coin_pre = null;
         _this.lv = 0;
         return _this;
@@ -171,6 +172,22 @@ var Section = /** @class */ (function (_super) {
                 }
             }
         }
+        // spider
+        map_layer = map.getLayer("enemy");
+        layer_size = map_layer.getLayerSize();
+        var flag = new Array(layer_size.width);
+        for (var i = 0; i < layer_size.width; i++) {
+            for (var j = 0; j < layer_size.height; j++) {
+                var tile = map_layer.getTiledTileAt(i, j, true);
+                if (tile.gid == 265 + 61) {
+                    var spider_pre = cc.instantiate(this.spider);
+                    console.log(spider_pre);
+                    spider_pre.x = section_count * 1920 + tile.node.x;
+                    spider_pre.y = tile.node.y;
+                    cc.find("Canvas/root/mapworld").addChild(spider_pre);
+                }
+            }
+        }
         map_layer.enabled = false;
         //enemy init
         var lv_diff = cc.find("Canvas/root/player").getComponent('player').section_count;
@@ -215,6 +232,9 @@ var Section = /** @class */ (function (_super) {
     __decorate([
         property(cc.Prefab)
     ], Section.prototype, "sharp", void 0);
+    __decorate([
+        property(cc.Prefab)
+    ], Section.prototype, "spider", void 0);
     __decorate([
         property(cc.Prefab)
     ], Section.prototype, "coin_pre", void 0);

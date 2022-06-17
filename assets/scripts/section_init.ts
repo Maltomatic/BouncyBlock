@@ -16,6 +16,9 @@ export class Section extends cc.Component {
     sharp: cc.Prefab = null;
 
     @property(cc.Prefab)
+    spider: cc.Prefab = null;
+
+    @property(cc.Prefab)
     coin_pre: cc.Prefab = null;
 
     private lv: number = 0;
@@ -158,6 +161,23 @@ export class Section extends cc.Component {
                         sharp_p.y = tile_.node.y;
                         cc.find("Canvas/root/mapworld/sharp").addChild(sharp_p);
                     }
+                }
+            }
+        }
+
+        // spider
+        map_layer = map.getLayer("enemy");
+        layer_size = map_layer.getLayerSize();
+        var flag = new Array(layer_size.width);
+        for(var i = 0; i < layer_size.width; i++){
+            for(var j = 0; j < layer_size.height; j++){
+                var tile = map_layer.getTiledTileAt(i, j, true);
+                if(tile.gid == 265 + 61){
+                    var spider_pre = cc.instantiate(this.spider);
+                    console.log(spider_pre);
+                    spider_pre.x = section_count * 1920 + tile.node.x;
+                    spider_pre.y = tile.node.y;
+                    cc.find("Canvas/root/mapworld").addChild(spider_pre);
                 }
             }
         }
