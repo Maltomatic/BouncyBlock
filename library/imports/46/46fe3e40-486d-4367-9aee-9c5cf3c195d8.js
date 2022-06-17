@@ -39,15 +39,17 @@ var Lightbeam = /** @class */ (function (_super) {
         _this.bullet = null;
         _this.alert_level = 0; // 0: don't see   1: stare, pass by  2: attack
         _this.watch = false;
+        _this.body = null;
         _this.watch_x = 0;
         _this.watch_y = 0;
-        _this.armed = false;
+        _this.bottom = null;
+        _this.raise_timer = 0.2;
         return _this;
         ////////////////////////////////// TODO //////////////////////////////////
         // edge detection: time the amount of time the player takes from appearing in light range to eyes closing (vis_time)
         // (t == 0): just move away
         // else: light swing over to player
-        // (0 < t <= 0.3): hover over player briefly, then move on
+        // (0 < t <= 0.2): hover over player briefly, then move on
         // else: attack player; projectile speed should be equal to player move speed and fire once per 0.6 ~ 1.2sec depending on player score
         // spotlight 
     }
@@ -55,85 +57,71 @@ var Lightbeam = /** @class */ (function (_super) {
     Lightbeam.prototype.onLoad = function () {
         cc.director.getPhysicsManager().enabled = true;
         this.character = cc.find('Canvas/root/player');
+        this.bottom = this.node.getChildByName('bottom');
     };
     Lightbeam.prototype.start = function () {
         this.alert_level = 0;
+        this.body = this.node.getParent();
+        this.watch = false;
     };
-    Lightbeam.prototype.onBeginContact = function (contact, self, other) {
-        if (other.node.name == 'player') {
-            this.watch = true;
-            this.watch_x = other.node.x;
-            this.watch_y = other.node.y;
-            console.log("contact player");
-            if (!(this.character.getComponent('player').hidden)) {
-                this.alert_level = 1;
-                this.armed = false;
-                // console.log("spotted player");
+    Lightbeam.prototype.onEndContact = function (contact, self, other) {
+        if (other.node.name == 'player' && self.tag == 15) {
+            // this.watch_x = other.node.x;
+            // this.watch_y = other.node.y;
+            if (this.watch) {
+                this.watch = false;
+                this.allclear();
+                console.log("player left range");
+            }
+            else if (this.watch == false) {
+                this.watch = true;
+                console.log("player entered watch frame");
             }
         }
     };
-    Lightbeam.prototype.onEndContact = function (contact, self, other) {
-        if (other.node.name == 'player') {
-            console.log("player out of range");
-            this.allclear();
-        }
-    };
+    // onEndContact(contact, self, other){
+    //     if(other.node.name == 'player'){
+    //         console.log("player out of range");
+    //         this.allclear();
+    //     }
+    // }
     Lightbeam.prototype.allclear = function () {
         this.alert_level = 0;
-        this.watch = false;
-        this.armed = false;
-        this.unscheduleAllCallbacks();
+        this.raise_timer = 3;
+        this.node.getParent().getComponent('enemy_wrapper').state = 0;
+        // console.log("nothing to see");
     };
     Lightbeam.prototype.update = function (dt) {
-        var _this = this;
+        // if(this.watch)console.log("watching");
         if (this.alert_level == 0 && !this.watch)
             this.allclear();
-        else if (this.watch) {
-            if ((this.character.x != this.watch_x || this.character.y != this.watch_y) && !this.character.getComponent('player').hidden)
-                this.alert_level = Math.max(1, this.alert_level);
+        else if (this.alert_level == 0 && this.watch) {
+            if (!this.character.getComponent('player').hidden) {
+                // if(this.bottom.x > this.character.x && this.node.x < this.character.x) this.node.skewX -= -5;
+                // else if(this.bottom.x < this.character.x && this.node.x > this.character.x) this.node.skewX += -5;
+                // else if(this.bottom.x < this.character.x && this.node.x < this.character.x) this.node.skewX += -5;
+                // else if(this.bottom.x > this.character.x && this.node.x > this.character.x) this.node.skewX -= -5;
+                this.alert_level = 1;
+                console.log("player is being tracked");
+                this.node.getParent().getComponent('enemy_wrapper').state = this.alert_level;
+            }
         }
-        if (this.alert_level == 1 && !this.armed) {
-            this.armed = true;
-            this.scheduleOnce(function () {
-                var vis = !(_this.character.getComponent('player').hidden);
-                // console.log("visible from alert level 1? " + vis);
+        if (this.alert_level == 1) {
+            this.raise_timer -= dt;
+            if (this.raise_timer < 0) {
+                this.raise_timer = 0.2;
+                var vis = !(this.character.getComponent('player').hidden);
                 if (vis) {
                     console.log("raise alert level to attack");
-                    _this.alert_level = 2;
-                    _this.armed = true;
+                    this.alert_level = 2;
+                    this.node.getParent().getComponent('enemy_wrapper').state = 2;
                 }
                 else {
                     console.log("cease attack");
-                    _this.allclear();
+                    this.allclear();
                 }
-            }, 0.3);
-        }
-        else if (this.alert_level == 2) {
-            if (this.armed) {
-                this.armed = false;
-                this.scheduleOnce(function () {
-                    // var vis = !(this.character.getComponent('player').hidden);
-                    // // console.log("visible from alert level 2? " + vis)
-                    // if(vis){
-                    //     this.armed = true;
-                    //     this.shoot();
-                    //     this.alert_level = 2;
-                    // }else{
-                    //     this.allclear();
-                    // }
-                    _this.armed = true;
-                    _this.shoot();
-                    _this.alert_level = 2;
-                }, 0.5);
             }
         }
-    };
-    Lightbeam.prototype.shoot = function () {
-        console.log("shooting");
-        var bullet = cc.instantiate(this.bullet);
-        bullet.setPosition(this.node.x, 190);
-        console.log("create bullet by light at " + this.node.x, this.node.y);
-        cc.find("Canvas/root").addChild(bullet);
     };
     __decorate([
         property(cc.Prefab)
