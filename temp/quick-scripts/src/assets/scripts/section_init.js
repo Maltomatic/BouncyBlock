@@ -155,7 +155,7 @@ var Section = /** @class */ (function (_super) {
             }
         }
         map_layer.enabled = false;
-        // enemy init
+        //enemy init
         var lv_diff = cc.find("Canvas/root/player").getComponent('player').section_count;
         if (lv_diff && cc.director.getScene().name != "day") {
             var range_arr = [360, 300, 300, 250, 200, 150, 120, 100]; // 100 or 80 if one light spawned, 60 or 50 if two, 30 or 20 if three
@@ -183,11 +183,14 @@ var Section = /** @class */ (function (_super) {
                 cc.find("Canvas/root/Enemy_collection").addChild(enemy);
             }
         }
-        //coin
-        var money = cc.instantiate(this.coin_pre);
-        money.x = Math.random() * 400 + offset;
-        money.y = 200;
-        cc.find("Canvas/root/powerups").addChild(money);
+        //coin 不知為甚麼只有第一個可以成功  後面都說instantiate null
+        var offset = lv_diff * 1920 + ((lv_diff == 0) ? 400 : 0);
+        for (i = 0; i < Math.random() * 6; i++) {
+            var money = cc.instantiate(this.coin_pre);
+            money.x = Math.random() * 400 + offset;
+            money.y = 200;
+            cc.find("Canvas/root/powerups").addChild(money);
+        }
     };
     __decorate([
         property(cc.Prefab)

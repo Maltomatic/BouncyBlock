@@ -144,7 +144,7 @@ export class Section extends cc.Component {
         }
         map_layer.enabled = false;
 
-        // enemy init
+        //enemy init
         var lv_diff = cc.find("Canvas/root/player").getComponent('player').section_count;
 
         if(lv_diff && cc.director.getScene().name != "day"){
@@ -169,10 +169,14 @@ export class Section extends cc.Component {
             }
         }
         //coin 不知為甚麼只有第一個可以成功  後面都說instantiate null
-        var money=cc.instantiate(this.coin_pre);
-        money.x=Math.random()*400+offset;
-        money.y=200;
-        cc.find("Canvas/root/powerups").addChild(money);
+        var offset = lv_diff * 1920 + ((lv_diff == 0)? 400 : 0);
+        for(i =0;i<Math.random()*10;i++)
+        {
+            var money=cc.instantiate(this.coin_pre);
+            money.x=Math.random()*400+offset;
+            money.y=200;
+            cc.find("Canvas/root/powerups").addChild(money);
+        }
 
     }
 }
