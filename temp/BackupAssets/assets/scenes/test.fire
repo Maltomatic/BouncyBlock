@@ -78,16 +78,16 @@
         "__id__": 25
       },
       {
-        "__id__": 116
+        "__id__": 119
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 117
+        "__id__": 120
       },
       {
-        "__id__": 118
+        "__id__": 121
       }
     ],
     "_prefab": null,
@@ -1252,15 +1252,18 @@
       },
       {
         "__id__": 109
+      },
+      {
+        "__id__": 114
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 114
+        "__id__": 117
       },
       {
-        "__id__": 115
+        "__id__": 118
       }
     ],
     "_prefab": null,
@@ -1680,8 +1683,8 @@
         0,
         0,
         1,
-        1.5,
-        2,
+        1,
+        1.2,
         0.75
       ]
     },
@@ -4682,6 +4685,122 @@
     },
     "fileId": "",
     "sync": false
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "leftbound",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 25
+    },
+    "_children": [],
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 115
+      },
+      {
+        "__id__": 116
+      }
+    ],
+    "_prefab": null,
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 0,
+      "height": 0
+    },
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_trs": {
+      "__type__": "TypedArray",
+      "ctor": "Float64Array",
+      "array": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "_eulerAngles": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_is3DNode": false,
+    "_groupIndex": 1,
+    "groupIndex": 1,
+    "_id": "f2Xu/gLUhPu7/wFf7U5yan"
+  },
+  {
+    "__type__": "cc.RigidBody",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 114
+    },
+    "_enabled": true,
+    "_type": 0,
+    "_allowSleep": true,
+    "_gravityScale": 1,
+    "_linearDamping": 0,
+    "_angularDamping": 0,
+    "_linearVelocity": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_angularVelocity": 0,
+    "_fixedRotation": false,
+    "enabledContactListener": false,
+    "bullet": false,
+    "awakeOnLoad": true,
+    "_id": "dbT4nEL8dBS72nKMikM1vd"
+  },
+  {
+    "__type__": "cc.PhysicsBoxCollider",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 114
+    },
+    "_enabled": true,
+    "tag": 0,
+    "_density": 1,
+    "_sensor": false,
+    "_friction": 0.2,
+    "_restitution": 0,
+    "body": null,
+    "_offset": {
+      "__type__": "cc.Vec2",
+      "x": -485,
+      "y": 0
+    },
+    "_size": {
+      "__type__": "cc.Size",
+      "width": 10,
+      "height": 1000
+    },
+    "_id": "da+lQfi9BJ/bQ2RTPTtKKw"
   },
   {
     "__type__": "cc.Widget",

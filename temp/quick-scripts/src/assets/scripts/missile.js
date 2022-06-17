@@ -39,6 +39,7 @@ var Missile = /** @class */ (function (_super) {
         this.player = cc.find('Canvas/root/player');
         this.tgt_x = this.player.x;
         this.tgt_y = this.player.y;
+        console.log("bulelt spawn at " + this.node.x, this.node.y);
         // var diff = {
         //     'dx': this.player.x - this.node.x,
         //     'dy': this.player.y - this.node.y 

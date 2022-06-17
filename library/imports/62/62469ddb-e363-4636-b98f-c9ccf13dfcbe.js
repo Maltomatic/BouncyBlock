@@ -87,10 +87,10 @@ var searchlight = /** @class */ (function (_super) {
                 this.dir = 1;
             else if (this.node.x >= this.rightbound)
                 this.dir = -1;
-            if (this.lightbeam.angle > 40)
-                this.lightbeam.angle = 40;
-            if (this.lightbeam.angle < -40)
-                this.lightbeam.angle = -40;
+            if (this.lightbeam.angle > 30)
+                this.lightbeam.angle = 30;
+            if (this.lightbeam.angle < -30)
+                this.lightbeam.angle = -30;
         }
         else {
             //if(this.lightbeam.getComponent('light').alert_level){
