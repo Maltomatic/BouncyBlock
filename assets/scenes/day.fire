@@ -2106,12 +2106,12 @@
     "body": null,
     "_offset": {
       "__type__": "cc.Vec2",
-      "x": -515,
+      "x": -355,
       "y": 980
     },
     "_size": {
       "__type__": "cc.Size",
-      "width": 1031,
+      "width": 710,
       "height": 1936
     },
     "_id": "65pJmjZLNH+Jc6A8IEDDlV"
@@ -2124,6 +2124,9 @@
       "__id__": 46
     },
     "_enabled": true,
+    "now_score": {
+      "__id__": 10
+    },
     "_id": "a94uHsbXZGXb5/ElRTEVlC"
   },
   {

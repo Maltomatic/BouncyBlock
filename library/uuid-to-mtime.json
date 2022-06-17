@@ -355,8 +355,8 @@
     "relativePath": "scripts\\player.ts"
   },
   "e19b5114-6ae0-44c7-aaf8-d3a9a5a14998": {
-    "asset": 1655443578333,
-    "meta": 1655443578343,
+    "asset": 1655445630500,
+    "meta": 1655445630509,
     "relativePath": "scenes\\day.fire"
   },
   "04cfd6d9-41d6-4ada-8a5b-fc5bd8ed6a7d": {
@@ -870,8 +870,8 @@
     "relativePath": "image\\parent.png"
   },
   "201d1fb4-4e8f-44d0-b194-13f83e0f3203": {
-    "asset": 1655445101514,
-    "meta": 1655445103491,
+    "asset": 1655445749784,
+    "meta": 1655445750592,
     "relativePath": "scripts\\parent.ts"
   }
 }

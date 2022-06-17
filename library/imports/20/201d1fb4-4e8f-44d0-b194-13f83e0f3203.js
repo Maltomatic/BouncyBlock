@@ -33,7 +33,10 @@ var _a = cc._decorator, ccclass = _a.ccclass, property = _a.property;
 var NewClass = /** @class */ (function (_super) {
     __extends(NewClass, _super);
     function NewClass() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.speedup = 0.7;
+        return _this;
+        // update (dt) {}
     }
     NewClass.prototype.onLoad = function () {
         cc.director.getPhysicsManager().enabled = true;
@@ -46,8 +49,9 @@ var NewClass = /** @class */ (function (_super) {
     // LIFE-CYCLE CALLBACKS:
     // onLoad () {}
     NewClass.prototype.update = function (dt) {
-        this.node.x += 1;
-        if (Math.abs(this.node.x - this.before_x) <= 0.5)
+        this.speedup = 0.7 + 0.003 * parseInt(this.now_score.string);
+        this.node.x += this.speedup;
+        if (Math.abs(this.node.x - this.before_x) <= 0.3)
             this.jump();
         this.before_x = this.node.x;
     };
@@ -56,6 +60,9 @@ var NewClass = /** @class */ (function (_super) {
     NewClass.prototype.jump = function () {
         this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 600);
     };
+    __decorate([
+        property(cc.Label)
+    ], NewClass.prototype, "now_score", void 0);
     NewClass = __decorate([
         ccclass
     ], NewClass);
