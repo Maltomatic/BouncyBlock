@@ -355,13 +355,13 @@
     "relativePath": "scripts\\player.ts"
   },
   "e19b5114-6ae0-44c7-aaf8-d3a9a5a14998": {
-    "asset": 1655445630500,
-    "meta": 1655445630509,
+    "asset": 1655448702192,
+    "meta": 1655448702201,
     "relativePath": "scenes\\day.fire"
   },
   "04cfd6d9-41d6-4ada-8a5b-fc5bd8ed6a7d": {
-    "asset": 1655441350123,
-    "meta": 1655441366065,
+    "asset": 1655448605548,
+    "meta": 1655448605560,
     "relativePath": "scenes\\test.fire"
   },
   "9836134e-b892-4283-b6b2-78b5acf3ed45": {
@@ -870,8 +870,8 @@
     "relativePath": "image\\parent.png"
   },
   "201d1fb4-4e8f-44d0-b194-13f83e0f3203": {
-    "asset": 1655445749784,
-    "meta": 1655445750592,
+    "asset": 1655446030660,
+    "meta": 1655446418065,
     "relativePath": "scripts\\parent.ts"
   }
 }

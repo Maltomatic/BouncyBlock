@@ -29,7 +29,7 @@ export default class NewClass extends cc.Component {
 
     // onLoad () {}
     protected update(dt: number): void {
-        this.speedup=0.7+0.003*parseInt(this.now_score.string);  //每得一分加速0.03
+        this.speedup=0.7+0.003*parseInt(this.now_score.string);  //每得一分加速0.03 //約七百多分會比player快
         this.node.x += this.speedup;
         if(Math.abs(this.node.x-this.before_x)<=0.3) this.jump();
         this.before_x=this.node.x;
