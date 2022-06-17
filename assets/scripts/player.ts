@@ -166,6 +166,13 @@ export class Player extends cc.Component {
             this.scheduleOnce(() => {
                 cc.director.loadScene("lose")
             }, 0.3);
+        }else if(other.node.name == 'sharp'){
+            // die
+            // deploy white particles
+            
+            this.scheduleOnce(() => {
+                cc.director.loadScene("lose")
+            }, 0.3);
         }
 
     }

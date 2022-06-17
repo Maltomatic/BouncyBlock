@@ -870,8 +870,8 @@
     "relativePath": "image\\sharp.png"
   },
   "09ce6a93-eb1a-4bd0-bdf0-7a2033be6d79": {
-    "asset": 1655471781739,
-    "meta": 1655479823502,
+    "asset": 1655483904489,
+    "meta": 1655483904494,
     "relativePath": "prefabs\\sharp.prefab"
   },
   "8153b830-e19d-4dbb-a883-7b51582abd19": {
@@ -939,11 +939,6 @@
     "meta": 1655479823979,
     "relativePath": "scripts\\light.ts"
   },
-  "a4fb5ce8-16f2-4ec9-b773-3d70ce77a8e4": {
-    "asset": 1655479695533,
-    "meta": 1655479824231,
-    "relativePath": "scripts\\player.ts"
-  },
   "62469ddb-e363-4636-b98f-c9ccf13dfcbe": {
     "asset": 1655479695534,
     "meta": 1655479824287,
@@ -958,5 +953,10 @@
     "asset": 1655483151518,
     "meta": 1655483154097,
     "relativePath": "scripts\\section_init.ts"
+  },
+  "a4fb5ce8-16f2-4ec9-b773-3d70ce77a8e4": {
+    "asset": 1655483839538,
+    "meta": 1655483840688,
+    "relativePath": "scripts\\player.ts"
   }
 }
