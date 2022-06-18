@@ -173,22 +173,25 @@ export class Section extends cc.Component {
         }
 
         // spider
-        map_layer = map.getLayer("enemy");
-        layer_size = map_layer.getLayerSize();
-        var flag = new Array(layer_size.width);
-        for(var i = 0; i < layer_size.width; i++){
-            for(var j = 0; j < layer_size.height; j++){
-                var tile = map_layer.getTiledTileAt(i, j, true);
-                if(tile.gid == 265 + 61){
-                    var spider_pre = cc.instantiate(this.spider);
-                    console.log(spider_pre);
-                    spider_pre.x = section_count * 1920 + tile.node.x;
-                    spider_pre.y = tile.node.y;
-                    cc.find("Canvas/root/mapworld").addChild(spider_pre);
+        if(cc.director.getScene().name!="day")
+        {
+            map_layer = map.getLayer("enemy");
+            layer_size = map_layer.getLayerSize();
+            var flag = new Array(layer_size.width);
+            for(var i = 0; i < layer_size.width; i++){
+                for(var j = 0; j < layer_size.height; j++){
+                    var tile = map_layer.getTiledTileAt(i, j, true);
+                    if(tile.gid == 265 + 61){
+                        var spider_pre = cc.instantiate(this.spider);
+                        console.log(spider_pre);
+                        spider_pre.x = section_count * 1920 + tile.node.x;
+                        spider_pre.y = tile.node.y;
+                        cc.find("Canvas/root/mapworld").addChild(spider_pre);
+                    }
                 }
             }
+            map_layer.enabled = false;
         }
-        map_layer.enabled = false;
 
         //enemy init
         var lv_diff = cc.find("Canvas/root/player").getComponent('player').section_count;
