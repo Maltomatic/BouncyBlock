@@ -30,6 +30,7 @@ export class Bird extends cc.Component {
     private section_count: number = 0;      // on contact with marker, if section_count * 1920 < this.node.x: init next section and section_count ++
     private score: number = 0;
 
+    private speed: number = 150;
     color: number = 0;
     strip: number = 0;
     base: number = 0;
@@ -74,7 +75,7 @@ export class Bird extends cc.Component {
 
     update (dt) {
         this.camera_track();
-        this.node.x += 150 * dt;
+        this.node.x += this.speed * dt;
         
         //--------score-------------------------------
         this.score = (Math.round(this.node.x / 35) > this.score) ? Math.round(this.node.x / 35) : this.score;
@@ -108,6 +109,10 @@ export class Bird extends cc.Component {
             console.log(other.node.group + " (" + touch.x + ", " + touch.y + ")")
             // die
             this.node.getChildByName('eye').active = false;
+            this.speed = 0;
+            this.scheduleOnce(() => {
+                cc.director.loadScene("lose");
+            }, 0.3);
         }
     }
 

@@ -43,6 +43,7 @@ var Bird = /** @class */ (function (_super) {
         _this.Color = null;
         _this.section_count = 0; // on contact with marker, if section_count * 1920 < this.node.x: init next section and section_count ++
         _this.score = 0;
+        _this.speed = 150;
         _this.color = 0;
         _this.strip = 0;
         _this.base = 0;
@@ -84,7 +85,7 @@ var Bird = /** @class */ (function (_super) {
     };
     Bird.prototype.update = function (dt) {
         this.camera_track();
-        this.node.x += 150 * dt;
+        this.node.x += this.speed * dt;
         //--------score-------------------------------
         this.score = (Math.round(this.node.x / 35) > this.score) ? Math.round(this.node.x / 35) : this.score;
         this.Score.getComponent(cc.Label).string = this.score.toString();
@@ -118,6 +119,10 @@ var Bird = /** @class */ (function (_super) {
             console.log(other.node.group + " (" + touch.x + ", " + touch.y + ")");
             // die
             this.node.getChildByName('eye').active = false;
+            this.speed = 0;
+            this.scheduleOnce(function () {
+                cc.director.loadScene("lose");
+            }, 0.3);
         }
     };
     Bird.prototype.onKeyDown = function (event) {

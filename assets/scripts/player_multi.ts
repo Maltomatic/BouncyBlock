@@ -147,7 +147,7 @@ export class Player extends cc.Component {
             // deploy white particles
             this.node.active = false;
             this.scheduleOnce(() => {
-                cc.director.loadScene("lose")
+                cc.director.loadScene("lose");
             }, 0.3);
         }else if(other.node.name == 'sharp'||other.node.name == 'parent'){
             // die

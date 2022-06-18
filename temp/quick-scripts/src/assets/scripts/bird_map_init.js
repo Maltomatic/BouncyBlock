@@ -114,7 +114,7 @@ var BirdBase = /** @class */ (function (_super) {
                 pathrange[0] = up_bound;
                 pathrange[1] = down_bound;
             }
-            for (var i = 1; i < layerSz.width - 1; i++) {
+            for (var i = 0; i < layerSz.width; i++) {
                 for (var j = 0; j < layerSz.height; j++) {
                     var FloorTile = floor.getTiledTileAt(i, j, true);
                     if (FloorTile.gid != 0) {
