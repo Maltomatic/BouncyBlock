@@ -18,6 +18,7 @@ require('./assets/scripts/bubble_item_in_dayscene');
 require('./assets/scripts/enemy moving sharp');
 require('./assets/scripts/enemy_wrapper');
 require('./assets/scripts/light');
+require('./assets/scripts/menu');
 require('./assets/scripts/missile');
 require('./assets/scripts/parent');
 require('./assets/scripts/player');

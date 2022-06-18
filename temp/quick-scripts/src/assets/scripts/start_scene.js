@@ -33,6 +33,9 @@ var start_scene = /** @class */ (function (_super) {
         cc.debug.setDisplayStats(false);
     };
     start_scene.prototype.start = function () {
+        this.scheduleOnce(function () {
+            cc.find('background').active = false;
+        }, 3.5);
         //cc.audioEngine.playMusic(this.bgm, true);
         this.email_data = "";
         this.password_data = "";
@@ -73,10 +76,11 @@ var start_scene = /** @class */ (function (_super) {
                 if (snapshot.child(firebase.auth().currentUser.uid).exists() == false) {
                     var a = {};
                     var tmp = {};
-                    tmp['life'] = 1;
+                    tmp['coins'] = 0;
                     tmp['email'] = firebase.auth().currentUser.email;
-                    tmp['level1'] = 0;
-                    tmp['level2'] = 0;
+                    tmp['highscore'] = 0;
+                    var t = { 'lego': 0, 'banana': 0, 'color': { 1: false, 2: false, 3: false, 4: false, 5: false }, 'signal': 0, 'mute': 0 };
+                    tmp['powerup'] = t;
                     a[firebase.auth().currentUser.uid] = tmp;
                     firebase.database().ref('/users/').update(a);
                 }
@@ -95,10 +99,11 @@ var start_scene = /** @class */ (function (_super) {
                 if (snapshot.child(firebase.auth().currentUser.uid).exists() == false) {
                     var a = {};
                     var tmp = {};
-                    tmp['life'] = 1;
+                    tmp['coins'] = 0;
                     tmp['email'] = firebase.auth().currentUser.email;
-                    tmp['level1'] = 0;
-                    tmp['level2'] = 0;
+                    tmp['highscore'] = 0;
+                    var t = { 'lego': 0, 'banana': 0, 'color': { 1: false, 2: false, 3: false, 4: false, 5: false }, 'signal': 0, 'mute': 0 };
+                    tmp['powerup'] = t;
                     a[firebase.auth().currentUser.uid] = tmp;
                     firebase.database().ref('/users/').update(a);
                 }
