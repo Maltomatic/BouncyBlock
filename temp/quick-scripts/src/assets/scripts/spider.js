@@ -28,7 +28,9 @@ var _a = cc._decorator, ccclass = _a.ccclass, property = _a.property;
 var spider = /** @class */ (function (_super) {
     __extends(spider, _super);
     function spider() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.moveDir = 1;
+        return _this;
     }
     spider.prototype.onLoad = function () {
         cc.director.getPhysicsManager().enabled = true;
@@ -36,17 +38,25 @@ var spider = /** @class */ (function (_super) {
     spider.prototype.start = function () {
         //this.node.scaleX = -this.node.scaleX;
         var body = this.getComponent(cc.RigidBody);
-        body.linearVelocity = cc.v2(250, 0);
+        //body.linearVelocity = cc.v2(250,0);
         console.log("V = ", body.linearVelocity);
     };
+    spider.prototype.update = function () {
+        this.node.x += 5 * this.moveDir;
+        //this.node.scaleX = (this.moveDir >= 0) ? 1 : -1;
+    };
     spider.prototype.onBeginContact = function (contact, self, other) {
-        if (other.node.group == 'ground' || other.node.group == 'mound') {
-            if (contact.getWorldManifold().normal.y == 0) {
+        if ((other.node.group == 'mound') && contact.getWorldManifold().normal.y == 0) {
+            this.moveDir *= -1;
+            /*if( (this.getComponent(cc.RigidBody).linearVelocity.x > 0 && contact.getWorldManifold().normal.x == 1) || (this.getComponent(cc.RigidBody).linearVelocity.x < 0 && contact.getWorldManifold().normal.x == -1)) {
                 console.log(other.node.group, contact.getWorldManifold().normal.x, contact.getWorldManifold().normal.y);
-                this.getComponent(cc.RigidBody).linearVelocity = cc.v2(-250, 0);
+                //this.getComponent(cc.RigidBody).linearVelocity = cc.v2(-this.getComponent(cc.RigidBody).linearVelocity.x, 0);
                 //this.node.scaleX = -this.node.scaleX;
-            }
+                this.moveDir *= -1;
+            }*/
         }
+        else
+            contact.enabled = false;
     };
     spider = __decorate([
         ccclass
