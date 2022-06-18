@@ -111,7 +111,7 @@ var Player = /** @class */ (function (_super) {
             if (this.node.x >= this.section_count * 1920) {
                 //console.log("init next section");
                 this.section_count++;
-                var rand = Math.floor(Math.random() * 13);
+                var rand = Math.floor(Math.random() * Math.min(2 + this.section_count / 2, 13));
                 //console.log(rand);
                 //console.log("To instantiate: " + this.sec_list[rand].name);
                 var next_section = cc.instantiate(this.sec_list[rand]);

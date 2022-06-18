@@ -20,6 +20,7 @@ require('./assets/scripts/light');
 require('./assets/scripts/missile');
 require('./assets/scripts/parent');
 require('./assets/scripts/player');
+require('./assets/scripts/player_multi');
 require('./assets/scripts/root');
 require('./assets/scripts/searchlight');
 require('./assets/scripts/section_init');

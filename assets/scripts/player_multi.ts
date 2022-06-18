@@ -15,7 +15,6 @@ export class Player extends cc.Component {
     sec1: cc.Prefab = null;
     @property(cc.Prefab)
     sec2: cc.Prefab = null;
-
     @property(cc.Prefab)
     sec3: cc.Prefab = null;
     @property(cc.Prefab)
@@ -39,33 +38,23 @@ export class Player extends cc.Component {
 
     @property(cc.Node)
     Score: cc.Node = null;
-
     @property(cc.Sprite)
     Color: cc.Sprite = null;
+    @property(cc.AudioClip)
+    notif: cc.AudioClip = null;
 
     @property(cc.Node)
     coin_point : cc.Node = null;  
     coin: number = 0;
 
-    @property(cc.Node)
-    bubble_banana : cc.Node = null; 
-    banana: number = 0;
-
-    @property(cc.Node)
-    bubble_lego : cc.Node = null; 
-    lego: number = 0;
-
-    @property(cc.Prefab)
-    banana_Prefabs: cc.Prefab = null;
-    @property(cc.Prefab)
-    lego_Prefabs: cc.Prefab = null; 
-
-    @property(cc.Node)
-    bubble_powerup : cc.Node = null; 
-    powerup: number = 0;
-
     debug_mode: boolean = true;
     hidden: boolean = false;
+    private noisy: boolean = false;
+    private unhide: boolean = false;
+    private ACK: number = 0.5;
+    private recv_msg: number = 0;
+
+    private data: number = 0;
 
     private sec_list = [];
 
@@ -144,28 +133,15 @@ export class Player extends cc.Component {
             }
 
             if(other.node.group == 'mound') {
-                if(other.node.getComponent(cc.TiledTile).gid == this.color + this.base && touch.x/* && !touch.y*/) {
+                if(other.node.getComponent(cc.TiledTile).gid == this.color + this.base && touch.x) {
                     this.node.getChildByName('eye').active = false;
-                    this.hidden = true;
+                    this.hidden = (this.noisy || this.unhide)? false: true;
                     // this.last_x = this.node.x;
                 }
             }    
         } else if(other.node.group == 'coin'){ // @@ 
             this.update_coin(1);
             other.node.destroy();
-        }else if(other.node.group == 'bubble'){ // @@ 
-           if(other.tag == 1){ // bubble banana
-            console.log("banana");
-                this.update_banana(1);
-                other.node.destroy();
-           }else if(other.tag == 2){ // bubble lego
-            console.log("lego");
-                this.update_lego(1);
-                other.node.destroy();
-           }else if(other.tag == 3){ // colorful bubble
-            this.update_powerup(1);
-            other.node.destroy();
-            }
         }else if(other.node.name == 'missile'){
             // die
             // deploy white particles
@@ -201,6 +177,7 @@ export class Player extends cc.Component {
         this.dir = 0;
         this.sec_list = [this.sec0, this.sec1, this.sec2, this.sec3, this.sec4,this.sec5,this.sec10,this.sec11,this.sec12,this.sec13,this.sec17,this.sec18,this.sec19];
         this.score = 0;
+        this.data = 5;
         
         //------------sparkle color------------------------
         this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).startColor= this.Color.node.color;
@@ -210,6 +187,8 @@ export class Player extends cc.Component {
     }
 
     update (dt) {
+        this.ACK -= dt;
+        if(this.ACK <= 0) this.check_mail();
         this.camera_track();
         this.node.x += this.dir * 200 * dt;
         if(this.fly_state == 1){
@@ -225,22 +204,14 @@ export class Player extends cc.Component {
         //----------sparkle emission rate is 0 when didnt move-----------------------------------------
         if(this.dir!=0||dy>10) this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).emissionRate=100;
         else this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).emissionRate=0;
-        //----------------------------------------------------
-
-        
-        
         //---------player spin---------------
         if((dy > 10) && this.dir == 1) this.spin_right();
         else if((dy > 10) && this.dir == -1) this.spin_left();
         else if(this.node.angle != 0) this.node.angle=0;
-        //------------------------------------
-
         //--------score-------------------------------
         this.score = (Math.round(this.node.x / 35) > this.score) ? Math.round(this.node.x / 35) : this.score;
         this.Score.getComponent(cc.Label).string = this.score.toString();
         //--------------------------------------------
-
-
     }
     spin_right(){
         this.node.angle -= 12;
@@ -254,6 +225,27 @@ export class Player extends cc.Component {
 
         if(this.node.x < 100) this.camera.x = 0;
         else this.camera.x = this.node.x - 100;
+    }
+
+    check_mail(){
+        this.ACK = 5;
+        this.scheduleOnce(() => {       // get Firebase data; here simulated with timer
+            if(Math.floor(Math.random()*4) > 2){        // should be if pinged on Firebase
+                this.recv_msg ++;
+                cc.audioEngine.playEffect(this.notif, false);
+                this.Color.node.color = new cc.Color(255,255,255);
+                this.unhide = true;
+                this.scheduleOnce(() => {
+                    this.recv_msg--;
+                    if(this.recv_msg == 0){
+                        this.unhide = false;
+                        var color_str = this.color_list[this.base + this.color];
+                        var color = new cc.Color(255,255,255);
+                        this.Color.node.color = color.fromHEX(color_str);
+                    }
+                }, 3);
+            }
+        }, 0.12);
     }
 
     onKeyDown(event){
@@ -277,19 +269,18 @@ export class Player extends cc.Component {
             cc.audioEngine.resumeAll();
             cc.director.resume();
         }
-
-        if(event.keyCode == cc.macro.KEY.b && this.banana > 0 ){// put banana
-            var banana_pre = cc.instantiate(this.banana_Prefabs);
-            banana_pre.x = this.node.x;
-            banana_pre.y = this.node.y;
-            cc.find("Canvas/root").addChild(banana_pre);
-            this.update_banana(-1);
-        }else if(event.keyCode == cc.macro.KEY.l  && this.lego > 0){ //  put lego
-            var lego_pre = cc.instantiate(this.lego_Prefabs);
-            lego_pre.x = this.node.x;
-            lego_pre.y = this.node.y-1;
-            cc.find("Canvas/root").addChild(lego_pre);
-            this.update_lego(-1);
+        if(event.keyCode == cc.macro.KEY.enter){        // send message
+            if(this.data){
+                this.Color.node.color = new cc.Color(255,255,255);
+                this.data -= 1;
+                this.noisy = true;
+                this.scheduleOnce(() => {
+                    this.noisy = false;
+                    var color_str = this.color_list[this.base + this.color];
+                    var color = new cc.Color(255,255,255);
+                    this.Color.node.color = color.fromHEX(color_str);
+                }, 1);
+            }
         }
     }
     onKeyUp(event){
@@ -312,17 +303,5 @@ export class Player extends cc.Component {
     update_coin(number){  // @@ 
         this.coin += number;
         this.coin_point.getComponent(cc.Label).string = this.coin.toString();
-    }
-    update_banana(number){  // @@ 
-        this.banana += number;
-        this.bubble_banana.getComponent(cc.Label).string = this.banana.toString();
-    }
-    update_lego(number){  // @@ 
-        this.lego += number;
-       this.bubble_lego.getComponent(cc.Label).string = this.lego.toString();
-    }
-    update_powerup(number){  // @@ 
-        this.powerup += number;
-       this.bubble_powerup.getComponent(cc.Label).string = this.powerup.toString();
     }
 }

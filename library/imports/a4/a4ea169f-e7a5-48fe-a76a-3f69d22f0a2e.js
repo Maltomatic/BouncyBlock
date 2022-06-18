@@ -1,6 +1,6 @@
 "use strict";
-cc._RF.push(module, 'a4fb5zoFvJOybdzPXDOd6jk', 'player');
-// scripts/player.ts
+cc._RF.push(module, 'a4ea1af56VI/qdqP2nSLwou', 'player_multi');
+// scripts/player_multi.ts
 
 "use strict";
 var __extends = (this && this.__extends) || (function () {
@@ -46,18 +46,16 @@ var Player = /** @class */ (function (_super) {
         _this.sec19 = null;
         _this.Score = null;
         _this.Color = null;
+        _this.notif = null;
         _this.coin_point = null;
         _this.coin = 0;
-        _this.bubble_banana = null;
-        _this.banana = 0;
-        _this.bubble_lego = null;
-        _this.lego = 0;
-        _this.banana_Prefabs = null;
-        _this.lego_Prefabs = null;
-        _this.bubble_powerup = null;
-        _this.powerup = 0;
         _this.debug_mode = true;
         _this.hidden = false;
+        _this.noisy = false;
+        _this.unhide = false;
+        _this.ACK = 0.5;
+        _this.recv_msg = 0;
+        _this.data = 0;
         _this.sec_list = [];
         _this.dir = 0;
         _this.prev_dir = 0;
@@ -129,9 +127,9 @@ var Player = /** @class */ (function (_super) {
                     this.on_floor = true;
             }
             if (other.node.group == 'mound') {
-                if (other.node.getComponent(cc.TiledTile).gid == this.color + this.base && touch.x /* && !touch.y*/) {
+                if (other.node.getComponent(cc.TiledTile).gid == this.color + this.base && touch.x) {
                     this.node.getChildByName('eye').active = false;
-                    this.hidden = true;
+                    this.hidden = (this.noisy || this.unhide) ? false : true;
                     // this.last_x = this.node.x;
                 }
             }
@@ -139,22 +137,6 @@ var Player = /** @class */ (function (_super) {
         else if (other.node.group == 'coin') { // @@ 
             this.update_coin(1);
             other.node.destroy();
-        }
-        else if (other.node.group == 'bubble') { // @@ 
-            if (other.tag == 1) { // bubble banana
-                console.log("banana");
-                this.update_banana(1);
-                other.node.destroy();
-            }
-            else if (other.tag == 2) { // bubble lego
-                console.log("lego");
-                this.update_lego(1);
-                other.node.destroy();
-            }
-            else if (other.tag == 3) { // colorful bubble
-                this.update_powerup(1);
-                other.node.destroy();
-            }
         }
         else if (other.node.name == 'missile') {
             // die
@@ -190,6 +172,7 @@ var Player = /** @class */ (function (_super) {
         this.dir = 0;
         this.sec_list = [this.sec0, this.sec1, this.sec2, this.sec3, this.sec4, this.sec5, this.sec10, this.sec11, this.sec12, this.sec13, this.sec17, this.sec18, this.sec19];
         this.score = 0;
+        this.data = 5;
         //------------sparkle color------------------------
         this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).startColor = this.Color.node.color;
         this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).endColor = this.Color.node.color;
@@ -197,6 +180,9 @@ var Player = /** @class */ (function (_super) {
         //-------------------------------------------------
     };
     Player.prototype.update = function (dt) {
+        this.ACK -= dt;
+        if (this.ACK <= 0)
+            this.check_mail();
         this.camera_track();
         this.node.x += this.dir * 200 * dt;
         if (this.fly_state == 1) {
@@ -215,7 +201,6 @@ var Player = /** @class */ (function (_super) {
             this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).emissionRate = 100;
         else
             this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).emissionRate = 0;
-        //----------------------------------------------------
         //---------player spin---------------
         if ((dy > 10) && this.dir == 1)
             this.spin_right();
@@ -223,7 +208,6 @@ var Player = /** @class */ (function (_super) {
             this.spin_left();
         else if (this.node.angle != 0)
             this.node.angle = 0;
-        //------------------------------------
         //--------score-------------------------------
         this.score = (Math.round(this.node.x / 35) > this.score) ? Math.round(this.node.x / 35) : this.score;
         this.Score.getComponent(cc.Label).string = this.score.toString();
@@ -243,7 +227,29 @@ var Player = /** @class */ (function (_super) {
         else
             this.camera.x = this.node.x - 100;
     };
+    Player.prototype.check_mail = function () {
+        var _this = this;
+        this.ACK = 5;
+        this.scheduleOnce(function () {
+            if (Math.floor(Math.random() * 4) > 2) { // should be if pinged on Firebase
+                _this.recv_msg++;
+                cc.audioEngine.playEffect(_this.notif, false);
+                _this.Color.node.color = new cc.Color(255, 255, 255);
+                _this.unhide = true;
+                _this.scheduleOnce(function () {
+                    _this.recv_msg--;
+                    if (_this.recv_msg == 0) {
+                        _this.unhide = false;
+                        var color_str = _this.color_list[_this.base + _this.color];
+                        var color = new cc.Color(255, 255, 255);
+                        _this.Color.node.color = color.fromHEX(color_str);
+                    }
+                }, 3);
+            }
+        }, 0.12);
+    };
     Player.prototype.onKeyDown = function (event) {
+        var _this = this;
         if (event.keyCode == cc.macro.KEY.space) {
             if (this.on_floor)
                 this.jump();
@@ -264,19 +270,18 @@ var Player = /** @class */ (function (_super) {
             cc.audioEngine.resumeAll();
             cc.director.resume();
         }
-        if (event.keyCode == cc.macro.KEY.b && this.banana > 0) { // put banana
-            var banana_pre = cc.instantiate(this.banana_Prefabs);
-            banana_pre.x = this.node.x;
-            banana_pre.y = this.node.y;
-            cc.find("Canvas/root").addChild(banana_pre);
-            this.update_banana(-1);
-        }
-        else if (event.keyCode == cc.macro.KEY.l && this.lego > 0) { //  put lego
-            var lego_pre = cc.instantiate(this.lego_Prefabs);
-            lego_pre.x = this.node.x;
-            lego_pre.y = this.node.y - 1;
-            cc.find("Canvas/root").addChild(lego_pre);
-            this.update_lego(-1);
+        if (event.keyCode == cc.macro.KEY.enter) { // send message
+            if (this.data) {
+                this.Color.node.color = new cc.Color(255, 255, 255);
+                this.data -= 1;
+                this.noisy = true;
+                this.scheduleOnce(function () {
+                    _this.noisy = false;
+                    var color_str = _this.color_list[_this.base + _this.color];
+                    var color = new cc.Color(255, 255, 255);
+                    _this.Color.node.color = color.fromHEX(color_str);
+                }, 1);
+            }
         }
     };
     Player.prototype.onKeyUp = function (event) {
@@ -299,18 +304,6 @@ var Player = /** @class */ (function (_super) {
     Player.prototype.update_coin = function (number) {
         this.coin += number;
         this.coin_point.getComponent(cc.Label).string = this.coin.toString();
-    };
-    Player.prototype.update_banana = function (number) {
-        this.banana += number;
-        this.bubble_banana.getComponent(cc.Label).string = this.banana.toString();
-    };
-    Player.prototype.update_lego = function (number) {
-        this.lego += number;
-        this.bubble_lego.getComponent(cc.Label).string = this.lego.toString();
-    };
-    Player.prototype.update_powerup = function (number) {
-        this.powerup += number;
-        this.bubble_powerup.getComponent(cc.Label).string = this.powerup.toString();
     };
     __decorate([
         property(cc.Node)
@@ -364,23 +357,11 @@ var Player = /** @class */ (function (_super) {
         property(cc.Sprite)
     ], Player.prototype, "Color", void 0);
     __decorate([
+        property(cc.AudioClip)
+    ], Player.prototype, "notif", void 0);
+    __decorate([
         property(cc.Node)
     ], Player.prototype, "coin_point", void 0);
-    __decorate([
-        property(cc.Node)
-    ], Player.prototype, "bubble_banana", void 0);
-    __decorate([
-        property(cc.Node)
-    ], Player.prototype, "bubble_lego", void 0);
-    __decorate([
-        property(cc.Prefab)
-    ], Player.prototype, "banana_Prefabs", void 0);
-    __decorate([
-        property(cc.Prefab)
-    ], Player.prototype, "lego_Prefabs", void 0);
-    __decorate([
-        property(cc.Node)
-    ], Player.prototype, "bubble_powerup", void 0);
     Player = __decorate([
         ccclass
     ], Player);
