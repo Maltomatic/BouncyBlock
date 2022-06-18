@@ -51,7 +51,7 @@ export class Player extends cc.Component {
     hidden: boolean = false;
     private noisy: boolean = false;
     private unhide: boolean = false;
-    private ACK: number = 0.5;
+    private ACK: number = 5;
     private recv_msg: number = 0;
 
     private data: number = 0;

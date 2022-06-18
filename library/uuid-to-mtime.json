@@ -989,11 +989,6 @@
     "meta": 1655575195583,
     "relativePath": "scripts\\player.ts"
   },
-  "a4ea169f-e7a5-48fe-a76a-3f69d22f0a2e": {
-    "asset": 1655573656557,
-    "meta": 1655575195712,
-    "relativePath": "scripts\\player_multi.ts"
-  },
   "1eb0e55a-da22-4eda-a5e3-68ca9e265251": {
     "asset": 1655409964843,
     "meta": 1655575195725,
@@ -1038,5 +1033,10 @@
     "asset": 1655575719058,
     "meta": 1655575720567,
     "relativePath": "scripts\\enemy_wrapper.ts"
+  },
+  "a4ea169f-e7a5-48fe-a76a-3f69d22f0a2e": {
+    "asset": 1655576317249,
+    "meta": 1655576319487,
+    "relativePath": "scripts\\player_multi.ts"
   }
 }
