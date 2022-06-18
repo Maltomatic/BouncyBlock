@@ -35,6 +35,7 @@ var NewClass = /** @class */ (function (_super) {
     function NewClass() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.speedup = 0.7;
+        _this.stunned = 0;
         return _this;
         // update (dt) {}
     }
@@ -44,14 +45,25 @@ var NewClass = /** @class */ (function (_super) {
         this.before_x = this.node.x;
     };
     NewClass.prototype.onBeginContact = function (contact, self, other) {
+        var _this = this;
         var touch = contact.getWorldManifold().normal;
+        if (other.node.name == "lego") {
+            this.stunned = 1;
+            setTimeout(function () {
+                _this.stunned = 0;
+                _this.node.color = new cc.Color(255, 255, 255);
+            }, 3000);
+        }
     };
     // LIFE-CYCLE CALLBACKS:
     // onLoad () {}
     NewClass.prototype.update = function (dt) {
         this.speedup = 0.7 + 0.003 * parseInt(this.now_score.string); //每得一分加速0.03 //約七百多分會比player快
-        this.node.x += this.speedup;
-        if (Math.abs(this.node.x - this.before_x) <= 0.3)
+        if (this.stunned == 0)
+            this.node.x += this.speedup;
+        else
+            this.node.x += 0;
+        if (Math.abs(this.node.x - this.before_x) <= 0.3 && this.stunned == 0)
             this.jump();
         this.before_x = this.node.x;
     };

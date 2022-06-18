@@ -445,8 +445,8 @@
     "relativePath": "prefabs\\section3.prefab"
   },
   "e19b5114-6ae0-44c7-aaf8-d3a9a5a14998": {
-    "asset": 1655584441159,
-    "meta": 1655584441168,
+    "asset": 1655585685380,
+    "meta": 1655585685390,
     "relativePath": "scenes\\day.fire"
   },
   "ea24dbc3-4a1a-4c24-b0fd-07002cd3fae2": {
@@ -1029,14 +1029,14 @@
     "meta": 1655584618804,
     "relativePath": "model\\primitives.fbx"
   },
-  "201d1fb4-4e8f-44d0-b194-13f83e0f3203": {
-    "asset": 1655584637673,
-    "meta": 1655584719267,
-    "relativePath": "scripts\\parent.ts"
-  },
   "39f308ea-905f-4fc8-8004-c5ade8bc02ab": {
-    "asset": 1655584874355,
-    "meta": 1655584875955,
+    "asset": 1655585091431,
+    "meta": 1655585093851,
     "relativePath": "scripts\\arm.ts"
+  },
+  "201d1fb4-4e8f-44d0-b194-13f83e0f3203": {
+    "asset": 1655585728871,
+    "meta": 1655585730129,
+    "relativePath": "scripts\\parent.ts"
   }
 }

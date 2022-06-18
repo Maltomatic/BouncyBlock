@@ -60,7 +60,8 @@ var arm = /** @class */ (function (_super) {
                 }, 1000);
             }
             else if (this.node.name == 'lego') {
-                this.anim.play('lego'); // knock                
+                this.anim.play('lego'); // knock   
+                other.node.color = new cc.Color(127.5, 127.5, 127.5);
                 setTimeout(function () {
                     _this.node.destroy();
                 }, 1000);

@@ -39,7 +39,8 @@ export default class arm extends cc.Component {
                     this.node.destroy();
                 }, 1000);
             }else if(this.node.name == 'lego'){
-                this.anim.play('lego');// knock                
+                this.anim.play('lego');// knock   
+                other.node.color=new cc.Color(127.5, 127.5, 127.5);     
                 setTimeout(()=>{
                     this.node.destroy();
                 }, 1000);
