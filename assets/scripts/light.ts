@@ -21,13 +21,13 @@ export class Lightbeam extends cc.Component {
     private watch_x: number = 0;
     private watch_y: number = 0;
     private bottom: cc.Node = null;
-    private raise_timer: number = 0.2;
+    private raise_timer: number = 0.25;
 
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
         cc.director.getPhysicsManager().enabled = true;
-        this.character = cc.find('Canvas/root/player');
+        this.character = cc.find('Canvas/root/character_collection/player');
         this.bottom = this.node.getChildByName('bottom');
     }
 
@@ -38,15 +38,20 @@ export class Lightbeam extends cc.Component {
     }
 
     
-    onEndContact(contact, self, other){
-        if(other.node.name == 'player' && self.tag== 15){
-            // this.watch_x = other.node.x;
-            // this.watch_y = other.node.y;
-            if(this.watch){
+    onBeginContact(contact, self, other){
+        var touch = contact.getWorldManifold().normal;
+        if(other.node.name == 'player'){
+            // // this.watch_x = other.node.x;
+            // // this.watch_y = other.node.y;
+            // if(this.watch){
+            //     this.watch = false;
+            //     this.allclear();
+            //     console.log("player left range");
+            // }else if(this.watch == false){
+            if(self.tag == 15 && this.alert_level == 0){
                 this.watch = false;
                 this.allclear();
-                console.log("player left range");
-            }else if(this.watch == false){
+            }else{
                 this.watch = true;
                 console.log("player entered watch frame");
             }
@@ -54,6 +59,8 @@ export class Lightbeam extends cc.Component {
     }
     // onEndContact(contact, self, other){
     //     if(other.node.name == 'player'){
+    //         this.watch = false;
+    //         this.alert_level = 0;
     //         console.log("player out of range");
     //         this.allclear();
     //     }
@@ -61,30 +68,24 @@ export class Lightbeam extends cc.Component {
 
     allclear(){
         this.alert_level = 0;
-        this.raise_timer = 3;
+        this.raise_timer = 0.25;
         this.node.getParent().getComponent('enemy_wrapper').state = 0;
         // console.log("nothing to see");
     }
 
     update (dt) {
         // if(this.watch)console.log("watching");
-        if(this.alert_level == 0 && !this.watch) this.allclear();
-        else if(this.alert_level == 0 && this.watch){
+        if(this.alert_level == 0 && this.watch){
             if(!this.character.getComponent('player').hidden){
-                // if(this.bottom.x > this.character.x && this.node.x < this.character.x) this.node.skewX -= -5;
-                // else if(this.bottom.x < this.character.x && this.node.x > this.character.x) this.node.skewX += -5;
-                // else if(this.bottom.x < this.character.x && this.node.x < this.character.x) this.node.skewX += -5;
-                // else if(this.bottom.x > this.character.x && this.node.x > this.character.x) this.node.skewX -= -5;
                 this.alert_level = 1;
+                this.raise_timer = 0.25;
                 console.log("player is being tracked");
                 this.node.getParent().getComponent('enemy_wrapper').state = this.alert_level;
             }
-        }
-
-        if(this.alert_level == 1){
+        }else if(this.alert_level == 1 && this.watch){
             this.raise_timer -= dt;
+            if(this.node.scaleX < 1.5) this.node.scaleX += (1-this.raise_timer)/2;
             if(this.raise_timer < 0){
-                this.raise_timer = 0.2;
                 var vis = !(this.character.getComponent('player').hidden);
                 if(vis){
                     console.log("raise alert level to attack");
@@ -102,7 +103,7 @@ export class Lightbeam extends cc.Component {
     // edge detection: time the amount of time the player takes from appearing in light range to eyes closing (vis_time)
     // (t == 0): just move away
     // else: light swing over to player
-        // (0 < t <= 0.2): hover over player briefly, then move on
+        // (0 < t <= 0.25): hover over player briefly, then move on
         // else: attack player; projectile speed should be equal to player move speed and fire once per 0.6 ~ 1.2sec depending on player score
             // spotlight 
 }

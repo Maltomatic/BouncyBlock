@@ -805,8 +805,8 @@
     "relativePath": "prefabs\\lego.prefab"
   },
   "70927b47-0977-4055-b8c2-e6a9e6488850": {
-    "asset": 1655524915084,
-    "meta": 1655524915112,
+    "asset": 1655531705860,
+    "meta": 1655531705886,
     "relativePath": "prefabs\\light_enemy .prefab"
   },
   "b017801e-19be-481a-bd31-621c66b41480": {
@@ -959,16 +959,6 @@
     "meta": 1655524772306,
     "relativePath": "scripts\\enemy moving sharp.ts"
   },
-  "b7474a50-3239-4ee7-b7e0-7b3cd838b5f2": {
-    "asset": 1655524166863,
-    "meta": 1655524772409,
-    "relativePath": "scripts\\enemy_wrapper.ts"
-  },
-  "46fe3e40-486d-4367-9aee-9c5cf3c195d8": {
-    "asset": 1655524764163,
-    "meta": 1655524772463,
-    "relativePath": "scripts\\light.ts"
-  },
   "ce3ddca4-722d-408d-8de5-464fa4ed290f": {
     "asset": 1655524166867,
     "meta": 1655524772501,
@@ -1010,8 +1000,8 @@
     "relativePath": "scripts\\sharp.ts"
   },
   "04cfd6d9-41d6-4ada-8a5b-fc5bd8ed6a7d": {
-    "asset": 1655525113844,
-    "meta": 1655525113881,
+    "asset": 1655528183402,
+    "meta": 1655528183429,
     "relativePath": "scenes\\test.fire"
   },
   "9cb3f2d5-5b5e-407e-8ae8-94e03d54ed7f": {
@@ -1024,9 +1014,19 @@
     "meta": 1655524773416,
     "relativePath": "maps\\tileset_expand.png"
   },
+  "b7474a50-3239-4ee7-b7e0-7b3cd838b5f2": {
+    "asset": 1655531255444,
+    "meta": 1655531257943,
+    "relativePath": "scripts\\enemy_wrapper.ts"
+  },
   "f86b1eb1-1093-461a-a9c8-46b312ad29da": {
-    "asset": 1655524925887,
-    "meta": 1655524927340,
+    "asset": 1655531476861,
+    "meta": 1655531609162,
     "relativePath": "scripts\\section_init.ts"
+  },
+  "46fe3e40-486d-4367-9aee-9c5cf3c195d8": {
+    "asset": 1655531708662,
+    "meta": 1655531709793,
+    "relativePath": "scripts\\light.ts"
   }
 }

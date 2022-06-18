@@ -43,7 +43,7 @@ var Section = /** @class */ (function (_super) {
         cc.director.getCollisionManager().enabled = true;
         cc.director.getCollisionManager().enabledDrawBoundingBox = true;
         cc.director.getPhysicsManager().enabled = true;
-        cc.director.getPhysicsManager().debugDrawFlags = 1;
+        // cc.director.getPhysicsManager().debugDrawFlags = 1;
         cc.director.getPhysicsManager().gravity = cc.v2(0, -500);
         this.lv = parseInt(this.node.name.replace('section', ''));
     };
@@ -139,7 +139,7 @@ var Section = /** @class */ (function (_super) {
             }
         });
         // sharp obstacle
-        var section_count = cc.find('Canvas/root/player').getComponent('player').section_count;
+        var section_count = cc.find('Canvas/root/character_collection/player').getComponent('player').section_count;
         var sharp_list = { 1: 'sharp', 2: 'sharp2', 3: 'sharp3', 4: 'sharp4' };
         var map_layer = map.getLayer("enemy");
         var layer_size = map_layer.getLayerSize();
@@ -190,7 +190,7 @@ var Section = /** @class */ (function (_super) {
         }
         map_layer.enabled = false;
         //enemy init
-        var lv_diff = cc.find("Canvas/root/player").getComponent('player').section_count;
+        var lv_diff = cc.find("Canvas/root/character_collection/player").getComponent('player').section_count;
         if (lv_diff && cc.director.getScene().name != "day") {
             var range_arr = [360, 300, 300, 250, 200, 150, 120, 100]; // 100 or 80 if one light spawned, 60 or 50 if two, 30 or 20 if three
             var lightcount = 0;
@@ -214,7 +214,7 @@ var Section = /** @class */ (function (_super) {
                 if (enemy.getComponent('enemy_wrapper'))
                     enemy.getComponent('enemy_wrapper').range = range;
                 enemy.setPosition(offset + (1920 / (lightcount + 1)) * i + (Math.floor(Math.random() * 400) - 200), 200);
-                cc.find("Canvas/root/Enemy_collection").addChild(enemy);
+                cc.find("Canvas/root/character_collection").addChild(enemy);
             }
         }
         //coin 不知為甚麼只有第一個可以成功  後面都說instantiate null

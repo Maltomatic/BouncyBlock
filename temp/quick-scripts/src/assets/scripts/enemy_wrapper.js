@@ -30,12 +30,12 @@ var Light_wrapper = /** @class */ (function (_super) {
     function Light_wrapper() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.enemy = null;
-        _this.eye = null;
         _this.light = null;
         _this.bullet = null;
         _this.range = 0;
         _this.character = null;
         _this.dir = 1;
+        _this.scale_dir = 1;
         _this.leftbound = 0;
         _this.rightbound = 0;
         _this.atk = 0;
@@ -43,33 +43,38 @@ var Light_wrapper = /** @class */ (function (_super) {
         return _this;
     }
     Light_wrapper.prototype.onLoad = function () {
-        this.character = cc.find('Canvas/root/player');
+        this.character = cc.find('Canvas/root/character_collection/player');
         cc.director.getPhysicsManager().enabled = true;
     };
     Light_wrapper.prototype.start = function () {
-        console.log("enemy init with range: " + this.range + "  at " + this.node.x, this.node.y);
+        // console.log("enemy init with range: " + this.range + "  at " + this.node.x, this.node.y);
         //this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.searchlight_speed,0);
         this.leftbound = this.node.x - this.range;
         this.rightbound = this.node.x + this.range;
     };
     Light_wrapper.prototype.update = function (dt) {
-        console.log("state: " + this.state);
         if (this.state == 0) {
-            this.node.x += 70 * dt * this.dir;
-            this.light.skewX -= this.dir * 10 * dt * this.range / 80;
-            if (this.node.x <= this.leftbound)
+            // console.log(this.light.scaleX, this.light.x, this.node.position.x)
+            this.enemy.x += 70 * dt * this.dir;
+            if (this.enemy.position.x <= this.leftbound)
                 this.dir = 1;
-            else if (this.node.x >= this.rightbound)
+            else if (this.enemy.position.x >= this.rightbound)
                 this.dir = -1;
+            this.light.scaleX += dt * this.scale_dir;
+            if (this.light.scaleX <= 0.6)
+                this.scale_dir = 0.1;
+            else if (this.light.scaleX >= 1.2)
+                this.scale_dir = -0.1;
         }
         else {
-            if (this.node.x > this.character.x + 10)
+            if (this.enemy.position.x > this.character.position.x + 10)
                 this.dir = -1;
-            else if (this.node.x < this.character.x - 10)
+            else if (this.enemy.position.x < this.character.position.x - 10)
                 this.dir = 1;
             else
                 this.dir = 0;
-            this.light.skewX = (this.character.x - this.node.x) / 3;
+            console.log("track in direction " + this.dir);
+            this.enemy.x += 205 * dt * this.dir;
             if (this.state == 1)
                 this.atk = 0;
             else if (this.state == 2) {
@@ -80,12 +85,7 @@ var Light_wrapper = /** @class */ (function (_super) {
                 }
             }
         }
-        if (this.light.skewX > 40)
-            this.light.skewX = 40;
-        else if (this.light.skewX < -40)
-            this.light.skewX = -40;
-        this.light.x = this.enemy.x = this.node.x;
-        this.eye.angle = -1 * this.light.skewX;
+        this.light.x = this.enemy.x;
     };
     Light_wrapper.prototype.shoot = function () {
         // console.log("shooting")
@@ -100,9 +100,6 @@ var Light_wrapper = /** @class */ (function (_super) {
     __decorate([
         property(cc.Node)
     ], Light_wrapper.prototype, "enemy", void 0);
-    __decorate([
-        property(cc.Node)
-    ], Light_wrapper.prototype, "eye", void 0);
     __decorate([
         property(cc.Node)
     ], Light_wrapper.prototype, "light", void 0);
