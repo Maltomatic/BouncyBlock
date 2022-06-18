@@ -60,8 +60,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        170.51,
-        -199.908,
+        -263.166,
+        -191.303,
         0,
         0,
         0,
@@ -125,7 +125,7 @@
       "__id__": 1
     },
     "_enabled": true,
-    "_type": 1,
+    "_type": 2,
     "_allowSleep": true,
     "_gravityScale": 1,
     "_linearDamping": 0,
@@ -151,7 +151,7 @@
     },
     "_enabled": true,
     "tag": 0,
-    "_density": 1,
+    "_density": 100000000000000000000,
     "_sensor": false,
     "_friction": 0.2,
     "_restitution": 0,
