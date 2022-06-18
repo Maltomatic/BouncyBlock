@@ -192,8 +192,8 @@ var Section = /** @class */ (function (_super) {
                     }
                 }
             }
-            map_layer.enabled = false;
         }
+        map_layer.enabled = false;
         //enemy init
         var lv_diff = cc.find("Canvas/root/player").getComponent('player').section_count;
         if (lv_diff && cc.director.getScene().name != "day") {

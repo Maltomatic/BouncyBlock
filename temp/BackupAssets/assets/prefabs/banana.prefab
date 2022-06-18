@@ -1,7 +1,7 @@
 [
   {
     "__type__": "cc.Prefab",
-    "_name": "banana",
+    "_name": "",
     "_objFlags": 0,
     "_native": "",
     "data": {
@@ -30,13 +30,10 @@
       },
       {
         "__id__": 5
-      },
-      {
-        "__id__": 6
       }
     ],
     "_prefab": {
-      "__id__": 7
+      "__id__": 6
     },
     "_opacity": 255,
     "_color": {
@@ -237,17 +234,6 @@
       }
     ],
     "playOnLoad": false,
-    "_id": ""
-  },
-  {
-    "__type__": "39f30jqkF9PyIAExa3ovAKr",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "banana_Speed": 100,
     "_id": ""
   },
   {
