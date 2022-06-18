@@ -974,11 +974,6 @@
     "meta": 1655570363742,
     "relativePath": "scripts\\player.ts"
   },
-  "f86b1eb1-1093-461a-a9c8-46b312ad29da": {
-    "asset": 1655570356843,
-    "meta": 1655570363787,
-    "relativePath": "scripts\\section_init.ts"
-  },
   "cbfa4e4d-f8fd-416e-be8b-c0fd3083f9a3": {
     "asset": 1655570354200,
     "meta": 1655570363789,
@@ -1018,5 +1013,10 @@
     "asset": 1655570394012,
     "meta": 1655570400365,
     "relativePath": "scripts\\bubble_item.ts"
+  },
+  "f86b1eb1-1093-461a-a9c8-46b312ad29da": {
+    "asset": 1655570463119,
+    "meta": 1655570469078,
+    "relativePath": "scripts\\section_init.ts"
   }
 }

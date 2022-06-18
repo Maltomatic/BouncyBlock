@@ -21,6 +21,12 @@ export class Section extends cc.Component {
     @property(cc.Prefab)
     coin_pre: cc.Prefab = null;
 
+    @property(cc.Prefab)
+    lego_pre: cc.Prefab=null;
+
+    @property(cc.Prefab)
+    banana_pre: cc.Prefab=null;
+
     private lv: number = 0;
 
     onLoad () {
@@ -208,7 +214,7 @@ export class Section extends cc.Component {
                 cc.find("Canvas/root/enemy_collection").addChild(enemy);
             }
         }
-        //coin 不知為甚麼只有第一個可以成功  後面都說instantiate null
+        //coin 
         var offset = lv_diff * 1920 + ((lv_diff == 0)? 400 : 0);
         for(i =0;i<Math.random()*11;i++)
         {
@@ -216,6 +222,20 @@ export class Section extends cc.Component {
             money.x=Math.random()*1920+offset;
             money.y=500;
             cc.find("Canvas/root/powerups").addChild(money);
+        }
+
+        //bubble item init(dayscene)
+        if(cc.director.getScene().name=="day")
+        {
+            for(i =0;i<Math.random()*4;i++)
+            {
+                var random= Math.floor(Math.random()*2); //0 and 1
+                if(random)var powerups=cc.instantiate(this.lego_pre);
+                else var powerups=cc.instantiate(this.banana_pre);
+                powerups.x=Math.random()*1920+offset;
+                powerups.y=0+Math.random()*50;
+                cc.find("Canvas/root/powerups").addChild(powerups);
+            }
         }
 
     }
