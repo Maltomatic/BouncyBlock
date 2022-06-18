@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "bubble_lego",
+    "texture": "68d20cb2-81cd-49a1-b097-b709166c26d2",
+    "atlas": "",
+    "rect": [
+      10,
+      11,
+      246,
+      229
+    ],
+    "offset": [
+      0,
+      -2.5
+    ],
+    "originalSize": [
+      266,
+      246
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}
