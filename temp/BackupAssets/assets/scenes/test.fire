@@ -1569,7 +1569,7 @@
         "__id__": 41
       }
     ],
-    "_active": false,
+    "_active": true,
     "_components": [],
     "_prefab": {
       "__id__": 56
@@ -3844,6 +3844,7 @@
     "lego_Prefabs": {
       "__uuid__": "e6a81e79-dcbb-452c-be86-6dfecd3c0365"
     },
+    "bubble_powerup": null,
     "_id": "8eoDUhe45OaZ4AbZszluTL"
   },
   {
@@ -4423,7 +4424,7 @@
       "__id__": 101
     },
     "_enabled": true,
-    "bubble_Speed": 50,
+    "bubble_Prefabs": null,
     "_id": "72P7UQ1RtPcZTH9XpuCWD1"
   },
   {
@@ -4584,7 +4585,7 @@
       "__id__": 106
     },
     "_enabled": true,
-    "bubble_Speed": 50,
+    "bubble_Prefabs": null,
     "_id": "918ZwSYPZB6Ys9OKy+2sRt"
   },
   {
