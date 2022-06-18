@@ -333,7 +333,11 @@
       "__id__": 8
     },
     "_enabled": true,
-    "_materials": [],
+    "_materials": [
+      {
+        "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
+      }
+    ],
     "_id": ""
   },
   {
@@ -368,7 +372,9 @@
       "__id__": 1
     },
     "_enabled": true,
-    "searchlight": null,
+    "searchlight": {
+      "__uuid__": "70927b47-0977-4055-b8c2-e6a9e6488850"
+    },
     "sharp": {
       "__uuid__": "09ce6a93-eb1a-4bd0-bdf0-7a2033be6d79"
     },
