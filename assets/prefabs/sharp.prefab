@@ -140,7 +140,17 @@
     "_id": ""
   },
   {
-    "__type__": "cc.PhysicsBoxCollider",
+    "__type__": "c1779RvYYhKTLIdabDWRppQ",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "_id": ""
+  },
+  {
+    "__type__": "cc.PhysicsPolygonCollider",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -155,24 +165,31 @@
     "body": null,
     "_offset": {
       "__type__": "cc.Vec2",
-      "x": 24,
-      "y": 20.25
+      "x": 0,
+      "y": 0
     },
-    "_size": {
-      "__type__": "cc.Size",
-      "width": 48,
-      "height": 40.5
-    },
-    "_id": ""
-  },
-  {
-    "__type__": "c1779RvYYhKTLIdabDWRppQ",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
+    "points": [
+      {
+        "__type__": "cc.Vec2",
+        "x": 0,
+        "y": 1
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": 47.7,
+        "y": 0.9
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": 24.2,
+        "y": 40.6
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": 22.6,
+        "y": 40.6
+      }
+    ],
     "_id": ""
   },
   {

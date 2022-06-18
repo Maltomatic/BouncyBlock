@@ -33,8 +33,8 @@ export class Light_wrapper extends cc.Component {
     start () {
         // console.log("enemy init with range: " + this.range + "  at " + this.node.x, this.node.y);
         //this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.searchlight_speed,0);
-        this.leftbound = this.node.x - this.range/2;
-        this.rightbound = this.node.x + this.range/2;
+        this.leftbound = /*this.node.x*/ -1 * this.range/2;
+        this.rightbound = /*this.node.x +*/ this.range/2;
     }
 
     update (dt) {

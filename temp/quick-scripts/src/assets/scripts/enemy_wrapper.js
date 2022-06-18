@@ -49,8 +49,8 @@ var Light_wrapper = /** @class */ (function (_super) {
     Light_wrapper.prototype.start = function () {
         // console.log("enemy init with range: " + this.range + "  at " + this.node.x, this.node.y);
         //this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.searchlight_speed,0);
-        this.leftbound = this.node.x - this.range / 2;
-        this.rightbound = this.node.x + this.range / 2;
+        this.leftbound = /*this.node.x*/ -1 * this.range / 2;
+        this.rightbound = /*this.node.x +*/ this.range / 2;
     };
     Light_wrapper.prototype.update = function (dt) {
         if (this.state == 0) {
