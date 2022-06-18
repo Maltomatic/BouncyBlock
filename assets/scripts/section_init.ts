@@ -190,8 +190,9 @@ export class Section extends cc.Component {
                     }
                 }
             }
-            map_layer.enabled = false;
         }
+            map_layer.enabled = false;
+        
 
         //enemy init
         var lv_diff = cc.find("Canvas/root/player").getComponent('player').section_count;
