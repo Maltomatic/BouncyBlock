@@ -119,7 +119,7 @@ var Section = /** @class */ (function (_super) {
             }
         }
         var obj_list = map.getObjectGroup("colors").getObjects();
-        this.player_col = 6 * this.strip + cc.find('Canvas/root/player').getComponent('player').color;
+        this.player_col = 6 * this.strip + cc.find('Canvas/root/player').getComponent(((cc.director.getScene().name == 'multi') ? 'player_multi' : 'player')).color;
         console.log("bias towards " + this.player_col);
         obj_list.forEach(function (obj) {
             var x_size = obj.width / 48;
@@ -140,7 +140,7 @@ var Section = /** @class */ (function (_super) {
             }
         });
         // sharp obstacle
-        var section_count = cc.find('Canvas/root/player').getComponent('player').section_count;
+        var section_count = cc.find('Canvas/root/player').getComponent(((cc.director.getScene().name == 'multi') ? 'player_multi' : 'player')).section_count;
         var sharp_list = { 1: 'sharp', 2: 'sharp2', 3: 'sharp3', 4: 'sharp4' };
         var map_layer = map.getLayer("enemy");
         var layer_size = map_layer.getLayerSize();
@@ -191,7 +191,7 @@ var Section = /** @class */ (function (_super) {
         }
         map_layer.enabled = false;
         //enemy init
-        var lv_diff = cc.find("Canvas/root/player").getComponent('player').section_count;
+        var lv_diff = cc.find("Canvas/root/player").getComponent(((cc.director.getScene().name == 'multi') ? 'player_multi' : 'player')).section_count;
         if (lv_diff && cc.director.getScene().name != "day") {
             var range_arr = [360, 300, 300, 250, 200, 150, 120, 100]; // 100 or 80 if one light spawned, 60 or 50 if two, 30 or 20 if three
             var lightcount = 0;

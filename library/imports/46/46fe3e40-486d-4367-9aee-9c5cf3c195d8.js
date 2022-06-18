@@ -101,7 +101,7 @@ var Lightbeam = /** @class */ (function (_super) {
     Lightbeam.prototype.update = function (dt) {
         // if(this.watch)console.log("watching");
         if (this.alert_level == 0 && this.watch) {
-            if (!this.character.getComponent('player').hidden) {
+            if (!this.character.getComponent(((cc.director.getScene().name == 'multi') ? 'player_multi' : 'player')).hidden) {
                 this.alert_level = 1;
                 this.raise_timer = 0.35;
                 console.log("player is being tracked");
@@ -113,7 +113,7 @@ var Lightbeam = /** @class */ (function (_super) {
             if (this.node.scaleX < 1.5)
                 this.node.scaleX += (1 - this.raise_timer) / 2;
             if (this.raise_timer < 0) {
-                var vis = !(this.character.getComponent('player').hidden);
+                var vis = !(this.character.getComponent(((cc.director.getScene().name == 'multi') ? 'player_multi' : 'player')).hidden);
                 if (vis) {
                     console.log("raise alert level to attack");
                     this.alert_level = 2;

@@ -76,7 +76,7 @@ export class Light_wrapper extends cc.Component {
         bullet.setPosition(this.enemy.position.x, this.node.position.y);
         bullet.y -= 10;
         // var offset = 20 * ((this.enemy.position.x < this.character.position.x)? -1:1);
-        bullet.getComponent(cc.RigidBody).linearVelocity = cc.v2((40 + this.character.x - this.enemy.position.x), (this.character.y - this.node.position.y)).normalizeSelf().multiply(cc.v2(800, 800));
+        bullet.getComponent(cc.RigidBody).linearVelocity = cc.v2((this.character.x - this.enemy.position.x), (this.character.y - this.node.position.y)).normalizeSelf().multiply(cc.v2(800, 800));
         // console.log("create bullet by light at " + this.character.x, this.node.y);
         // cc.find("Canvas/root").addChild(bullet);
     }
