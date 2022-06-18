@@ -28,8 +28,6 @@ require('./assets/scripts/searchlight');
 require('./assets/scripts/section_init');
 require('./assets/scripts/sharp');
 require('./assets/scripts/sharp_down');
-require('./assets/scripts/signin');
-require('./assets/scripts/signup');
 require('./assets/scripts/spider');
 require('./assets/scripts/start_scene');
 

@@ -424,11 +424,6 @@
     "meta": 1655586909619,
     "relativePath": "maps\\section7.tmx"
   },
-  "228fc3f4-7979-4e7f-a66d-6e5dbb8c2110": {
-    "asset": 1655574572232,
-    "meta": 1655586909452,
-    "relativePath": "prefabs\\Email.prefab"
-  },
   "28d670e2-31d7-4a99-bcf5-38ddbb16d347": {
     "asset": 1655552990420,
     "meta": 1655586909454,
@@ -464,21 +459,6 @@
     "meta": 1655586909489,
     "relativePath": "prefabs\\sharp_down.prefab"
   },
-  "fb34df6f-dd13-4871-a5a6-c3ccfed060b2": {
-    "asset": 1655572448180,
-    "meta": 1655586909495,
-    "relativePath": "scripts\\signin.ts"
-  },
-  "9706c957-2c0b-45a3-aa40-fb8bfb7fe80c": {
-    "asset": 1655572591704,
-    "meta": 1655586909457,
-    "relativePath": "image\\start.png"
-  },
-  "633a7245-fa0f-4d80-97f9-6da22d3782f1": {
-    "asset": 1655572439725,
-    "meta": 1655586909501,
-    "relativePath": "scripts\\signup.ts"
-  },
   "73edc454-e24d-45f0-908d-c4e3183948ae": {
     "asset": 1655574909232,
     "meta": 1655586909551,
@@ -494,19 +474,9 @@
     "meta": 1655586909557,
     "relativePath": "prefabs\\SignIn.prefab"
   },
-  "11b17b76-8e31-49ec-8e36-2f30fcc40844": {
-    "asset": 1655572477400,
-    "meta": 1655586909559,
-    "relativePath": "scenes\\signin.fire"
-  },
-  "ddb949a6-0bd4-4ee2-89a9-97af28177f5e": {
-    "asset": 1655572489069,
-    "meta": 1655586909561,
-    "relativePath": "scenes\\signup.fire"
-  },
   "63f93d4f-8b5d-4ab3-827b-471e0cb9c419": {
-    "asset": 1655578760311,
-    "meta": 1655586909565,
+    "asset": 1655590290077,
+    "meta": 1655590290090,
     "relativePath": "scenes\\start.fire"
   },
   "3095119b-5903-4a1d-92e8-fa42e3425160": {
@@ -1224,14 +1194,19 @@
     "meta": 1655588091512,
     "relativePath": "image\\sign_in.png"
   },
-  "937e922d-57a2-4d87-b619-20d8b4bb297e": {
-    "asset": 1655587984309,
-    "meta": 1655588091526,
-    "relativePath": "image\\start (2).png"
-  },
   "df49a82c-66be-4bfd-abe5-b5510287d976": {
     "asset": 1655587981905,
     "meta": 1655588091543,
     "relativePath": "image\\store.png"
+  },
+  "9706c957-2c0b-45a3-aa40-fb8bfb7fe80c": {
+    "asset": 1655587984309,
+    "meta": 1655588695958,
+    "relativePath": "image\\start.png"
+  },
+  "cea3ca71-9684-4bec-bcaf-f2b98b20a126": {
+    "asset": 1655588925200,
+    "meta": 1655588929284,
+    "relativePath": "image\\white_background.png"
   }
 }

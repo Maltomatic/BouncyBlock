@@ -86,7 +86,7 @@
   {
     "__type__": "cc.Node",
     "_name": "BACKGROUND_SPRITE",
-    "_objFlags": 512,
+    "_objFlags": 0,
     "_parent": {
       "__id__": 1
     },
@@ -166,7 +166,7 @@
     "_srcBlendFactor": 772,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "f86f4bfe-37ec-429c-bc8c-24f94001d1d3"
+      "__uuid__": "e7d5381d-bd02-458f-9734-b9246bbef637"
     },
     "_type": 1,
     "_sizeMode": 0,
@@ -223,7 +223,7 @@
   {
     "__type__": "cc.Node",
     "_name": "TEXT_LABEL",
-    "_objFlags": 512,
+    "_objFlags": 0,
     "_parent": {
       "__id__": 1
     },
@@ -357,7 +357,7 @@
   {
     "__type__": "cc.Node",
     "_name": "PLACEHOLDER_LABEL",
-    "_objFlags": 512,
+    "_objFlags": 0,
     "_parent": {
       "__id__": 1
     },
