@@ -860,8 +860,8 @@
     "relativePath": "prefabs\\light_enemy .prefab"
   },
   "d99a68f9-0fab-40c9-96c8-4baa1d8e84f8": {
-    "asset": 1655568709100,
-    "meta": 1655568791071,
+    "asset": 1655569594459,
+    "meta": 1655569594465,
     "relativePath": "prefabs\\section0.prefab"
   },
   "ffb43b3b-50b2-4be7-b04c-3186e758ad8a": {
@@ -870,8 +870,8 @@
     "relativePath": "image\\lego_trample.png"
   },
   "f92cc07b-8eab-4337-81c1-6d905f32c3da": {
-    "asset": 1655568709101,
-    "meta": 1655568791074,
+    "asset": 1655569610505,
+    "meta": 1655569610522,
     "relativePath": "prefabs\\section1.prefab"
   },
   "cb1d8429-52ef-4643-ae87-34487c2b8968": {
@@ -915,18 +915,18 @@
     "relativePath": "prefabs\\section19.prefab"
   },
   "bdd1f8d0-f8fd-4430-a483-e2cb247f5002": {
-    "asset": 1655568709109,
-    "meta": 1655568791096,
+    "asset": 1655569625684,
+    "meta": 1655569625697,
     "relativePath": "prefabs\\section2.prefab"
   },
   "644fec1f-f6d7-46ce-a38b-7111bcb6e812": {
-    "asset": 1655568709109,
-    "meta": 1655568791099,
+    "asset": 1655569639900,
+    "meta": 1655569639929,
     "relativePath": "prefabs\\section3.prefab"
   },
   "86e3541c-b787-4688-957c-da9bae98cbce": {
-    "asset": 1655568709110,
-    "meta": 1655568791101,
+    "asset": 1655569647434,
+    "meta": 1655569647442,
     "relativePath": "prefabs\\section4.prefab"
   },
   "b241435f-9b61-4cf8-bbc2-f2476218c711": {
@@ -935,8 +935,8 @@
     "relativePath": "scripts\\bubble_item_in_dayscene.ts"
   },
   "5fd9114a-53a7-4005-82c1-8cb76fa79541": {
-    "asset": 1655568709111,
-    "meta": 1655568791104,
+    "asset": 1655569659625,
+    "meta": 1655569659633,
     "relativePath": "prefabs\\section5.prefab"
   },
   "09ce6a93-eb1a-4bd0-bdf0-7a2033be6d79": {
@@ -1004,11 +1004,6 @@
     "meta": 1655569383261,
     "relativePath": "scripts\\enemy_wrapper.ts"
   },
-  "f86b1eb1-1093-461a-a9c8-46b312ad29da": {
-    "asset": 1655569374703,
-    "meta": 1655569383329,
-    "relativePath": "scripts\\section_init.ts"
-  },
   "e19b5114-6ae0-44c7-aaf8-d3a9a5a14998": {
     "asset": 1655569347930,
     "meta": 1655569383333,
@@ -1018,5 +1013,10 @@
     "asset": 1655569407749,
     "meta": 1655569426403,
     "relativePath": "scripts\\bubble_item.ts"
+  },
+  "f86b1eb1-1093-461a-a9c8-46b312ad29da": {
+    "asset": 1655569576073,
+    "meta": 1655569577635,
+    "relativePath": "scripts\\section_init.ts"
   }
 }
