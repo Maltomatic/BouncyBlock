@@ -36,6 +36,8 @@ var Section = /** @class */ (function (_super) {
         _this.sharp = null;
         _this.spider = null;
         _this.coin_pre = null;
+        _this.lego_pre = null;
+        _this.banana_pre = null;
         _this.lv = 0;
         return _this;
     }
@@ -174,18 +176,20 @@ var Section = /** @class */ (function (_super) {
             }
         }
         // spider
-        map_layer = map.getLayer("enemy");
-        layer_size = map_layer.getLayerSize();
-        var flag = new Array(layer_size.width);
-        for (var i = 0; i < layer_size.width; i++) {
-            for (var j = 0; j < layer_size.height; j++) {
-                var tile = map_layer.getTiledTileAt(i, j, true);
-                if (tile.gid == 265 + 61) {
-                    var spider_pre = cc.instantiate(this.spider);
-                    console.log(spider_pre);
-                    spider_pre.x = section_count * 1920 + tile.node.x;
-                    spider_pre.y = tile.node.y;
-                    cc.find("Canvas/root/mapworld").addChild(spider_pre);
+        if (cc.director.getScene().name != "day") {
+            map_layer = map.getLayer("enemy");
+            layer_size = map_layer.getLayerSize();
+            var flag = new Array(layer_size.width);
+            for (var i = 0; i < layer_size.width; i++) {
+                for (var j = 0; j < layer_size.height; j++) {
+                    var tile = map_layer.getTiledTileAt(i, j, true);
+                    if (tile.gid == 265 + 61) {
+                        var spider_pre = cc.instantiate(this.spider);
+                        console.log(spider_pre);
+                        spider_pre.x = section_count * 1920 + tile.node.x;
+                        spider_pre.y = tile.node.y;
+                        cc.find("Canvas/root/mapworld").addChild(spider_pre);
+                    }
                 }
             }
         }
@@ -218,13 +222,26 @@ var Section = /** @class */ (function (_super) {
                 cc.find("Canvas/root/enemy_collection").addChild(enemy);
             }
         }
-        //coin 不知為甚麼只有第一個可以成功  後面都說instantiate null
+        //coin 
         var offset = lv_diff * 1920 + ((lv_diff == 0) ? 400 : 0);
         for (i = 0; i < Math.random() * 11; i++) {
             var money = cc.instantiate(this.coin_pre);
             money.x = Math.random() * 1920 + offset;
             money.y = 500;
             cc.find("Canvas/root/powerups").addChild(money);
+        }
+        //bubble item init(dayscene)
+        if (cc.director.getScene().name == "day") {
+            for (i = 0; i < Math.random() * 4; i++) {
+                var random = Math.floor(Math.random() * 2); //0 and 1
+                if (random)
+                    var powerups = cc.instantiate(this.lego_pre);
+                else
+                    var powerups = cc.instantiate(this.banana_pre);
+                powerups.x = Math.random() * 1920 + offset;
+                powerups.y = 0 + Math.random() * 50;
+                cc.find("Canvas/root/powerups").addChild(powerups);
+            }
         }
     };
     __decorate([
@@ -239,6 +256,12 @@ var Section = /** @class */ (function (_super) {
     __decorate([
         property(cc.Prefab)
     ], Section.prototype, "coin_pre", void 0);
+    __decorate([
+        property(cc.Prefab)
+    ], Section.prototype, "lego_pre", void 0);
+    __decorate([
+        property(cc.Prefab)
+    ], Section.prototype, "banana_pre", void 0);
     Section = __decorate([
         ccclass
     ], Section);
