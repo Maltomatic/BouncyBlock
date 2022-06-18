@@ -954,16 +954,6 @@
     "meta": 1655503365228,
     "relativePath": "prefabs\\sharp.prefab"
   },
-  "04cfd6d9-41d6-4ada-8a5b-fc5bd8ed6a7d": {
-    "asset": 1655508165206,
-    "meta": 1655508165217,
-    "relativePath": "scenes\\test.fire"
-  },
-  "3daecba3-d1b8-41a9-aec2-60ca42f70386": {
-    "asset": 1655507970820,
-    "meta": 1655507970827,
-    "relativePath": "prefabs\\spider.prefab"
-  },
   "0a3c3163-d3ad-4bfc-af5d-517a56e6cac9": {
     "asset": 1655505238513,
     "meta": 1655505280741,
@@ -980,8 +970,18 @@
     "relativePath": "scripts\\section_init.ts"
   },
   "9cb3f2d5-5b5e-407e-8ae8-94e03d54ed7f": {
-    "asset": 1655508033476,
-    "meta": 1655508036025,
+    "asset": 1655510438406,
+    "meta": 1655510456128,
     "relativePath": "scripts\\spider.ts"
+  },
+  "3daecba3-d1b8-41a9-aec2-60ca42f70386": {
+    "asset": 1655510438400,
+    "meta": 1655510456133,
+    "relativePath": "prefabs\\spider.prefab"
+  },
+  "04cfd6d9-41d6-4ada-8a5b-fc5bd8ed6a7d": {
+    "asset": 1655510438404,
+    "meta": 1655510456140,
+    "relativePath": "scenes\\test.fire"
   }
 }
