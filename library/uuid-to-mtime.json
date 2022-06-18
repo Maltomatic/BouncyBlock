@@ -499,25 +499,10 @@
     "meta": 1655519550714,
     "relativePath": "prefabs/bubble banana.prefab"
   },
-  "f5cb43f2-a069-44dd-a961-50996a519115": {
-    "asset": 1655519612631,
-    "meta": 1655519612654,
-    "relativePath": "prefabs/bubble lego.prefab"
-  },
-  "ea24dbc3-4a1a-4c24-b0fd-07002cd3fae2": {
-    "asset": 1655519326508,
-    "meta": 1655519328937,
-    "relativePath": "scripts/bubble_item.ts"
-  },
   "56c3ea30-46b0-49cf-8de2-9daae330a17a": {
     "asset": 1655519773363,
     "meta": 1655519773368,
     "relativePath": "prefabs/bubble powerup.prefab"
-  },
-  "a4fb5ce8-16f2-4ec9-b773-3d70ce77a8e4": {
-    "asset": 1655520079915,
-    "meta": 1655520083849,
-    "relativePath": "scripts/player.ts"
   },
   "9836134e-b892-4283-b6b2-78b5acf3ed45": {
     "asset": 1641824999000,
@@ -1018,5 +1003,20 @@
     "asset": 1641824999000,
     "meta": 1655520257080,
     "relativePath": "model/primitives.fbx"
+  },
+  "ea24dbc3-4a1a-4c24-b0fd-07002cd3fae2": {
+    "asset": 1655520880567,
+    "meta": 1655521613991,
+    "relativePath": "scripts/bubble_item.ts"
+  },
+  "a4fb5ce8-16f2-4ec9-b773-3d70ce77a8e4": {
+    "asset": 1655520898652,
+    "meta": 1655521614141,
+    "relativePath": "scripts/player.ts"
+  },
+  "f5cb43f2-a069-44dd-a961-50996a519115": {
+    "asset": 1655520852505,
+    "meta": 1655521614148,
+    "relativePath": "prefabs/bubble lego.prefab"
   }
 }
