@@ -2549,14 +2549,6 @@
     "coin_point": {
       "__id__": 13
     },
-    "bubble_banana": {
-      "__id__": 21
-    },
-    "bubble_lego": {
-      "__id__": 17
-    },
-    "banana_Prefabs": null,
-    "lego_Prefabs": null,
     "bubble_powerup": null,
     "_id": "8eoDUhe45OaZ4AbZszluTL"
   },
@@ -3488,8 +3480,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -263.166,
-        -191.303,
+        -184.003,
+        -193.024,
         0,
         0,
         0,
@@ -3675,7 +3667,7 @@
       "__id__": 81
     },
     "_enabled": true,
-    "banana_Speed": 100,
+    "banana_Speed": 500,
     "_id": "95J7KpIndDP5RD0NorQIrC"
   },
   {
@@ -3740,8 +3732,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -350.294,
-        -200.141,
+        148.778,
+        -191.536,
         0,
         0,
         0,
@@ -3832,7 +3824,7 @@
     "_enabled": true,
     "tag": 0,
     "_density": 1,
-    "_sensor": true,
+    "_sensor": false,
     "_friction": 0.2,
     "_restitution": 0,
     "body": null,

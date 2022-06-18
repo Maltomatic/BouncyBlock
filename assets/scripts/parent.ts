@@ -24,6 +24,7 @@ export default class NewClass extends cc.Component {
         var touch = contact.getWorldManifold().normal;
         
         
+        
     }
     
     // LIFE-CYCLE CALLBACKS:

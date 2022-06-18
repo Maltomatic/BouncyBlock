@@ -35,6 +35,7 @@ export default class arm extends cc.Component {
                 this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(-this.banana_Speed,0);
                 
                 setTimeout(()=>{
+                    
                     this.node.destroy();
                 }, 1000);
             }else if(this.node.name == 'lego'){
