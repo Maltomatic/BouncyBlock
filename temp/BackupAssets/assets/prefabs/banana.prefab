@@ -1,7 +1,7 @@
 [
   {
     "__type__": "cc.Prefab",
-    "_name": "lego",
+    "_name": "",
     "_objFlags": 0,
     "_native": "",
     "data": {
@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "lego",
+    "_name": "banana",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -27,10 +27,13 @@
       },
       {
         "__id__": 4
+      },
+      {
+        "__id__": 5
       }
     ],
     "_prefab": {
-      "__id__": 5
+      "__id__": 6
     },
     "_opacity": 255,
     "_color": {
@@ -42,8 +45,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 136,
-      "height": 91
+      "width": 312,
+      "height": 237
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -54,15 +57,15 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        319.654,
-        -202.708,
+        170.51,
+        -199.908,
         0,
         0,
         0,
         0,
         1,
-        0.45,
-        0.45,
+        0.2,
+        0.2,
         1
       ]
     },
@@ -75,8 +78,8 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "_groupIndex": 0,
-    "groupIndex": 0,
+    "_groupIndex": 8,
+    "groupIndex": 8,
     "_id": ""
   },
   {
@@ -95,7 +98,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "e66cdded-b99a-4b60-8553-e5e022296acd"
+      "__uuid__": "5d76c699-b17e-4648-a1a0-92827e57aba4"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -137,7 +140,7 @@
     "_id": ""
   },
   {
-    "__type__": "cc.PhysicsBoxCollider",
+    "__type__": "cc.PhysicsPolygonCollider",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -155,11 +158,82 @@
       "x": 0,
       "y": 0
     },
-    "_size": {
-      "__type__": "cc.Size",
-      "width": 136,
-      "height": 91
+    "points": [
+      {
+        "__type__": "cc.Vec2",
+        "x": -101.7,
+        "y": -109.1
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": 126.3,
+        "y": -114
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": 126.3,
+        "y": -65.7
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": 92.8,
+        "y": 3.2
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": 152.6,
+        "y": 91
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": 152.6,
+        "y": 120.7
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": 66.8,
+        "y": 114.3
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": 0,
+        "y": 83.7
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": -48.8,
+        "y": 9.3
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": -78.8,
+        "y": -54.2
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": -151.4,
+        "y": -30.1
+      }
+    ],
+    "_id": ""
+  },
+  {
+    "__type__": "cc.Animation",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
     },
+    "_enabled": true,
+    "_defaultClip": {
+      "__uuid__": "31e8dbe8-d102-4f09-87cf-9deea44a18a2"
+    },
+    "_clips": [
+      {
+        "__uuid__": "31e8dbe8-d102-4f09-87cf-9deea44a18a2"
+      }
+    ],
+    "playOnLoad": false,
     "_id": ""
   },
   {
