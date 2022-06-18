@@ -875,8 +875,8 @@
     "relativePath": "scripts\\enemy moving sharp.ts"
   },
   "04cfd6d9-41d6-4ada-8a5b-fc5bd8ed6a7d": {
-    "asset": 1655571366466,
-    "meta": 1655575195305,
+    "asset": 1655577050814,
+    "meta": 1655577050842,
     "relativePath": "scenes\\test.fire"
   },
   "ce3ddca4-722d-408d-8de5-464fa4ed290f": {
@@ -888,11 +888,6 @@
     "asset": 1655567495394,
     "meta": 1655575195453,
     "relativePath": "scripts\\parent.ts"
-  },
-  "a4fb5ce8-16f2-4ec9-b773-3d70ce77a8e4": {
-    "asset": 1655572977710,
-    "meta": 1655575195583,
-    "relativePath": "scripts\\player.ts"
   },
   "1eb0e55a-da22-4eda-a5e3-68ca9e265251": {
     "asset": 1655409964843,
@@ -1043,5 +1038,10 @@
     "asset": 1655572815578,
     "meta": 1655576648905,
     "relativePath": "audio\\notification.wav"
+  },
+  "a4fb5ce8-16f2-4ec9-b773-3d70ce77a8e4": {
+    "asset": 1655577004940,
+    "meta": 1655577006385,
+    "relativePath": "scripts\\player.ts"
   }
 }

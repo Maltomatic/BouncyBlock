@@ -48,12 +48,6 @@ var Player = /** @class */ (function (_super) {
         _this.Color = null;
         _this.coin_point = null;
         _this.coin = 0;
-        _this.bubble_banana = null;
-        _this.banana = 0;
-        _this.bubble_lego = null;
-        _this.lego = 0;
-        _this.banana_Prefabs = null;
-        _this.lego_Prefabs = null;
         _this.bubble_powerup = null;
         _this.powerup = 0;
         _this.debug_mode = true;
@@ -141,17 +135,7 @@ var Player = /** @class */ (function (_super) {
             other.node.destroy();
         }
         else if (other.node.group == 'bubble') { // @@ 
-            if (other.tag == 1) { // bubble banana
-                console.log("banana");
-                this.update_banana(1);
-                other.node.destroy();
-            }
-            else if (other.tag == 2) { // bubble lego
-                console.log("lego");
-                this.update_lego(1);
-                other.node.destroy();
-            }
-            else if (other.tag == 3) { // colorful bubble
+            if (other.tag == 3) { // colorful bubble
                 this.update_powerup(1);
                 other.node.destroy();
             }
@@ -264,20 +248,6 @@ var Player = /** @class */ (function (_super) {
             cc.audioEngine.resumeAll();
             cc.director.resume();
         }
-        if (event.keyCode == cc.macro.KEY.b && this.banana > 0) { // put banana
-            var banana_pre = cc.instantiate(this.banana_Prefabs);
-            banana_pre.x = this.node.x;
-            banana_pre.y = this.node.y;
-            cc.find("Canvas/root").addChild(banana_pre);
-            this.update_banana(-1);
-        }
-        else if (event.keyCode == cc.macro.KEY.l && this.lego > 0) { //  put lego
-            var lego_pre = cc.instantiate(this.lego_Prefabs);
-            lego_pre.x = this.node.x;
-            lego_pre.y = this.node.y - 1;
-            cc.find("Canvas/root").addChild(lego_pre);
-            this.update_lego(-1);
-        }
     };
     Player.prototype.onKeyUp = function (event) {
         switch (event.keyCode) {
@@ -299,14 +269,6 @@ var Player = /** @class */ (function (_super) {
     Player.prototype.update_coin = function (number) {
         this.coin += number;
         this.coin_point.getComponent(cc.Label).string = this.coin.toString();
-    };
-    Player.prototype.update_banana = function (number) {
-        this.banana += number;
-        this.bubble_banana.getComponent(cc.Label).string = this.banana.toString();
-    };
-    Player.prototype.update_lego = function (number) {
-        this.lego += number;
-        this.bubble_lego.getComponent(cc.Label).string = this.lego.toString();
     };
     Player.prototype.update_powerup = function (number) {
         this.powerup += number;
@@ -366,18 +328,6 @@ var Player = /** @class */ (function (_super) {
     __decorate([
         property(cc.Node)
     ], Player.prototype, "coin_point", void 0);
-    __decorate([
-        property(cc.Node)
-    ], Player.prototype, "bubble_banana", void 0);
-    __decorate([
-        property(cc.Node)
-    ], Player.prototype, "bubble_lego", void 0);
-    __decorate([
-        property(cc.Prefab)
-    ], Player.prototype, "banana_Prefabs", void 0);
-    __decorate([
-        property(cc.Prefab)
-    ], Player.prototype, "lego_Prefabs", void 0);
     __decorate([
         property(cc.Node)
     ], Player.prototype, "bubble_powerup", void 0);

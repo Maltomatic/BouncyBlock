@@ -7,8 +7,7 @@
     "mound",
     "coin",
     "bubble",
-    "spider",
-    "arm"
+    "spider"
   ],
   "collision-matrix": [
     [
@@ -29,7 +28,6 @@
       true,
       true,
       null,
-      true,
       true
     ],
     [
@@ -39,20 +37,13 @@
       true,
       true,
       true,
-      true,
-      null,
       true
     ],
     [
       false,
       true,
       true,
-      false,
-      null,
-      null,
-      null,
-      null,
-      true
+      false
     ],
     [
       false,
@@ -87,17 +78,6 @@
       false,
       false,
       true,
-      false,
-      false,
-      false
-    ],
-    [
-      false,
-      true,
-      true,
-      true,
-      false,
-      false,
       false,
       false,
       false
@@ -129,5 +109,5 @@
       "enable": false
     }
   },
-  "start-scene": "3e7b2463-e729-4784-9227-e7749c387a40"
+  "start-scene": "04cfd6d9-41d6-4ada-8a5b-fc5bd8ed6a7d"
 }

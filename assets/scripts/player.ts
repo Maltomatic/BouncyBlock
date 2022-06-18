@@ -48,19 +48,6 @@ export class Player extends cc.Component {
     coin: number = 0;
 
     @property(cc.Node)
-    bubble_banana : cc.Node = null; 
-    banana: number = 0;
-
-    @property(cc.Node)
-    bubble_lego : cc.Node = null; 
-    lego: number = 0;
-
-    @property(cc.Prefab)
-    banana_Prefabs: cc.Prefab = null;
-    @property(cc.Prefab)
-    lego_Prefabs: cc.Prefab = null; 
-
-    @property(cc.Node)
     bubble_powerup : cc.Node = null; 
     powerup: number = 0;
 
@@ -154,15 +141,7 @@ export class Player extends cc.Component {
             this.update_coin(1);
             other.node.destroy();
         }else if(other.node.group == 'bubble'){ // @@ 
-           if(other.tag == 1){ // bubble banana
-            console.log("banana");
-                this.update_banana(1);
-                other.node.destroy();
-           }else if(other.tag == 2){ // bubble lego
-            console.log("lego");
-                this.update_lego(1);
-                other.node.destroy();
-           }else if(other.tag == 3){ // colorful bubble
+           if(other.tag == 3){ // colorful bubble
             this.update_powerup(1);
             other.node.destroy();
             }
@@ -277,20 +256,6 @@ export class Player extends cc.Component {
             cc.audioEngine.resumeAll();
             cc.director.resume();
         }
-
-        if(event.keyCode == cc.macro.KEY.b && this.banana > 0 ){// put banana
-            var banana_pre = cc.instantiate(this.banana_Prefabs);
-            banana_pre.x = this.node.x;
-            banana_pre.y = this.node.y;
-            cc.find("Canvas/root").addChild(banana_pre);
-            this.update_banana(-1);
-        }else if(event.keyCode == cc.macro.KEY.l  && this.lego > 0){ //  put lego
-            var lego_pre = cc.instantiate(this.lego_Prefabs);
-            lego_pre.x = this.node.x;
-            lego_pre.y = this.node.y-1;
-            cc.find("Canvas/root").addChild(lego_pre);
-            this.update_lego(-1);
-        }
     }
     onKeyUp(event){
         switch(event.keyCode){
@@ -312,14 +277,6 @@ export class Player extends cc.Component {
     update_coin(number){  // @@ 
         this.coin += number;
         this.coin_point.getComponent(cc.Label).string = this.coin.toString();
-    }
-    update_banana(number){  // @@ 
-        this.banana += number;
-        this.bubble_banana.getComponent(cc.Label).string = this.banana.toString();
-    }
-    update_lego(number){  // @@ 
-        this.lego += number;
-       this.bubble_lego.getComponent(cc.Label).string = this.lego.toString();
     }
     update_powerup(number){  // @@ 
         this.powerup += number;
