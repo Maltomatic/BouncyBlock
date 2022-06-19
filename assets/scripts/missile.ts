@@ -8,6 +8,9 @@ export class Missile extends cc.Component {
 
     private player: cc.Node = null;
 
+    @property(cc.Prefab)
+    explode:cc.Prefab=null;
+
     onLoad(){
         this.player = cc.find('Canvas/root/player');
         this.tgt_x = this.player.x;
@@ -35,6 +38,11 @@ export class Missile extends cc.Component {
             // deploy black particles
             this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).positionType = 1;
             this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).emissionRate = 100;
+            var fire=cc.instantiate(this.explode);
+            fire.x=this.node.x;
+            fire.y=this.node.y;
+            cc.find("Canvas").addChild(fire);
+
             this.node.active = false;
             this.node.destroy();
         }
