@@ -46,7 +46,7 @@ var Section = /** @class */ (function (_super) {
         cc.director.getCollisionManager().enabled = true;
         cc.director.getCollisionManager().enabledDrawBoundingBox = true;
         cc.director.getPhysicsManager().enabled = true;
-        // cc.director.getPhysicsManager().debugDrawFlags = 1;
+        cc.director.getPhysicsManager().debugDrawFlags = 1;
         cc.director.getPhysicsManager().gravity = cc.v2(0, -500);
         this.lv = parseInt(this.node.name.replace('section', ''));
     };
@@ -109,9 +109,9 @@ var Section = /** @class */ (function (_super) {
         }
         // }
         for (var i = 1; i < layerSz.width - 1; i++) {
-            for (var j = 0; j < layerSz.height; j++) {
+            for (var j = 0; j < layerSz.height - 1; j++) {
                 var FloorTile = floor.getTiledTileAt(i, j, true);
-                if (FloorTile.gid != 0 && ((floor.getTiledTileAt(i + 1, j, true).gid == 0 && j < layerSz.height - 1 && floor.getTiledTileAt(i + 1, j + 1, true).gid != 0) || (floor.getTiledTileAt(i - 1, j, true).gid == 0 && j < layerSz.height - 1 && floor.getTiledTileAt(i - 1, j + 1, true).gid != 0))) {
+                if (FloorTile.gid != 0 && ((floor.getTiledTileAt(i + 1, j, true).gid == 0 && floor.getTiledTileAt(i + 1, j + 1, true).gid != 0) || (floor.getTiledTileAt(i - 1, j, true).gid == 0 && floor.getTiledTileAt(i - 1, j + 1, true).gid != 0))) {
                     FloorTile.node.group = "mound";
                     var col = FloorTile.node.getComponent(cc.PhysicsBoxCollider);
                     col.size = cc.size(47.8, 48);
@@ -129,7 +129,7 @@ var Section = /** @class */ (function (_super) {
         obj_list.forEach(function (obj) {
             var x_size = obj.width / 48;
             var y_size = obj.height / 48;
-            var cannot_hide = Math.floor(Math.random() * 3);
+            var cannot_hide = Math.floor(Math.random() * 2);
             var col = 0;
             if (cannot_hide)
                 col = _this.base + Math.floor(Math.random() * 5);
@@ -233,17 +233,21 @@ var Section = /** @class */ (function (_super) {
                     cc.find("Canvas/root/mapworld/coin_bubble").addChild(c);
                 }
                 else if (tile.gid == 225 + 61) {
-                    console.log('herereeeeee');
-                    var rad = 1 + Math.floor(Math.random() * 2);
-                    var b = new cc.Node;
-                    if (rad == 1)
-                        b = cc.instantiate(this.banana_pre);
+                    if (cc.director.getScene().name == 'day') {
+                        console.log('herereeeeee');
+                        var rad = 1 + Math.floor(Math.random() * 2);
+                        var b = new cc.Node;
+                        if (rad == 1)
+                            b = cc.instantiate(this.banana_pre);
+                        else
+                            b = cc.instantiate(this.lego_pre);
+                        b.x = section_count * 1920 + tile.node.x;
+                        b.y = tile.node.y;
+                        //c.active = true;
+                        cc.find("Canvas/root/mapworld/coin_bubble").addChild(b);
+                    }
                     else
-                        b = cc.instantiate(this.lego_pre);
-                    b.x = section_count * 1920 + tile.node.x;
-                    b.y = tile.node.y;
-                    //c.active = true;
-                    cc.find("Canvas/root/mapworld/coin_bubble").addChild(b);
+                        tile.gid = 0;
                 }
             }
         }

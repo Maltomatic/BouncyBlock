@@ -34,7 +34,11 @@ var sharp = /** @class */ (function (_super) {
         cc.director.getPhysicsManager().enabled = true;
     };
     sharp.prototype.start = function () {
-        if (this.node.name == 'sharp2') {
+        if (this.node.name == 'sharp1') {
+            var action = cc.repeatForever(cc.sequence(cc.moveBy(1, cc.v2(0, -48)), cc.delayTime(0.5), cc.moveBy(1, cc.v2(0, 48)), cc.delayTime(0.5)));
+            this.node.runAction(action);
+        }
+        else if (this.node.name == 'sharp2') {
             var action = cc.repeatForever(cc.sequence(cc.moveBy(1, cc.v2(0, -48)), cc.delayTime(1), cc.moveBy(1, cc.v2(0, 48)), cc.delayTime(1)));
             this.node.runAction(action);
         }

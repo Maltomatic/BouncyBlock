@@ -106,6 +106,7 @@ var Bird = /** @class */ (function (_super) {
             //console.log("hit marker");
             if (this.node.x >= this.section_count * 1920) {
                 console.log("init next section");
+                this.speed *= 1.1;
                 this.section_count++;
                 var rand = Math.floor(Math.random() * 3);
                 //console.log(rand);
