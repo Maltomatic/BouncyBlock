@@ -55,7 +55,7 @@ var NewClass = /** @class */ (function (_super) {
             setTimeout(function () {
                 _this.stunned = 0;
                 _this.node.color = new cc.Color(255, 255, 255);
-                _this.penalty = 100;
+                _this.penalty = 220;
                 _this.scheduleOnce(function () {
                     _this.penalty = 0;
                 }, 1.5);
@@ -65,9 +65,10 @@ var NewClass = /** @class */ (function (_super) {
     // LIFE-CYCLE CALLBACKS:
     // onLoad () {}
     NewClass.prototype.update = function (dt) {
-        this.speedup = 0.2 + 0.003 * parseInt(this.now_score.string); //每得一分加速0.03 //約七百多分會比player快
-        if (this.stunned == 0)
-            this.node.x += (Math.max(this.speedup * 35, 200) + this.penalty) * dt;
+        console.log(this.node.x, this.node.y);
+        this.speedup = 0.3 + 0.003 * parseInt(this.now_score.string); //每得一分加速0.03 //約七百多分會比player快
+        if (!this.stunned)
+            this.node.x += Math.max(0.32, (Math.min(this.speedup * 300, 200) + this.penalty) * dt);
         else
             this.node.x += 0;
         if (Math.abs(this.node.x - this.before_x) <= 0.3 && this.stunned == 0)

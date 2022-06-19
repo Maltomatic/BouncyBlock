@@ -2196,6 +2196,7 @@
     "lego_pre": {
       "__uuid__": "f5cb43f2-a069-44dd-a961-50996a519115"
     },
+    "bubble_pre": null,
     "banana_pre": {
       "__uuid__": "33375052-6995-4790-8486-f18ef76ea1a0"
     },
@@ -2972,7 +2973,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -424.533,
+        -300,
         -198.792,
         0,
         0,

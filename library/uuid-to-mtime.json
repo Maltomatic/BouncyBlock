@@ -670,8 +670,8 @@
     "relativePath": "maps\\section17.tmx"
   },
   "e19b5114-6ae0-44c7-aaf8-d3a9a5a14998": {
-    "asset": 1655649226908,
-    "meta": 1655649226940,
+    "asset": 1655658873338,
+    "meta": 1655658873360,
     "relativePath": "scenes\\day.fire"
   },
   "4c65e601-7bdc-4894-ba74-78dabfa8544d": {
@@ -743,11 +743,6 @@
     "asset": 1655648097733,
     "meta": 1655648106796,
     "relativePath": "scripts\\player_day.ts"
-  },
-  "201d1fb4-4e8f-44d0-b194-13f83e0f3203": {
-    "asset": 1655648474908,
-    "meta": 1655648480791,
-    "relativePath": "scripts\\parent.ts"
   },
   "b7474a50-3239-4ee7-b7e0-7b3cd838b5f2": {
     "asset": 1655649737585,
@@ -1333,5 +1328,10 @@
     "asset": 1655658311815,
     "meta": 1655658311868,
     "relativePath": "image\\back.png"
+  },
+  "201d1fb4-4e8f-44d0-b194-13f83e0f3203": {
+    "asset": 1655659117039,
+    "meta": 1655659118391,
+    "relativePath": "scripts\\parent.ts"
   }
 }
