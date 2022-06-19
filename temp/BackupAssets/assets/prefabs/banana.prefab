@@ -151,7 +151,7 @@
     },
     "_enabled": true,
     "tag": 0,
-    "_density": 100000000000000000000,
+    "_density": 100000000000,
     "_sensor": false,
     "_friction": 0.2,
     "_restitution": 0,

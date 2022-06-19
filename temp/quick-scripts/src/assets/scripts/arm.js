@@ -55,6 +55,7 @@ var arm = /** @class */ (function (_super) {
                 this.node.y - 20;
                 this.anim.play('banana'); // knock
                 this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(-this.banana_Speed, 0);
+                cc.audioEngine.playEffect(this.parent_step_on_banana, false);
                 setTimeout(function () {
                     _this.node.destroy();
                 }, 1000);
@@ -62,6 +63,7 @@ var arm = /** @class */ (function (_super) {
             else if (this.node.name == 'lego') {
                 this.anim.play('lego'); // knock   
                 other.node.color = new cc.Color(127.5, 127.5, 127.5);
+                cc.audioEngine.playEffect(this.step_on_lego, false);
                 setTimeout(function () {
                     _this.node.destroy();
                 }, 1000);
@@ -71,6 +73,12 @@ var arm = /** @class */ (function (_super) {
     __decorate([
         property()
     ], arm.prototype, "banana_Speed", void 0);
+    __decorate([
+        property(cc.AudioClip)
+    ], arm.prototype, "parent_step_on_banana", void 0);
+    __decorate([
+        property(cc.AudioClip)
+    ], arm.prototype, "step_on_lego", void 0);
     arm = __decorate([
         ccclass
     ], arm);

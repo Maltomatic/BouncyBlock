@@ -14,6 +14,12 @@ export default class arm extends cc.Component {
     @property()
     banana_Speed: number = 100;
 
+    @property(cc.AudioClip)
+    parent_step_on_banana:cc.AudioClip;
+
+    @property(cc.AudioClip)
+    step_on_lego:cc.AudioClip;
+
     private anim: cc.Animation = null;
     private physicManager: cc.PhysicsManager = null;
 
@@ -33,6 +39,7 @@ export default class arm extends cc.Component {
                 this.node.y - 20;
                 this.anim.play('banana');// knock
                 this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(-this.banana_Speed,0);
+                cc.audioEngine.playEffect(this.parent_step_on_banana, false); 
                 
                 setTimeout(()=>{
                     
@@ -41,6 +48,7 @@ export default class arm extends cc.Component {
             }else if(this.node.name == 'lego'){
                 this.anim.play('lego');// knock   
                 other.node.color=new cc.Color(127.5, 127.5, 127.5);     
+                cc.audioEngine.playEffect(this.step_on_lego, false); 
                 setTimeout(()=>{
                     this.node.destroy();
                 }, 1000);

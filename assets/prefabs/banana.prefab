@@ -151,7 +151,7 @@
     },
     "_enabled": true,
     "tag": 0,
-    "_density": 100000000000000000000,
+    "_density": 100000000000,
     "_sensor": false,
     "_friction": 0.2,
     "_restitution": 0,
@@ -247,7 +247,10 @@
       "__id__": 1
     },
     "_enabled": true,
-    "banana_Speed": 503,
+    "banana_Speed": 500,
+    "parent_step_on_banana": {
+      "__uuid__": "34b6e8ab-6985-4267-b79c-484d6cb2d99f"
+    },
     "_id": ""
   },
   {

@@ -203,7 +203,7 @@ export class Player extends cc.Component {
             this.scheduleOnce(() => {
                 cc.director.loadScene("lose")
             }, 0.3);
-        }else if(other.node.name == 'sharp'||other.node.name == 'parent'){
+        }else if((other.node.name[0] == 's'&&other.node.name[1] == 'h')||other.node.name == 'parent'){
             // die
             // deploy white particles
             

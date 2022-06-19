@@ -5,8 +5,8 @@
     "relativePath": "animation"
   },
   "e449813f-b6ab-4724-a9c5-9003463f9a75": {
-    "asset": 1655613312216,
-    "meta": 1655613409185,
+    "asset": 1655624743354,
+    "meta": 1655624858715,
     "relativePath": "audio"
   },
   "14296c85-75c6-49ed-bfd8-f18d9cc51d28": {
@@ -175,8 +175,8 @@
     "relativePath": "prefabs"
   },
   "25759dff-65ae-42cb-92b9-a925f16a7432": {
-    "asset": 1655618581350,
-    "meta": 1655618581359,
+    "asset": 1655624594018,
+    "meta": 1655624594030,
     "relativePath": "prefabs\\banana.prefab"
   },
   "e8a68b01-9d7f-407d-923c-e6cfd6f3aa18": {
@@ -200,8 +200,8 @@
     "relativePath": "prefabs\\bubble_lego.prefab"
   },
   "3acb837e-b361-43f0-82f6-89af23abab28": {
-    "asset": 1655618750992,
-    "meta": 1655618750996,
+    "asset": 1655624799514,
+    "meta": 1655624799521,
     "relativePath": "prefabs\\lego.prefab"
   },
   "6444cc76-5ef6-4a3c-926c-a09987c9319c": {
@@ -258,11 +258,6 @@
     "asset": 1655613312241,
     "meta": 1655613409193,
     "relativePath": "scripts"
-  },
-  "39f308ea-905f-4fc8-8004-c5ade8bc02ab": {
-    "asset": 1655585091431,
-    "meta": 1655613410050,
-    "relativePath": "scripts\\arm.ts"
   },
   "77477a70-be23-4af6-b183-bf7d2817badf": {
     "asset": 1655583983196,
@@ -1209,14 +1204,9 @@
     "meta": 1655613410888,
     "relativePath": "maps\\section17.tmx"
   },
-  "3095119b-5903-4a1d-92e8-fa42e3425160": {
-    "asset": 1655612455933,
-    "meta": 1655613410470,
-    "relativePath": "scripts\\player_day.ts"
-  },
   "e19b5114-6ae0-44c7-aaf8-d3a9a5a14998": {
-    "asset": 1655618266555,
-    "meta": 1655618266563,
+    "asset": 1655624843391,
+    "meta": 1655624843398,
     "relativePath": "scenes\\day.fire"
   },
   "04cfd6d9-41d6-4ada-8a5b-fc5bd8ed6a7d": {
@@ -1273,5 +1263,25 @@
     "asset": 1655612455934,
     "meta": 1655613410647,
     "relativePath": "scripts\\section_init.ts"
+  },
+  "3095119b-5903-4a1d-92e8-fa42e3425160": {
+    "asset": 1655623996805,
+    "meta": 1655624000055,
+    "relativePath": "scripts\\player_day.ts"
+  },
+  "34b6e8ab-6985-4267-b79c-484d6cb2d99f": {
+    "asset": 1655624584561,
+    "meta": 1655624586225,
+    "relativePath": "audio\\banana_slip.mp3"
+  },
+  "3f7e6ea7-37c6-4664-8070-fa550488e789": {
+    "asset": 1655624742951,
+    "meta": 1655624743878,
+    "relativePath": "audio\\itai.mp3"
+  },
+  "39f308ea-905f-4fc8-8004-c5ade8bc02ab": {
+    "asset": 1655624780716,
+    "meta": 1655624781575,
+    "relativePath": "scripts\\arm.ts"
   }
 }
