@@ -1200,8 +1200,8 @@
     "relativePath": "maps\\section17.tmx"
   },
   "e19b5114-6ae0-44c7-aaf8-d3a9a5a14998": {
-    "asset": 1655627748908,
-    "meta": 1655627748917,
+    "asset": 1655629281165,
+    "meta": 1655629281168,
     "relativePath": "scenes\\day.fire"
   },
   "04cfd6d9-41d6-4ada-8a5b-fc5bd8ed6a7d": {
@@ -1269,11 +1269,6 @@
     "meta": 1655624586225,
     "relativePath": "audio\\banana_slip.mp3"
   },
-  "9688cce3-3123-4f32-ad3c-c18228b9a1a9": {
-    "asset": 1655626356964,
-    "meta": 1655626360246,
-    "relativePath": "audio\\footstep.wav"
-  },
   "4837f7d9-1dd4-4dcb-a550-856fb734776c": {
     "asset": 1655627074665,
     "meta": 1655627075111,
@@ -1284,11 +1279,6 @@
     "meta": 1655627346540,
     "relativePath": "scripts\\arm.ts"
   },
-  "201d1fb4-4e8f-44d0-b194-13f83e0f3203": {
-    "asset": 1655627378850,
-    "meta": 1655627380215,
-    "relativePath": "scripts\\parent.ts"
-  },
   "c676e8bc-b7a2-4ccd-90b3-2ef03d90bb2b": {
     "asset": 1655627526497,
     "meta": 1655627526509,
@@ -1298,5 +1288,15 @@
     "asset": 1655627629070,
     "meta": 1655627633121,
     "relativePath": "scripts\\lose_canvas.ts"
+  },
+  "201d1fb4-4e8f-44d0-b194-13f83e0f3203": {
+    "asset": 1655628864681,
+    "meta": 1655628866613,
+    "relativePath": "scripts\\parent.ts"
+  },
+  "9688cce3-3123-4f32-ad3c-c18228b9a1a9": {
+    "asset": 1655629235179,
+    "meta": 1655629236167,
+    "relativePath": "audio\\footstep.wav"
   }
 }

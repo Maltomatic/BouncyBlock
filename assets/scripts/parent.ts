@@ -5,6 +5,8 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
 
+import { Player } from "./player";
+
 const {ccclass, property} = cc._decorator;
 
 @ccclass
@@ -17,11 +19,16 @@ export default class NewClass extends cc.Component {
     
     @property(cc.AudioClip)
     footstep:cc.AudioClip;
+    footstep_id:number;
+
+    @property(cc.Node)
+    player:cc.Node;
     onLoad () {
         cc.director.getPhysicsManager().enabled = true;
         cc.director.getCollisionManager().enabled = true;
         this.before_x=this.node.x;
-        cc.audioEngine.playEffect(this.footstep, true);
+        this.footstep_id=cc.audioEngine.playEffect(this.footstep, true);
+        cc.audioEngine.setVolume(this.footstep_id,1);
         
     }
     onBeginContact(contact, self, other){
@@ -49,6 +56,8 @@ export default class NewClass extends cc.Component {
         else this.node.x+=0;
         if(Math.abs(this.node.x-this.before_x)<=0.3&&this.stunned==0) this.jump();
         this.before_x=this.node.x;
+        var close=680-(this.player.x-this.node.x);
+        if(close>=0) cc.audioEngine.setVolume(this.footstep_id,close/680);
         
     }
     start () {

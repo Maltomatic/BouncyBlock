@@ -13,12 +13,12 @@
         "type": "dock-h",
         "children": [
           {
-            "width": 292.7890625,
+            "width": 292.796875,
             "height": 735.5,
             "type": "dock-v",
             "children": [
               {
-                "width": 292.7890625,
+                "width": 292.796875,
                 "height": 377.7109375,
                 "type": "panel",
                 "active": 0,
@@ -27,7 +27,7 @@
                 ]
               },
               {
-                "width": 292.7890625,
+                "width": 292.796875,
                 "height": 354.7890625,
                 "type": "panel",
                 "active": 0,
@@ -38,12 +38,12 @@
             ]
           },
           {
-            "width": 703.5,
+            "width": 703.5078125,
             "height": 735.5,
             "type": "dock-v",
             "children": [
               {
-                "width": 703.5,
+                "width": 703.5078125,
                 "height": 438.5,
                 "type": "panel",
                 "active": 0,
@@ -52,7 +52,7 @@
                 ]
               },
               {
-                "width": 703.5,
+                "width": 703.5078125,
                 "height": 293.9921875,
                 "type": "panel",
                 "active": 0,
@@ -65,7 +65,7 @@
             ]
           },
           {
-            "width": 424.6953125,
+            "width": 424.703125,
             "height": 735.5,
             "type": "panel",
             "active": 0,
@@ -86,7 +86,9 @@
         "inspector",
         "cocos-services"
       ]
-    }
+    },
+    "window-1655627794514": {},
+    " load-media-worker": {}
   },
   "panels": {
     "project-settings": {
@@ -106,6 +108,12 @@
       "y": 132,
       "width": 600,
       "height": 564
+    },
+    "im-plugin": {
+      "x": 212,
+      "y": 47,
+      "width": 1014,
+      "height": 736
     }
   },
   "panelLabelWidth": {

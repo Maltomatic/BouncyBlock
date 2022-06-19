@@ -43,7 +43,8 @@ var NewClass = /** @class */ (function (_super) {
         cc.director.getPhysicsManager().enabled = true;
         cc.director.getCollisionManager().enabled = true;
         this.before_x = this.node.x;
-        cc.audioEngine.playEffect(this.footstep, true);
+        this.footstep_id = cc.audioEngine.playEffect(this.footstep, true);
+        cc.audioEngine.setVolume(this.footstep_id, 1);
     };
     NewClass.prototype.onBeginContact = function (contact, self, other) {
         var _this = this;
@@ -67,6 +68,9 @@ var NewClass = /** @class */ (function (_super) {
         if (Math.abs(this.node.x - this.before_x) <= 0.3 && this.stunned == 0)
             this.jump();
         this.before_x = this.node.x;
+        var close = 680 - (this.player.x - this.node.x);
+        if (close >= 0)
+            cc.audioEngine.setVolume(this.footstep_id, close / 680);
     };
     NewClass.prototype.start = function () {
     };
@@ -79,6 +83,9 @@ var NewClass = /** @class */ (function (_super) {
     __decorate([
         property(cc.AudioClip)
     ], NewClass.prototype, "footstep", void 0);
+    __decorate([
+        property(cc.Node)
+    ], NewClass.prototype, "player", void 0);
     NewClass = __decorate([
         ccclass
     ], NewClass);

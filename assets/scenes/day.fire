@@ -2972,7 +2972,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -466.056,
+        -424.533,
         -198.792,
         0,
         0,
@@ -3070,12 +3070,12 @@
     "body": null,
     "_offset": {
       "__type__": "cc.Vec2",
-      "x": -284,
+      "x": -247,
       "y": 974
     },
     "_size": {
       "__type__": "cc.Size",
-      "width": 424,
+      "width": 349,
       "height": 1936
     },
     "_id": "65pJmjZLNH+Jc6A8IEDDlV"
@@ -3093,6 +3093,9 @@
     },
     "footstep": {
       "__uuid__": "9688cce3-3123-4f32-ad3c-c18228b9a1a9"
+    },
+    "player": {
+      "__id__": 52
     },
     "_id": "a94uHsbXZGXb5/ElRTEVlC"
   },
