@@ -34,21 +34,44 @@ var NewClass = /** @class */ (function (_super) {
     __extends(NewClass, _super);
     function NewClass() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.label = null;
-        _this.text = 'hello';
+        _this.invite_code = null;
+        _this.uid = null;
         return _this;
-        // update (dt) {}
     }
     // LIFE-CYCLE CALLBACKS:
-    // onLoad () {}
+    NewClass.prototype.onLoad = function () {
+        var _this = this;
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                _this.uid = firebase.auth().currentUser.uid;
+            }
+            else {
+                alert("Multiplayer is not accessible when you are not signed in.");
+                cc.director.loadScene('menu');
+            }
+        });
+    };
     NewClass.prototype.start = function () {
+        var _this = this;
+        cc.find("Canvas/signin_data/Create").on(cc.Node.EventType.MOUSE_DOWN, function () {
+            _this.makeGame();
+        }, this);
+        cc.find("Canvas/signin_data/Join").on(cc.Node.EventType.MOUSE_DOWN, function () {
+            _this.joinGame();
+        }, this);
+        cc.find("Canvas/signin_data/back").on(cc.Node.EventType.MOUSE_DOWN, function () {
+            cc.director.loadScene('menu');
+        }, this);
+    };
+    NewClass.prototype.makeGame = function () {
+        this.invite_code.string = this.uid.substring(0, 5);
+    };
+    NewClass.prototype.joinGame = function () {
+        //
     };
     __decorate([
-        property(cc.Label)
-    ], NewClass.prototype, "label", void 0);
-    __decorate([
-        property
-    ], NewClass.prototype, "text", void 0);
+        property(cc.EditBox)
+    ], NewClass.prototype, "invite_code", void 0);
     NewClass = __decorate([
         ccclass
     ], NewClass);
