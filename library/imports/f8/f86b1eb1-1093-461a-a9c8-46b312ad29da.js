@@ -57,14 +57,11 @@ var Section = /** @class */ (function (_super) {
     };
     Section.prototype.start = function () {
         var _this = this;
-        console.log('her');
         this.node.anchorX = 0;
-        console.log('her');
         this.node.anchorY = 0;
         var map = this.node.getComponent(cc.TiledMap);
         this.strip = cc.find('Canvas/root').getComponent('root').color_strip; //每次更新的section 色票都要一樣
         this.base = 1 + 6 * this.strip;
-        console.log("ground color: " + this.base);
         //console.log("base color gid: " + this.base);
         var body = this.node.addComponent(cc.RigidBody);
         body.type = cc.RigidBodyType.Static;
@@ -128,7 +125,7 @@ var Section = /** @class */ (function (_super) {
             this.player_col = 6 * this.strip + cc.find('Canvas/root/player').getComponent(((cc.director.getScene().name == 'multi') ? 'player_multi' : 'player')).color;
         else if (cc.director.getScene().name == "day")
             this.player_col = 6 * this.strip + cc.find('Canvas/root/player').getComponent('player_day').color;
-        console.log("bias towards " + this.player_col);
+        //console.log("bias towards " + this.player_col);
         obj_list.forEach(function (obj) {
             var x_size = obj.width / 48;
             var y_size = obj.height / 48;
@@ -168,6 +165,7 @@ var Section = /** @class */ (function (_super) {
         for (var i = 0; i < layer_size.width; i++) {
             for (var j = 0; j < layer_size.height; j++) {
                 var tile = map_layer.getTiledTileAt(i, j, true);
+                //1 static, 234 moving
                 if (tile.gid == 878 + 61 && flag[i][j] == null) {
                     flag[i][j] = 1;
                     var rad = 1 + Math.floor(Math.random() * 4); //1 static, 234 moving
@@ -187,12 +185,14 @@ var Section = /** @class */ (function (_super) {
                         sharp_p.y = tile_.node.y;
                         cc.find("Canvas/root/mapworld/sharp").addChild(sharp_p);
                     }
+                    //spider
                 }
-                else if (tile.gid == 265 + 61) { // spider
+                else if (tile.gid == 265 + 61) {
                     var spider_pre = cc.instantiate(this.spider);
                     spider_pre.x = section_count * 1920 + tile.node.x;
                     spider_pre.y = tile.node.y;
                     cc.find("Canvas/root/mapworld").addChild(spider_pre);
+                    //sharp fall down
                 }
                 else if (tile.gid == 664 + 61 && flag_d[i][j] == null) {
                     flag_d[i][j] = 1;
@@ -217,6 +217,37 @@ var Section = /** @class */ (function (_super) {
             }
         }
         map_layer.enabled = false;
+        //coin
+        var coin_layer = this.node.getComponent(cc.TiledMap).getLayer("coin_and_bubble");
+        layer_size = coin_layer.getLayerSize();
+        for (var i = 0; i < layer_size.width; i++) {
+            for (var j = 0; j < layer_size.height; j++) {
+                var tile = coin_layer.getTiledTileAt(i, j, true);
+                //coin
+                console.log(tile.gid);
+                if (tile.gid == 268 + 61) {
+                    var c = cc.instantiate(this.coin_pre);
+                    c.x = section_count * 1920 + tile.node.x;
+                    c.y = tile.node.y;
+                    //c.active = true;
+                    cc.find("Canvas/root/mapworld/coin_bubble").addChild(c);
+                }
+                else if (tile.gid == 225 + 61) {
+                    console.log('herereeeeee');
+                    var rad = 1 + Math.floor(Math.random() * 2);
+                    var b = new cc.Node;
+                    if (rad == 1)
+                        b = cc.instantiate(this.banana_pre);
+                    else
+                        b = cc.instantiate(this.lego_pre);
+                    b.x = section_count * 1920 + tile.node.x;
+                    b.y = tile.node.y;
+                    //c.active = true;
+                    cc.find("Canvas/root/mapworld/coin_bubble").addChild(b);
+                }
+            }
+        }
+        coin_layer.enabled = false;
         //enemy init
         //var lv_diff = cc.find("Canvas/root/player").getComponent(((cc.director.getScene().name == 'multi')? 'player_multi' : 'player')).section_count;
         var lv_diff = section_count;
@@ -246,29 +277,32 @@ var Section = /** @class */ (function (_super) {
                 cc.find("Canvas/root/enemy_collection").addChild(enemy);
             }
         }
-        //coin 
-        if (cc.director.getScene().name == "day") {
-            var offset = lv_diff * 1920 + ((lv_diff == 0) ? 400 : 0);
-            for (i = 0; i < Math.random() * 11; i++) {
-                var money = cc.instantiate(this.coin_pre);
-                money.x = Math.random() * 1920 + offset;
-                money.y = 500;
+        /*
+        //coin
+        if(cc.director.getScene().name=="day") {
+            var offset = lv_diff * 1920 + ((lv_diff == 0)? 400 : 0);
+            for(i =0;i<Math.random()*11;i++)
+            {
+                var money=cc.instantiate(this.coin_pre);
+                money.x=Math.random()*1920+offset;
+                money.y=500;
                 cc.find("Canvas/root/powerups").addChild(money);
             }
         }
+
         //bubble item init(dayscene)
-        if (cc.director.getScene().name == "day") {
-            for (i = 0; i < Math.random() * 4; i++) {
-                var random = Math.floor(Math.random() * 2); //0 and 1
-                if (random)
-                    var powerups = cc.instantiate(this.lego_pre);
-                else
-                    var powerups = cc.instantiate(this.banana_pre);
-                powerups.x = Math.random() * 1920 + offset;
-                powerups.y = 0 + Math.random() * 50;
+        if(cc.director.getScene().name=="day")
+        {
+            for(i =0;i<Math.random()*4;i++)
+            {
+                var random= Math.floor(Math.random()*2); //0 and 1
+                if(random)var powerups=cc.instantiate(this.lego_pre);
+                else var powerups=cc.instantiate(this.banana_pre);
+                powerups.x=Math.random()*1920+offset;
+                powerups.y=0+Math.random()*50;
                 cc.find("Canvas/root/powerups").addChild(powerups);
             }
-        }
+        }*/
     };
     __decorate([
         property(cc.Prefab)

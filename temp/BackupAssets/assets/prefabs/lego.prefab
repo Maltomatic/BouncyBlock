@@ -27,10 +27,16 @@
       },
       {
         "__id__": 4
+      },
+      {
+        "__id__": 5
+      },
+      {
+        "__id__": 6
       }
     ],
     "_prefab": {
-      "__id__": 5
+      "__id__": 7
     },
     "_opacity": 255,
     "_color": {
@@ -42,8 +48,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 136,
-      "height": 91
+      "width": 48,
+      "height": 30
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -54,15 +60,15 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        319.654,
-        -202.708,
+        -350.294,
+        -200.141,
         0,
         0,
         0,
         0,
         1,
-        0.45,
-        0.45,
+        1,
+        1,
         1
       ]
     },
@@ -75,8 +81,8 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "_groupIndex": 0,
-    "groupIndex": 0,
+    "_groupIndex": 6,
+    "groupIndex": 6,
     "_id": ""
   },
   {
@@ -98,7 +104,7 @@
       "__uuid__": "e66cdded-b99a-4b60-8553-e5e022296acd"
     },
     "_type": 0,
-    "_sizeMode": 1,
+    "_sizeMode": 0,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -119,9 +125,9 @@
       "__id__": 1
     },
     "_enabled": true,
-    "_type": 1,
+    "_type": 2,
     "_allowSleep": true,
-    "_gravityScale": 1,
+    "_gravityScale": 9.8,
     "_linearDamping": 0,
     "_angularDamping": 0,
     "_linearVelocity": {
@@ -146,7 +152,7 @@
     "_enabled": true,
     "tag": 0,
     "_density": 1,
-    "_sensor": false,
+    "_sensor": true,
     "_friction": 0.2,
     "_restitution": 0,
     "body": null,
@@ -160,6 +166,36 @@
       "width": 136,
       "height": 91
     },
+    "_id": ""
+  },
+  {
+    "__type__": "cc.Animation",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "_defaultClip": {
+      "__uuid__": "49b78b7f-5288-473a-9cd0-561e6219744a"
+    },
+    "_clips": [
+      {
+        "__uuid__": "49b78b7f-5288-473a-9cd0-561e6219744a"
+      }
+    ],
+    "playOnLoad": false,
+    "_id": ""
+  },
+  {
+    "__type__": "39f30jqkF9PyIAExa3ovAKr",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "banana_Speed": 100,
     "_id": ""
   },
   {

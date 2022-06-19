@@ -46,14 +46,11 @@ export class Section extends cc.Component {
     }
 
     start(){
-        console.log('her');
         this.node.anchorX = 0;
-        console.log('her');
         this.node.anchorY = 0;
         var map = this.node.getComponent(cc.TiledMap);
         this.strip = cc.find('Canvas/root').getComponent('root').color_strip;         //每次更新的section 色票都要一樣
         this.base = 1 + 6*this.strip;
-        console.log("ground color: " + this.base);
 
         //console.log("base color gid: " + this.base);
 
@@ -122,7 +119,7 @@ export class Section extends cc.Component {
         var obj_list = map.getObjectGroup("colors").getObjects();
         if(cc.director.getScene().name =="test" || cc.director.getScene().name =="multi")this.player_col = 6*this.strip + cc.find('Canvas/root/player').getComponent(((cc.director.getScene().name == 'multi')? 'player_multi' : 'player')).color
         else if(cc.director.getScene().name =="day")this.player_col = 6*this.strip + cc.find('Canvas/root/player').getComponent('player_day').color;
-        console.log("bias towards " + this.player_col);
+        //console.log("bias towards " + this.player_col);
         obj_list.forEach((obj) => {
             var x_size = obj.width / 48;
             var y_size = obj.height / 48;
@@ -146,6 +143,7 @@ export class Section extends cc.Component {
         var section_count;
         if(cc.director.getScene().name =="test" || cc.director.getScene().name =="multi") section_count = cc.find('Canvas/root/player').getComponent(((cc.director.getScene().name == 'multi')? 'player_multi' : 'player')).section_count;
         else if(cc.director.getScene().name =="day") section_count = cc.find('Canvas/root/player').getComponent('player_day').section_count;
+        
         var sharp_list = {1: 'sharp', 2: 'sharp2', 3: 'sharp3', 4: 'sharp4'};
         var sharp_d_list = {1: 'sharp_d', 2: 'sharp_d2', 3: 'sharp_d3'};
         var map_layer = map.getLayer("enemy");
@@ -161,6 +159,8 @@ export class Section extends cc.Component {
         for(var i = 0; i < layer_size.width; i++){
             for(var j = 0; j < layer_size.height; j++){
                 var tile = map_layer.getTiledTileAt(i, j, true);
+
+                //1 static, 234 moving
                 if(tile.gid == 878 + 61 && flag[i][j] == null){
                     flag[i][j] = 1;
                     var rad = 1 + Math.floor(Math.random() * 4);  //1 static, 234 moving
@@ -180,12 +180,15 @@ export class Section extends cc.Component {
                         sharp_p.y = tile_.node.y;
                         cc.find("Canvas/root/mapworld/sharp").addChild(sharp_p);
                     }
-                } else if(tile.gid == 265 + 61){     // spider
+                //spider
+                } else if(tile.gid == 265 + 61){     
                     var spider_pre = cc.instantiate(this.spider);
                     spider_pre.x = section_count * 1920 + tile.node.x;
                     spider_pre.y = tile.node.y;
                     cc.find("Canvas/root/mapworld").addChild(spider_pre);
-                } else if(tile.gid == 664 + 61 && flag_d[i][j] == null){
+
+                //sharp fall down
+                } else if(tile.gid == 664 + 61 && flag_d[i][j] == null){      
                     flag_d[i][j] = 1;
                     var rad = 1 + Math.floor(Math.random() * 3);  
                     
@@ -208,6 +211,36 @@ export class Section extends cc.Component {
             }
         }
         map_layer.enabled = false;
+
+        //coin
+        var coin_layer = this.node.getComponent(cc.TiledMap).getLayer("coin_and_bubble");
+        layer_size = coin_layer.getLayerSize();
+        for(var i = 0; i < layer_size.width; i++){
+            for(var j = 0; j < layer_size.height; j++){
+                var tile = coin_layer.getTiledTileAt(i, j, true);
+                //coin
+                console.log(tile.gid);
+                if(tile.gid == 268 + 61){  
+                    var c = cc.instantiate(this.coin_pre);
+                    c.x = section_count * 1920 + tile.node.x;
+                    c.y = tile.node.y;
+                    //c.active = true;
+                    cc.find("Canvas/root/mapworld/coin_bubble").addChild(c);
+                }
+                else if(tile.gid == 225 + 61){  
+                    console.log('herereeeeee')
+                    var rad = 1 + Math.floor(Math.random() * 2);  
+                    var b = new cc.Node;
+                    if(rad == 1) b = cc.instantiate(this.banana_pre);
+                    else b = cc.instantiate(this.lego_pre);
+                    b.x = section_count * 1920 + tile.node.x;
+                    b.y = tile.node.y;
+                    //c.active = true;
+                    cc.find("Canvas/root/mapworld/coin_bubble").addChild(b);
+                }
+            }
+        }
+        coin_layer.enabled = false; 
         
 
         //enemy init
@@ -234,6 +267,8 @@ export class Section extends cc.Component {
                 cc.find("Canvas/root/enemy_collection").addChild(enemy);
             }
         }
+
+        /*
         //coin 
         if(cc.director.getScene().name=="day") {
             var offset = lv_diff * 1920 + ((lv_diff == 0)? 400 : 0);
@@ -258,7 +293,7 @@ export class Section extends cc.Component {
                 powerups.y=0+Math.random()*50;
                 cc.find("Canvas/root/powerups").addChild(powerups);
             }
-        }
+        }*/
 
     }
 }

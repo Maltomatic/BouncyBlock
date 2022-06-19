@@ -169,9 +169,7 @@
       "__id__": 1
     },
     "_enabled": true,
-    "bubble_Prefabs": {
-      "__uuid__": "f5cb43f2-a069-44dd-a961-50996a519115"
-    },
+    "bubble_Prefabs": null,
     "_id": ""
   },
   {

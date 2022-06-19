@@ -28,7 +28,6 @@ var bubble_item = /** @class */ (function (_super) {
     __extends(bubble_item, _super);
     function bubble_item() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.bubble_Prefabs = null;
         _this.bubble_num = 0;
         _this.bubble_Speed = 0;
         _this.physicManager = null;
@@ -67,9 +66,6 @@ var bubble_item = /** @class */ (function (_super) {
             .by(1, { x: 200 })
             .by(1, { x: -200 })).start();
     };
-    __decorate([
-        property(cc.Prefab)
-    ], bubble_item.prototype, "bubble_Prefabs", void 0);
     bubble_item = __decorate([
         ccclass
     ], bubble_item);

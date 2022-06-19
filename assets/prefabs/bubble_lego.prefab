@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "bubble lego",
+    "_name": "bubble_lego",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -45,13 +45,13 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 246,
-      "height": 229
+      "width": 48,
+      "height": 48
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
-      "x": 0.5,
-      "y": 0.5
+      "x": 0,
+      "y": 0
     },
     "_trs": {
       "__type__": "TypedArray",
@@ -64,8 +64,8 @@
         0,
         0,
         1,
-        0.2,
-        0.2,
+        1,
+        1,
         1
       ]
     },
@@ -101,7 +101,7 @@
       "__uuid__": "a42e1b50-441b-4afd-8292-779d3fc91365"
     },
     "_type": 0,
-    "_sizeMode": 1,
+    "_sizeMode": 0,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -122,7 +122,7 @@
       "__id__": 1
     },
     "_enabled": true,
-    "_type": 1,
+    "_type": 0,
     "_allowSleep": true,
     "_gravityScale": 1,
     "_linearDamping": 0,
@@ -133,7 +133,7 @@
       "y": 0
     },
     "_angularVelocity": 0,
-    "_fixedRotation": false,
+    "_fixedRotation": true,
     "enabledContactListener": true,
     "bullet": false,
     "awakeOnLoad": true,
@@ -155,10 +155,10 @@
     "body": null,
     "_offset": {
       "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
+      "x": 24,
+      "y": 24
     },
-    "_radius": 120,
+    "_radius": 24,
     "_id": ""
   },
   {
@@ -169,7 +169,6 @@
       "__id__": 1
     },
     "_enabled": true,
-    "bubble_Prefabs": null,
     "_id": ""
   },
   {

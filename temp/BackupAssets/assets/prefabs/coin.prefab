@@ -27,13 +27,10 @@
       },
       {
         "__id__": 4
-      },
-      {
-        "__id__": 5
       }
     ],
     "_prefab": {
-      "__id__": 6
+      "__id__": 5
     },
     "_opacity": 255,
     "_color": {
@@ -45,13 +42,13 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 16,
-      "height": 16
+      "width": 31,
+      "height": 35
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
-      "x": 0.5,
-      "y": 0.5
+      "x": 0,
+      "y": 0
     },
     "_trs": {
       "__type__": "TypedArray",
@@ -64,8 +61,8 @@
         0,
         0,
         1,
-        1.75,
-        1.75,
+        1,
+        1,
         1
       ]
     },
@@ -98,10 +95,10 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "c83acd4f-a9a2-468f-b08c-8afca2c7fac1"
+      "__uuid__": "dc23bc39-6349-4edd-a871-1877d1200ee3"
     },
     "_type": 0,
-    "_sizeMode": 1,
+    "_sizeMode": 0,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -111,28 +108,7 @@
     "_fillStart": 0,
     "_fillRange": 0,
     "_isTrimmedMode": true,
-    "_atlas": {
-      "__uuid__": "98ce4fde-b33d-4c9e-84ae-8cafd23e6c14"
-    },
-    "_id": ""
-  },
-  {
-    "__type__": "cc.Animation",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "_defaultClip": {
-      "__uuid__": "158e6cce-f4ca-476c-bf20-f69983e5c718"
-    },
-    "_clips": [
-      {
-        "__uuid__": "158e6cce-f4ca-476c-bf20-f69983e5c718"
-      }
-    ],
-    "playOnLoad": true,
+    "_atlas": null,
     "_id": ""
   },
   {
@@ -143,7 +119,7 @@
       "__id__": 1
     },
     "_enabled": true,
-    "_type": 1,
+    "_type": 0,
     "_allowSleep": true,
     "_gravityScale": 2.5,
     "_linearDamping": 0,
@@ -170,16 +146,16 @@
     "_enabled": true,
     "tag": 0,
     "_density": 1,
-    "_sensor": false,
+    "_sensor": true,
     "_friction": 0.2,
     "_restitution": 0,
     "body": null,
     "_offset": {
       "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
+      "x": 15,
+      "y": 18
     },
-    "_radius": 8,
+    "_radius": 15,
     "_id": ""
   },
   {

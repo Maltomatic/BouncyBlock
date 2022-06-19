@@ -2,8 +2,7 @@ const {ccclass, property} = cc._decorator;
 
 @ccclass
 export default class bubble_item extends cc.Component {
-    @property(cc.Prefab)
-    bubble_Prefabs: cc.Prefab = null;
+
 
     bubble_num : number = 0;
     bubble_Speed: number = 0;
