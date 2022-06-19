@@ -245,8 +245,8 @@
     "relativePath": "scenes\\menu.fire"
   },
   "8fd84a5b-4e15-4fe4-b925-ce9bf2f9053a": {
-    "asset": 1655409964825,
-    "meta": 1655643541623,
+    "asset": 1655657142173,
+    "meta": 1655657142206,
     "relativePath": "scenes\\multi_pairing.fire"
   },
   "240792ee-e159-498e-9d53-7f96c7aafa0b": {
@@ -1231,8 +1231,8 @@
   },
   "c676e8bc-b7a2-4ccd-90b3-2ef03d90bb2b": {
     "asset": 1655643517364,
-    "meta": 1655643542004,
-    "relativePath": "scripts\\NewScript.ts"
+    "meta": 1655657117068,
+    "relativePath": "scripts\\pair_game.ts"
   },
   "e0977a98-0e43-4799-95eb-bf4f56cd825c": {
     "asset": 1655643517367,

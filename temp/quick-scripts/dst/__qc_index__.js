@@ -10,7 +10,6 @@
                     };
                     function __define (exports, require, module) {
                         if (!nodeEnv) {__quick_compile_project__.registerModule(__filename, module);}
-require('./assets/scripts/NewScript');
 require('./assets/scripts/arm');
 require('./assets/scripts/bird_map_init');
 require('./assets/scripts/bird_player');
@@ -22,6 +21,7 @@ require('./assets/scripts/light');
 require('./assets/scripts/lose_canvas');
 require('./assets/scripts/menu');
 require('./assets/scripts/missile');
+require('./assets/scripts/pair_game');
 require('./assets/scripts/parent');
 require('./assets/scripts/player');
 require('./assets/scripts/player_day');

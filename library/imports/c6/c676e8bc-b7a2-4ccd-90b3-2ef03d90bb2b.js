@@ -1,6 +1,6 @@
 "use strict";
-cc._RF.push(module, 'c676ei8t6JMzZCzLvA9kLsr', 'NewScript');
-// scripts/NewScript.ts
+cc._RF.push(module, 'c676ei8t6JMzZCzLvA9kLsr', 'pair_game');
+// scripts/pair_game.ts
 
 "use strict";
 // Learn TypeScript:
