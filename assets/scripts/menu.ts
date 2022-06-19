@@ -63,7 +63,7 @@ export default class menu extends cc.Component {
     }
     loadMulti(){
         //cc.audioEngine.playEffect(this.press, false);
-        cc.director.loadScene("multi");
+        cc.director.loadScene("multi_pairing");
     }
     loadBird(){
         //cc.audioEngine.playEffect(this.press, false);

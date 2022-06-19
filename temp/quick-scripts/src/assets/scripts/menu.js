@@ -80,7 +80,7 @@ var menu = /** @class */ (function (_super) {
     };
     menu.prototype.loadMulti = function () {
         //cc.audioEngine.playEffect(this.press, false);
-        cc.director.loadScene("multi");
+        cc.director.loadScene("multi_pairing");
     };
     menu.prototype.loadBird = function () {
         //cc.audioEngine.playEffect(this.press, false);

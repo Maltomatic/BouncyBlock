@@ -48,7 +48,7 @@ var NewClass = /** @class */ (function (_super) {
     };
     NewClass.prototype.start = function () {
         var _this = this;
-        cc.find("Canvas/signin_data/Create").on(cc.Node.EventType.MOUSE_DOWN, function () {
+        cc.find("Canvas/root/Create").on(cc.Node.EventType.MOUSE_DOWN, function () {
             if (_this.kick) {
                 alert("Multiplayer is not accessible when you are not signed in.");
                 cc.director.loadScene('menu');
@@ -56,7 +56,7 @@ var NewClass = /** @class */ (function (_super) {
             else
                 _this.makeGame();
         }, this);
-        cc.find("Canvas/signin_data/Join").on(cc.Node.EventType.MOUSE_DOWN, function () {
+        cc.find("Canvas/root/Join").on(cc.Node.EventType.MOUSE_DOWN, function () {
             if (_this.kick) {
                 alert("Multiplayer is not accessible when you are not signed in.");
                 cc.director.loadScene('menu');
@@ -64,7 +64,7 @@ var NewClass = /** @class */ (function (_super) {
             else
                 _this.joinGame();
         }, this);
-        cc.find("Canvas/signin_data/back").on(cc.Node.EventType.MOUSE_DOWN, function () {
+        cc.find("Canvas/root/back").on(cc.Node.EventType.MOUSE_DOWN, function () {
             _this.invite_code.string = '';
             cc.director.loadScene('menu');
         }, this);
