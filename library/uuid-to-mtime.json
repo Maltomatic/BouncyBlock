@@ -554,11 +554,6 @@
     "meta": 1655605040178,
     "relativePath": "prefabs/section5.prefab"
   },
-  "e19b5114-6ae0-44c7-aaf8-d3a9a5a14998": {
-    "asset": 1655606855277,
-    "meta": 1655606855286,
-    "relativePath": "scenes/day.fire"
-  },
   "04cfd6d9-41d6-4ada-8a5b-fc5bd8ed6a7d": {
     "asset": 1655601892000,
     "meta": 1655605040901,
@@ -1204,11 +1199,6 @@
     "meta": 1655606827436,
     "relativePath": "resources/materials/builtin-2d-label.mtl"
   },
-  "3095119b-5903-4a1d-92e8-fa42e3425160": {
-    "asset": 1655606799609,
-    "meta": 1655606826069,
-    "relativePath": "scripts/player_day.ts"
-  },
   "7afd064b-113f-480e-b793-8817d19f63c3": {
     "asset": 1641825000000,
     "meta": 1655606827437,
@@ -1273,5 +1263,15 @@
     "asset": 1641824999000,
     "meta": 1655606827494,
     "relativePath": "model/primitives.fbx"
+  },
+  "3095119b-5903-4a1d-92e8-fa42e3425160": {
+    "asset": 1655607131352,
+    "meta": 1655608070924,
+    "relativePath": "scripts/player_day.ts"
+  },
+  "e19b5114-6ae0-44c7-aaf8-d3a9a5a14998": {
+    "asset": 1655607101147,
+    "meta": 1655608070959,
+    "relativePath": "scenes/day.fire"
   }
 }
