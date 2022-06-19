@@ -1,7 +1,7 @@
 [
   {
     "__type__": "cc.Prefab",
-    "_name": "missile_explode",
+    "_name": "",
     "_objFlags": 0,
     "_native": "",
     "data": {
@@ -96,7 +96,7 @@
       "__uuid__": "a23235d1-15db-4b95-8439-a2e005bfff91"
     },
     "_texture": null,
-    "_stopped": true,
+    "_stopped": false,
     "playOnLoad": true,
     "autoRemoveOnFinish": false,
     "totalParticles": 4,
@@ -106,30 +106,30 @@
     "lifeVar": 0.4,
     "_startColor": {
       "__type__": "cc.Color",
-      "r": 251,
-      "g": 249,
-      "b": 249,
+      "r": 0,
+      "g": 0,
+      "b": 0,
       "a": 255
     },
     "_startColorVar": {
       "__type__": "cc.Color",
-      "r": 4,
-      "g": 4,
-      "b": 4,
+      "r": 7,
+      "g": 7,
+      "b": 7,
       "a": 249
     },
     "_endColor": {
       "__type__": "cc.Color",
-      "r": 251,
-      "g": 246,
-      "b": 246,
+      "r": 7,
+      "g": 7,
+      "b": 7,
       "a": 255
     },
     "_endColorVar": {
       "__type__": "cc.Color",
-      "r": 11,
-      "g": 11,
-      "b": 11,
+      "r": 0,
+      "g": 0,
+      "b": 0,
       "a": 0
     },
     "angle": 90,
