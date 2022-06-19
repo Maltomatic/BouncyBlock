@@ -1900,9 +1900,8 @@
       "__id__": 5
     },
     "_enabled": true,
-    "invite_code": {
-      "__id__": 18
-    },
+    "label": null,
+    "text": "hello",
     "_id": "3bP5qM8RNJgrfH6NJBF23Q"
   },
   {
