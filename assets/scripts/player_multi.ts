@@ -343,6 +343,19 @@ export class Player extends cc.Component {
                 this.Color.node.color = new cc.Color(255,255,255);
                 this.data -= 1;
                 // if id = 1 write to joiner, else write to creator
+                if(this.id){
+                    // self is creator
+                    firebase.database().ref('in_game/' + this.room + '/joiner').once('value', (snapshot)=>{
+                        var ping = snapshot.val();
+                        firebase.database().ref('in_game/' + this.room + '/joiner').set(ping+1);
+                    });
+                }else{
+                    // self is joiner
+                    firebase.database().ref('in_game/' + this.room + '/creator').once('value', (snapshot)=>{
+                        var ping = snapshot.val();
+                        firebase.database().ref('in_game/' + this.room + '/creator').set(ping+1);
+                    });
+                }
                 this.noisy = true;
                 this.scheduleOnce(() => {
                     this.noisy = false;
