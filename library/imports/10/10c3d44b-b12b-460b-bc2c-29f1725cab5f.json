@@ -86,8 +86,8 @@
         "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
       }
     ],
-    "_srcBlendFactor": 770,
-    "_dstBlendFactor": 1,
+    "_srcBlendFactor": 1,
+    "_dstBlendFactor": 771,
     "_custom": true,
     "_file": {
       "__uuid__": "979c1246-3123-4788-a72f-004caab58827"
@@ -106,9 +106,9 @@
     "lifeVar": 0.4,
     "_startColor": {
       "__type__": "cc.Color",
-      "r": 251,
-      "g": 249,
-      "b": 249,
+      "r": 4,
+      "g": 4,
+      "b": 4,
       "a": 255
     },
     "_startColorVar": {
@@ -120,9 +120,9 @@
     },
     "_endColor": {
       "__type__": "cc.Color",
-      "r": 251,
-      "g": 246,
-      "b": 246,
+      "r": 4,
+      "g": 4,
+      "b": 4,
       "a": 255
     },
     "_endColorVar": {
