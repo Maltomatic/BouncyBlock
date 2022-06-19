@@ -71,6 +71,8 @@ export class Player extends cc.Component {
     @property(cc.Node)
     bubble_powerup : cc.Node = null; 
     powerup: number = 0;
+    @property(cc.AudioClip)
+    die_audio : cc.AudioClip = null;
 
     debug_mode: boolean = true;
     hidden: boolean = false;
@@ -203,6 +205,7 @@ export class Player extends cc.Component {
     }
     die_particle()
     {
+        cc.audioEngine.playEffect(this.die_audio, false);
         this.node.getChildByName('eye').active = false;
         var explode=this.node.getChildByName("star_explode");
         explode.active = true;

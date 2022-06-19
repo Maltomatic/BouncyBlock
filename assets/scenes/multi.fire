@@ -3242,6 +3242,9 @@
     "bubble_powerup": {
       "__id__": 17
     },
+    "die_audio": {
+      "__uuid__": "98140a5d-2ca6-4578-b3c5-41b3e879437f"
+    },
     "_id": "61ftWnZLNIDJJfw7/o/v9s"
   },
   {

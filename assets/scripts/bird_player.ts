@@ -27,6 +27,9 @@ export class Bird extends cc.Component {
     @property(cc.Sprite)
     Color: cc.Sprite = null;
 
+    @property(cc.AudioClip)
+    die_audio : cc.AudioClip = null; 
+
     private section_count: number = 0;      // on contact with marker, if section_count * 1920 < this.node.x: init next section and section_count ++
     private score: number = 0;
 
@@ -119,6 +122,7 @@ export class Bird extends cc.Component {
 
     die_particle()
     {
+        cc.audioEngine.playEffect(this.die_audio, false);
         this.node.getChildByName('eye').active = false;
             var explode=this.node.getChildByName("star_explode");
             explode.active = true;
