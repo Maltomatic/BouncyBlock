@@ -1239,11 +1239,6 @@
     "meta": 1655666778927,
     "relativePath": "scenes\\store.fire"
   },
-  "b7474a50-3239-4ee7-b7e0-7b3cd838b5f2": {
-    "asset": 1655649737585,
-    "meta": 1655666778999,
-    "relativePath": "scripts\\enemy_wrapper.ts"
-  },
   "8fd84a5b-4e15-4fe4-b925-ce9bf2f9053a": {
     "asset": 1655667674337,
     "meta": 1655667674360,
@@ -1304,11 +1299,6 @@
     "meta": 1655666780035,
     "relativePath": "scripts\\searchlight.ts"
   },
-  "f86b1eb1-1093-461a-a9c8-46b312ad29da": {
-    "asset": 1655651749128,
-    "meta": 1655666780212,
-    "relativePath": "scripts\\section_init.ts"
-  },
   "c177946f-6188-4a4c-b21d-69b0d6469a50": {
     "asset": 1655644597085,
     "meta": 1655666780238,
@@ -1368,5 +1358,15 @@
     "asset": 1655667665509,
     "meta": 1655667668019,
     "relativePath": "scripts\\pair_game.ts"
+  },
+  "b7474a50-3239-4ee7-b7e0-7b3cd838b5f2": {
+    "asset": 1655667938170,
+    "meta": 1655667942955,
+    "relativePath": "scripts\\enemy_wrapper.ts"
+  },
+  "f86b1eb1-1093-461a-a9c8-46b312ad29da": {
+    "asset": 1655668031244,
+    "meta": 1655668035491,
+    "relativePath": "scripts\\section_init.ts"
   }
 }

@@ -235,11 +235,11 @@ export class Section extends cc.Component {
                     tile.gid = 0;
                     if(cc.director.getScene().name == 'day'){
                         console.log('herereeeeee')
-                        var rad = 1 + Math.floor(Math.random() * 3);  
+                        var rad = 1 + Math.floor(Math.random() * 2);  
                         var b = new cc.Node;
                         if(rad == 1) b = cc.instantiate(this.banana_pre);
                         else if(rad == 2) b = cc.instantiate(this.lego_pre);
-                        else b = cc.instantiate(this.bubble_pre);
+                        // else b = cc.instantiate(this.bubble_pre);
                         b.x = section_count * 1920 + tile.node.x;
                         b.y = tile.node.y;
                         //c.active = true;
