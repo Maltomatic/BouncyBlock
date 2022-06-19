@@ -55,11 +55,23 @@ var NewClass = /** @class */ (function (_super) {
             _this.joinGame();
         }, this);
         cc.find("Canvas/signin_data/back").on(cc.Node.EventType.MOUSE_DOWN, function () {
+            _this.invite_code.string = '';
             cc.director.loadScene('menu');
         }, this);
     };
     NewClass.prototype.makeGame = function () {
-        this.invite_code.string = this.uid.substring(0, 5);
+        var key = this.uid.substring(0, 5);
+        this.invite_code.string = key;
+        firebase.database().ref('waiting_room/' + key).set(0);
+        var ref = firebase.database().ref('waiting_room/' + key);
+        ref.on('child_changed', function (snapshot) {
+            var joiner = snapshot.val();
+            ref.remove();
+            firebase.database().ref('in_game/' + joiner + '/creator').set(0);
+            console.log("entering game as creator");
+            // remmeber self as creator, then change scene
+            cc.director.loadScene('multi');
+        });
     };
     // update (dt) {}
     NewClass.prototype.joinGame = function () {
