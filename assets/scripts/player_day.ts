@@ -64,10 +64,6 @@ export class Player extends cc.Component {
     coin: number = 0;
 
     @property(cc.Node)
-    bubble_powerup : cc.Node = null; 
-    powerup: number = 0;
-
-    @property(cc.Node)
     bubble_banana : cc.Node = null; 
     banana: number = 0;
 
@@ -191,11 +187,7 @@ export class Player extends cc.Component {
                 cc.audioEngine.playEffect(this.get_B_L_bubble, false); 
                 this.update_lego(1);
                 other.node.destroy();
-           }else if(other.tag == 3){ // colorful bubble
-            cc.audioEngine.playEffect(this.get_powerup_bubble, false); 
-            this.update_powerup(1);
-            other.node.destroy();
-            }
+           }
         }else if(other.node.name == 'missile'){
             // diee
             // deploy white particles
@@ -342,13 +334,6 @@ export class Player extends cc.Component {
             cc.find("Canvas/root").addChild(lego_pre);
             this.update_lego(-1);
         }
-
-        if(event.keyCode == cc.macro.KEY.u  && this.powerup > 0){ // bubble powerup @@@ 
-            // plug-in mode
-            //--------------
-            //--------------
-            this.update_powerup(-1);
-        }
     }
     onKeyUp(event){
         switch(event.keyCode){
@@ -371,10 +356,6 @@ export class Player extends cc.Component {
     update_coin(number){  // @@ 
         this.coin += number;
         this.coin_point.getComponent(cc.Label).string = this.coin.toString();
-    }
-    update_powerup(number){  // @@ 
-        this.powerup += number;
-       this.bubble_powerup.getComponent(cc.Label).string = this.powerup.toString();
     }
     update_banana(number){  // @@ 
         this.banana += number;

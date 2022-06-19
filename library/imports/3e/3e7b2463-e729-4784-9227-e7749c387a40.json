@@ -3177,10 +3177,18 @@
     "sec5": {
       "__uuid__": "5fd9114a-53a7-4005-82c1-8cb76fa79541"
     },
-    "sec6": null,
-    "sec7": null,
-    "sec8": null,
-    "sec9": null,
+    "sec6": {
+      "__uuid__": "495a2825-af28-420e-9a4a-5934a3ab5c75"
+    },
+    "sec7": {
+      "__uuid__": "c0bebd9e-98ce-42a2-995f-643e8af9a4e1"
+    },
+    "sec8": {
+      "__uuid__": "8610c8cd-540f-455c-9f28-772387b28de8"
+    },
+    "sec9": {
+      "__uuid__": "a502ee19-f65e-48b2-ab6f-dc2cf395ac98"
+    },
     "sec10": {
       "__uuid__": "cb1d8429-52ef-4643-ae87-34487c2b8968"
     },
@@ -3193,9 +3201,15 @@
     "sec13": {
       "__uuid__": "6d525d07-660e-4be4-ac75-4e4a33bb9837"
     },
-    "sec14": null,
-    "sec15": null,
-    "sec16": null,
+    "sec14": {
+      "__uuid__": "28d670e2-31d7-4a99-bcf5-38ddbb16d347"
+    },
+    "sec15": {
+      "__uuid__": "6ea2a9ae-6ecc-4200-93b1-9c99a260d929"
+    },
+    "sec16": {
+      "__uuid__": "9a36c73e-ce94-493f-b6c9-b70bb27b76dd"
+    },
     "sec17": {
       "__uuid__": "2a417590-576c-476c-951f-c5f739a33479"
     },
@@ -3205,7 +3219,9 @@
     "sec19": {
       "__uuid__": "cbfa4e4d-f8fd-416e-be8b-c0fd3083f9a3"
     },
-    "sec20": null,
+    "sec20": {
+      "__uuid__": "204099dd-3577-4ba1-93dd-f717984b677c"
+    },
     "Score": {
       "__id__": 9
     },

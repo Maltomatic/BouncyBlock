@@ -213,7 +213,6 @@ var Player = /** @class */ (function (_super) {
                 var cl = new cc.Color(0, 0, 0);
                 this.Color.node.color = cl.fromHEX(this.chameleon);
             }
-            console.log("currently invisible");
         }
         if (this.node.y <= -400) {
             this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).emitterMode = 1;

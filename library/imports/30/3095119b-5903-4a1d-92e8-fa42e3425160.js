@@ -56,8 +56,6 @@ var Player = /** @class */ (function (_super) {
         _this.Color = null;
         _this.coin_point = null;
         _this.coin = 0;
-        _this.bubble_powerup = null;
-        _this.powerup = 0;
         _this.bubble_banana = null;
         _this.banana = 0;
         _this.bubble_lego = null;
@@ -163,11 +161,6 @@ var Player = /** @class */ (function (_super) {
             else if (other.tag == 2) { // bubble lego
                 cc.audioEngine.playEffect(this.get_B_L_bubble, false);
                 this.update_lego(1);
-                other.node.destroy();
-            }
-            else if (other.tag == 3) { // colorful bubble
-                cc.audioEngine.playEffect(this.get_powerup_bubble, false);
-                this.update_powerup(1);
                 other.node.destroy();
             }
         }
@@ -314,12 +307,6 @@ var Player = /** @class */ (function (_super) {
             cc.find("Canvas/root").addChild(lego_pre);
             this.update_lego(-1);
         }
-        if (event.keyCode == cc.macro.KEY.u && this.powerup > 0) { // bubble powerup @@@ 
-            // plug-in mode
-            //--------------
-            //--------------
-            this.update_powerup(-1);
-        }
     };
     Player.prototype.onKeyUp = function (event) {
         switch (event.keyCode) {
@@ -342,10 +329,6 @@ var Player = /** @class */ (function (_super) {
     Player.prototype.update_coin = function (number) {
         this.coin += number;
         this.coin_point.getComponent(cc.Label).string = this.coin.toString();
-    };
-    Player.prototype.update_powerup = function (number) {
-        this.powerup += number;
-        this.bubble_powerup.getComponent(cc.Label).string = this.powerup.toString();
     };
     Player.prototype.update_banana = function (number) {
         this.banana += number;
@@ -433,9 +416,6 @@ var Player = /** @class */ (function (_super) {
     __decorate([
         property(cc.Node)
     ], Player.prototype, "coin_point", void 0);
-    __decorate([
-        property(cc.Node)
-    ], Player.prototype, "bubble_powerup", void 0);
     __decorate([
         property(cc.Node)
     ], Player.prototype, "bubble_banana", void 0);
