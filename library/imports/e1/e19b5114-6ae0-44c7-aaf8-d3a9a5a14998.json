@@ -3071,12 +3071,12 @@
     "body": null,
     "_offset": {
       "__type__": "cc.Vec2",
-      "x": -355,
+      "x": -235,
       "y": 980
     },
     "_size": {
       "__type__": "cc.Size",
-      "width": 710,
+      "width": 471,
       "height": 1936
     },
     "_id": "65pJmjZLNH+Jc6A8IEDDlV"
