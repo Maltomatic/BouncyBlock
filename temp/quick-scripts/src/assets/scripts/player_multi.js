@@ -137,6 +137,7 @@ var Player = /** @class */ (function (_super) {
             }
         }
         else if (other.node.group == 'coin') { // @@ 
+            cc.audioEngine.playEffect(this.get_coin, false);
             this.update_coin(1);
             other.node.destroy();
         }
@@ -297,6 +298,7 @@ var Player = /** @class */ (function (_super) {
         }
     };
     Player.prototype.jump = function () {
+        cc.audioEngine.playEffect(this.player_jump, false);
         this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 600);
         this.fly_state = 1;
         if (!this.debug_mode)

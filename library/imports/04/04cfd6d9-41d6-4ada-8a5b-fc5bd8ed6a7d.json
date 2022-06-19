@@ -2818,6 +2818,12 @@
       "__id__": 13
     },
     "bubble_powerup": null,
+    "player_jump": {
+      "__uuid__": "64731d57-ff41-400c-8497-9dc3e72ba6fb"
+    },
+    "get_coin": {
+      "__uuid__": "8b8cc45e-01f1-4de5-bce8-c97e691762d8"
+    },
     "_id": "8eoDUhe45OaZ4AbZszluTL"
   },
   {

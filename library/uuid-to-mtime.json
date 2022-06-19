@@ -265,8 +265,8 @@
     "relativePath": "scripts\\bird_map_init.ts"
   },
   "3e7b2463-e729-4784-9227-e7749c387a40": {
-    "asset": 1655575226621,
-    "meta": 1655643541459,
+    "asset": 1655645619624,
+    "meta": 1655645619637,
     "relativePath": "scenes\\multi.fire"
   },
   "b241435f-9b61-4cf8-bbc2-f2476218c711": {
@@ -1195,8 +1195,8 @@
     "relativePath": "scenes\\day.fire"
   },
   "04cfd6d9-41d6-4ada-8a5b-fc5bd8ed6a7d": {
-    "asset": 1655612105099,
-    "meta": 1655643542316,
+    "asset": 1655645159610,
+    "meta": 1655645159630,
     "relativePath": "scenes\\test.fire"
   },
   "4c65e601-7bdc-4894-ba74-78dabfa8544d": {
@@ -1228,11 +1228,6 @@
     "asset": 1655610619259,
     "meta": 1655643541723,
     "relativePath": "scripts\\bird_player.ts"
-  },
-  "f86b1eb1-1093-461a-a9c8-46b312ad29da": {
-    "asset": 1655612110568,
-    "meta": 1655643542590,
-    "relativePath": "scripts\\section_init.ts"
   },
   "3095119b-5903-4a1d-92e8-fa42e3425160": {
     "asset": 1655643517369,
@@ -1279,29 +1274,34 @@
     "meta": 1655643539969,
     "relativePath": "animations"
   },
-  "a4ea169f-e7a5-48fe-a76a-3f69d22f0a2e": {
-    "asset": 1655644013010,
-    "meta": 1655644015269,
-    "relativePath": "scripts\\player_multi.ts"
-  },
   "a4fb5ce8-16f2-4ec9-b773-3d70ce77a8e4": {
     "asset": 1655644213454,
     "meta": 1655644220415,
     "relativePath": "scripts\\player.ts"
-  },
-  "46fe3e40-486d-4367-9aee-9c5cf3c195d8": {
-    "asset": 1655644452216,
-    "meta": 1655644526042,
-    "relativePath": "scripts\\light.ts"
   },
   "c177946f-6188-4a4c-b21d-69b0d6469a50": {
     "asset": 1655644597085,
     "meta": 1655644611252,
     "relativePath": "scripts\\sharp.ts"
   },
+  "a4ea169f-e7a5-48fe-a76a-3f69d22f0a2e": {
+    "asset": 1655645149786,
+    "meta": 1655645151371,
+    "relativePath": "scripts\\player_multi.ts"
+  },
   "b7474a50-3239-4ee7-b7e0-7b3cd838b5f2": {
-    "asset": 1655645056655,
-    "meta": 1655645062673,
+    "asset": 1655645485681,
+    "meta": 1655645499485,
     "relativePath": "scripts\\enemy_wrapper.ts"
+  },
+  "f86b1eb1-1093-461a-a9c8-46b312ad29da": {
+    "asset": 1655645498288,
+    "meta": 1655645499618,
+    "relativePath": "scripts\\section_init.ts"
+  },
+  "46fe3e40-486d-4367-9aee-9c5cf3c195d8": {
+    "asset": 1655645586155,
+    "meta": 1655645594648,
+    "relativePath": "scripts\\light.ts"
   }
 }

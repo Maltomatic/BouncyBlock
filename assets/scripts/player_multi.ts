@@ -144,7 +144,8 @@ export class Player extends cc.Component {
                     // this.last_x = this.node.x;
                 }
             }    
-        } else if(other.node.group == 'coin'){ // @@ 
+        }else if(other.node.group == 'coin'){ // @@ 
+            cc.audioEngine.playEffect(this.get_coin, false); 
             this.update_coin(1);
             other.node.destroy();
         }else if(other.node.name == 'missile'){
@@ -299,7 +300,8 @@ export class Player extends cc.Component {
         }
     }
 
-    jump(){    
+    jump(){
+        cc.audioEngine.playEffect(this.player_jump, false); 
         this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 600);
         this.fly_state = 1;
         if(!this.debug_mode) this.on_floor = false;
