@@ -1,7 +1,7 @@
 [
   {
     "__type__": "cc.Prefab",
-    "_name": "fireball",
+    "_name": "",
     "_objFlags": 0,
     "_native": "",
     "data": {
@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "fireball",
+    "_name": "missile_explode",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -48,8 +48,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        204,
-        264,
+        201,
+        128,
         0,
         0,
         0,
@@ -88,57 +88,59 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 1,
-    "_custom": false,
+    "_custom": true,
     "_file": {
-      "__uuid__": "da787e8e-27a4-463d-9679-7400dbffc74b"
+      "__uuid__": "979c1246-3123-4788-a72f-004caab58827"
     },
-    "_spriteFrame": null,
+    "_spriteFrame": {
+      "__uuid__": "a23235d1-15db-4b95-8439-a2e005bfff91"
+    },
     "_texture": null,
     "_stopped": true,
     "playOnLoad": true,
     "autoRemoveOnFinish": false,
-    "totalParticles": 1061,
+    "totalParticles": 4,
     "duration": 0.1,
-    "emissionRate": 1515.7142857142858,
-    "life": 0.7,
+    "emissionRate": 30,
+    "life": 1,
     "lifeVar": 0.4,
     "_startColor": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 204,
-      "b": 51,
+      "r": 4,
+      "g": 4,
+      "b": 4,
       "a": 255
     },
     "_startColorVar": {
       "__type__": "cc.Color",
-      "r": 0,
-      "g": 0,
-      "b": 51,
-      "a": 25
+      "r": 4,
+      "g": 4,
+      "b": 4,
+      "a": 249
     },
     "_endColor": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 0,
-      "b": 0,
-      "a": 0
+      "r": 4,
+      "g": 4,
+      "b": 4,
+      "a": 255
     },
     "_endColorVar": {
       "__type__": "cc.Color",
-      "r": 0,
-      "g": 0,
-      "b": 0,
+      "r": 11,
+      "g": 11,
+      "b": 11,
       "a": 0
     },
     "angle": 90,
     "angleVar": 50,
-    "startSize": 49,
-    "startSizeVar": 10,
-    "endSize": 400,
+    "startSize": 20,
+    "startSizeVar": 1,
+    "endSize": 0,
     "endSizeVar": 0,
-    "startSpin": 0,
+    "startSpin": 90,
     "startSpinVar": 180,
-    "endSpin": 90,
+    "endSpin": 256,
     "endSpinVar": 0,
     "sourcePos": {
       "__type__": "cc.Vec2",
@@ -147,8 +149,8 @@
     },
     "posVar": {
       "__type__": "cc.Vec2",
-      "x": 15,
-      "y": -20
+      "x": 2,
+      "y": -11.4
     },
     "_positionType": 1,
     "positionType": 1,
@@ -156,7 +158,7 @@
     "gravity": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": -1200
+      "y": -3000
     },
     "speed": 1000,
     "speedVar": 500,

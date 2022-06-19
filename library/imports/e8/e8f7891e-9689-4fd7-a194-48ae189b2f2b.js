@@ -119,18 +119,21 @@ var Bird = /** @class */ (function (_super) {
         else if (other.node.group == 'ground' || other.node.group == 'mound') {
             console.log(other.node.group + " (" + touch.x + ", " + touch.y + ")");
             // diee
-            this.node.getChildByName('eye').active = false;
-            var explode = this.node.getChildByName("star_explode");
-            explode.active = true;
-            explode.getComponent(cc.ParticleSystem).startColor = this.Color.node.color;
-            explode.getComponent(cc.ParticleSystem).endColor = this.Color.node.color;
-            explode.getComponent(cc.ParticleSystem).endColorVar = this.Color.node.color;
-            this.node.getChildByName('color').active = false;
+            this.die_particle();
             this.speed = 0;
             this.scheduleOnce(function () {
                 cc.director.loadScene("lose");
             }, 0.3);
         }
+    };
+    Bird.prototype.die_particle = function () {
+        this.node.getChildByName('eye').active = false;
+        var explode = this.node.getChildByName("star_explode");
+        explode.active = true;
+        explode.getComponent(cc.ParticleSystem).startColor = this.Color.node.color;
+        explode.getComponent(cc.ParticleSystem).endColor = this.Color.node.color;
+        explode.getComponent(cc.ParticleSystem).endColorVar = this.Color.node.color;
+        this.node.getChildByName('color').active = false;
     };
     Bird.prototype.onKeyDown = function (event) {
         if (event.keyCode == cc.macro.KEY.space) {

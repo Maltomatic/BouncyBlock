@@ -115,6 +115,7 @@ var Player = /** @class */ (function (_super) {
         cc.systemEvent.off(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
     };
     Player.prototype.onBeginContact = function (contact, self, other) {
+        var _this = this;
         // // console.log(other.node.group);
         var touch = contact.getWorldManifold().normal;
         // // console.log("hit node with color " + other.node.getComponent(cc.TiledTile).gid);
@@ -162,21 +163,34 @@ var Player = /** @class */ (function (_super) {
             }
         }
         else if (other.node.name == 'missile') {
-            // die
+            // diee
             // deploy white particles
-            this.node.active = false;
+            this.die_particle();
+            // this.node.active = false;
             this.scheduleOnce(function () {
                 cc.director.loadScene("lose");
+                _this.node.active = false;
             }, 0.3);
         }
-        else if (other.node.name == 'sharp' || other.node.name == 'parent') {
-            // die
+        else if ((other.node.name[0] == 's' && other.node.name[1] == 'h') || other.node.name == 'parent') {
+            // diee
             // deploy white particles
-            this.node.active = false;
+            this.die_particle();
+            // this.node.active = false;
             this.scheduleOnce(function () {
                 cc.director.loadScene("lose");
+                _this.node.active = false;
             }, 0.3);
         }
+    };
+    Player.prototype.die_particle = function () {
+        this.node.getChildByName('eye').active = false;
+        var explode = this.node.getChildByName("star_explode");
+        explode.active = true;
+        explode.getComponent(cc.ParticleSystem).startColor = this.Color.node.color;
+        explode.getComponent(cc.ParticleSystem).endColor = this.Color.node.color;
+        explode.getComponent(cc.ParticleSystem).endColorVar = this.Color.node.color;
+        this.node.getChildByName('color').active = false;
     };
     Player.prototype.onEndContact = function (contact, self, other) {
         //a bug happens when the color of mound is same as the color of player, not solved yet 
@@ -216,8 +230,9 @@ var Player = /** @class */ (function (_super) {
             console.log("currently invisible");
         }
         if (this.node.y <= -400) {
-            // die
+            // diee
             // deploy white particles
+            this.die_particle();
             this.node.active = false;
             this.scheduleOnce(function () {
                 cc.director.loadScene("lose");

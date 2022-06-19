@@ -33,14 +33,29 @@ export class Missile extends cc.Component {
         this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).endColorVar = cc.color(0, 0, 0);
     }
 
-    onPostSolve(contact, self, other){
+    // onPostSolve(contact, self, other){
+    //     if(other.node.group == 'ground' || other.node.group == 'mound' || other.node.name == 'player' || other.node.name == 'enemies'){
+    //         // deploy black particles
+    //         // this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).positionType = 1;
+    //         // this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).emissionRate = 100;
+    //         var fire=cc.instantiate(this.explode);
+    //         fire.x=this.node.x;
+    //         fire.y=this.node.y+180;
+    //         cc.find("Canvas").addChild(fire);
+
+    //         this.node.active = false;
+    //         this.node.destroy();
+    //     }
+    // }
+
+    onBeginContact(contact, self, other){
         if(other.node.group == 'ground' || other.node.group == 'mound' || other.node.name == 'player' || other.node.name == 'enemies'){
             // deploy black particles
-            this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).positionType = 1;
-            this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).emissionRate = 100;
+            // this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).positionType = 1;
+            // this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).emissionRate = 100;
             var fire=cc.instantiate(this.explode);
             fire.x=this.node.x;
-            fire.y=this.node.y;
+            fire.y=this.node.y+180;
             cc.find("Canvas").addChild(fire);
 
             this.node.active = false;

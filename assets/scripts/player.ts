@@ -172,18 +172,30 @@ export class Player extends cc.Component {
             }
         }else if(other.node.name == 'missile'){
             // deploy white particles
-            this.node.active = false;
+            this.die_particle();
+            // this.node.active = false;
             this.scheduleOnce(() => {
                 cc.director.loadScene("lose")
             }, 0.3);
-        }else if(other.node.name == 'sharp'||other.node.name == 'parent'){
+        }else if((other.node.name[0] == 's'&&other.node.name[1] == 'h')||other.node.name == 'parent'){
             // deploy white particles
-            this.node.active = false;
+            this.die_particle();
+            // this.node.active = false;
             this.scheduleOnce(() => {
                 cc.director.loadScene("lose")
             }, 0.3);
         }
 
+    }
+    die_particle()
+    {
+        this.node.getChildByName('eye').active = false;
+            var explode=this.node.getChildByName("star_explode");
+            explode.active = true;
+            explode.getComponent(cc.ParticleSystem).startColor= this.Color.node.color;
+            explode.getComponent(cc.ParticleSystem).endColor= this.Color.node.color;
+            explode.getComponent(cc.ParticleSystem).endColorVar= this.Color.node.color;
+            this.node.getChildByName('color').active = false;
     }
     onEndContact(contact, self, other) {
         if(this.getComponent(cc.RigidBody).linearVelocity.y != 0){
