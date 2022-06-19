@@ -76,6 +76,7 @@ var Player = /** @class */ (function (_super) {
         _this.stick = false;
         _this.invis = false;
         _this.chameleon = null;
+        _this.id = 0;
         _this.section_count = 0; // on contact with marker, if section_count * 1920 < this.node.x: init next section and section_count ++
         _this.score = 0;
         _this.color = 0;
@@ -109,6 +110,7 @@ var Player = /** @class */ (function (_super) {
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
         this.dir = 0;
         this.section_count = 0;
+        this.id = cc.sys.localStorage.getItem('id');
     };
     Player.prototype.onDestroy = function () {
         cc.systemEvent.off(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
@@ -324,6 +326,7 @@ var Player = /** @class */ (function (_super) {
             if (this.data) {
                 this.Color.node.color = new cc.Color(255, 255, 255);
                 this.data -= 1;
+                // if id = 1 write to joiner, else write to creator
                 this.noisy = true;
                 this.scheduleOnce(function () {
                     _this.noisy = false;

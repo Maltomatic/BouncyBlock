@@ -90,6 +90,7 @@ export class Player extends cc.Component {
     private stick: boolean = false;
     private invis: boolean = false;
     private chameleon: string = null;
+    private id: number = 0;
     section_count = 0;      // on contact with marker, if section_count * 1920 < this.node.x: init next section and section_count ++
 
     score: number = 0;
@@ -127,6 +128,7 @@ export class Player extends cc.Component {
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
         this.dir = 0;
         this.section_count = 0;
+        this.id = cc.sys.localStorage.getItem('id');
     }
 
     onDestroy () {
@@ -296,7 +298,7 @@ export class Player extends cc.Component {
 
     check_mail(){
         this.ACK = 5;
-        this.scheduleOnce(() => {       // get Firebase data; here simulated with timer
+        this.scheduleOnce(() => {       // get Firebase data; here simulated with timer. // if id = 1 read from creator, else read crom joiner
             if(Math.floor(Math.random()*4) > 2){        // should be if pinged on Firebase
                 this.recv_msg ++;
                 cc.audioEngine.playEffect(this.notif, false);
@@ -334,6 +336,7 @@ export class Player extends cc.Component {
             if(this.data){
                 this.Color.node.color = new cc.Color(255,255,255);
                 this.data -= 1;
+                // if id = 1 write to joiner, else write to creator
                 this.noisy = true;
                 this.scheduleOnce(() => {
                     this.noisy = false;

@@ -17,6 +17,7 @@ export default class NewClass extends cc.Component {
     before_x:number;
     stunned:number=0;
     private penalty: number = 0;
+    private animator: cc.Animation = null;
     
     @property(cc.AudioClip)
     footstep:cc.AudioClip;
@@ -25,6 +26,7 @@ export default class NewClass extends cc.Component {
     @property(cc.Node)
     player:cc.Node;
     onLoad () {
+        this.animator = this.getComponent(cc.Animation);
         cc.director.getPhysicsManager().enabled = true;
         cc.director.getCollisionManager().enabled = true;
         this.before_x=this.node.x;
@@ -37,14 +39,16 @@ export default class NewClass extends cc.Component {
         if(other.node.name=="lego")
         {
             this.stunned=1;
+            this.animator.play("parent_stun");
             setTimeout(()=>{
                 this.stunned=0;
+                this.animator.play("parent_norm");
                 this.node.color=new cc.Color(255,255,255);
                 this.penalty = 220;
                 this.scheduleOnce(() => {
                     this.penalty = 0;
-                }, 1.5);
-                }, 3000);
+                }, 2);
+            }, 4000);
         }
         
         
@@ -54,7 +58,6 @@ export default class NewClass extends cc.Component {
 
     // onLoad () {}
     protected update(dt: number): void {
-        console.log(this.node.x, this.node.y);
         this.speedup = 0.3 + 0.003*parseInt(this.now_score.string);  //每得一分加速0.03 //約七百多分會比player快
         if(!this.stunned) this.node.x += Math.max(0.32, (Math.min(this.speedup * 300, 200) + this.penalty)* dt);
         else this.node.x+=0;

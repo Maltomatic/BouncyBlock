@@ -69,7 +69,8 @@ var NewClass = /** @class */ (function (_super) {
             ref.remove();
             firebase.database().ref('in_game/' + joiner + '/creator').set(0);
             console.log("entering game as creator");
-            // remmeber self as creator, then change scene
+            // remeber self as creator, then change scene
+            cc.sys.localStorage.setItem("id", 1);
             cc.director.loadScene('multi');
         });
     };

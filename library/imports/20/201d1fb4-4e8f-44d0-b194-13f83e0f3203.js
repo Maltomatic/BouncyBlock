@@ -37,10 +37,12 @@ var NewClass = /** @class */ (function (_super) {
         _this.speedup = 0.7;
         _this.stunned = 0;
         _this.penalty = 0;
+        _this.animator = null;
         return _this;
         // update (dt) {}
     }
     NewClass.prototype.onLoad = function () {
+        this.animator = this.getComponent(cc.Animation);
         cc.director.getPhysicsManager().enabled = true;
         cc.director.getCollisionManager().enabled = true;
         this.before_x = this.node.x;
@@ -52,20 +54,21 @@ var NewClass = /** @class */ (function (_super) {
         var touch = contact.getWorldManifold().normal;
         if (other.node.name == "lego") {
             this.stunned = 1;
+            this.animator.play("parent_stun");
             setTimeout(function () {
                 _this.stunned = 0;
+                _this.animator.play("parent_norm");
                 _this.node.color = new cc.Color(255, 255, 255);
                 _this.penalty = 220;
                 _this.scheduleOnce(function () {
                     _this.penalty = 0;
-                }, 1.5);
-            }, 3000);
+                }, 2);
+            }, 4000);
         }
     };
     // LIFE-CYCLE CALLBACKS:
     // onLoad () {}
     NewClass.prototype.update = function (dt) {
-        console.log(this.node.x, this.node.y);
         this.speedup = 0.3 + 0.003 * parseInt(this.now_score.string); //每得一分加速0.03 //約七百多分會比player快
         if (!this.stunned)
             this.node.x += Math.max(0.32, (Math.min(this.speedup * 300, 200) + this.penalty) * dt);
