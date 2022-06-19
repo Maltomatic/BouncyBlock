@@ -30,6 +30,7 @@ var NewClass = /** @class */ (function (_super) {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.invite_code = null;
         _this.uid = null;
+        _this.kick = false;
         return _this;
     }
     // LIFE-CYCLE CALLBACKS:
@@ -41,18 +42,27 @@ var NewClass = /** @class */ (function (_super) {
                 _this.uid = firebase.auth().currentUser.uid;
             }
             else {
-                alert("Multiplayer is not accessible when you are not signed in.");
-                cc.director.loadScene('menu');
+                _this.kick = true;
             }
         });
     };
     NewClass.prototype.start = function () {
         var _this = this;
         cc.find("Canvas/signin_data/Create").on(cc.Node.EventType.MOUSE_DOWN, function () {
-            _this.makeGame();
+            if (_this.kick) {
+                alert("Multiplayer is not accessible when you are not signed in.");
+                cc.director.loadScene('menu');
+            }
+            else
+                _this.makeGame();
         }, this);
         cc.find("Canvas/signin_data/Join").on(cc.Node.EventType.MOUSE_DOWN, function () {
-            _this.joinGame();
+            if (_this.kick) {
+                alert("Multiplayer is not accessible when you are not signed in.");
+                cc.director.loadScene('menu');
+            }
+            else
+                _this.joinGame();
         }, this);
         cc.find("Canvas/signin_data/back").on(cc.Node.EventType.MOUSE_DOWN, function () {
             _this.invite_code.string = '';
@@ -71,6 +81,7 @@ var NewClass = /** @class */ (function (_super) {
             console.log("entering game as creator");
             // remeber self as creator, then change scene
             cc.sys.localStorage.setItem("id", 1);
+            cc.sys.localStorage.setItem("room", joiner);
             cc.director.loadScene('multi');
         });
     };

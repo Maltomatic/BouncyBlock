@@ -1170,8 +1170,8 @@
     "relativePath": "scenes\\lose.fire"
   },
   "e19b5114-6ae0-44c7-aaf8-d3a9a5a14998": {
-    "asset": 1655673852688,
-    "meta": 1655673852716,
+    "asset": 1655673982174,
+    "meta": 1655673982211,
     "relativePath": "scenes\\day.fire"
   },
   "63c73803-efc9-413a-a6ef-556b860d4ad0": {
@@ -1354,16 +1354,6 @@
     "meta": 1655668035491,
     "relativePath": "scripts\\section_init.ts"
   },
-  "c676e8bc-b7a2-4ccd-90b3-2ef03d90bb2b": {
-    "asset": 1655672946420,
-    "meta": 1655673238036,
-    "relativePath": "scripts\\pair_game.ts"
-  },
-  "a4ea169f-e7a5-48fe-a76a-3f69d22f0a2e": {
-    "asset": 1655673069072,
-    "meta": 1655673238269,
-    "relativePath": "scripts\\player_multi.ts"
-  },
   "39ee6f8c-75d9-4497-a806-cb304a3a66b7": {
     "asset": 1655673243787,
     "meta": 1655673243935,
@@ -1408,5 +1398,15 @@
     "asset": 1655673838901,
     "meta": 1655673841399,
     "relativePath": "scripts\\parent.ts"
+  },
+  "c676e8bc-b7a2-4ccd-90b3-2ef03d90bb2b": {
+    "asset": 1655674757657,
+    "meta": 1655674774093,
+    "relativePath": "scripts\\pair_game.ts"
+  },
+  "a4ea169f-e7a5-48fe-a76a-3f69d22f0a2e": {
+    "asset": 1655674555008,
+    "meta": 1655674774352,
+    "relativePath": "scripts\\player_multi.ts"
   }
 }

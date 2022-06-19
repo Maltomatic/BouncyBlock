@@ -77,6 +77,7 @@ var Player = /** @class */ (function (_super) {
         _this.invis = false;
         _this.chameleon = null;
         _this.id = 0;
+        _this.room = null;
         _this.section_count = 0; // on contact with marker, if section_count * 1920 < this.node.x: init next section and section_count ++
         _this.score = 0;
         _this.color = 0;
@@ -111,6 +112,7 @@ var Player = /** @class */ (function (_super) {
         this.dir = 0;
         this.section_count = 0;
         this.id = cc.sys.localStorage.getItem('id');
+        this.room = cc.sys.localStorage.getItem('room');
     };
     Player.prototype.onDestroy = function () {
         cc.systemEvent.off(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
@@ -290,8 +292,12 @@ var Player = /** @class */ (function (_super) {
     Player.prototype.check_mail = function () {
         var _this = this;
         this.ACK = 5;
-        this.scheduleOnce(function () {
-            if (Math.floor(Math.random() * 4) > 2) { // should be if pinged on Firebase
+        var ref = firebase.database().ref('in_game/' + this.room + ((this.id == 1) ? '/creator' : '/joiner'));
+        // this.scheduleOnce(() => {       // get Firebase data; here simulated with timer. // if id = 1 read from creator, else read crom joiner
+        // if(Math.floor(Math.random()*4) > 2){        // should be if pinged on Firebase
+        ref.once('value', function (snapshot) {
+            if (snapshot.val() > 0) {
+                ref.set(snapshot.val() - 1);
                 _this.recv_msg++;
                 cc.audioEngine.playEffect(_this.notif, false);
                 _this.Color.node.color = new cc.Color(255, 255, 255);

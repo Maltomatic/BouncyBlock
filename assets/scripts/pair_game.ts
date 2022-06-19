@@ -7,6 +7,7 @@ export default class NewClass extends cc.Component {
     invite_code: cc.EditBox = null;
 
     private uid: string = null;
+    private kick: boolean = false;
 
     // LIFE-CYCLE CALLBACKS:
 
@@ -16,18 +17,23 @@ export default class NewClass extends cc.Component {
             if(user){
                 this.uid = firebase.auth().currentUser.uid;
             }else{
-                alert("Multiplayer is not accessible when you are not signed in.");
-                cc.director.loadScene('menu');
+                this.kick = true;
             }
         });
     }
 
     start () {
         cc.find("Canvas/signin_data/Create").on(cc.Node.EventType.MOUSE_DOWN, () => {
-            this.makeGame();
+            if(this.kick){
+                alert("Multiplayer is not accessible when you are not signed in.");
+                cc.director.loadScene('menu');
+            }else this.makeGame();
         }, this);
         cc.find("Canvas/signin_data/Join").on(cc.Node.EventType.MOUSE_DOWN, () => {
-            this.joinGame()
+            if(this.kick){
+                alert("Multiplayer is not accessible when you are not signed in.");
+                cc.director.loadScene('menu');
+            }else this.joinGame()
         }, this);
         cc.find("Canvas/signin_data/back").on(cc.Node.EventType.MOUSE_DOWN, () => {
             this.invite_code.string = '';
@@ -47,6 +53,7 @@ export default class NewClass extends cc.Component {
             console.log("entering game as creator");
             // remeber self as creator, then change scene
             cc.sys.localStorage.setItem("id", 1);
+            cc.sys.localStorage.setItem("room", joiner);
             cc.director.loadScene('multi');
         })
     }
