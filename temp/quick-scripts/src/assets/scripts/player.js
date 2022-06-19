@@ -158,15 +158,15 @@ var Player = /** @class */ (function (_super) {
         else if (other.node.name == 'missile') {
             // deploy white particles
             this.die_particle();
-            this.node.active = false;
+            // this.node.active = false;
             this.scheduleOnce(function () {
                 cc.director.loadScene("lose");
             }, 0.3);
         }
-        else if (other.node.name == 'sharp' || other.node.name == 'parent') {
+        else if ((other.node.name[0] == 's' && other.node.name[1] == 'h') || other.node.name == 'parent') {
             // deploy white particles
             this.die_particle();
-            this.node.active = false;
+            // this.node.active = false;
             this.scheduleOnce(function () {
                 cc.director.loadScene("lose");
             }, 0.3);

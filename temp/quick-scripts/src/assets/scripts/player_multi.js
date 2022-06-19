@@ -115,6 +115,7 @@ var Player = /** @class */ (function (_super) {
         cc.systemEvent.off(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
     };
     Player.prototype.onBeginContact = function (contact, self, other) {
+        var _this = this;
         // // console.log(other.node.group);
         var touch = contact.getWorldManifold().normal;
         // // console.log("hit node with color " + other.node.getComponent(cc.TiledTile).gid);
@@ -165,18 +166,20 @@ var Player = /** @class */ (function (_super) {
             // diee
             // deploy white particles
             this.die_particle();
-            this.node.active = false;
+            // this.node.active = false;
             this.scheduleOnce(function () {
                 cc.director.loadScene("lose");
+                _this.node.active = false;
             }, 0.3);
         }
-        else if (other.node.name == 'sharp' || other.node.name == 'parent') {
+        else if ((other.node.name[0] == 's' && other.node.name[1] == 'h') || other.node.name == 'parent') {
             // diee
             // deploy white particles
             this.die_particle();
-            this.node.active = false;
+            // this.node.active = false;
             this.scheduleOnce(function () {
                 cc.director.loadScene("lose");
+                _this.node.active = false;
             }, 0.3);
         }
     };
