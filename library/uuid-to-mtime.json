@@ -1269,14 +1269,14 @@
     "meta": 1655611064718,
     "relativePath": "scripts\\sharp.ts"
   },
-  "f86b1eb1-1093-461a-a9c8-46b312ad29da": {
-    "asset": 1655611879175,
-    "meta": 1655611880830,
-    "relativePath": "scripts\\section_init.ts"
-  },
   "b7474a50-3239-4ee7-b7e0-7b3cd838b5f2": {
     "asset": 1655611958732,
     "meta": 1655611980018,
     "relativePath": "scripts\\enemy_wrapper.ts"
+  },
+  "f86b1eb1-1093-461a-a9c8-46b312ad29da": {
+    "asset": 1655612110568,
+    "meta": 1655612153104,
+    "relativePath": "scripts\\section_init.ts"
   }
 }
