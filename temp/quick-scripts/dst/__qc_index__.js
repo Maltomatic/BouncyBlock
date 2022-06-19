@@ -10,6 +10,7 @@
                     };
                     function __define (exports, require, module) {
                         if (!nodeEnv) {__quick_compile_project__.registerModule(__filename, module);}
+require('./assets/scripts/NewScript');
 require('./assets/scripts/arm');
 require('./assets/scripts/bird_map_init');
 require('./assets/scripts/bird_player');
@@ -18,6 +19,7 @@ require('./assets/scripts/bubble_item_in_dayscene');
 require('./assets/scripts/enemy moving sharp');
 require('./assets/scripts/enemy_wrapper');
 require('./assets/scripts/light');
+require('./assets/scripts/lose_canvas');
 require('./assets/scripts/menu');
 require('./assets/scripts/missile');
 require('./assets/scripts/parent');

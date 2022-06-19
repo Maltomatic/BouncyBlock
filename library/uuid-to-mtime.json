@@ -5,8 +5,8 @@
     "relativePath": "animation"
   },
   "e449813f-b6ab-4724-a9c5-9003463f9a75": {
-    "asset": 1655624743354,
-    "meta": 1655624858715,
+    "asset": 1655627073428,
+    "meta": 1655627571558,
     "relativePath": "audio"
   },
   "14296c85-75c6-49ed-bfd8-f18d9cc51d28": {
@@ -240,8 +240,8 @@
     "relativePath": "scenes\\bird.fire"
   },
   "70fdd7c0-9fce-41ee-ad1c-0ad0681c277b": {
-    "asset": 1655308925393,
-    "meta": 1655613410013,
+    "asset": 1655627685682,
+    "meta": 1655627685682,
     "relativePath": "scenes\\lose.fire"
   },
   "63c73803-efc9-413a-a6ef-556b860d4ad0": {
@@ -255,8 +255,8 @@
     "relativePath": "scenes\\multi_pairing.fire"
   },
   "240792ee-e159-498e-9d53-7f96c7aafa0b": {
-    "asset": 1655625523579,
-    "meta": 1655625964242,
+    "asset": 1655627526508,
+    "meta": 1655627571558,
     "relativePath": "scripts"
   },
   "77477a70-be23-4af6-b183-bf7d2817badf": {
@@ -1200,8 +1200,8 @@
     "relativePath": "maps\\section17.tmx"
   },
   "e19b5114-6ae0-44c7-aaf8-d3a9a5a14998": {
-    "asset": 1655626371523,
-    "meta": 1655626371535,
+    "asset": 1655627748908,
+    "meta": 1655627748917,
     "relativePath": "scenes\\day.fire"
   },
   "04cfd6d9-41d6-4ada-8a5b-fc5bd8ed6a7d": {
@@ -1269,24 +1269,34 @@
     "meta": 1655624586225,
     "relativePath": "audio\\banana_slip.mp3"
   },
-  "201d1fb4-4e8f-44d0-b194-13f83e0f3203": {
-    "asset": 1655626265966,
-    "meta": 1655626267597,
-    "relativePath": "scripts\\parent.ts"
-  },
   "9688cce3-3123-4f32-ad3c-c18228b9a1a9": {
     "asset": 1655626356964,
     "meta": 1655626360246,
     "relativePath": "audio\\footstep.wav"
   },
-  "39f308ea-905f-4fc8-8004-c5ade8bc02ab": {
-    "asset": 1655626735636,
-    "meta": 1655626736541,
-    "relativePath": "scripts\\arm.ts"
-  },
   "4837f7d9-1dd4-4dcb-a550-856fb734776c": {
     "asset": 1655627074665,
     "meta": 1655627075111,
     "relativePath": "audio\\itai.wav"
+  },
+  "39f308ea-905f-4fc8-8004-c5ade8bc02ab": {
+    "asset": 1655627289701,
+    "meta": 1655627346540,
+    "relativePath": "scripts\\arm.ts"
+  },
+  "201d1fb4-4e8f-44d0-b194-13f83e0f3203": {
+    "asset": 1655627378850,
+    "meta": 1655627380215,
+    "relativePath": "scripts\\parent.ts"
+  },
+  "c676e8bc-b7a2-4ccd-90b3-2ef03d90bb2b": {
+    "asset": 1655627526497,
+    "meta": 1655627526509,
+    "relativePath": "scripts\\NewScript.ts"
+  },
+  "e0977a98-0e43-4799-95eb-bf4f56cd825c": {
+    "asset": 1655627629070,
+    "meta": 1655627633121,
+    "relativePath": "scripts\\lose_canvas.ts"
   }
 }

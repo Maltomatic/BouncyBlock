@@ -3070,12 +3070,12 @@
     "body": null,
     "_offset": {
       "__type__": "cc.Vec2",
-      "x": -235,
-      "y": 980
+      "x": -299,
+      "y": 974
     },
     "_size": {
       "__type__": "cc.Size",
-      "width": 471,
+      "width": 393,
       "height": 1936
     },
     "_id": "65pJmjZLNH+Jc6A8IEDDlV"
@@ -3090,6 +3090,9 @@
     "_enabled": true,
     "now_score": {
       "__id__": 10
+    },
+    "footstep": {
+      "__uuid__": "9688cce3-3123-4f32-ad3c-c18228b9a1a9"
     },
     "_id": "a94uHsbXZGXb5/ElRTEVlC"
   },
