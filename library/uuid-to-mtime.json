@@ -95,8 +95,8 @@
     "relativePath": "image\\lego_trample.png"
   },
   "cc1c7d0d-7ff3-47e5-bb5b-2500847f2b54": {
-    "asset": 1655608879272,
-    "meta": 1655608973274,
+    "asset": 1655609896685,
+    "meta": 1655610045515,
     "relativePath": "maps"
   },
   "ba8dc4ff-61ff-44dd-9d93-c24b1bbe8a37": {
@@ -220,8 +220,8 @@
     "relativePath": "prefabs\\light_enemy .prefab"
   },
   "e8cb6686-0da8-4260-99a8-b5d5b8aac11c": {
-    "asset": 1655608153000,
-    "meta": 1655608973277,
+    "asset": 1655609896688,
+    "meta": 1655610045517,
     "relativePath": "scenes"
   },
   "09ce6a93-eb1a-4bd0-bdf0-7a2033be6d79": {
@@ -255,8 +255,8 @@
     "relativePath": "scenes\\multi_pairing.fire"
   },
   "240792ee-e159-498e-9d53-7f96c7aafa0b": {
-    "asset": 1655608153000,
-    "meta": 1655608973279,
+    "asset": 1655609896692,
+    "meta": 1655610045520,
     "relativePath": "scripts"
   },
   "39f308ea-905f-4fc8-8004-c5ade8bc02ab": {
@@ -354,25 +354,10 @@
     "meta": 1655608974179,
     "relativePath": "audio\\notification.wav"
   },
-  "18ef457d-e8e4-48cc-b7ba-f5478ba9ac59": {
-    "asset": 1655603684090,
-    "meta": 1655608975611,
-    "relativePath": "maps\\seciton11.tmx"
-  },
-  "642dfe2a-5f10-4ef0-a650-4025f07b5cbf": {
-    "asset": 1655603551065,
-    "meta": 1655608975608,
-    "relativePath": "maps\\seciton12.tmx"
-  },
   "d1ccd502-33ed-423a-9e5d-94714b20d24e": {
     "asset": 1655495393000,
     "meta": 1655608975634,
     "relativePath": "maps\\section18.tmx"
-  },
-  "e7bd1b5f-14b7-461a-8bf4-f24217132c0b": {
-    "asset": 1655605514854,
-    "meta": 1655608975636,
-    "relativePath": "maps\\section19.tmx"
   },
   "71295989-2e66-4dd6-9887-aee3caf4e380": {
     "asset": 1655495393000,
@@ -383,31 +368,6 @@
     "asset": 1655495393000,
     "meta": 1655608975649,
     "relativePath": "maps\\section3-2.tmx"
-  },
-  "e0517882-a22a-4bcc-826c-8b8cdfa55f17": {
-    "asset": 1655604081911,
-    "meta": 1655608975625,
-    "relativePath": "maps\\section14.tmx"
-  },
-  "cd15ca35-8597-4dd6-bf7c-5590538849e2": {
-    "asset": 1655605375196,
-    "meta": 1655608975627,
-    "relativePath": "maps\\section15.tmx"
-  },
-  "4ef9cb00-9197-4f57-9c31-aaa43300f159": {
-    "asset": 1655605050561,
-    "meta": 1655608975631,
-    "relativePath": "maps\\section16.tmx"
-  },
-  "4c65e601-7bdc-4894-ba74-78dabfa8544d": {
-    "asset": 1655606176888,
-    "meta": 1655608975642,
-    "relativePath": "maps\\section20.tmx"
-  },
-  "929304be-d51a-4239-9749-d1a0115d13b5": {
-    "asset": 1655603822938,
-    "meta": 1655608975666,
-    "relativePath": "maps\\section6.tmx"
   },
   "ffa215e5-c7dc-4ee6-8a4b-f76fef008476": {
     "asset": 1655577385381,
@@ -455,19 +415,9 @@
     "relativePath": "maps\\section9.tmx"
   },
   "63f93d4f-8b5d-4ab3-827b-471e0cb9c419": {
-    "asset": 1655608153000,
-    "meta": 1655608975482,
+    "asset": 1655610193182,
+    "meta": 1655610193198,
     "relativePath": "scenes\\start.fire"
-  },
-  "78004906-5af3-480e-9882-557e293f7cf6": {
-    "asset": 1655603797457,
-    "meta": 1655608975622,
-    "relativePath": "maps\\section13.tmx"
-  },
-  "e308fa72-a6ef-4aad-aed7-97480f09e107": {
-    "asset": 1655603755674,
-    "meta": 1655608975619,
-    "relativePath": "maps\\section10.tmx"
   },
   "80a5e3ab-dc16-4800-a7c1-f79ac6bdf8a4": {
     "asset": 1655587574015,
@@ -488,16 +438,6 @@
     "asset": 1655608153000,
     "meta": 1655608974474,
     "relativePath": "prefabs\\section1.prefab"
-  },
-  "02a3a0f9-02da-4c93-888f-648ec2ed8ad0": {
-    "asset": 1655604942253,
-    "meta": 1655608975640,
-    "relativePath": "maps\\section17.tmx"
-  },
-  "d1aa3912-505c-4599-a80b-7b6815ec370c": {
-    "asset": 1655603857084,
-    "meta": 1655608975657,
-    "relativePath": "maps\\section5.tmx"
   },
   "cb1d8429-52ef-4643-ae87-34487c2b8968": {
     "asset": 1655608153000,
@@ -553,11 +493,6 @@
     "asset": 1655608153000,
     "meta": 1655608974545,
     "relativePath": "prefabs\\section5.prefab"
-  },
-  "04cfd6d9-41d6-4ada-8a5b-fc5bd8ed6a7d": {
-    "asset": 1655609751927,
-    "meta": 1655609751946,
-    "relativePath": "scenes\\test.fire"
   },
   "99d48cf7-60d0-4fd5-b469-c83e43171e02": {
     "asset": 1655608153000,
@@ -699,11 +634,6 @@
     "meta": 1655608974532,
     "relativePath": "prefabs\\section20.prefab"
   },
-  "09814327-6552-4d87-8bf9-aeb80dde7dd7": {
-    "asset": 1655603236761,
-    "meta": 1655608975638,
-    "relativePath": "maps\\section2.tmx"
-  },
   "0a3c3163-d3ad-4bfc-af5d-517a56e6cac9": {
     "asset": 1655598936632,
     "meta": 1655608975613,
@@ -723,16 +653,6 @@
     "asset": 1655600377772,
     "meta": 1655608975650,
     "relativePath": "maps\\section3.tmx"
-  },
-  "f86b1eb1-1093-461a-a9c8-46b312ad29da": {
-    "asset": 1655608555822,
-    "meta": 1655608975404,
-    "relativePath": "scripts\\section_init.ts"
-  },
-  "a4fb5ce8-16f2-4ec9-b773-3d70ce77a8e4": {
-    "asset": 1655608740641,
-    "meta": 1655608975106,
-    "relativePath": "scripts\\player.ts"
   },
   "64731d57-ff41-400c-8497-9dc3e72ba6fb": {
     "asset": 1655608153000,
@@ -763,16 +683,6 @@
     "asset": 1655608153000,
     "meta": 1655608974164,
     "relativePath": "audio\\get into play.wav"
-  },
-  "e19b5114-6ae0-44c7-aaf8-d3a9a5a14998": {
-    "asset": 1655609505400,
-    "meta": 1655609505418,
-    "relativePath": "scenes\\day.fire"
-  },
-  "3095119b-5903-4a1d-92e8-fa42e3425160": {
-    "asset": 1655609732455,
-    "meta": 1655609749976,
-    "relativePath": "scripts\\player_day.ts"
   },
   "9836134e-b892-4283-b6b2-78b5acf3ed45": {
     "asset": 1650355665513,
@@ -1273,5 +1183,95 @@
     "asset": 1650355665621,
     "meta": 1655609761754,
     "relativePath": "model\\primitives.fbx"
+  },
+  "642dfe2a-5f10-4ef0-a650-4025f07b5cbf": {
+    "asset": 1655609896672,
+    "meta": 1655610032311,
+    "relativePath": "maps\\seciton12.tmx"
+  },
+  "e0517882-a22a-4bcc-826c-8b8cdfa55f17": {
+    "asset": 1655609896675,
+    "meta": 1655610032313,
+    "relativePath": "maps\\section14.tmx"
+  },
+  "e308fa72-a6ef-4aad-aed7-97480f09e107": {
+    "asset": 1655609896673,
+    "meta": 1655610032316,
+    "relativePath": "maps\\section10.tmx"
+  },
+  "18ef457d-e8e4-48cc-b7ba-f5478ba9ac59": {
+    "asset": 1655609896671,
+    "meta": 1655610032318,
+    "relativePath": "maps\\seciton11.tmx"
+  },
+  "78004906-5af3-480e-9882-557e293f7cf6": {
+    "asset": 1655609896674,
+    "meta": 1655610032320,
+    "relativePath": "maps\\section13.tmx"
+  },
+  "cd15ca35-8597-4dd6-bf7c-5590538849e2": {
+    "asset": 1655609896677,
+    "meta": 1655610032322,
+    "relativePath": "maps\\section15.tmx"
+  },
+  "4ef9cb00-9197-4f57-9c31-aaa43300f159": {
+    "asset": 1655609896678,
+    "meta": 1655610032325,
+    "relativePath": "maps\\section16.tmx"
+  },
+  "02a3a0f9-02da-4c93-888f-648ec2ed8ad0": {
+    "asset": 1655609896679,
+    "meta": 1655610032327,
+    "relativePath": "maps\\section17.tmx"
+  },
+  "3095119b-5903-4a1d-92e8-fa42e3425160": {
+    "asset": 1655609896691,
+    "meta": 1655610032053,
+    "relativePath": "scripts\\player_day.ts"
+  },
+  "a4fb5ce8-16f2-4ec9-b773-3d70ce77a8e4": {
+    "asset": 1655609896689,
+    "meta": 1655610032153,
+    "relativePath": "scripts\\player.ts"
+  },
+  "f86b1eb1-1093-461a-a9c8-46b312ad29da": {
+    "asset": 1655609896692,
+    "meta": 1655610032261,
+    "relativePath": "scripts\\section_init.ts"
+  },
+  "e19b5114-6ae0-44c7-aaf8-d3a9a5a14998": {
+    "asset": 1655609896687,
+    "meta": 1655610032287,
+    "relativePath": "scenes\\day.fire"
+  },
+  "04cfd6d9-41d6-4ada-8a5b-fc5bd8ed6a7d": {
+    "asset": 1655609896688,
+    "meta": 1655610032298,
+    "relativePath": "scenes\\test.fire"
+  },
+  "4c65e601-7bdc-4894-ba74-78dabfa8544d": {
+    "asset": 1655609896682,
+    "meta": 1655610032338,
+    "relativePath": "maps\\section20.tmx"
+  },
+  "09814327-6552-4d87-8bf9-aeb80dde7dd7": {
+    "asset": 1655609896681,
+    "meta": 1655610032340,
+    "relativePath": "maps\\section2.tmx"
+  },
+  "d1aa3912-505c-4599-a80b-7b6815ec370c": {
+    "asset": 1655609896684,
+    "meta": 1655610032342,
+    "relativePath": "maps\\section5.tmx"
+  },
+  "929304be-d51a-4239-9749-d1a0115d13b5": {
+    "asset": 1655609896685,
+    "meta": 1655610032372,
+    "relativePath": "maps\\section6.tmx"
+  },
+  "e7bd1b5f-14b7-461a-8bf4-f24217132c0b": {
+    "asset": 1655609896680,
+    "meta": 1655610032374,
+    "relativePath": "maps\\section19.tmx"
   }
 }
