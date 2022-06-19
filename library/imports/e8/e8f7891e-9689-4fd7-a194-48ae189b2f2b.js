@@ -120,7 +120,11 @@ var Bird = /** @class */ (function (_super) {
             console.log(other.node.group + " (" + touch.x + ", " + touch.y + ")");
             // diee
             this.node.getChildByName('eye').active = false;
-            this.node.getChildByName('star_explode').active = true;
+            var explode = this.node.getChildByName("star_explode");
+            explode.active = true;
+            explode.getComponent(cc.ParticleSystem).startColor = this.Color.node.color;
+            explode.getComponent(cc.ParticleSystem).endColor = this.Color.node.color;
+            explode.getComponent(cc.ParticleSystem).endColorVar = this.Color.node.color;
             this.node.getChildByName('color').active = false;
             this.speed = 0;
             this.scheduleOnce(function () {
