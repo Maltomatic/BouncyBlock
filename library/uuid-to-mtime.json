@@ -665,8 +665,8 @@
     "relativePath": "maps\\section17.tmx"
   },
   "e19b5114-6ae0-44c7-aaf8-d3a9a5a14998": {
-    "asset": 1655659635048,
-    "meta": 1655659643791,
+    "asset": 1655661995569,
+    "meta": 1655661995578,
     "relativePath": "scenes\\day.fire"
   },
   "4c65e601-7bdc-4894-ba74-78dabfa8544d": {
@@ -1309,11 +1309,6 @@
     "meta": 1655659643786,
     "relativePath": "scripts\\parent.ts"
   },
-  "e8f7891e-9689-4fd7-a194-48ae189b2f2b": {
-    "asset": 1655658835255,
-    "meta": 1655658836364,
-    "relativePath": "scripts\\bird_player.ts"
-  },
   "979c1246-3123-4788-a72f-004caab58827": {
     "asset": 1655659732622,
     "meta": 1655659732638,
@@ -1333,5 +1328,15 @@
     "asset": 1655661556004,
     "meta": 1655661557463,
     "relativePath": "scripts\\root.ts"
+  },
+  "c956ec21-6e76-4da6-81e6-c0301952a33f": {
+    "asset": 1655661893713,
+    "meta": 1655661893725,
+    "relativePath": "prefabs\\star_explode.prefab"
+  },
+  "e8f7891e-9689-4fd7-a194-48ae189b2f2b": {
+    "asset": 1655661991749,
+    "meta": 1655661993220,
+    "relativePath": "scripts\\bird_player.ts"
   }
 }
