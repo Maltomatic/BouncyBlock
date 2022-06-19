@@ -66,7 +66,7 @@ var Player = /** @class */ (function (_super) {
         _this.hidden = false;
         _this.noisy = false;
         _this.unhide = false;
-        _this.ACK = 5;
+        // private ACK: number = 5;
         _this.recv_msg = 0;
         _this.data = 0;
         _this.sec_list = [];
@@ -222,6 +222,7 @@ var Player = /** @class */ (function (_super) {
         this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).endColor = this.Color.node.color;
         this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).endColorVar = this.Color.node.color;
         //-------------------------------------------------
+        this.check_mail();
     };
     Player.prototype.update = function (dt) {
         if (this.invis && !this.unhide) {
@@ -244,9 +245,6 @@ var Player = /** @class */ (function (_super) {
                 cc.director.loadScene("lose");
             }, 0.3);
         }
-        this.ACK -= dt;
-        if (this.ACK <= 0)
-            this.check_mail();
         this.camera_track();
         this.node.x += this.dir * 200 * dt;
         if (this.fly_state == 1) {
@@ -293,19 +291,23 @@ var Player = /** @class */ (function (_super) {
     };
     Player.prototype.check_mail = function () {
         var _this = this;
-        this.ACK = 5;
         var ref = firebase.database().ref('in_game/' + this.room + ((this.id == 1) ? '/creator' : '/joiner'));
         // this.scheduleOnce(() => {       // get Firebase data; here simulated with timer. // if id = 1 read from creator, else read crom joiner
         // if(Math.floor(Math.random()*4) > 2){        // should be if pinged on Firebase
         ref.once('value', function (snapshot) {
             if (snapshot.val() > 0) {
-                ref.set(snapshot.val() - 1);
+                console.log("received message");
+                ref.set((snapshot.val() - 1), function () {
+                    _this.check_mail();
+                });
                 _this.recv_msg++;
+                console.log("messages left now " + _this.recv_msg);
                 cc.audioEngine.playEffect(_this.notif, false);
                 _this.Color.node.color = new cc.Color(255, 255, 255);
                 _this.unhide = true;
                 _this.scheduleOnce(function () {
                     _this.recv_msg--;
+                    console.log("visible time up, messages left: " + _this.recv_msg);
                     if (_this.recv_msg == 0) {
                         _this.unhide = false;
                         var color_str = _this.color_list[_this.base + _this.color];
@@ -314,6 +316,8 @@ var Player = /** @class */ (function (_super) {
                     }
                 }, 3);
             }
+            else
+                _this.check_mail();
         });
     };
     Player.prototype.onKeyDown = function (event) {

@@ -78,7 +78,7 @@ export class Player extends cc.Component {
     hidden: boolean = false;
     private noisy: boolean = false;
     private unhide: boolean = false;
-    private ACK: number = 5;
+    // private ACK: number = 5;
     private recv_msg: number = 0;
 
     private data: number = 0;
@@ -239,6 +239,7 @@ export class Player extends cc.Component {
         this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).endColor= this.Color.node.color;
         this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).endColorVar= this.Color.node.color;
         //-------------------------------------------------
+        this.check_mail();
     }
 
     update (dt) {
@@ -261,8 +262,6 @@ export class Player extends cc.Component {
                 cc.director.loadScene("lose")
             }, 0.3);
         }
-        this.ACK -= dt;
-        if(this.ACK <= 0) this.check_mail();
         this.camera_track();
         this.node.x += this.dir * 200 * dt;
         if(this.fly_state == 1){
@@ -302,19 +301,23 @@ export class Player extends cc.Component {
     }
 
     check_mail(){
-        this.ACK = 5;
         var ref = firebase.database().ref('in_game/' + this.room + ((this.id == 1)? '/creator' : '/joiner'));
         // this.scheduleOnce(() => {       // get Firebase data; here simulated with timer. // if id = 1 read from creator, else read crom joiner
             // if(Math.floor(Math.random()*4) > 2){        // should be if pinged on Firebase
         ref.once('value', (snapshot) => {
             if(snapshot.val() > 0){
-                ref.set(snapshot.val()-1);
+                console.log("received message");
+                ref.set((snapshot.val()-1), () => {
+                    this.check_mail();
+                });
                 this.recv_msg ++;
+                console.log("messages left now " + this.recv_msg);
                 cc.audioEngine.playEffect(this.notif, false);
                 this.Color.node.color = new cc.Color(255,255,255);
                 this.unhide = true;
                 this.scheduleOnce(() => {
                     this.recv_msg--;
+                    console.log("visible time up, messages left: " + this.recv_msg);
                     if(this.recv_msg == 0){
                         this.unhide = false;
                         var color_str = this.color_list[this.base + this.color];
@@ -322,7 +325,7 @@ export class Player extends cc.Component {
                         this.Color.node.color = color.fromHEX(color_str);
                     }
                 }, 3);
-            }
+            }else this.check_mail();
         });
     }
 
