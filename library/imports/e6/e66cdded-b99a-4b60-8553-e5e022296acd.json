@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "lego",
+    "texture": "99d48cf7-60d0-4fd5-b469-c83e43171e02",
+    "atlas": "",
+    "rect": [
+      0,
+      15,
+      64,
+      34
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      64,
+      64
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

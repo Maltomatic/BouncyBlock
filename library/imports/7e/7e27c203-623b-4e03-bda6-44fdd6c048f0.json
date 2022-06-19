@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "lego_trample",
+    "texture": "ffb43b3b-50b2-4be7-b04c-3186e758ad8a",
+    "atlas": "",
+    "rect": [
+      0,
+      41,
+      136,
+      51
+    ],
+    "offset": [
+      0,
+      -20.5
+    ],
+    "originalSize": [
+      136,
+      92
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}
