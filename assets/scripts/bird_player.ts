@@ -108,8 +108,10 @@ export class Bird extends cc.Component {
             } //else console.log(this.node.x, this.section_count);
         }else if(other.node.group == 'ground' || other.node.group == 'mound'){
             console.log(other.node.group + " (" + touch.x + ", " + touch.y + ")")
-            // die
+            // diee
             this.node.getChildByName('eye').active = false;
+            this.node.getChildByName('explode_die').active = true;
+            this.node.getChildByName('color').active = false;
             this.speed = 0;
             this.scheduleOnce(() => {
                 cc.director.loadScene("lose");

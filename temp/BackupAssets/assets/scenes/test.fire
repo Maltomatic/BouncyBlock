@@ -3012,7 +3012,9 @@
     "coin_point": {
       "__id__": 13
     },
-    "bubble_powerup": null,
+    "bubble_powerup": {
+      "__id__": 17
+    },
     "player_jump": {
       "__uuid__": "64731d57-ff41-400c-8497-9dc3e72ba6fb"
     },

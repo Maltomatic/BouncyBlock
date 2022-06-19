@@ -118,8 +118,10 @@ var Bird = /** @class */ (function (_super) {
         }
         else if (other.node.group == 'ground' || other.node.group == 'mound') {
             console.log(other.node.group + " (" + touch.x + ", " + touch.y + ")");
-            // die
+            // diee
             this.node.getChildByName('eye').active = false;
+            this.node.getChildByName('explode_die').active = true;
+            this.node.getChildByName('color').active = false;
             this.speed = 0;
             this.scheduleOnce(function () {
                 cc.director.loadScene("lose");
