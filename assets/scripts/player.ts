@@ -67,6 +67,11 @@ export class Player extends cc.Component {
     bubble_powerup : cc.Node = null; 
     powerup: number = 0;
 
+    @property(cc.AudioClip)
+    player_jump : cc.AudioClip = null;
+    @property(cc.AudioClip)
+    get_coin : cc.AudioClip = null;
+
     debug_mode: boolean = true;
     hidden: boolean = false;
 
@@ -153,7 +158,8 @@ export class Player extends cc.Component {
                     // this.last_x = this.node.x;
                 }
             }    
-        } else if(other.node.group == 'coin'){ // @@ 
+        }else if(other.node.group == 'coin'){ // @@ 
+            cc.audioEngine.playEffect(this.get_coin, false); 
             this.update_coin(1);
             other.node.destroy();
         }else if(other.node.group == 'bubble'){ // @@ 
@@ -285,6 +291,7 @@ export class Player extends cc.Component {
     }
 
     jump(){    
+        cc.audioEngine.playEffect(this.player_jump, false); 
         this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 600);
         this.fly_state = 1;
         if(!this.debug_mode) this.on_floor = false;

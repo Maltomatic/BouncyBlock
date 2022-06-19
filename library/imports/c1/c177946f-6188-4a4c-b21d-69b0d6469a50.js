@@ -43,11 +43,11 @@ var sharp = /** @class */ (function (_super) {
             this.node.runAction(action);
         }
         else if (this.node.name == 'sharp3') {
-            var action = cc.repeatForever(cc.sequence(cc.moveBy(1, cc.v2(0, -48)), cc.delayTime(2), cc.moveBy(1, cc.v2(0, 48)), cc.delayTime(2)));
+            var action = cc.repeatForever(cc.sequence(cc.moveBy(1, cc.v2(0, -48)), cc.delayTime(1.5), cc.moveBy(1, cc.v2(0, 48)), cc.delayTime(1.5)));
             this.node.runAction(action);
         }
         else if (this.node.name == 'sharp4') {
-            var action = cc.repeatForever(cc.sequence(cc.moveBy(1, cc.v2(0, -48)), cc.delayTime(3), cc.moveBy(1, cc.v2(0, 48)), cc.delayTime(3)));
+            var action = cc.repeatForever(cc.sequence(cc.moveBy(1, cc.v2(0, -48)), cc.delayTime(2), cc.moveBy(1, cc.v2(0, 48)), cc.delayTime(2)));
             this.node.runAction(action);
         }
     };

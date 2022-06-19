@@ -47,6 +47,11 @@ export class Player extends cc.Component {
     coin_point : cc.Node = null;  
     coin: number = 0;
 
+    @property(cc.AudioClip)
+    player_jump : cc.AudioClip = null;
+    @property(cc.AudioClip)
+    get_coin : cc.AudioClip = null;
+
     debug_mode: boolean = true;
     hidden: boolean = false;
     private noisy: boolean = false;

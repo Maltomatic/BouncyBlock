@@ -49,6 +49,8 @@ var Player = /** @class */ (function (_super) {
         _this.notif = null;
         _this.coin_point = null;
         _this.coin = 0;
+        _this.player_jump = null;
+        _this.get_coin = null;
         _this.debug_mode = true;
         _this.hidden = false;
         _this.noisy = false;
@@ -362,6 +364,12 @@ var Player = /** @class */ (function (_super) {
     __decorate([
         property(cc.Node)
     ], Player.prototype, "coin_point", void 0);
+    __decorate([
+        property(cc.AudioClip)
+    ], Player.prototype, "player_jump", void 0);
+    __decorate([
+        property(cc.AudioClip)
+    ], Player.prototype, "get_coin", void 0);
     Player = __decorate([
         ccclass
     ], Player);

@@ -58,6 +58,8 @@ var Player = /** @class */ (function (_super) {
         _this.coin = 0;
         _this.bubble_powerup = null;
         _this.powerup = 0;
+        _this.player_jump = null;
+        _this.get_coin = null;
         _this.debug_mode = true;
         _this.hidden = false;
         _this.sec_list = [];
@@ -139,6 +141,7 @@ var Player = /** @class */ (function (_super) {
             }
         }
         else if (other.node.group == 'coin') { // @@ 
+            cc.audioEngine.playEffect(this.get_coin, false);
             this.update_coin(1);
             other.node.destroy();
         }
@@ -269,6 +272,7 @@ var Player = /** @class */ (function (_super) {
         }
     };
     Player.prototype.jump = function () {
+        cc.audioEngine.playEffect(this.player_jump, false);
         this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 600);
         this.fly_state = 1;
         if (!this.debug_mode)
@@ -364,6 +368,12 @@ var Player = /** @class */ (function (_super) {
     __decorate([
         property(cc.Node)
     ], Player.prototype, "bubble_powerup", void 0);
+    __decorate([
+        property(cc.AudioClip)
+    ], Player.prototype, "player_jump", void 0);
+    __decorate([
+        property(cc.AudioClip)
+    ], Player.prototype, "get_coin", void 0);
     Player = __decorate([
         ccclass
     ], Player);

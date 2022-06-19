@@ -56,13 +56,13 @@ var Light_wrapper = /** @class */ (function (_super) {
         if (this.state == 0) {
             // console.log(this.light.scaleX, this.light.x, this.node.position.x)
             this.enemy.x += 70 * dt * this.dir;
-            if (this.enemy.position.x <= this.leftbound)
+            if (this.enemy.x <= this.leftbound)
                 this.dir = 1;
-            else if (this.enemy.position.x >= this.rightbound)
+            else if (this.enemy.x >= this.rightbound)
                 this.dir = -1;
             // var x = this.node.getNodeToWorldTransform();
             this.light.scaleX += dt * this.scale_dir;
-            if (this.light.scaleX < 0)
+            if (this.light.scaleX < -0.15)
                 this.scale_dir = 0.3;
             else if (this.light.scaleX >= 1.2)
                 this.scale_dir = -0.3;
@@ -71,13 +71,14 @@ var Light_wrapper = /** @class */ (function (_super) {
             if (this.state == 1)
                 this.atk = 0;
             else if (this.state == 2) {
-                if (this.enemy.position.x > this.character.x + 10)
+                var enempos = this.enemy.x + this.node.x;
+                if (enempos > this.character.x + 10)
                     this.dir = -1;
-                else if (this.enemy.position.x < this.character.x - 10)
+                else if (enempos < this.character.x - 10)
                     this.dir = 1;
                 else
                     this.dir = 0;
-                console.log("track in direction " + this.dir);
+                console.log("enemy position: " + enempos + "player position: " + this.character.x + "track in direction " + this.dir);
                 this.enemy.x += 205 * dt * this.dir;
                 this.atk -= dt;
                 if (this.atk < 0) {
@@ -91,11 +92,11 @@ var Light_wrapper = /** @class */ (function (_super) {
     Light_wrapper.prototype.shoot = function () {
         // console.log("shooting")
         var bullet = cc.instantiate(this.bullet);
-        this.node.getParent().addChild(bullet);
-        bullet.setPosition(this.enemy.position.x, this.node.position.y);
+        this.enemy.addChild(bullet);
+        bullet.setPosition(this.enemy.x, 0);
         bullet.y -= 10;
-        // var offset = 20 * ((this.enemy.position.x < this.character.position.x)? -1:1);
-        bullet.getComponent(cc.RigidBody).linearVelocity = cc.v2((this.character.x - this.enemy.position.x), (this.character.y - this.node.position.y)).normalizeSelf().multiply(cc.v2(850, 850));
+        // var offset = 20 * ((this.enemy.x < this.character.x)? -1:1);
+        bullet.getComponent(cc.RigidBody).linearVelocity = cc.v2((this.character.x - (this.enemy.x + this.node.x)), (this.character.y - this.node.y)).normalizeSelf().multiply(cc.v2(850, 850));
         // console.log("create bullet by light at " + this.character.x, this.node.y);
         // cc.find("Canvas/root").addChild(bullet);
     };
