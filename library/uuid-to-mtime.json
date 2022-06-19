@@ -215,8 +215,8 @@
     "relativePath": "prefabs\\light_enemy .prefab"
   },
   "e8cb6686-0da8-4260-99a8-b5d5b8aac11c": {
-    "asset": 1655658779190,
-    "meta": 1655658795662,
+    "asset": 1655659635048,
+    "meta": 1655659643747,
     "relativePath": "scenes"
   },
   "09ce6a93-eb1a-4bd0-bdf0-7a2033be6d79": {
@@ -245,8 +245,8 @@
     "relativePath": "scenes\\multi_pairing.fire"
   },
   "240792ee-e159-498e-9d53-7f96c7aafa0b": {
-    "asset": 1655658771338,
-    "meta": 1655658795664,
+    "asset": 1655659635055,
+    "meta": 1655659643749,
     "relativePath": "scripts"
   },
   "77477a70-be23-4af6-b183-bf7d2817badf": {
@@ -670,8 +670,8 @@
     "relativePath": "maps\\section17.tmx"
   },
   "e19b5114-6ae0-44c7-aaf8-d3a9a5a14998": {
-    "asset": 1655658873338,
-    "meta": 1655658873360,
+    "asset": 1655659635048,
+    "meta": 1655659643791,
     "relativePath": "scenes\\day.fire"
   },
   "4c65e601-7bdc-4894-ba74-78dabfa8544d": {
@@ -780,13 +780,13 @@
     "relativePath": "scripts\\missile.ts"
   },
   "04cfd6d9-41d6-4ada-8a5b-fc5bd8ed6a7d": {
-    "asset": 1655655924439,
-    "meta": 1655658797215,
+    "asset": 1655659991578,
+    "meta": 1655659991587,
     "relativePath": "scenes\\test.fire"
   },
   "b017801e-19be-481a-bd31-621c66b41480": {
-    "asset": 1655655839019,
-    "meta": 1655658796506,
+    "asset": 1655660023559,
+    "meta": 1655660023567,
     "relativePath": "prefabs\\missile.prefab"
   },
   "3e7b2463-e729-4784-9227-e7749c387a40": {
@@ -798,11 +798,6 @@
     "asset": 1655658862615,
     "meta": 1655658862625,
     "relativePath": "scenes\\bird.fire"
-  },
-  "30527218-a1d1-433f-8918-20de21436ddd": {
-    "asset": 1655655704901,
-    "meta": 1655658796496,
-    "relativePath": "prefabs\\fireball.prefab"
   },
   "168bfb4c-efa4-42d6-a7ba-21619e8fd916": {
     "asset": 1655656161824,
@@ -1320,13 +1315,23 @@
     "relativePath": "image\\back.png"
   },
   "201d1fb4-4e8f-44d0-b194-13f83e0f3203": {
-    "asset": 1655659117039,
-    "meta": 1655659118391,
+    "asset": 1655659635056,
+    "meta": 1655659643786,
     "relativePath": "scripts\\parent.ts"
   },
   "e8f7891e-9689-4fd7-a194-48ae189b2f2b": {
     "asset": 1655658835255,
     "meta": 1655658836364,
     "relativePath": "scripts\\bird_player.ts"
+  },
+  "979c1246-3123-4788-a72f-004caab58827": {
+    "asset": 1655659732622,
+    "meta": 1655659732638,
+    "relativePath": "source\\missile_explode.plist"
+  },
+  "10c3d44b-b12b-460b-bc2c-29f1725cab5f": {
+    "asset": 1655659987098,
+    "meta": 1655659987106,
+    "relativePath": "prefabs\\missile_explode.prefab"
   }
 }
