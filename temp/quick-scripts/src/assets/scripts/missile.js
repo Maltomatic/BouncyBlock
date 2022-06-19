@@ -32,6 +32,7 @@ var Missile = /** @class */ (function (_super) {
         _this.tgt_x = 0;
         _this.tgt_y = 0;
         _this.player = null;
+        _this.explode = null;
         return _this;
     }
     Missile.prototype.onLoad = function () {
@@ -58,6 +59,10 @@ var Missile = /** @class */ (function (_super) {
             // deploy black particles
             this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).positionType = 1;
             this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).emissionRate = 100;
+            var fire = cc.instantiate(this.explode);
+            fire.x = this.node.x;
+            fire.y = this.node.y;
+            cc.find("Canvas").addChild(fire);
             this.node.active = false;
             this.node.destroy();
         }
@@ -66,6 +71,9 @@ var Missile = /** @class */ (function (_super) {
         if (this.node.y < -3500)
             this.node.destroy();
     };
+    __decorate([
+        property(cc.Prefab)
+    ], Missile.prototype, "explode", void 0);
     Missile = __decorate([
         ccclass
     ], Missile);

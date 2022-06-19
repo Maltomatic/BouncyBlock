@@ -1361,7 +1361,7 @@
         "__id__": 39
       }
     ],
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 53
@@ -1413,8 +1413,8 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "_groupIndex": 0,
-    "groupIndex": 0,
+    "_groupIndex": 3,
+    "groupIndex": 3,
     "_id": "f35TPAvgJHCZvGWLuwAkIb"
   },
   {
@@ -1496,8 +1496,8 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "_groupIndex": 0,
-    "groupIndex": 0,
+    "_groupIndex": 3,
+    "groupIndex": 3,
     "_id": "1149933RVJhbXNygcXffuD"
   },
   {
@@ -1556,8 +1556,8 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "_groupIndex": 0,
-    "groupIndex": 0,
+    "_groupIndex": 3,
+    "groupIndex": 3,
     "_id": "fb3NI3R0tOvagBuDRgZDrg"
   },
   {
@@ -1850,8 +1850,8 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "_groupIndex": 0,
-    "groupIndex": 0,
+    "_groupIndex": 3,
+    "groupIndex": 3,
     "_id": "ceZBNa7MxHcpqMMsHULO3y"
   },
   {
@@ -1914,8 +1914,8 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "_groupIndex": 0,
-    "groupIndex": 0,
+    "_groupIndex": 3,
+    "groupIndex": 3,
     "_id": "fcPryCY5NIHKbqFB4v+mTo"
   },
   {
@@ -2092,8 +2092,8 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "_groupIndex": 0,
-    "groupIndex": 0,
+    "_groupIndex": 3,
+    "groupIndex": 3,
     "_id": "b2JRHp6WJCNpaOSrahhz3Q"
   },
   {
@@ -2268,8 +2268,8 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "_groupIndex": 0,
-    "groupIndex": 0,
+    "_groupIndex": 3,
+    "groupIndex": 3,
     "_id": "dbRfsEayxL2Z31xp8golE9"
   },
   {
@@ -2375,8 +2375,8 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "_groupIndex": 0,
-    "groupIndex": 0,
+    "_groupIndex": 3,
+    "groupIndex": 3,
     "_id": "9cp0S2XrtFCJDezmlRWoAO"
   },
   {
@@ -3030,6 +3030,10 @@
     "sec5": {
       "__uuid__": "5fd9114a-53a7-4005-82c1-8cb76fa79541"
     },
+    "sec6": null,
+    "sec7": null,
+    "sec8": null,
+    "sec9": null,
     "sec10": {
       "__uuid__": "cb1d8429-52ef-4643-ae87-34487c2b8968"
     },
@@ -3042,6 +3046,9 @@
     "sec13": {
       "__uuid__": "6d525d07-660e-4be4-ac75-4e4a33bb9837"
     },
+    "sec14": null,
+    "sec15": null,
+    "sec16": null,
     "sec17": {
       "__uuid__": "2a417590-576c-476c-951f-c5f739a33479"
     },
@@ -3051,6 +3058,7 @@
     "sec19": {
       "__uuid__": "cbfa4e4d-f8fd-416e-be8b-c0fd3083f9a3"
     },
+    "sec20": null,
     "Score": {
       "__id__": 9
     },

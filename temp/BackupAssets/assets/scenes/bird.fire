@@ -1030,13 +1030,13 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "explode_die",
+    "_name": "star_explode",
     "_objFlags": 0,
     "_parent": {
       "__id__": 17
     },
     "_children": [],
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 23
@@ -1088,7 +1088,7 @@
     "_is3DNode": false,
     "_groupIndex": 0,
     "groupIndex": 0,
-    "_id": "b5Mgmv7HFDbJNa4Sw6cRiU"
+    "_id": "d44q7Eu/dLlLslU6X6gA1i"
   },
   {
     "__type__": "cc.ParticleSystem",
@@ -1103,42 +1103,44 @@
         "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
       }
     ],
-    "_srcBlendFactor": 770,
-    "_dstBlendFactor": 1,
-    "_custom": false,
+    "_srcBlendFactor": 1,
+    "_dstBlendFactor": 771,
+    "_custom": true,
     "_file": {
-      "__uuid__": "e05d3a7c-cdf2-428b-a3bd-26e38cf23271"
+      "__uuid__": "168bfb4c-efa4-42d6-a7ba-21619e8fd916"
     },
-    "_spriteFrame": null,
+    "_spriteFrame": {
+      "__uuid__": "a23235d1-15db-4b95-8439-a2e005bfff91"
+    },
     "_texture": null,
     "_stopped": true,
     "playOnLoad": true,
     "autoRemoveOnFinish": false,
-    "totalParticles": 2000,
-    "duration": 0.01,
-    "emissionRate": 5000,
-    "life": 0.4,
-    "lifeVar": 0.8,
+    "totalParticles": 81,
+    "duration": 0.12,
+    "emissionRate": 1.7976931348623157e+308,
+    "life": 0,
+    "lifeVar": 1.05,
     "_startColor": {
       "__type__": "cc.Color",
       "r": 255,
-      "g": 204,
-      "b": 51,
+      "g": 255,
+      "b": 255,
       "a": 255
     },
     "_startColorVar": {
       "__type__": "cc.Color",
-      "r": 109,
-      "g": 109,
-      "b": 109,
-      "a": 255
-    },
-    "_endColor": {
-      "__type__": "cc.Color",
       "r": 0,
       "g": 0,
       "b": 0,
-      "a": 127
+      "a": 0
+    },
+    "_endColor": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
     },
     "_endColorVar": {
       "__type__": "cc.Color",
@@ -1149,11 +1151,11 @@
     },
     "angle": 0,
     "angleVar": 360,
-    "startSize": 175,
-    "startSizeVar": 173,
-    "endSize": 400,
-    "endSizeVar": 800,
-    "startSpin": 0,
+    "startSize": 10,
+    "startSizeVar": 70,
+    "endSize": 0,
+    "endSizeVar": 0,
+    "startSpin": 168,
     "startSpinVar": 0,
     "endSpin": 0,
     "endSpinVar": 0,
@@ -1173,10 +1175,10 @@
     "gravity": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": 0
+      "y": -651
     },
-    "speed": 0,
-    "speedVar": 0,
+    "speed": 413.44,
+    "speedVar": 226.61,
     "tangentialAccel": 0,
     "tangentialAccelVar": 0,
     "radialAccel": 0,
@@ -1189,7 +1191,7 @@
     "rotatePerS": 0,
     "rotatePerSVar": 0,
     "_N$preview": true,
-    "_id": "bdCJ6uKeNOUrxovuvyWHII"
+    "_id": "64We6YpB1IiaM3vVsF8MHB"
   },
   {
     "__type__": "e8f78kelolP16GUSK4Ymy8r",
