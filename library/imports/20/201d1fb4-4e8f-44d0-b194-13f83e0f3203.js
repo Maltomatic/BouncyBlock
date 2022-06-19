@@ -43,6 +43,7 @@ var NewClass = /** @class */ (function (_super) {
         cc.director.getPhysicsManager().enabled = true;
         cc.director.getCollisionManager().enabled = true;
         this.before_x = this.node.x;
+        cc.audioEngine.playEffect(this.footstep, true);
     };
     NewClass.prototype.onBeginContact = function (contact, self, other) {
         var _this = this;
@@ -75,6 +76,9 @@ var NewClass = /** @class */ (function (_super) {
     __decorate([
         property(cc.Label)
     ], NewClass.prototype, "now_score", void 0);
+    __decorate([
+        property(cc.AudioClip)
+    ], NewClass.prototype, "footstep", void 0);
     NewClass = __decorate([
         ccclass
     ], NewClass);

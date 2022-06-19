@@ -63,7 +63,7 @@ var arm = /** @class */ (function (_super) {
             else if (this.node.name == 'lego') {
                 this.anim.play('lego'); // knock   
                 other.node.color = new cc.Color(127.5, 127.5, 127.5);
-                cc.audioEngine.playEffect(this.step_on_lego, false);
+                cc.audioEngine.playEffect(this.step_on_lego, false, 0.5);
                 setTimeout(function () {
                     _this.node.destroy();
                 }, 1000);

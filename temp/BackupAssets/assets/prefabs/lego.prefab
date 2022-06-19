@@ -196,6 +196,12 @@
     },
     "_enabled": true,
     "banana_Speed": 100,
+    "parent_step_on_banana": {
+      "__uuid__": "34b6e8ab-6985-4267-b79c-484d6cb2d99f"
+    },
+    "step_on_lego": {
+      "__uuid__": "3f7e6ea7-37c6-4664-8070-fa550488e789"
+    },
     "_id": ""
   },
   {

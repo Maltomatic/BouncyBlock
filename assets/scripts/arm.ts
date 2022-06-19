@@ -20,6 +20,7 @@ export default class arm extends cc.Component {
     @property(cc.AudioClip)
     step_on_lego:cc.AudioClip;
 
+
     private anim: cc.Animation = null;
     private physicManager: cc.PhysicsManager = null;
 
@@ -27,6 +28,7 @@ export default class arm extends cc.Component {
         this.physicManager = cc.director.getPhysicsManager();
         this.physicManager.enabled = true;
         this.physicManager.gravity = cc.v2 (0, -500);
+        
     }
 
     start () {
@@ -47,8 +49,9 @@ export default class arm extends cc.Component {
                 }, 1000);
             }else if(this.node.name == 'lego'){
                 this.anim.play('lego');// knock   
-                other.node.color=new cc.Color(127.5, 127.5, 127.5);     
-                cc.audioEngine.playEffect(this.step_on_lego, false); 
+                other.node.color=new cc.Color(127.5, 127.5, 127.5);   
+               
+                cc.audioEngine.playEffect(this.step_on_lego, false,0.5); 
                 setTimeout(()=>{
                     this.node.destroy();
                 }, 1000);

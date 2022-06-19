@@ -1,7 +1,7 @@
 {
   "808dbc7e-750d-4f06-a439-10751a468f5e": {
-    "asset": 1655568772307,
-    "meta": 1655613409184,
+    "asset": 1655625862578,
+    "meta": 1655625964240,
     "relativePath": "animation"
   },
   "e449813f-b6ab-4724-a9c5-9003463f9a75": {
@@ -25,8 +25,8 @@
     "relativePath": "animation\\banana.anim"
   },
   "49b78b7f-5288-473a-9cd0-561e6219744a": {
-    "asset": 1655568709034,
-    "meta": 1655613409221,
+    "asset": 1655625862586,
+    "meta": 1655625964283,
     "relativePath": "animation\\lego.anim"
   },
   "158e6cce-f4ca-476c-bf20-f69983e5c718": {
@@ -200,8 +200,8 @@
     "relativePath": "prefabs\\bubble_lego.prefab"
   },
   "3acb837e-b361-43f0-82f6-89af23abab28": {
-    "asset": 1655624799514,
-    "meta": 1655624799521,
+    "asset": 1655626980424,
+    "meta": 1655626980432,
     "relativePath": "prefabs\\lego.prefab"
   },
   "6444cc76-5ef6-4a3c-926c-a09987c9319c": {
@@ -255,8 +255,8 @@
     "relativePath": "scenes\\multi_pairing.fire"
   },
   "240792ee-e159-498e-9d53-7f96c7aafa0b": {
-    "asset": 1655613312241,
-    "meta": 1655613409193,
+    "asset": 1655625523579,
+    "meta": 1655625964242,
     "relativePath": "scripts"
   },
   "77477a70-be23-4af6-b183-bf7d2817badf": {
@@ -308,11 +308,6 @@
     "asset": 1655568709151,
     "meta": 1655613410324,
     "relativePath": "scripts\\missile.ts"
-  },
-  "201d1fb4-4e8f-44d0-b194-13f83e0f3203": {
-    "asset": 1655585728871,
-    "meta": 1655613410342,
-    "relativePath": "scripts\\parent.ts"
   },
   "a4ea169f-e7a5-48fe-a76a-3f69d22f0a2e": {
     "asset": 1655583983200,
@@ -1205,8 +1200,8 @@
     "relativePath": "maps\\section17.tmx"
   },
   "e19b5114-6ae0-44c7-aaf8-d3a9a5a14998": {
-    "asset": 1655624843391,
-    "meta": 1655624843398,
+    "asset": 1655626371523,
+    "meta": 1655626371535,
     "relativePath": "scenes\\day.fire"
   },
   "04cfd6d9-41d6-4ada-8a5b-fc5bd8ed6a7d": {
@@ -1274,14 +1269,24 @@
     "meta": 1655624586225,
     "relativePath": "audio\\banana_slip.mp3"
   },
-  "3f7e6ea7-37c6-4664-8070-fa550488e789": {
-    "asset": 1655624742951,
-    "meta": 1655624743878,
-    "relativePath": "audio\\itai.mp3"
+  "201d1fb4-4e8f-44d0-b194-13f83e0f3203": {
+    "asset": 1655626265966,
+    "meta": 1655626267597,
+    "relativePath": "scripts\\parent.ts"
+  },
+  "9688cce3-3123-4f32-ad3c-c18228b9a1a9": {
+    "asset": 1655626356964,
+    "meta": 1655626360246,
+    "relativePath": "audio\\footstep.wav"
   },
   "39f308ea-905f-4fc8-8004-c5ade8bc02ab": {
-    "asset": 1655624780716,
-    "meta": 1655624781575,
+    "asset": 1655626735636,
+    "meta": 1655626736541,
     "relativePath": "scripts\\arm.ts"
+  },
+  "4837f7d9-1dd4-4dcb-a550-856fb734776c": {
+    "asset": 1655627074665,
+    "meta": 1655627075111,
+    "relativePath": "audio\\itai.wav"
   }
 }

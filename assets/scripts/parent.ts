@@ -15,10 +15,13 @@ export default class NewClass extends cc.Component {
     before_x:number;
     stunned:number=0;
     
+    @property(cc.AudioClip)
+    footstep:cc.AudioClip;
     onLoad () {
         cc.director.getPhysicsManager().enabled = true;
         cc.director.getCollisionManager().enabled = true;
         this.before_x=this.node.x;
+        cc.audioEngine.playEffect(this.footstep, true);
         
     }
     onBeginContact(contact, self, other){
