@@ -1190,8 +1190,8 @@
     "relativePath": "maps\\section17.tmx"
   },
   "e19b5114-6ae0-44c7-aaf8-d3a9a5a14998": {
-    "asset": 1655643517362,
-    "meta": 1655643541449,
+    "asset": 1655648083508,
+    "meta": 1655648083539,
     "relativePath": "scenes\\day.fire"
   },
   "04cfd6d9-41d6-4ada-8a5b-fc5bd8ed6a7d": {
@@ -1229,11 +1229,6 @@
     "meta": 1655643541723,
     "relativePath": "scripts\\bird_player.ts"
   },
-  "3095119b-5903-4a1d-92e8-fa42e3425160": {
-    "asset": 1655643517369,
-    "meta": 1655643542312,
-    "relativePath": "scripts\\player_day.ts"
-  },
   "34b6e8ab-6985-4267-b79c-484d6cb2d99f": {
     "asset": 1655643517329,
     "meta": 1655643540741,
@@ -1259,11 +1254,6 @@
     "meta": 1655643541930,
     "relativePath": "scripts\\lose_canvas.ts"
   },
-  "201d1fb4-4e8f-44d0-b194-13f83e0f3203": {
-    "asset": 1655643517368,
-    "meta": 1655643542048,
-    "relativePath": "scripts\\parent.ts"
-  },
   "9688cce3-3123-4f32-ad3c-c18228b9a1a9": {
     "asset": 1655643517350,
     "meta": 1655643540843,
@@ -1273,11 +1263,6 @@
     "asset": 1654326898855,
     "meta": 1655643539969,
     "relativePath": "animations"
-  },
-  "a4fb5ce8-16f2-4ec9-b773-3d70ce77a8e4": {
-    "asset": 1655644213454,
-    "meta": 1655644220415,
-    "relativePath": "scripts\\player.ts"
   },
   "c177946f-6188-4a4c-b21d-69b0d6469a50": {
     "asset": 1655644597085,
@@ -1294,14 +1279,29 @@
     "meta": 1655645594648,
     "relativePath": "scripts\\light.ts"
   },
-  "a4ea169f-e7a5-48fe-a76a-3f69d22f0a2e": {
-    "asset": 1655646798112,
-    "meta": 1655646799703,
-    "relativePath": "scripts\\player_multi.ts"
-  },
   "b7474a50-3239-4ee7-b7e0-7b3cd838b5f2": {
     "asset": 1655646903675,
     "meta": 1655646906780,
     "relativePath": "scripts\\enemy_wrapper.ts"
+  },
+  "201d1fb4-4e8f-44d0-b194-13f83e0f3203": {
+    "asset": 1655647753478,
+    "meta": 1655647757734,
+    "relativePath": "scripts\\parent.ts"
+  },
+  "3095119b-5903-4a1d-92e8-fa42e3425160": {
+    "asset": 1655648097733,
+    "meta": 1655648106796,
+    "relativePath": "scripts\\player_day.ts"
+  },
+  "a4ea169f-e7a5-48fe-a76a-3f69d22f0a2e": {
+    "asset": 1655648104106,
+    "meta": 1655648106922,
+    "relativePath": "scripts\\player_multi.ts"
+  },
+  "a4fb5ce8-16f2-4ec9-b773-3d70ce77a8e4": {
+    "asset": 1655648093019,
+    "meta": 1655648107057,
+    "relativePath": "scripts\\player.ts"
   }
 }

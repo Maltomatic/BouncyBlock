@@ -193,6 +193,14 @@ export class Player extends cc.Component {
     }
 
     update (dt) {
+        if(this.node.y <= -400){
+            // die
+            // deploy white particles
+            this.node.active = false;
+            this.scheduleOnce(() => {
+                cc.director.loadScene("lose")
+            }, 0.3);
+        }
         this.ACK -= dt;
         if(this.ACK <= 0) this.check_mail();
         this.camera_track();

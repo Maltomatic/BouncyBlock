@@ -212,6 +212,14 @@ var Player = /** @class */ (function (_super) {
         //-------------------------------------------------
     };
     Player.prototype.update = function (dt) {
+        if (this.node.y <= -400) {
+            // die
+            // deploy white particles
+            this.node.active = false;
+            this.scheduleOnce(function () {
+                cc.director.loadScene("lose");
+            }, 0.3);
+        }
         this.camera_track();
         this.node.x += this.dir * 200 * dt;
         if (this.fly_state == 1) {

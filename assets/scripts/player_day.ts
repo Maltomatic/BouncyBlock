@@ -240,6 +240,14 @@ export class Player extends cc.Component {
     }
 
     update (dt) {
+        if(this.node.y <= -400){
+            // die
+            // deploy white particles
+            this.node.active = false;
+            this.scheduleOnce(() => {
+                cc.director.loadScene("lose")
+            }, 0.3);
+        }
         this.camera_track();
         this.node.x += this.dir * 200 * dt;
         if(this.fly_state == 1){

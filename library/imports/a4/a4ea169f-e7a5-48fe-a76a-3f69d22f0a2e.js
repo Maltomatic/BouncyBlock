@@ -183,6 +183,14 @@ var Player = /** @class */ (function (_super) {
         //-------------------------------------------------
     };
     Player.prototype.update = function (dt) {
+        if (this.node.y <= -400) {
+            // die
+            // deploy white particles
+            this.node.active = false;
+            this.scheduleOnce(function () {
+                cc.director.loadScene("lose");
+            }, 0.3);
+        }
         this.ACK -= dt;
         if (this.ACK <= 0)
             this.check_mail();

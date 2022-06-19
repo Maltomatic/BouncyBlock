@@ -185,8 +185,6 @@ export class Player extends cc.Component {
 
     }
     onEndContact(contact, self, other) {
-        //a bug happens when the color of mound is same as the color of player, not solved yet 
-        // fixed with mound. player should now check collisions with mound
         if(this.getComponent(cc.RigidBody).linearVelocity.y != 0){
             this.node.getChildByName('eye').active = true;
             this.hidden = false;
@@ -211,6 +209,14 @@ export class Player extends cc.Component {
     }
 
     update (dt) {
+        if(this.node.y <= -400){
+            // die
+            // deploy white particles
+            this.node.active = false;
+            this.scheduleOnce(() => {
+                cc.director.loadScene("lose")
+            }, 0.3);
+        }
         this.camera_track();
         this.node.x += this.dir * 200 * dt;
         if(this.fly_state == 1){
@@ -226,16 +232,10 @@ export class Player extends cc.Component {
         //----------sparkle emission rate is 0 when didnt move-----------------------------------------
         if(this.dir!=0||dy>10) this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).emissionRate=100;
         else this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).emissionRate=0;
-        //----------------------------------------------------
-
-        
-        
         //---------player spin---------------
         if((dy > 10) && this.dir == 1) this.spin_right();
         else if((dy > 10) && this.dir == -1) this.spin_left();
         else if(this.node.angle != 0) this.node.angle=0;
-        //------------------------------------
-
         //--------score-------------------------------
         this.score = (Math.round(this.node.x / 35) > this.score) ? Math.round(this.node.x / 35) : this.score;
         this.Score.getComponent(cc.Label).string = this.score.toString();

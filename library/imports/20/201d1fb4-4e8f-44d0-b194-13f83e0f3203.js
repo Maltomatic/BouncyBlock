@@ -36,6 +36,7 @@ var NewClass = /** @class */ (function (_super) {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.speedup = 0.7;
         _this.stunned = 0;
+        _this.penalty = 0;
         return _this;
         // update (dt) {}
     }
@@ -54,15 +55,19 @@ var NewClass = /** @class */ (function (_super) {
             setTimeout(function () {
                 _this.stunned = 0;
                 _this.node.color = new cc.Color(255, 255, 255);
+                _this.penalty = 100;
+                _this.scheduleOnce(function () {
+                    _this.penalty = 0;
+                }, 1.5);
             }, 3000);
         }
     };
     // LIFE-CYCLE CALLBACKS:
     // onLoad () {}
     NewClass.prototype.update = function (dt) {
-        this.speedup = 0.7 + 0.003 * parseInt(this.now_score.string); //每得一分加速0.03 //約七百多分會比player快
+        this.speedup = 0.2 + 0.003 * parseInt(this.now_score.string); //每得一分加速0.03 //約七百多分會比player快
         if (this.stunned == 0)
-            this.node.x += this.speedup;
+            this.node.x += (Math.max(this.speedup * 75, 200) + this.penalty) * dt;
         else
             this.node.x += 0;
         if (Math.abs(this.node.x - this.before_x) <= 0.3 && this.stunned == 0)

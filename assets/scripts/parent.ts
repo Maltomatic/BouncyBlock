@@ -16,6 +16,7 @@ export default class NewClass extends cc.Component {
     now_score:cc.Label;
     before_x:number;
     stunned:number=0;
+    private penalty: number = 0;
     
     @property(cc.AudioClip)
     footstep:cc.AudioClip;
@@ -37,11 +38,13 @@ export default class NewClass extends cc.Component {
         {
             this.stunned=1;
             setTimeout(()=>{
-
                 this.stunned=0;
                 this.node.color=new cc.Color(255,255,255);
-            
-                 }, 3000);
+                this.penalty = 100;
+                this.scheduleOnce(() => {
+                    this.penalty = 0;
+                }, 1.5);
+                }, 3000);
         }
         
         
@@ -51,8 +54,8 @@ export default class NewClass extends cc.Component {
 
     // onLoad () {}
     protected update(dt: number): void {
-        this.speedup=0.7+0.003*parseInt(this.now_score.string);  //每得一分加速0.03 //約七百多分會比player快
-        if(this.stunned==0) this.node.x += this.speedup;
+        this.speedup=0.2+0.003*parseInt(this.now_score.string);  //每得一分加速0.03 //約七百多分會比player快
+        if(this.stunned==0) this.node.x += (Math.max(this.speedup * 75, 200) + this.penalty)* dt;
         else this.node.x+=0;
         if(Math.abs(this.node.x-this.before_x)<=0.3&&this.stunned==0) this.jump();
         this.before_x=this.node.x;

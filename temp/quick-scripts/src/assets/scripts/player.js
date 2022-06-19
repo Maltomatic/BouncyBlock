@@ -169,8 +169,6 @@ var Player = /** @class */ (function (_super) {
         }
     };
     Player.prototype.onEndContact = function (contact, self, other) {
-        //a bug happens when the color of mound is same as the color of player, not solved yet 
-        // fixed with mound. player should now check collisions with mound
         if (this.getComponent(cc.RigidBody).linearVelocity.y != 0) {
             this.node.getChildByName('eye').active = true;
             this.hidden = false;
@@ -193,6 +191,14 @@ var Player = /** @class */ (function (_super) {
         //-------------------------------------------------
     };
     Player.prototype.update = function (dt) {
+        if (this.node.y <= -400) {
+            // die
+            // deploy white particles
+            this.node.active = false;
+            this.scheduleOnce(function () {
+                cc.director.loadScene("lose");
+            }, 0.3);
+        }
         this.camera_track();
         this.node.x += this.dir * 200 * dt;
         if (this.fly_state == 1) {
@@ -211,7 +217,6 @@ var Player = /** @class */ (function (_super) {
             this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).emissionRate = 100;
         else
             this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).emissionRate = 0;
-        //----------------------------------------------------
         //---------player spin---------------
         if ((dy > 10) && this.dir == 1)
             this.spin_right();
@@ -219,7 +224,6 @@ var Player = /** @class */ (function (_super) {
             this.spin_left();
         else if (this.node.angle != 0)
             this.node.angle = 0;
-        //------------------------------------
         //--------score-------------------------------
         this.score = (Math.round(this.node.x / 35) > this.score) ? Math.round(this.node.x / 35) : this.score;
         this.Score.getComponent(cc.Label).string = this.score.toString();
