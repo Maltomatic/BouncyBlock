@@ -79,7 +79,7 @@ var Light_wrapper = /** @class */ (function (_super) {
                 else
                     this.dir = 0;
                 // console.log("enemy position: " + enempos + "player position: " + this.character.x + "track in direction " + this.dir);
-                this.enemy.x += 120 * dt * this.dir;
+                this.enemy.x += 170 * dt * this.dir;
                 this.atk -= dt;
                 if (this.atk < 0) {
                     this.shoot();

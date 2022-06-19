@@ -48,11 +48,16 @@ var Missile = /** @class */ (function (_super) {
         // console.log(this.node.angle);
     };
     Missile.prototype.start = function () {
-        // console.log("bulelt spawn at " + this.node.x, this.node.y);
+        this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).emissionRate = 30;
+        this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).startColor = cc.color(0, 0, 0);
+        this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).endColor = cc.color(0, 0, 0);
+        this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).endColorVar = cc.color(0, 0, 0);
     };
     Missile.prototype.onPostSolve = function (contact, self, other) {
         if (other.node.group == 'ground' || other.node.group == 'mound' || other.node.name == 'player' || other.node.name == 'enemies') {
             // deploy black particles
+            this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).positionType = 1;
+            this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).emissionRate = 100;
             this.node.active = false;
             this.node.destroy();
         }

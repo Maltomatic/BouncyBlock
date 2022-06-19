@@ -168,14 +168,12 @@ export class Player extends cc.Component {
             other.node.destroy();
             }
         }else if(other.node.name == 'missile'){
-            // die
             // deploy white particles
             this.node.active = false;
             this.scheduleOnce(() => {
                 cc.director.loadScene("lose")
             }, 0.3);
         }else if(other.node.name == 'sharp'||other.node.name == 'parent'){
-            // die
             // deploy white particles
             this.node.active = false;
             this.scheduleOnce(() => {
@@ -210,7 +208,8 @@ export class Player extends cc.Component {
 
     update (dt) {
         if(this.node.y <= -400){
-            // die
+            this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).emitterMode = 1;
+            this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).emissionRate = 100;
             // deploy white particles
             this.node.active = false;
             this.scheduleOnce(() => {

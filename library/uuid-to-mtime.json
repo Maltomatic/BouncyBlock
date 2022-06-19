@@ -210,8 +210,8 @@
     "relativePath": "prefabs\\coin.prefab"
   },
   "b017801e-19be-481a-bd31-621c66b41480": {
-    "asset": 1655567601988,
-    "meta": 1655643541360,
+    "asset": 1655649129537,
+    "meta": 1655649129558,
     "relativePath": "prefabs\\missile.prefab"
   },
   "70927b47-0977-4055-b8c2-e6a9e6488850": {
@@ -298,11 +298,6 @@
     "asset": 1655409964825,
     "meta": 1655643542433,
     "relativePath": "scenes\\tutorial.fire"
-  },
-  "ce3ddca4-722d-408d-8de5-464fa4ed290f": {
-    "asset": 1655567601997,
-    "meta": 1655643541988,
-    "relativePath": "scripts\\missile.ts"
   },
   "1eb0e55a-da22-4eda-a5e3-68ca9e265251": {
     "asset": 1655409964843,
@@ -1190,8 +1185,8 @@
     "relativePath": "maps\\section17.tmx"
   },
   "e19b5114-6ae0-44c7-aaf8-d3a9a5a14998": {
-    "asset": 1655648083508,
-    "meta": 1655648083539,
+    "asset": 1655649226908,
+    "meta": 1655649226940,
     "relativePath": "scenes\\day.fire"
   },
   "04cfd6d9-41d6-4ada-8a5b-fc5bd8ed6a7d": {
@@ -1274,11 +1269,6 @@
     "meta": 1655645594648,
     "relativePath": "scripts\\light.ts"
   },
-  "b7474a50-3239-4ee7-b7e0-7b3cd838b5f2": {
-    "asset": 1655646903675,
-    "meta": 1655646906780,
-    "relativePath": "scripts\\enemy_wrapper.ts"
-  },
   "3095119b-5903-4a1d-92e8-fa42e3425160": {
     "asset": 1655648097733,
     "meta": 1655648106796,
@@ -1289,11 +1279,6 @@
     "meta": 1655648106922,
     "relativePath": "scripts\\player_multi.ts"
   },
-  "a4fb5ce8-16f2-4ec9-b773-3d70ce77a8e4": {
-    "asset": 1655648093019,
-    "meta": 1655648107057,
-    "relativePath": "scripts\\player.ts"
-  },
   "f86b1eb1-1093-461a-a9c8-46b312ad29da": {
     "asset": 1655648141745,
     "meta": 1655648255936,
@@ -1303,5 +1288,20 @@
     "asset": 1655648474908,
     "meta": 1655648480791,
     "relativePath": "scripts\\parent.ts"
+  },
+  "ce3ddca4-722d-408d-8de5-464fa4ed290f": {
+    "asset": 1655649634175,
+    "meta": 1655649635787,
+    "relativePath": "scripts\\missile.ts"
+  },
+  "b7474a50-3239-4ee7-b7e0-7b3cd838b5f2": {
+    "asset": 1655649737585,
+    "meta": 1655649742719,
+    "relativePath": "scripts\\enemy_wrapper.ts"
+  },
+  "a4fb5ce8-16f2-4ec9-b773-3d70ce77a8e4": {
+    "asset": 1655649843420,
+    "meta": 1655649844672,
+    "relativePath": "scripts\\player.ts"
   }
 }
