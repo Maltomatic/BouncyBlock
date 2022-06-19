@@ -48,24 +48,7 @@
                 "type": "panel",
                 "active": 0,
                 "children": [
-                  {
-                    "width": 545,
-                    "height": 432.703125,
-                    "type": "panel",
-                    "active": 0,
-                    "children": [
-                      "scene"
-                    ]
-                  },
-                  {
-                    "width": 264,
-                    "height": 432.703125,
-                    "type": "panel",
-                    "active": 0,
-                    "children": [
-                      "node-library"
-                    ]
-                  }
+                  "scene"
                 ]
               },
               {
@@ -97,7 +80,6 @@
         "hierarchy",
         "assets",
         "scene",
-        "node-library",
         "console",
         "timeline",
         "game-window",
