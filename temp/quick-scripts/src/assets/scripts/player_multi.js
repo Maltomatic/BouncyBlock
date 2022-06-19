@@ -366,14 +366,6 @@ var Player = /** @class */ (function (_super) {
                 _this.invis = false;
             }, 5);
         }
-        if (event.keyCode == cc.macro.KEY.p) {
-            cc.audioEngine.pauseAll();
-            cc.director.pause();
-        }
-        else if (event.keyCode == cc.macro.KEY.r) {
-            cc.audioEngine.resumeAll();
-            cc.director.resume();
-        }
     };
     Player.prototype.onKeyUp = function (event) {
         switch (event.keyCode) {

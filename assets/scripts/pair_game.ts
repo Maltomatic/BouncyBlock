@@ -23,19 +23,19 @@ export default class NewClass extends cc.Component {
     }
 
     start () {
-        cc.find("Canvas/signin_data/Create").on(cc.Node.EventType.MOUSE_DOWN, () => {
+        cc.find("Canvas/root/Create").on(cc.Node.EventType.MOUSE_DOWN, () => {
             if(this.kick){
                 alert("Multiplayer is not accessible when you are not signed in.");
                 cc.director.loadScene('menu');
             }else this.makeGame();
         }, this);
-        cc.find("Canvas/signin_data/Join").on(cc.Node.EventType.MOUSE_DOWN, () => {
+        cc.find("Canvas/root/Join").on(cc.Node.EventType.MOUSE_DOWN, () => {
             if(this.kick){
                 alert("Multiplayer is not accessible when you are not signed in.");
                 cc.director.loadScene('menu');
             }else this.joinGame()
         }, this);
-        cc.find("Canvas/signin_data/back").on(cc.Node.EventType.MOUSE_DOWN, () => {
+        cc.find("Canvas/root/back").on(cc.Node.EventType.MOUSE_DOWN, () => {
             this.invite_code.string = '';
             cc.director.loadScene('menu');
         }, this);
