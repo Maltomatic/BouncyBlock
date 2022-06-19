@@ -265,8 +265,8 @@
     "relativePath": "scripts\\bird_map_init.ts"
   },
   "3e7b2463-e729-4784-9227-e7749c387a40": {
-    "asset": 1655646587303,
-    "meta": 1655646587336,
+    "asset": 1655654998715,
+    "meta": 1655654998748,
     "relativePath": "scenes\\multi.fire"
   },
   "b241435f-9b61-4cf8-bbc2-f2476218c711": {
@@ -1274,11 +1274,6 @@
     "meta": 1655648106796,
     "relativePath": "scripts\\player_day.ts"
   },
-  "a4ea169f-e7a5-48fe-a76a-3f69d22f0a2e": {
-    "asset": 1655648104106,
-    "meta": 1655648106922,
-    "relativePath": "scripts\\player_multi.ts"
-  },
   "201d1fb4-4e8f-44d0-b194-13f83e0f3203": {
     "asset": 1655648474908,
     "meta": 1655648480791,
@@ -1299,9 +1294,14 @@
     "meta": 1655651750775,
     "relativePath": "scripts\\section_init.ts"
   },
+  "a4ea169f-e7a5-48fe-a76a-3f69d22f0a2e": {
+    "asset": 1655654979823,
+    "meta": 1655654982439,
+    "relativePath": "scripts\\player_multi.ts"
+  },
   "a4fb5ce8-16f2-4ec9-b773-3d70ce77a8e4": {
-    "asset": 1655653472239,
-    "meta": 1655653475408,
+    "asset": 1655654979824,
+    "meta": 1655654982548,
     "relativePath": "scripts\\player.ts"
   }
 }

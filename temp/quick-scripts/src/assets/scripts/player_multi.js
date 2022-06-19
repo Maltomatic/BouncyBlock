@@ -37,13 +37,21 @@ var Player = /** @class */ (function (_super) {
         _this.sec3 = null;
         _this.sec4 = null;
         _this.sec5 = null;
+        _this.sec6 = null;
+        _this.sec7 = null;
+        _this.sec8 = null;
+        _this.sec9 = null;
         _this.sec10 = null;
         _this.sec11 = null;
         _this.sec12 = null;
         _this.sec13 = null;
+        _this.sec14 = null;
+        _this.sec15 = null;
+        _this.sec16 = null;
         _this.sec17 = null;
         _this.sec18 = null;
         _this.sec19 = null;
+        _this.sec20 = null;
         _this.Score = null;
         _this.Color = null;
         _this.notif = null;
@@ -51,6 +59,8 @@ var Player = /** @class */ (function (_super) {
         _this.coin = 0;
         _this.player_jump = null;
         _this.get_coin = null;
+        _this.bubble_powerup = null;
+        _this.powerup = 0;
         _this.debug_mode = true;
         _this.hidden = false;
         _this.noisy = false;
@@ -64,6 +74,8 @@ var Player = /** @class */ (function (_super) {
         _this.fly_state = 0; // 0 for on ground, 1 for flying, -1 for falling
         _this.on_floor = true;
         _this.stick = false;
+        _this.invis = false;
+        _this.chameleon = null;
         _this.section_count = 0; // on contact with marker, if section_count * 1920 < this.node.x: init next section and section_count ++
         _this.score = 0;
         _this.color = 0;
@@ -129,9 +141,11 @@ var Player = /** @class */ (function (_super) {
                     this.on_floor = true;
             }
             if (other.node.group == 'mound') {
-                if (other.node.getComponent(cc.TiledTile).gid == this.color + this.base && touch.x) {
+                if ((other.node.getComponent(cc.TiledTile).gid == this.color + this.base && touch.x) || this.invis) {
                     this.node.getChildByName('eye').active = false;
-                    this.hidden = (this.noisy || this.unhide) ? false : true;
+                    this.hidden = true;
+                    if (this.invis)
+                        this.chameleon = this.color_list[other.node.getComponent(cc.TiledTile).gid];
                     // this.last_x = this.node.x;
                 }
             }
@@ -140,6 +154,12 @@ var Player = /** @class */ (function (_super) {
             cc.audioEngine.playEffect(this.get_coin, false);
             this.update_coin(1);
             other.node.destroy();
+        }
+        else if (other.node.group == 'bubble') { // @@ 
+            if (other.tag == 3) { // colorful bubble
+                this.update_powerup(1);
+                other.node.destroy();
+            }
         }
         else if (other.node.name == 'missile') {
             // die
@@ -152,6 +172,7 @@ var Player = /** @class */ (function (_super) {
         else if (other.node.name == 'sharp' || other.node.name == 'parent') {
             // die
             // deploy white particles
+            this.node.active = false;
             this.scheduleOnce(function () {
                 cc.director.loadScene("lose");
             }, 0.3);
@@ -165,10 +186,10 @@ var Player = /** @class */ (function (_super) {
             this.hidden = false;
         }
         else if (other.node.group == 'mound') {
-            if (other.node.getComponent(cc.TiledTile).gid == this.color + this.base) {
-                this.node.getChildByName('eye').active = true;
-                this.hidden = false;
-            }
+            // if(other.node.getComponent(cc.TiledTile).gid == this.color + this.base) {
+            this.node.getChildByName('eye').active = true;
+            this.hidden = false;
+            // }
         }
     };
     Player.prototype.start = function () {
@@ -183,6 +204,17 @@ var Player = /** @class */ (function (_super) {
         //-------------------------------------------------
     };
     Player.prototype.update = function (dt) {
+        if (this.invis && !this.unhide) {
+            if (!this.hidden) {
+                var cl = new cc.Color(0, 0, 0);
+                this.Color.node.color = cl;
+            }
+            else {
+                var cl = new cc.Color(0, 0, 0);
+                this.Color.node.color = cl.fromHEX(this.chameleon);
+            }
+            console.log("currently invisible");
+        }
         if (this.node.y <= -400) {
             // die
             // deploy white particles
@@ -273,14 +305,6 @@ var Player = /** @class */ (function (_super) {
             this.dir = 1;
             this.prev_dir = this.dir;
         }
-        if (event.keyCode == cc.macro.KEY.p) {
-            cc.audioEngine.pauseAll();
-            cc.director.pause();
-        }
-        else if (event.keyCode == cc.macro.KEY.r) {
-            cc.audioEngine.resumeAll();
-            cc.director.resume();
-        }
         if (event.keyCode == cc.macro.KEY.enter) { // send message
             if (this.data) {
                 this.Color.node.color = new cc.Color(255, 255, 255);
@@ -293,6 +317,24 @@ var Player = /** @class */ (function (_super) {
                     _this.Color.node.color = color.fromHEX(color_str);
                 }, 1);
             }
+        }
+        if (event.keyCode == cc.macro.KEY.u) {
+            // use color powerup
+            var cl = this.Color.node.color;
+            this.invis = true;
+            this.update_powerup(-1);
+            this.scheduleOnce(function () {
+                _this.Color.node.color = cl;
+                _this.invis = false;
+            }, 5);
+        }
+        if (event.keyCode == cc.macro.KEY.p) {
+            cc.audioEngine.pauseAll();
+            cc.director.pause();
+        }
+        else if (event.keyCode == cc.macro.KEY.r) {
+            cc.audioEngine.resumeAll();
+            cc.director.resume();
         }
     };
     Player.prototype.onKeyUp = function (event) {
@@ -316,6 +358,10 @@ var Player = /** @class */ (function (_super) {
     Player.prototype.update_coin = function (number) {
         this.coin += number;
         this.coin_point.getComponent(cc.Label).string = this.coin.toString();
+    };
+    Player.prototype.update_powerup = function (number) {
+        this.powerup += number;
+        this.bubble_powerup.getComponent(cc.Label).string = this.powerup.toString();
     };
     __decorate([
         property(cc.Node)
@@ -343,6 +389,18 @@ var Player = /** @class */ (function (_super) {
     ], Player.prototype, "sec5", void 0);
     __decorate([
         property(cc.Prefab)
+    ], Player.prototype, "sec6", void 0);
+    __decorate([
+        property(cc.Prefab)
+    ], Player.prototype, "sec7", void 0);
+    __decorate([
+        property(cc.Prefab)
+    ], Player.prototype, "sec8", void 0);
+    __decorate([
+        property(cc.Prefab)
+    ], Player.prototype, "sec9", void 0);
+    __decorate([
+        property(cc.Prefab)
     ], Player.prototype, "sec10", void 0);
     __decorate([
         property(cc.Prefab)
@@ -355,6 +413,15 @@ var Player = /** @class */ (function (_super) {
     ], Player.prototype, "sec13", void 0);
     __decorate([
         property(cc.Prefab)
+    ], Player.prototype, "sec14", void 0);
+    __decorate([
+        property(cc.Prefab)
+    ], Player.prototype, "sec15", void 0);
+    __decorate([
+        property(cc.Prefab)
+    ], Player.prototype, "sec16", void 0);
+    __decorate([
+        property(cc.Prefab)
     ], Player.prototype, "sec17", void 0);
     __decorate([
         property(cc.Prefab)
@@ -362,6 +429,9 @@ var Player = /** @class */ (function (_super) {
     __decorate([
         property(cc.Prefab)
     ], Player.prototype, "sec19", void 0);
+    __decorate([
+        property(cc.Prefab)
+    ], Player.prototype, "sec20", void 0);
     __decorate([
         property(cc.Node)
     ], Player.prototype, "Score", void 0);
@@ -380,6 +450,9 @@ var Player = /** @class */ (function (_super) {
     __decorate([
         property(cc.AudioClip)
     ], Player.prototype, "get_coin", void 0);
+    __decorate([
+        property(cc.Node)
+    ], Player.prototype, "bubble_powerup", void 0);
     Player = __decorate([
         ccclass
     ], Player);

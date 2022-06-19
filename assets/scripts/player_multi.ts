@@ -22,6 +22,14 @@ export class Player extends cc.Component {
     @property(cc.Prefab)
     sec5: cc.Prefab = null;
     @property(cc.Prefab)
+    sec6: cc.Prefab = null;
+    @property(cc.Prefab)
+    sec7: cc.Prefab = null;
+    @property(cc.Prefab)
+    sec8: cc.Prefab = null;
+    @property(cc.Prefab)
+    sec9: cc.Prefab = null;
+    @property(cc.Prefab)
     sec10: cc.Prefab = null;
     @property(cc.Prefab)
     sec11: cc.Prefab = null;
@@ -30,11 +38,19 @@ export class Player extends cc.Component {
     @property(cc.Prefab)
     sec13: cc.Prefab = null;
     @property(cc.Prefab)
+    sec14: cc.Prefab = null;
+    @property(cc.Prefab)
+    sec15: cc.Prefab = null;
+    @property(cc.Prefab)
+    sec16: cc.Prefab = null;
+    @property(cc.Prefab)
     sec17: cc.Prefab = null;
     @property(cc.Prefab)
     sec18: cc.Prefab = null;
     @property(cc.Prefab)
     sec19: cc.Prefab = null;
+    @property(cc.Prefab)
+    sec20: cc.Prefab = null;
 
     @property(cc.Node)
     Score: cc.Node = null;
@@ -52,6 +68,10 @@ export class Player extends cc.Component {
     @property(cc.AudioClip)
     get_coin : cc.AudioClip = null;
 
+    @property(cc.Node)
+    bubble_powerup : cc.Node = null; 
+    powerup: number = 0;
+
     debug_mode: boolean = true;
     hidden: boolean = false;
     private noisy: boolean = false;
@@ -68,6 +88,8 @@ export class Player extends cc.Component {
     private fly_state: number = 0;  // 0 for on ground, 1 for flying, -1 for falling
     private on_floor: boolean = true;
     private stick: boolean = false;
+    private invis: boolean = false;
+    private chameleon: string = null;
     section_count = 0;      // on contact with marker, if section_count * 1920 < this.node.x: init next section and section_count ++
 
     score: number = 0;
@@ -138,9 +160,10 @@ export class Player extends cc.Component {
             }
 
             if(other.node.group == 'mound') {
-                if(other.node.getComponent(cc.TiledTile).gid == this.color + this.base && touch.x) {
+                if((other.node.getComponent(cc.TiledTile).gid == this.color + this.base && touch.x) || this.invis) {
                     this.node.getChildByName('eye').active = false;
-                    this.hidden = (this.noisy || this.unhide)? false: true;
+                    this.hidden = true;
+                    if(this.invis) this.chameleon = this.color_list[other.node.getComponent(cc.TiledTile).gid];
                     // this.last_x = this.node.x;
                 }
             }    
@@ -148,6 +171,11 @@ export class Player extends cc.Component {
             cc.audioEngine.playEffect(this.get_coin, false); 
             this.update_coin(1);
             other.node.destroy();
+        }else if(other.node.group == 'bubble'){ // @@ 
+            if(other.tag == 3){ // colorful bubble
+                 this.update_powerup(1);
+                 other.node.destroy();
+             }
         }else if(other.node.name == 'missile'){
             // die
             // deploy white particles
@@ -158,7 +186,7 @@ export class Player extends cc.Component {
         }else if(other.node.name == 'sharp'||other.node.name == 'parent'){
             // die
             // deploy white particles
-            
+            this.node.active = false;
             this.scheduleOnce(() => {
                 cc.director.loadScene("lose")
             }, 0.3);
@@ -172,10 +200,10 @@ export class Player extends cc.Component {
             this.node.getChildByName('eye').active = true;
             this.hidden = false;
         }else if( other.node.group == 'mound') {
-            if(other.node.getComponent(cc.TiledTile).gid == this.color + this.base) {
+            // if(other.node.getComponent(cc.TiledTile).gid == this.color + this.base) {
                 this.node.getChildByName('eye').active = true;
                 this.hidden = false;
-            }
+            // }
         }
     }
 
@@ -193,6 +221,16 @@ export class Player extends cc.Component {
     }
 
     update (dt) {
+        if(this.invis && !this.unhide){
+            if(!this.hidden){
+                var cl = new cc.Color(0, 0, 0);
+                this.Color.node.color = cl;
+            }else{
+                var cl = new cc.Color(0, 0, 0);
+                this.Color.node.color = cl.fromHEX(this.chameleon);
+            }
+            console.log("currently invisible");
+        }
         if(this.node.y <= -400){
             // die
             // deploy white particles
@@ -276,13 +314,7 @@ export class Player extends cc.Component {
             this.prev_dir = this.dir;
         }
         
-        if(event.keyCode == cc.macro.KEY.p){
-            cc.audioEngine.pauseAll();
-            cc.director.pause();
-        }else if(event.keyCode == cc.macro.KEY.r){
-            cc.audioEngine.resumeAll();
-            cc.director.resume();
-        }
+        
         if(event.keyCode == cc.macro.KEY.enter){        // send message
             if(this.data){
                 this.Color.node.color = new cc.Color(255,255,255);
@@ -295,6 +327,23 @@ export class Player extends cc.Component {
                     this.Color.node.color = color.fromHEX(color_str);
                 }, 1);
             }
+        }
+        if(event.keyCode == cc.macro.KEY.u){
+            // use color powerup
+            var cl = this.Color.node.color;
+            this.invis = true;
+            this.update_powerup(-1);
+            this.scheduleOnce(() => {
+                this.Color.node.color = cl;
+                this.invis = false;
+            }, 5);
+        }
+        if(event.keyCode == cc.macro.KEY.p){
+            cc.audioEngine.pauseAll();
+            cc.director.pause();
+        }else if(event.keyCode == cc.macro.KEY.r){
+            cc.audioEngine.resumeAll();
+            cc.director.resume();
         }
     }
     onKeyUp(event){
@@ -318,5 +367,9 @@ export class Player extends cc.Component {
     update_coin(number){  // @@ 
         this.coin += number;
         this.coin_point.getComponent(cc.Label).string = this.coin.toString();
+    }
+    update_powerup(number){  // @@ 
+        this.powerup += number;
+       this.bubble_powerup.getComponent(cc.Label).string = this.powerup.toString();
     }
 }

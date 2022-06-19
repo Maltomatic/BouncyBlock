@@ -282,11 +282,12 @@ export class Player extends cc.Component {
             this.dir = 1;
             this.prev_dir = this.dir;
         }
-        else if(event.keyCode == cc.macro.KEY.u){
+        
+        if(event.keyCode == cc.macro.KEY.u){
             // use color powerup
             var cl = this.Color.node.color;
             this.invis = true;
-            this.powerup--;
+            this.update_powerup(-1);
             this.scheduleOnce(() => {
                 this.Color.node.color = cl;
                 this.invis = false;
