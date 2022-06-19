@@ -220,8 +220,8 @@
     "relativePath": "scenes"
   },
   "09ce6a93-eb1a-4bd0-bdf0-7a2033be6d79": {
-    "asset": 1655584132471,
-    "meta": 1655658796555,
+    "asset": 1655663144052,
+    "meta": 1655663144060,
     "relativePath": "prefabs\\sharp.prefab"
   },
   "3daecba3-d1b8-41a9-aec2-60ca42f70386": {
@@ -1324,11 +1324,6 @@
     "meta": 1655661993220,
     "relativePath": "scripts\\bird_player.ts"
   },
-  "3095119b-5903-4a1d-92e8-fa42e3425160": {
-    "asset": 1655662101695,
-    "meta": 1655662105925,
-    "relativePath": "scripts\\player_day.ts"
-  },
   "a4fb5ce8-16f2-4ec9-b773-3d70ce77a8e4": {
     "asset": 1655662790950,
     "meta": 1655662795537,
@@ -1338,5 +1333,10 @@
     "asset": 1655662902022,
     "meta": 1655662905577,
     "relativePath": "scripts\\player_multi.ts"
+  },
+  "3095119b-5903-4a1d-92e8-fa42e3425160": {
+    "asset": 1655663703654,
+    "meta": 1655663710321,
+    "relativePath": "scripts\\player_day.ts"
   }
 }
