@@ -177,21 +177,33 @@ export class Player extends cc.Component {
                  other.node.destroy();
              }
         }else if(other.node.name == 'missile'){
-            // die
+            // diee
             // deploy white particles
+            this.die_particle();
             this.node.active = false;
             this.scheduleOnce(() => {
                 cc.director.loadScene("lose");
             }, 0.3);
         }else if(other.node.name == 'sharp'||other.node.name == 'parent'){
-            // die
+            // diee
             // deploy white particles
+            this.die_particle();
             this.node.active = false;
             this.scheduleOnce(() => {
                 cc.director.loadScene("lose")
             }, 0.3);
         }
 
+    }
+    die_particle()
+    {
+        this.node.getChildByName('eye').active = false;
+        var explode=this.node.getChildByName("star_explode");
+        explode.active = true;
+        explode.getComponent(cc.ParticleSystem).startColor= this.Color.node.color;
+        explode.getComponent(cc.ParticleSystem).endColor= this.Color.node.color;
+        explode.getComponent(cc.ParticleSystem).endColorVar= this.Color.node.color;
+        this.node.getChildByName('color').active = false;
     }
     onEndContact(contact, self, other) {
         //a bug happens when the color of mound is same as the color of player, not solved yet 
@@ -232,8 +244,9 @@ export class Player extends cc.Component {
             console.log("currently invisible");
         }
         if(this.node.y <= -400){
-            // die
+            // diee
             // deploy white particles
+            this.die_particle();
             this.node.active = false;
             this.scheduleOnce(() => {
                 cc.director.loadScene("lose")

@@ -665,8 +665,8 @@
     "relativePath": "maps\\section17.tmx"
   },
   "e19b5114-6ae0-44c7-aaf8-d3a9a5a14998": {
-    "asset": 1655662136755,
-    "meta": 1655662136762,
+    "asset": 1655662202103,
+    "meta": 1655662202114,
     "relativePath": "scenes\\day.fire"
   },
   "4c65e601-7bdc-4894-ba74-78dabfa8544d": {
@@ -743,16 +743,6 @@
     "asset": 1655654402369,
     "meta": 1655658797187,
     "relativePath": "scripts\\section_init.ts"
-  },
-  "a4ea169f-e7a5-48fe-a76a-3f69d22f0a2e": {
-    "asset": 1655655576941,
-    "meta": 1655658797106,
-    "relativePath": "scripts\\player_multi.ts"
-  },
-  "a4fb5ce8-16f2-4ec9-b773-3d70ce77a8e4": {
-    "asset": 1655655576933,
-    "meta": 1655658796982,
-    "relativePath": "scripts\\player.ts"
   },
   "74fece5c-02b6-4031-8881-542ffe7f5e54": {
     "asset": 1655656161834,
@@ -1338,5 +1328,15 @@
     "asset": 1655662101695,
     "meta": 1655662105925,
     "relativePath": "scripts\\player_day.ts"
+  },
+  "a4ea169f-e7a5-48fe-a76a-3f69d22f0a2e": {
+    "asset": 1655662280199,
+    "meta": 1655662297110,
+    "relativePath": "scripts\\player_multi.ts"
+  },
+  "a4fb5ce8-16f2-4ec9-b773-3d70ce77a8e4": {
+    "asset": 1655662348018,
+    "meta": 1655662361981,
+    "relativePath": "scripts\\player.ts"
   }
 }
