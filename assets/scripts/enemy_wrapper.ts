@@ -59,7 +59,7 @@ export class Light_wrapper extends cc.Component {
                 else this.dir = 0;
                     
                 // console.log("enemy position: " + enempos + "player position: " + this.character.x + "track in direction " + this.dir);
-                this.enemy.x += 150 * dt * this.dir;
+                this.enemy.x += 120 * dt * this.dir;
                 this.atk -= dt;
                 if(this.atk < 0){
                     this.shoot();
@@ -71,10 +71,10 @@ export class Light_wrapper extends cc.Component {
     }
     
     shoot(){
-        // console.log("shooting")
+        console.log("shooting")
         var bullet = cc.instantiate(this.bullet);
         this.node.addChild(bullet);
-        bullet.setPosition(this.enemy.x + this.node.x, 0);
+        bullet.setPosition(this.enemy.x/* + this.node.x*/, 0);
         bullet.y -= 10;
         // var offset = 20 * ((this.enemy.x < this.character.x)? -1:1);
         bullet.getComponent(cc.RigidBody).linearVelocity = cc.v2((this.character.x - (this.enemy.x + this.node.x)), (this.character.y - this.node.y)).normalizeSelf().multiply(cc.v2(700, 700));

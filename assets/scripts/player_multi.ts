@@ -92,7 +92,7 @@ export class Player extends cc.Component {
         this.strip = cc.find('Canvas/root').getComponent('root').color_strip;
         this.base = 1 + 6*this.strip;
         this.color = 1 + Math.floor(Math.random() * 4);
-        //console.log(this.base +  Math.floor(Math.random() * 5));
+        //// console.log(this.base +  Math.floor(Math.random() * 5));
         var color_str = this.color_list[this.base + this.color];
         var color = new cc.Color(255,255,255);
         this.Color.node.color = color.fromHEX(color_str);
@@ -113,24 +113,24 @@ export class Player extends cc.Component {
     }
 
     onBeginContact(contact, self, other){
-        // console.log(other.node.group);
+        // // console.log(other.node.group);
         var touch = contact.getWorldManifold().normal;
-        // console.log("hit node with color " + other.node.getComponent(cc.TiledTile).gid);
+        // // console.log("hit node with color " + other.node.getComponent(cc.TiledTile).gid);
         if(other.tag == 1000){
-            //console.log("hit marker");
+            //// console.log("hit marker");
             if(this.node.x >= this.section_count*1920){
-                //console.log("init next section");
+                //// console.log("init next section");
                 this.section_count++;
                 var rand = Math.floor(Math.random() * Math.min(2+this.section_count/2, 13))
-                //console.log(rand);
-                //console.log("To instantiate: " + this.sec_list[rand].name);
+                //// console.log(rand);
+                //// console.log("To instantiate: " + this.sec_list[rand].name);
                 var next_section = cc.instantiate(this.sec_list[rand]);
                 next_section.x = 1920 * this.section_count;
                 next_section.y = 0;
                 this.maplist.addChild(next_section);
-            } //else console.log(this.node.x, this.section_count);
+            } //else // console.log(this.node.x, this.section_count);
         }else if(other.node.group == 'ground' || other.node.group == 'mound'){
-            console.log(other.node.group + " (" + touch.x + ", " + touch.y + ")")
+            // console.log(other.node.group + " (" + touch.x + ", " + touch.y + ")")
             if(touch.y && this.fly_state == -1){
                 this.stick = true;
                 this.fly_state = 0;
@@ -201,7 +201,7 @@ export class Player extends cc.Component {
             this.node.x -= this.prev_dir * 0.4;
             this.fly_state = -1;
         }else if(this.stick){
-            console.log("stick");
+            // console.log("stick");
             this.node.x += this.prev_dir * 0.4;
             this.stick = false;
         }
@@ -305,7 +305,7 @@ export class Player extends cc.Component {
         this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 600);
         this.fly_state = 1;
         if(!this.debug_mode) this.on_floor = false;
-        console.log(this.prev_dir + "fly state: " + this.fly_state);
+        // console.log(this.prev_dir + "fly state: " + this.fly_state);
     }
     update_coin(number){  // @@ 
         this.coin += number;
