@@ -1152,7 +1152,7 @@
     "angle": 0,
     "angleVar": 360,
     "startSize": 3,
-    "startSizeVar": 30,
+    "startSizeVar": 20,
     "endSize": 0,
     "endSizeVar": 0,
     "startSpin": 168,

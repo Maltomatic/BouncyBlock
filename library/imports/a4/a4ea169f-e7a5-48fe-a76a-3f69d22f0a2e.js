@@ -61,6 +61,7 @@ var Player = /** @class */ (function (_super) {
         _this.get_coin = null;
         _this.bubble_powerup = null;
         _this.powerup = 0;
+        _this.die_audio = null;
         _this.debug_mode = true;
         _this.hidden = false;
         _this.noisy = false;
@@ -188,6 +189,7 @@ var Player = /** @class */ (function (_super) {
         }
     };
     Player.prototype.die_particle = function () {
+        cc.audioEngine.playEffect(this.die_audio, false);
         this.node.getChildByName('eye').active = false;
         var explode = this.node.getChildByName("star_explode");
         explode.active = true;
@@ -483,6 +485,9 @@ var Player = /** @class */ (function (_super) {
     __decorate([
         property(cc.Node)
     ], Player.prototype, "bubble_powerup", void 0);
+    __decorate([
+        property(cc.AudioClip)
+    ], Player.prototype, "die_audio", void 0);
     Player = __decorate([
         ccclass
     ], Player);

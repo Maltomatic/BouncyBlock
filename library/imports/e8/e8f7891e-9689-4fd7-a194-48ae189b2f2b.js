@@ -41,6 +41,7 @@ var Bird = /** @class */ (function (_super) {
         _this.Score = null;
         _this.Scoretag = null;
         _this.Color = null;
+        _this.die_audio = null;
         _this.section_count = 0; // on contact with marker, if section_count * 1920 < this.node.x: init next section and section_count ++
         _this.score = 0;
         _this.speed = 150;
@@ -127,6 +128,7 @@ var Bird = /** @class */ (function (_super) {
         }
     };
     Bird.prototype.die_particle = function () {
+        cc.audioEngine.playEffect(this.die_audio, false);
         this.node.getChildByName('eye').active = false;
         var explode = this.node.getChildByName("star_explode");
         explode.active = true;
@@ -169,6 +171,9 @@ var Bird = /** @class */ (function (_super) {
     __decorate([
         property(cc.Sprite)
     ], Bird.prototype, "Color", void 0);
+    __decorate([
+        property(cc.AudioClip)
+    ], Bird.prototype, "die_audio", void 0);
     Bird = __decorate([
         ccclass
     ], Bird);

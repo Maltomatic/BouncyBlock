@@ -3262,10 +3262,16 @@
       "__id__": 66
     },
     "_enabled": true,
-    "_defaultClip": null,
+    "_defaultClip": {
+      "__uuid__": "95105a39-6bf7-478d-b839-3aa5ea4103cd"
+    },
     "_clips": [
-      null,
-      null
+      {
+        "__uuid__": "95105a39-6bf7-478d-b839-3aa5ea4103cd"
+      },
+      {
+        "__uuid__": "0a975f6d-0a53-4b0b-95ad-4184407d2c42"
+      }
     ],
     "playOnLoad": true,
     "_id": "21UvmF6/BNxoVSoYwQxrxc"
