@@ -1036,7 +1036,7 @@
       "__id__": 17
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 23
@@ -1113,7 +1113,7 @@
       "__uuid__": "a23235d1-15db-4b95-8439-a2e005bfff91"
     },
     "_texture": null,
-    "_stopped": true,
+    "_stopped": false,
     "playOnLoad": true,
     "autoRemoveOnFinish": false,
     "totalParticles": 81,
@@ -1151,8 +1151,8 @@
     },
     "angle": 0,
     "angleVar": 360,
-    "startSize": 10,
-    "startSizeVar": 70,
+    "startSize": 3,
+    "startSizeVar": 30,
     "endSize": 0,
     "endSizeVar": 0,
     "startSpin": 168,
