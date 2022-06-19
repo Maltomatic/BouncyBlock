@@ -31,6 +31,7 @@ var NewClass = /** @class */ (function (_super) {
         _this.invite_code = null;
         _this.uid = null;
         _this.kick = false;
+        _this.key = null;
         return _this;
     }
     // LIFE-CYCLE CALLBACKS:
@@ -40,6 +41,7 @@ var NewClass = /** @class */ (function (_super) {
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
                 _this.uid = firebase.auth().currentUser.uid;
+                _this.key = _this.uid.substring(0, 5);
             }
             else {
                 _this.kick = true;
@@ -65,29 +67,61 @@ var NewClass = /** @class */ (function (_super) {
                 _this.joinGame();
         }, this);
         cc.find("Canvas/root/back").on(cc.Node.EventType.MOUSE_DOWN, function () {
+            var key = _this.uid.substring(0, 5);
+            firebase.database().ref('waiting_room/' + key).remove();
+            firebase.database().ref('in_game/' + _this.uid).remove();
             _this.invite_code.string = '';
             cc.director.loadScene('menu');
         }, this);
     };
     NewClass.prototype.makeGame = function () {
-        var key = this.uid.substring(0, 5);
-        this.invite_code.string = key;
-        firebase.database().ref('waiting_room/' + key).set(0);
-        var ref = firebase.database().ref('waiting_room/' + key);
-        ref.on('child_changed', function (snapshot) {
-            var joiner = snapshot.val();
-            ref.remove();
-            firebase.database().ref('in_game/' + joiner + '/creator').set(0);
-            console.log("entering game as creator");
-            // remeber self as creator, then change scene
-            cc.sys.localStorage.setItem("id", 1);
-            cc.sys.localStorage.setItem("room", joiner);
-            cc.director.loadScene('multi');
-        });
+        this.invite_code.string = this.key;
+        // firebase.database().ref('waiting_room/' + this.key).set(0);
+        this.maker_load();
     };
-    // update (dt) {}
+    NewClass.prototype.maker_load = function () {
+        var _this = this;
+        console.log("maker called");
+        firebase.database().ref('waiting_room/' + this.key).once('value', function (snapshot) {
+            console.log(snapshot.val());
+            if (snapshot.exists()) {
+                var joiner = snapshot.val();
+                firebase.database().ref('in_game/' + joiner + '/creator').set(0);
+                firebase.database().ref('waiting_room/' + _this.key).remove();
+                console.log("entering game as creator");
+                // remeber self as creator, then change scene
+                cc.sys.localStorage.setItem("id", 1);
+                cc.sys.localStorage.setItem("room", joiner);
+                cc.director.loadScene('multi');
+            }
+            else
+                _this.maker_load();
+        });
+        // setInterval(this.maker_load, 300);
+    };
+    // update (dt) {
+    // }
     NewClass.prototype.joinGame = function () {
-        //
+        // var key: string = this.invite_code.string;
+        firebase.database().ref('waiting_room/' + this.invite_code.string).set(this.uid);
+        this.joiner_load();
+    };
+    NewClass.prototype.joiner_load = function () {
+        var _this = this;
+        console.log("joiner called");
+        firebase.database().ref('in_game/' + this.uid).once('value', function (snapshot) {
+            if (snapshot.exists()) {
+                console.log("creator has joined");
+                firebase.database().ref('in_game/' + _this.uid + '/joiner').set(0);
+                cc.sys.localStorage.setItem("id", 0);
+                cc.sys.localStorage.setItem("room", _this.uid);
+                cc.director.loadScene('multi');
+            }
+            else {
+                _this.joiner_load();
+            }
+        });
+        // setInterval(this.joiner_load, 300);
     };
     __decorate([
         property(cc.EditBox)

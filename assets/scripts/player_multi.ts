@@ -320,7 +320,7 @@ export class Player extends cc.Component {
                     }
                 }, 3);
             }
-        }, 0.12);
+        });
     }
 
     onKeyDown(event){

@@ -312,7 +312,7 @@ var Player = /** @class */ (function (_super) {
                     }
                 }, 3);
             }
-        }, 0.12);
+        });
     };
     Player.prototype.onKeyDown = function (event) {
         var _this = this;

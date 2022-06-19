@@ -1170,8 +1170,8 @@
     "relativePath": "scenes\\lose.fire"
   },
   "e19b5114-6ae0-44c7-aaf8-d3a9a5a14998": {
-    "asset": 1655675944231,
-    "meta": 1655675944256,
+    "asset": 1655679247513,
+    "meta": 1655679247613,
     "relativePath": "scenes\\day.fire"
   },
   "63c73803-efc9-413a-a6ef-556b860d4ad0": {
@@ -1354,16 +1354,6 @@
     "meta": 1655673841399,
     "relativePath": "scripts\\parent.ts"
   },
-  "a4ea169f-e7a5-48fe-a76a-3f69d22f0a2e": {
-    "asset": 1655675311823,
-    "meta": 1655675354149,
-    "relativePath": "scripts\\player_multi.ts"
-  },
-  "c676e8bc-b7a2-4ccd-90b3-2ef03d90bb2b": {
-    "asset": 1655675395868,
-    "meta": 1655675477364,
-    "relativePath": "scripts\\pair_game.ts"
-  },
   "1e31aad1-8607-4726-b210-6ea79c600e2f": {
     "asset": 1655675526853,
     "meta": 1655675529180,
@@ -1398,5 +1388,15 @@
     "asset": 1655675880138,
     "meta": 1655675884448,
     "relativePath": "Animation\\parent_stun.anim"
+  },
+  "a4ea169f-e7a5-48fe-a76a-3f69d22f0a2e": {
+    "asset": 1655679084778,
+    "meta": 1655679247144,
+    "relativePath": "scripts\\player_multi.ts"
+  },
+  "c676e8bc-b7a2-4ccd-90b3-2ef03d90bb2b": {
+    "asset": 1655681284360,
+    "meta": 1655681292421,
+    "relativePath": "scripts\\pair_game.ts"
   }
 }
