@@ -120,7 +120,7 @@ var Bird = /** @class */ (function (_super) {
             console.log(other.node.group + " (" + touch.x + ", " + touch.y + ")");
             // diee
             this.node.getChildByName('eye').active = false;
-            this.node.getChildByName('explode_die').active = true;
+            this.node.getChildByName('star_explode').active = true;
             this.node.getChildByName('color').active = false;
             this.speed = 0;
             this.scheduleOnce(function () {

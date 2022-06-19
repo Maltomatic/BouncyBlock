@@ -170,8 +170,8 @@
     "relativePath": "maps\\new_tileset.png"
   },
   "6f12df5d-d5da-4eec-857a-07fadfdfc319": {
-    "asset": 1655655559592,
-    "meta": 1655655590784,
+    "asset": 1655655704909,
+    "meta": 1655656046005,
     "relativePath": "prefabs"
   },
   "25759dff-65ae-42cb-92b9-a925f16a7432": {
@@ -1185,8 +1185,8 @@
     "relativePath": "scenes\\day.fire"
   },
   "04cfd6d9-41d6-4ada-8a5b-fc5bd8ed6a7d": {
-    "asset": 1655655559594,
-    "meta": 1655655592101,
+    "asset": 1655655924439,
+    "meta": 1655655924449,
     "relativePath": "scenes\\test.fire"
   },
   "4c65e601-7bdc-4894-ba74-78dabfa8544d": {
@@ -1284,19 +1284,14 @@
     "meta": 1655655592660,
     "relativePath": "scripts\\player.ts"
   },
-  "e8f7891e-9689-4fd7-a194-48ae189b2f2b": {
-    "asset": 1655654527404,
-    "meta": 1655655592015,
-    "relativePath": "scripts\\bird_player.ts"
-  },
   "74fece5c-02b6-4031-8881-542ffe7f5e54": {
-    "asset": 1655655559020,
-    "meta": 1655655590791,
+    "asset": 1655655649710,
+    "meta": 1655656046006,
     "relativePath": "source"
   },
   "f51a59a5-a0f4-4c8b-a82a-a1c5afdf7bfb": {
-    "asset": 1655654555560,
-    "meta": 1655655591818,
+    "asset": 1655656341082,
+    "meta": 1655656341090,
     "relativePath": "scenes\\bird.fire"
   },
   "e05d3a7c-cdf2-428b-a3bd-26e38cf23271": {
@@ -1318,5 +1313,15 @@
     "asset": 1655655828897,
     "meta": 1655655829765,
     "relativePath": "scripts\\missile.ts"
+  },
+  "168bfb4c-efa4-42d6-a7ba-21619e8fd916": {
+    "asset": 1655656161824,
+    "meta": 1655656161849,
+    "relativePath": "source\\star_explode.plist"
+  },
+  "e8f7891e-9689-4fd7-a194-48ae189b2f2b": {
+    "asset": 1655656333340,
+    "meta": 1655656334063,
+    "relativePath": "scripts\\bird_player.ts"
   }
 }
