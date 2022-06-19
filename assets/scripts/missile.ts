@@ -11,6 +11,9 @@ export class Missile extends cc.Component {
     @property(cc.Prefab)
     explode:cc.Prefab=null;
 
+    @property(cc.AudioClip)
+    bulletFall:cc.AudioClip=null;
+
     onLoad(){
         this.player = cc.find('Canvas/root/player');
         this.tgt_x = this.player.x;
@@ -60,6 +63,10 @@ export class Missile extends cc.Component {
 
             this.node.active = false;
             this.node.destroy();
+        }
+        if(other.node.group == 'ground' || other.node.group == 'mound')
+        {
+            cc.audioEngine.playEffect(this.bulletFall, false);
         }
     }
 

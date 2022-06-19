@@ -33,6 +33,7 @@ var Missile = /** @class */ (function (_super) {
         _this.tgt_y = 0;
         _this.player = null;
         _this.explode = null;
+        _this.bulletFall = null;
         return _this;
     }
     Missile.prototype.onLoad = function () {
@@ -79,6 +80,9 @@ var Missile = /** @class */ (function (_super) {
             this.node.active = false;
             this.node.destroy();
         }
+        if (other.node.group == 'ground' || other.node.group == 'mound') {
+            cc.audioEngine.playEffect(this.bulletFall, false);
+        }
     };
     Missile.prototype.update = function (dt) {
         if (this.node.y < -3500)
@@ -87,6 +91,9 @@ var Missile = /** @class */ (function (_super) {
     __decorate([
         property(cc.Prefab)
     ], Missile.prototype, "explode", void 0);
+    __decorate([
+        property(cc.AudioClip)
+    ], Missile.prototype, "bulletFall", void 0);
     Missile = __decorate([
         ccclass
     ], Missile);

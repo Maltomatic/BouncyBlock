@@ -303,7 +303,10 @@
     },
     "_enabled": true,
     "explode": {
-      "__uuid__": "30527218-a1d1-433f-8918-20de21436ddd"
+      "__uuid__": "10c3d44b-b12b-460b-bc2c-29f1725cab5f"
+    },
+    "bulletFall": {
+      "__uuid__": "373b2411-1975-4197-b32a-4b614ada806a"
     },
     "_id": ""
   },
