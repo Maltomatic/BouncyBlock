@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "bubble powerup",
+    "_name": "bubble_powerup",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -45,8 +45,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 458,
-      "height": 455
+      "width": 341,
+      "height": 341
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -98,7 +98,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "00ba45ad-952c-4627-b7e1-d2ac1e434715"
+      "__uuid__": "513071fd-3cf1-4bc9-8bff-67b8e77acb18"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -169,9 +169,6 @@
       "__id__": 1
     },
     "_enabled": true,
-    "bubble_Prefabs": {
-      "__uuid__": "56c3ea30-46b0-49cf-8de2-9daae330a17a"
-    },
     "_id": ""
   },
   {

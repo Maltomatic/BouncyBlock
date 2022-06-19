@@ -480,8 +480,15 @@
     "coin_pre": {
       "__uuid__": "6444cc76-5ef6-4a3c-926c-a09987c9319c"
     },
-    "lego_pre": null,
-    "banana_pre": null,
+    "lego_pre": {
+      "__uuid__": "f5cb43f2-a069-44dd-a961-50996a519115"
+    },
+    "bubble_pre": {
+      "__uuid__": "70927b47-0977-4055-b8c2-e6a9e6488850"
+    },
+    "banana_pre": {
+      "__uuid__": "33375052-6995-4790-8486-f18ef76ea1a0"
+    },
     "_id": ""
   },
   {

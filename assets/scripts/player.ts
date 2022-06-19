@@ -82,6 +82,8 @@ export class Player extends cc.Component {
     private fly_state: number = 0;  // 0 for on ground, 1 for flying, -1 for falling
     private on_floor: boolean = true;
     private stick: boolean = false;
+    private invis: boolean = false;
+    private chameleon: string = null;
     section_count = 0;      // on contact with marker, if section_count * 1920 < this.node.x: init next section and section_count ++
 
     score: number = 0;
@@ -152,9 +154,10 @@ export class Player extends cc.Component {
             }
 
             if(other.node.group == 'mound') {
-                if(other.node.getComponent(cc.TiledTile).gid == this.color + this.base && touch.x/* && !touch.y*/) {
+                if((other.node.getComponent(cc.TiledTile).gid == this.color + this.base && touch.x) || this.invis) {
                     this.node.getChildByName('eye').active = false;
                     this.hidden = true;
+                    if(this.invis) this.chameleon = this.color_list[other.node.getComponent(cc.TiledTile).gid];
                     // this.last_x = this.node.x;
                 }
             }    
@@ -164,8 +167,8 @@ export class Player extends cc.Component {
             other.node.destroy();
         }else if(other.node.group == 'bubble'){ // @@ 
            if(other.tag == 3){ // colorful bubble
-            this.update_powerup(1);
-            other.node.destroy();
+                this.update_powerup(1);
+                other.node.destroy();
             }
         }else if(other.node.name == 'missile'){
             // deploy white particles
@@ -187,10 +190,10 @@ export class Player extends cc.Component {
             this.node.getChildByName('eye').active = true;
             this.hidden = false;
         }else if( other.node.group == 'mound') {
-            if(other.node.getComponent(cc.TiledTile).gid == this.color + this.base) {
+            // if(other.node.getComponent(cc.TiledTile).gid == this.color + this.base) {
                 this.node.getChildByName('eye').active = true;
                 this.hidden = false;
-            }
+            // }
         }
     }
 
@@ -207,6 +210,16 @@ export class Player extends cc.Component {
     }
 
     update (dt) {
+        if(this.invis){
+            if(!this.hidden){
+                var cl = new cc.Color(0, 0, 0);
+                this.Color.node.color = cl;
+            }else{
+                var cl = new cc.Color(0, 0, 0);
+                this.Color.node.color = cl.fromHEX(this.chameleon);
+            }
+            console.log("currently invisible");
+        }
         if(this.node.y <= -400){
             this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).emitterMode = 1;
             this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).emissionRate = 100;
@@ -268,6 +281,16 @@ export class Player extends cc.Component {
         else if(event.keyCode == cc.macro.KEY.right){
             this.dir = 1;
             this.prev_dir = this.dir;
+        }
+        else if(event.keyCode == cc.macro.KEY.u){
+            // use color powerup
+            var cl = this.Color.node.color;
+            this.invis = true;
+            this.powerup--;
+            this.scheduleOnce(() => {
+                this.Color.node.color = cl;
+                this.invis = false;
+            }, 5);
         }
         
         if(event.keyCode == cc.macro.KEY.p){

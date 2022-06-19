@@ -68,6 +68,8 @@ var Player = /** @class */ (function (_super) {
         _this.fly_state = 0; // 0 for on ground, 1 for flying, -1 for falling
         _this.on_floor = true;
         _this.stick = false;
+        _this.invis = false;
+        _this.chameleon = null;
         _this.section_count = 0; // on contact with marker, if section_count * 1920 < this.node.x: init next section and section_count ++
         _this.score = 0;
         _this.color = 0;
@@ -133,9 +135,11 @@ var Player = /** @class */ (function (_super) {
                     this.on_floor = true;
             }
             if (other.node.group == 'mound') {
-                if (other.node.getComponent(cc.TiledTile).gid == this.color + this.base && touch.x /* && !touch.y*/) {
+                if ((other.node.getComponent(cc.TiledTile).gid == this.color + this.base && touch.x) || this.invis) {
                     this.node.getChildByName('eye').active = false;
                     this.hidden = true;
+                    if (this.invis)
+                        this.chameleon = this.color_list[other.node.getComponent(cc.TiledTile).gid];
                     // this.last_x = this.node.x;
                 }
             }
@@ -172,10 +176,10 @@ var Player = /** @class */ (function (_super) {
             this.hidden = false;
         }
         else if (other.node.group == 'mound') {
-            if (other.node.getComponent(cc.TiledTile).gid == this.color + this.base) {
-                this.node.getChildByName('eye').active = true;
-                this.hidden = false;
-            }
+            // if(other.node.getComponent(cc.TiledTile).gid == this.color + this.base) {
+            this.node.getChildByName('eye').active = true;
+            this.hidden = false;
+            // }
         }
     };
     Player.prototype.start = function () {
@@ -189,6 +193,17 @@ var Player = /** @class */ (function (_super) {
         //-------------------------------------------------
     };
     Player.prototype.update = function (dt) {
+        if (this.invis) {
+            if (!this.hidden) {
+                var cl = new cc.Color(0, 0, 0);
+                this.Color.node.color = cl;
+            }
+            else {
+                var cl = new cc.Color(0, 0, 0);
+                this.Color.node.color = cl.fromHEX(this.chameleon);
+            }
+            console.log("currently invisible");
+        }
         if (this.node.y <= -400) {
             this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).emitterMode = 1;
             this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).emissionRate = 100;
@@ -243,6 +258,7 @@ var Player = /** @class */ (function (_super) {
             this.camera.x = this.node.x - 100;
     };
     Player.prototype.onKeyDown = function (event) {
+        var _this = this;
         if (event.keyCode == cc.macro.KEY.space) {
             if (this.on_floor)
                 this.jump();
@@ -254,6 +270,16 @@ var Player = /** @class */ (function (_super) {
         else if (event.keyCode == cc.macro.KEY.right) {
             this.dir = 1;
             this.prev_dir = this.dir;
+        }
+        else if (event.keyCode == cc.macro.KEY.u) {
+            // use color powerup
+            var cl = this.Color.node.color;
+            this.invis = true;
+            this.powerup--;
+            this.scheduleOnce(function () {
+                _this.Color.node.color = cl;
+                _this.invis = false;
+            }, 5);
         }
         if (event.keyCode == cc.macro.KEY.p) {
             cc.audioEngine.pauseAll();
