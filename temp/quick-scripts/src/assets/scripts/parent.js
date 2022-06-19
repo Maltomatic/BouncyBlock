@@ -67,7 +67,7 @@ var NewClass = /** @class */ (function (_super) {
     NewClass.prototype.update = function (dt) {
         this.speedup = 0.2 + 0.003 * parseInt(this.now_score.string); //每得一分加速0.03 //約七百多分會比player快
         if (this.stunned == 0)
-            this.node.x += (Math.max(this.speedup * 75, 200) + this.penalty) * dt;
+            this.node.x += (Math.max(this.speedup * 35, 200) + this.penalty) * dt;
         else
             this.node.x += 0;
         if (Math.abs(this.node.x - this.before_x) <= 0.3 && this.stunned == 0)

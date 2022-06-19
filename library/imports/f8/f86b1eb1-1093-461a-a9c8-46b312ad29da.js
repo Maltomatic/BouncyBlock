@@ -46,7 +46,7 @@ var Section = /** @class */ (function (_super) {
         cc.director.getCollisionManager().enabled = true;
         cc.director.getCollisionManager().enabledDrawBoundingBox = true;
         cc.director.getPhysicsManager().enabled = true;
-        cc.director.getPhysicsManager().debugDrawFlags = 1;
+        // cc.director.getPhysicsManager().debugDrawFlags = 1;
         cc.director.getPhysicsManager().gravity = cc.v2(0, -500);
         this.lv = parseInt(this.node.name.replace('section', ''));
     };

@@ -1269,11 +1269,6 @@
     "meta": 1655644611252,
     "relativePath": "scripts\\sharp.ts"
   },
-  "f86b1eb1-1093-461a-a9c8-46b312ad29da": {
-    "asset": 1655645498288,
-    "meta": 1655645499618,
-    "relativePath": "scripts\\section_init.ts"
-  },
   "46fe3e40-486d-4367-9aee-9c5cf3c195d8": {
     "asset": 1655645586155,
     "meta": 1655645594648,
@@ -1283,11 +1278,6 @@
     "asset": 1655646903675,
     "meta": 1655646906780,
     "relativePath": "scripts\\enemy_wrapper.ts"
-  },
-  "201d1fb4-4e8f-44d0-b194-13f83e0f3203": {
-    "asset": 1655647753478,
-    "meta": 1655647757734,
-    "relativePath": "scripts\\parent.ts"
   },
   "3095119b-5903-4a1d-92e8-fa42e3425160": {
     "asset": 1655648097733,
@@ -1303,5 +1293,15 @@
     "asset": 1655648093019,
     "meta": 1655648107057,
     "relativePath": "scripts\\player.ts"
+  },
+  "f86b1eb1-1093-461a-a9c8-46b312ad29da": {
+    "asset": 1655648141745,
+    "meta": 1655648255936,
+    "relativePath": "scripts\\section_init.ts"
+  },
+  "201d1fb4-4e8f-44d0-b194-13f83e0f3203": {
+    "asset": 1655648474908,
+    "meta": 1655648480791,
+    "relativePath": "scripts\\parent.ts"
   }
 }
