@@ -172,20 +172,31 @@ var Player = /** @class */ (function (_super) {
             }
         }
         else if (other.node.name == 'missile') {
-            // die
+            // diee
             // deploy white particles
-            this.node.active = false;
+            this.die_particle();
+            //this.node.active = false;
             this.scheduleOnce(function () {
                 cc.director.loadScene("lose");
             }, 0.3);
         }
         else if ((other.node.name[0] == 's' && other.node.name[1] == 'h') || other.node.name == 'parent') {
-            // die
+            // diee
             // deploy white particles
+            this.die_particle();
             this.scheduleOnce(function () {
                 cc.director.loadScene("lose");
             }, 0.3);
         }
+    };
+    Player.prototype.die_particle = function () {
+        this.node.getChildByName('eye').active = false;
+        var explode = this.node.getChildByName("star_explode");
+        explode.active = true;
+        explode.getComponent(cc.ParticleSystem).startColor = this.Color.node.color;
+        explode.getComponent(cc.ParticleSystem).endColor = this.Color.node.color;
+        explode.getComponent(cc.ParticleSystem).endColorVar = this.Color.node.color;
+        this.node.getChildByName('color').active = false;
     };
     Player.prototype.onEndContact = function (contact, self, other) {
         //a bug happens when the color of mound is same as the color of player, not solved yet 

@@ -665,8 +665,8 @@
     "relativePath": "maps\\section17.tmx"
   },
   "e19b5114-6ae0-44c7-aaf8-d3a9a5a14998": {
-    "asset": 1655661995569,
-    "meta": 1655661995578,
+    "asset": 1655662136755,
+    "meta": 1655662136762,
     "relativePath": "scenes\\day.fire"
   },
   "4c65e601-7bdc-4894-ba74-78dabfa8544d": {
@@ -733,11 +733,6 @@
     "asset": 1655646014068,
     "meta": 1655658796822,
     "relativePath": "scripts\\light.ts"
-  },
-  "3095119b-5903-4a1d-92e8-fa42e3425160": {
-    "asset": 1655650257683,
-    "meta": 1655658797042,
-    "relativePath": "scripts\\player_day.ts"
   },
   "b7474a50-3239-4ee7-b7e0-7b3cd838b5f2": {
     "asset": 1655653474286,
@@ -1338,5 +1333,10 @@
     "asset": 1655661991749,
     "meta": 1655661993220,
     "relativePath": "scripts\\bird_player.ts"
+  },
+  "3095119b-5903-4a1d-92e8-fa42e3425160": {
+    "asset": 1655662101695,
+    "meta": 1655662105925,
+    "relativePath": "scripts\\player_day.ts"
   }
 }
