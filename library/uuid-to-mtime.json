@@ -1474,16 +1474,6 @@
     "meta": 1655748511079,
     "relativePath": "scripts\\pair_game.ts"
   },
-  "a4ea169f-e7a5-48fe-a76a-3f69d22f0a2e": {
-    "asset": 1655748311087,
-    "meta": 1655748511298,
-    "relativePath": "scripts\\player_multi.ts"
-  },
-  "3095119b-5903-4a1d-92e8-fa42e3425160": {
-    "asset": 1655748611740,
-    "meta": 1655748612764,
-    "relativePath": "scripts\\player_day.ts"
-  },
   "f0e6fab3-4fb9-4702-a737-38535dc25695": {
     "asset": 1655751960960,
     "meta": 1655751961073,
@@ -1509,11 +1499,6 @@
     "meta": 1655753067145,
     "relativePath": "image\\signal.png"
   },
-  "a9a033af-3c8b-426b-b93d-d584320b61a8": {
-    "asset": 1655753067093,
-    "meta": 1655753067148,
-    "relativePath": "image\\bubble_signal.png"
-  },
   "f86b1eb1-1093-461a-a9c8-46b312ad29da": {
     "asset": 1655753320673,
     "meta": 1655753322785,
@@ -1535,18 +1520,18 @@
     "relativePath": "prefabs\\spider.prefab"
   },
   "70fdd7c0-9fce-41ee-ad1c-0ad0681c277b": {
-    "asset": 1655756506685,
-    "meta": 1655756557529,
+    "asset": 1655762149190,
+    "meta": 1655762149225,
     "relativePath": "scenes\\lose.fire"
   },
   "cf8ab7d3-5826-4cee-bc5b-afec15c9a310": {
-    "asset": 1655756506688,
-    "meta": 1655756557532,
+    "asset": 1655758841389,
+    "meta": 1655758841429,
     "relativePath": "scenes\\ongame.fire"
   },
   "ca4b2559-ca3b-47d0-b95b-17f8160ad309": {
-    "asset": 1655756506695,
-    "meta": 1655756557535,
+    "asset": 1655758909147,
+    "meta": 1655758909190,
     "relativePath": "scenes\\tutorial.fire"
   },
   "63c73803-efc9-413a-a6ef-556b860d4ad0": {
@@ -1560,28 +1545,113 @@
     "relativePath": "scenes\\test.fire"
   },
   "a6bef644-141b-4dfa-a0dc-f3f20b790e0a": {
-    "asset": 1655756506690,
-    "meta": 1655756557554,
+    "asset": 1655758940132,
+    "meta": 1655758940180,
     "relativePath": "scenes\\store.fire"
-  },
-  "c2aff0ba-7329-4daf-9b7a-bb81a3ab84b1": {
-    "asset": 1655757020918,
-    "meta": 1655757576415,
-    "relativePath": "scripts\\lose.ts"
-  },
-  "1e31aad1-8607-4726-b210-6ea79c600e2f": {
-    "asset": 1655757194737,
-    "meta": 1655757576512,
-    "relativePath": "scripts\\menu.ts"
-  },
-  "a4fb5ce8-16f2-4ec9-b773-3d70ce77a8e4": {
-    "asset": 1655757413306,
-    "meta": 1655757576678,
-    "relativePath": "scripts\\player.ts"
   },
   "63accb88-d1a4-459b-9545-db9ffe601602": {
     "asset": 1655757233488,
     "meta": 1655757576775,
     "relativePath": "scripts\\store.ts"
+  },
+  "a9a033af-3c8b-426b-b93d-d584320b61a8": {
+    "asset": 1655666733150,
+    "meta": 1655758795275,
+    "relativePath": "image\\bubble_signal.png"
+  },
+  "fc8f8960-727e-489a-9e82-afbbd8a715ce": {
+    "asset": 1655758696551,
+    "meta": 1655758795284,
+    "relativePath": "image\\best_score.png"
+  },
+  "a2351524-bfbd-4894-bc91-7b0745897b51": {
+    "asset": 1655758719292,
+    "meta": 1655758795331,
+    "relativePath": "image\\bk_multiPlayer_win.png"
+  },
+  "3f3640e9-777b-4b76-a3bd-dbe3c19a2a96": {
+    "asset": 1655758721051,
+    "meta": 1655758795343,
+    "relativePath": "image\\bk_multiPlayer_game_over.png"
+  },
+  "8a3fc9e9-7356-45ef-a725-9a2a9316a713": {
+    "asset": 1655758732127,
+    "meta": 1655758795448,
+    "relativePath": "image\\bk_game_rule_2.png"
+  },
+  "8514710b-868e-4d6a-8e9d-48b9bea0d293": {
+    "asset": 1655758736859,
+    "meta": 1655758795485,
+    "relativePath": "image\\bk_game_rule_1.png"
+  },
+  "cc11c63c-b5d3-4f76-b114-d7c0094e0c7f": {
+    "asset": 1655758723138,
+    "meta": 1655758795488,
+    "relativePath": "image\\bk_game_rule_4.png"
+  },
+  "91997d30-72f9-442b-8858-0be4b6679af8": {
+    "asset": 1655758727323,
+    "meta": 1655758795577,
+    "relativePath": "image\\bk_game_rule_3.png"
+  },
+  "67daddd0-97d6-41b0-9107-e67d537561f7": {
+    "asset": 1655758717730,
+    "meta": 1655758795626,
+    "relativePath": "image\\bk_start.png"
+  },
+  "4b0c1616-f97a-43f8-947c-453759148caf": {
+    "asset": 1655758715957,
+    "meta": 1655758795630,
+    "relativePath": "image\\bk_store.png"
+  },
+  "80068e71-5580-4bcb-b97f-21ccddb74631": {
+    "asset": 1655758713993,
+    "meta": 1655758795661,
+    "relativePath": "image\\bk_your_score.png"
+  },
+  "cddca80d-3b53-4541-bc1f-0f1320cbc977": {
+    "asset": 1655758708567,
+    "meta": 1655758795666,
+    "relativePath": "image\\menu_icon_1.png"
+  },
+  "fdaf1d70-26a1-4249-843b-15d4b5a429f7": {
+    "asset": 1655758711380,
+    "meta": 1655758795701,
+    "relativePath": "image\\menu_icon_2.png"
+  },
+  "1e31aad1-8607-4726-b210-6ea79c600e2f": {
+    "asset": 1655759773146,
+    "meta": 1655759776919,
+    "relativePath": "scripts\\menu.ts"
+  },
+  "c2aff0ba-7329-4daf-9b7a-bb81a3ab84b1": {
+    "asset": 1655761403314,
+    "meta": 1655761410570,
+    "relativePath": "scripts\\lose.ts"
+  },
+  "3095119b-5903-4a1d-92e8-fa42e3425160": {
+    "asset": 1655761949825,
+    "meta": 1655762124242,
+    "relativePath": "scripts\\player_day.ts"
+  },
+  "a4fb5ce8-16f2-4ec9-b773-3d70ce77a8e4": {
+    "asset": 1655762085749,
+    "meta": 1655762124547,
+    "relativePath": "scripts\\player.ts"
+  },
+  "7ff71da8-d9d8-4808-8c2d-21bd531e83f4": {
+    "asset": 1655763427376,
+    "meta": 1655763427398,
+    "relativePath": "scenes\\multi_win.fire"
+  },
+  "782a631f-0da4-4db6-a068-80669eb70e6c": {
+    "asset": 1655762203322,
+    "meta": 1655762211078,
+    "relativePath": "scenes\\multi_lose.fire"
+  },
+  "a4ea169f-e7a5-48fe-a76a-3f69d22f0a2e": {
+    "asset": 1655763398385,
+    "meta": 1655763410664,
+    "relativePath": "scripts\\player_multi.ts"
   }
 }

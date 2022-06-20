@@ -7,13 +7,18 @@ export default class lose extends cc.Component {
     lose_back_music : cc.AudioClip = null; // @A@
 
     private uid: string = null;
+    private online: boolean = false;
 
     onload(){
-        this.uid = cc.sys.localStorage.getItem('uid');
         cc.audioEngine.pauseMusic(); // @A@
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) this.online = true;
+        });
     }
 
     start () {
+        
+        this.uid = cc.sys.localStorage.getItem('uid');
         this.playBGM();
         cc.debug.setDisplayStats(false);
         //cc.audioEngine.playMusic(this.bgm, true);
@@ -21,7 +26,7 @@ export default class lose extends cc.Component {
         var score = cc.sys.localStorage.getItem("nowscore");
         var scene = cc.sys.localStorage.getItem("nowscene");
         if(scene == 'night' && score > cc.sys.localStorage.getItem("highscore")) {
-            firebase.database().ref('/users/' + this.uid + '/highscore').set(score, ()=> {
+            firebase.database().ref('/users/' + this.uid + '/highscore').set(parseInt(score), ()=> {
                 cc.sys.localStorage.setItem("highscore", score);
             });
 
@@ -29,19 +34,28 @@ export default class lose extends cc.Component {
         cc.find('score').getComponent(cc.Label).string = score.toString();
 
         //callback
-        firebase.database().ref('/users/' + this.uid + '/coins').set(cc.sys.localStorage.getItem("coins"));
-        firebase.database().ref('/users/' + this.uid + '/thing/lego').set(cc.sys.localStorage.getItem("lego"));
-        firebase.database().ref('/users/' + this.uid + '/thing/powerup').set(cc.sys.localStorage.getItem("powerup"));
-        firebase.database().ref('/users/' + this.uid + '/thing/banana').set(cc.sys.localStorage.getItem("banana"));
-        firebase.database().ref('/users/' + this.uid + '/thing/mute').set(cc.sys.localStorage.getItem("mute"));
-        firebase.database().ref('/users/' + this.uid + '/thing/signal').set(cc.sys.localStorage.getItem("signal"), ()=>{
-            let menu = new cc.Component.EventHandler();
-            menu.target = this.node;
-            menu.component = "lose";
-            menu.handler = "loadmenu";
-            cc.find("Canvas/menu").getComponent(cc.Button).clickEvents.push(menu);
-        });
+        console.log(this.uid);
+        if(this.online) {
+            firebase.database().ref('/users/' + this.uid + '/coins').set(parseInt(cc.sys.localStorage.getItem("coins")));
+            firebase.database().ref('/users/' + this.uid + '/thing/lego').set(parseInt(cc.sys.localStorage.getItem("lego")));
+            firebase.database().ref('/users/' + this.uid + '/thing/powerup').set(parseInt(cc.sys.localStorage.getItem("powerup")));
+            firebase.database().ref('/users/' + this.uid + '/thing/banana').set(parseInt(cc.sys.localStorage.getItem("banana")));
+            firebase.database().ref('/users/' + this.uid + '/thing/mute').set(parseInt(cc.sys.localStorage.getItem("mute")));
+            firebase.database().ref('/users/' + this.uid + '/thing/signal').set(parseInt(cc.sys.localStorage.getItem("signal")), ()=>{
+                let menu = new cc.Component.EventHandler();
+                menu.target = this.node;
+                menu.component = "lose";
+                menu.handler = "loadmenu";
+                cc.find("Canvas/menu").getComponent(cc.Button).clickEvents.push(menu);
+            });
+        }
+        let menu = new cc.Component.EventHandler();
+        menu.target = this.node;
+        menu.component = "lose";
+        menu.handler = "loadmenu";
+        cc.find("Canvas/menu").getComponent(cc.Button).clickEvents.push(menu);
     }
+
 
     loadmenu() {
         //cc.audioEngine.playEffect(this.press, false);

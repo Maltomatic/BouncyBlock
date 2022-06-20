@@ -1,7 +1,7 @@
 {
   "title": "bouncy_block",
   "packageName": "org.cocos2d.demo",
-  "startScene": "63f93d4f-8b5d-4ab3-827b-471e0cb9c419",
+  "startScene": "cf8ab7d3-5826-4cee-bc5b-afec15c9a310",
   "excludeScenes": [],
   "orientation": {
     "landscapeRight": true,

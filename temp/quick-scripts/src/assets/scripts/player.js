@@ -89,7 +89,7 @@ var Player = /** @class */ (function (_super) {
         // color info of new_tileset
         _this.color_list = { 7: "#2b3a67", 8: "#496a81", 9: "#66999b", 10: "#b3af8f", 11: "#ffc582",
             13: "#1c3144", 14: "#596f62", 15: "#7ea16b", 16: "#c3d898", 17: "#70161d",
-            19: "#edebd3", 20: "#edebd3", 21: "#da4167", 22: "#f4d35e", 23: "#f78664",
+            19: "#083e77", 20: "#edebd3", 21: "#da4167", 22: "#f4d35e", 23: "#f78664",
             25: "#562c2c", 26: "#f2542d", 27: "#f5dfbb", 28: "#0e9595", 29: "#127474",
             31: "#8e9aaf", 32: "#cbc0d3", 33: "#efd3d7", 34: "#feeafa", 35: "#dee2ff" };
         return _this;
@@ -114,12 +114,6 @@ var Player = /** @class */ (function (_super) {
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
         this.dir = 0;
         this.section_count = 0;
-        this.coin = cc.sys.localStorage.getItem("coins");
-        this.lego = cc.sys.localStorage.getItem("lego");
-        this.powerup = cc.sys.localStorage.getItem("powerup");
-        this.banana = cc.sys.localStorage.getItem("banana");
-        this.mute = cc.sys.localStorage.getItem("mute");
-        this.signal = cc.sys.localStorage.getItem("signal");
         var c = cc.sys.localStorage.getItem("color").split("");
         for (var i = 1; i <= 5; i++) {
             this.color_avail[i] = parseInt(c[i]);
@@ -206,6 +200,7 @@ var Player = /** @class */ (function (_super) {
         this.node.getChildByName('color').active = false;
     };
     Player.prototype.loser = function () {
+        console.log("you died");
         cc.sys.localStorage.setItem("coins", this.coin);
         cc.sys.localStorage.setItem("lego", this.lego);
         cc.sys.localStorage.setItem("powerup", this.powerup);
@@ -235,6 +230,12 @@ var Player = /** @class */ (function (_super) {
         cc.audioEngine.playMusic(this.night_back_music, true);
     };
     Player.prototype.start = function () {
+        this.coin = cc.sys.localStorage.getItem("coins");
+        this.lego = cc.sys.localStorage.getItem("lego");
+        this.powerup = cc.sys.localStorage.getItem("powerup");
+        this.banana = cc.sys.localStorage.getItem("banana");
+        this.mute = cc.sys.localStorage.getItem("mute");
+        this.signal = cc.sys.localStorage.getItem("signal");
         this.playBGM();
         this.dir = 0;
         this.sec_list = [this.sec0, this.sec1, this.sec2, this.sec3, this.sec4, this.sec5, this.sec6, this.sec7, this.sec8, this.sec9, this.sec10, this.sec11, this.sec12, this.sec13, this.sec14, this.sec15, this.sec16, this.sec17, this.sec18, this.sec19, this.sec20];

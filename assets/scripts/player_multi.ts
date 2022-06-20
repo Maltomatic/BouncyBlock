@@ -91,14 +91,18 @@ export class Player extends cc.Component {
 
     debug_mode: boolean = true;
     hidden: boolean = false;
-    private noisy: boolean = false;
+    private noisy: number = 0;
     private unhide: boolean = false;
     // private ACK: number = 5;
     private recv_msg: number = 0;
 
     private data: number = 0;
     mute:number=0;
+    private in_hiding: number = 0;
+
     signal:number=0;
+    private on_boost: number = 0;
+
     private sec_list = [];
 
     private dir: number = 0;
@@ -122,7 +126,7 @@ export class Player extends cc.Component {
     // color info of new_tileset
     color_list: any = {7: "#2b3a67",8: "#496a81",9: "#66999b", 10: "#b3af8f", 11: "#ffc582",
     13:"#1c3144", 14: "#596f62", 15: "#7ea16b",16: "#c3d898",17: "#70161d",
-    19 :"#edebd3", 20 :"#edebd3", 21 :"#da4167", 22 :"#f4d35e", 23 :"#f78664", 
+    19 :"#083e77", 20 :"#edebd3", 21 :"#da4167", 22 :"#f4d35e", 23 :"#f78664", 
     25  :"#562c2c", 26 :"#f2542d", 27 :"#f5dfbb", 28 :"#0e9595", 29 :"#127474", 
     31 :"#8e9aaf", 32 :"#cbc0d3", 33 :"#efd3d7", 34 :"#feeafa", 35 :"#dee2ff" }
 
@@ -197,22 +201,26 @@ export class Player extends cc.Component {
         }else if(other.node.group == 'bubble'){ // @@
             if(other.tag == 3){ // colorful bubble
                 cc.audioEngine.playEffect(this.get_powerup_bubble, false); 
-                 this.update_powerup(1);
-                 other.node.destroy();
+                this.powerup++
+                this.update_powerup();
+                other.node.destroy();
              }
              //losy
              else if(other.tag == 4){ // bubble mute 
                 //  cc.audioEngine.playEffect(this.get_B_L_bubble, false); 
-                this.update_mute(1);
+                this.mute++;
+                this.update_mute();
                 other.node.destroy();
             }else if(other.tag == 5){ // bubble signal
                     // cc.audioEngine.playEffect(this.get_B_L_bubble, false); 
-                    this.update_signal(1);
+                    this.signal++;
+                    this.update_signal();
                     other.node.destroy();
                     other.node.destroy();
             }else if(other.tag == 6){ // colorful data
                 //  cc.audioEngine.playEffect(this.get_B_L_bubble, false); 
-                    this.update_data(1);
+                    this.data++;
+                    this.update_data();
                     other.node.destroy();
                 }
         }else if(other.node.name == 'missile'){
@@ -221,11 +229,8 @@ export class Player extends cc.Component {
             // deploy white particles
             this.die_particle();
             // this.node.active = false;
-            this.scheduleOnce(() => {
-                cc.director.loadScene("lose");
-                this.node.active = false;
-            }, 0.3);
-        }else if((other.node.name[0] == 's'&&other.node.name[1] == 'h')||other.node.name == 'parent'){
+            this.loser();
+        }else if((other.node.name[0] == 's'&&other.node.name[1] == 'h')||other.node.name == 'spider'){
             if(other.node.name[0] == 's'){
                 cc.audioEngine.playEffect(this.sharp_knife, false);
             }
@@ -233,14 +238,8 @@ export class Player extends cc.Component {
             // deploy white particles
             this.die_particle();
             // this.node.active = false;
-            this.scheduleOnce(() => {
-                cc.director.loadScene("lose");
-                this.node.active = false;
-            }, 0.3);
+            this.loser();
         }
-       
-       
-
     }
     die_particle()
     {
@@ -253,6 +252,24 @@ export class Player extends cc.Component {
         explode.getComponent(cc.ParticleSystem).endColorVar= this.Color.node.color;
         this.node.getChildByName('color').active = false;
     }
+    loser(){
+        if(this.id){
+            // self is creator
+            firebase.database().ref('in_game/' + this.room + '/joiner').set(-100, () =>{
+                this.scheduleOnce(() => {
+                    cc.director.loadScene("multi_lose");
+                }, 0.3);
+            });
+        }else{
+            // self is joiner
+            firebase.database().ref('in_game/' + this.room + '/creator').set(-100, () =>{
+                this.scheduleOnce(() => {
+                    cc.director.loadScene("multi_lose");
+                }, 0.3);
+            });
+        }
+    }
+
     onEndContact(contact, self, other) {
         //a bug happens when the color of mound is same as the color of player, not solved yet 
         // fixed with mound. player should now check collisions with mound
@@ -300,10 +317,7 @@ export class Player extends cc.Component {
             // diee
             // deploy white particles
             this.die_particle();
-            this.node.active = false;
-            this.scheduleOnce(() => {
-                cc.director.loadScene("lose")
-            }, 0.3);
+            this.loser();
         }
         this.camera_track();
         this.node.x += this.dir * 200 * dt;
@@ -353,21 +367,26 @@ export class Player extends cc.Component {
                 ref.set((snapshot.val()-1), () => {
                     this.check_mail();
                 });
-                this.recv_msg ++;
-                console.log("messages left now " + this.recv_msg);
-                cc.audioEngine.playEffect(this.notif, false);
-                this.Color.node.color = new cc.Color(255,255,255);
-                this.unhide = true;
-                this.scheduleOnce(() => {
-                    this.recv_msg--;
-                    console.log("visible time up, messages left: " + this.recv_msg);
-                    if(this.recv_msg == 0){
-                        this.unhide = false;
-                        var color_str = this.color_list[this.base + this.color];
-                        var color = new cc.Color(255,255,255);
-                        this.Color.node.color = color.fromHEX(color_str);
-                    }
-                }, 3);
+                if(!this.in_hiding){
+                    this.recv_msg ++;
+                    console.log("messages left now " + this.recv_msg);
+                    cc.audioEngine.playEffect(this.notif, false);
+                    this.Color.node.color = new cc.Color(255,255,255);
+                    this.unhide = true;
+                    this.scheduleOnce(() => {
+                        this.recv_msg--;
+                        console.log("visible time up, messages left: " + this.recv_msg);
+                        if(this.recv_msg == 0){
+                            this.unhide = false;
+                            var color_str = this.color_list[this.base + this.color];
+                            var color = new cc.Color(255,255,255);
+                            this.Color.node.color = color.fromHEX(color_str);
+                        }
+                    }, 3);
+                }
+            }else if(snapshot.val() == -100){
+                //winner
+                cc.director.loadScene('multi_win');
             }else this.check_mail();
         });
     }
@@ -405,33 +424,43 @@ export class Player extends cc.Component {
                         firebase.database().ref('in_game/' + this.room + '/creator').set(ping+1);
                     });
                 }
-                this.noisy = true;
+                this.noisy++;
+                var delay = 1 + Math.min(1.5, this.section_count/8);
+                if(this.on_boost) delay *= 0.3;
                 this.scheduleOnce(() => {
-                    this.noisy = false;
+                    this.noisy--;
                     var color_str = this.color_list[this.base + this.color];
                     var color = new cc.Color(255,255,255);
                     this.Color.node.color = color.fromHEX(color_str);
-                }, 1);
+                }, delay);
             }
         }
         if(event.keyCode == cc.macro.KEY.r){ // ##
             // use color powerup
             var cl = this.Color.node.color;
             this.invis = true;
-            this.update_powerup(-1);
+            this.powerup--;
+            this.update_powerup();
             this.scheduleOnce(() => {
                 this.Color.node.color = cl;
                 this.invis = false;
             }, 5);
         }  else if(event.keyCode == cc.macro.KEY.s){ // ##
             // use bubble signal
-
-        }  else if(event.keyCode == cc.macro.KEY.d){ // ## //再enter實踐了
-            // use bubble data
-
-        } else if(event.keyCode == cc.macro.KEY.f){ // ##
+            this.on_boost++;
+            this.signal--;
+            this.update_signal();
+            this.scheduleOnce(()=>{
+                this.on_boost--;
+            }, 5);
+        }  else if(event.keyCode == cc.macro.KEY.f){ // ##
             // use bubble mute
-
+            this.in_hiding++;
+            this.mute--;
+            this.update_mute();
+            this.scheduleOnce(()=>{
+                this.in_hiding--;
+            }, 5);
         } 
 
 
@@ -458,25 +487,21 @@ export class Player extends cc.Component {
         this.coin += number;
         this.coin_point.getComponent(cc.Label).string = this.coin.toString();
     }
-    update_powerup(number){  // @@ 
-        this.powerup += number;
+    update_powerup(){  // @@ 
        this.bubble_powerup.getComponent(cc.Label).string = this.powerup.toString();
     }
     //losy
-    update_mute(number)
+    update_mute()
     {
-        this.mute+=number;
         this.mute_point.getComponent(cc.Label).string = this.mute.toString();
         
     }
-    update_signal(number)
+    update_signal()
     {
-        this.signal+=number;
         this.signal_point.getComponent(cc.Label).string = this.signal.toString();
     }
-    update_data(number)
+    update_data()
     {
-        this.data+=number;
         this.data_point.getComponent(cc.Label).string = this.data.toString();
     }
 }

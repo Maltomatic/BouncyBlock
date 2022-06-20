@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "bk_game_rule_4",
+    "texture": "cc11c63c-b5d3-4f76-b114-d7c0094e0c7f",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      2880,
+      1920
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      2880,
+      1920
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

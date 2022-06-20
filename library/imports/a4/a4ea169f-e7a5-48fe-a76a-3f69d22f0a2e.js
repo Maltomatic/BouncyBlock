@@ -71,13 +71,15 @@ var Player = /** @class */ (function (_super) {
         _this.mute_point = null;
         _this.debug_mode = true;
         _this.hidden = false;
-        _this.noisy = false;
+        _this.noisy = 0;
         _this.unhide = false;
         // private ACK: number = 5;
         _this.recv_msg = 0;
         _this.data = 0;
         _this.mute = 0;
+        _this.in_hiding = 0;
         _this.signal = 0;
+        _this.on_boost = 0;
         _this.sec_list = [];
         _this.dir = 0;
         _this.prev_dir = 0;
@@ -97,7 +99,7 @@ var Player = /** @class */ (function (_super) {
         // color info of new_tileset
         _this.color_list = { 7: "#2b3a67", 8: "#496a81", 9: "#66999b", 10: "#b3af8f", 11: "#ffc582",
             13: "#1c3144", 14: "#596f62", 15: "#7ea16b", 16: "#c3d898", 17: "#70161d",
-            19: "#edebd3", 20: "#edebd3", 21: "#da4167", 22: "#f4d35e", 23: "#f78664",
+            19: "#083e77", 20: "#edebd3", 21: "#da4167", 22: "#f4d35e", 23: "#f78664",
             25: "#562c2c", 26: "#f2542d", 27: "#f5dfbb", 28: "#0e9595", 29: "#127474",
             31: "#8e9aaf", 32: "#cbc0d3", 33: "#efd3d7", 34: "#feeafa", 35: "#dee2ff" };
         return _this;
@@ -130,7 +132,6 @@ var Player = /** @class */ (function (_super) {
         cc.systemEvent.off(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
     };
     Player.prototype.onBeginContact = function (contact, self, other) {
-        var _this = this;
         console.log(other.tag);
         var touch = contact.getWorldManifold().normal;
         // // console.log("hit node with color " + other.node.getComponent(cc.TiledTile).gid);
@@ -174,24 +175,28 @@ var Player = /** @class */ (function (_super) {
         else if (other.node.group == 'bubble') { // @@
             if (other.tag == 3) { // colorful bubble
                 cc.audioEngine.playEffect(this.get_powerup_bubble, false);
-                this.update_powerup(1);
+                this.powerup++;
+                this.update_powerup();
                 other.node.destroy();
             }
             //losy
             else if (other.tag == 4) { // bubble mute 
                 //  cc.audioEngine.playEffect(this.get_B_L_bubble, false); 
-                this.update_mute(1);
+                this.mute++;
+                this.update_mute();
                 other.node.destroy();
             }
             else if (other.tag == 5) { // bubble signal
                 // cc.audioEngine.playEffect(this.get_B_L_bubble, false); 
-                this.update_signal(1);
+                this.signal++;
+                this.update_signal();
                 other.node.destroy();
                 other.node.destroy();
             }
             else if (other.tag == 6) { // colorful data
                 //  cc.audioEngine.playEffect(this.get_B_L_bubble, false); 
-                this.update_data(1);
+                this.data++;
+                this.update_data();
                 other.node.destroy();
             }
         }
@@ -201,12 +206,9 @@ var Player = /** @class */ (function (_super) {
             // deploy white particles
             this.die_particle();
             // this.node.active = false;
-            this.scheduleOnce(function () {
-                cc.director.loadScene("lose");
-                _this.node.active = false;
-            }, 0.3);
+            this.loser();
         }
-        else if ((other.node.name[0] == 's' && other.node.name[1] == 'h') || other.node.name == 'parent') {
+        else if ((other.node.name[0] == 's' && other.node.name[1] == 'h') || other.node.name == 'spider') {
             if (other.node.name[0] == 's') {
                 cc.audioEngine.playEffect(this.sharp_knife, false);
             }
@@ -214,10 +216,7 @@ var Player = /** @class */ (function (_super) {
             // deploy white particles
             this.die_particle();
             // this.node.active = false;
-            this.scheduleOnce(function () {
-                cc.director.loadScene("lose");
-                _this.node.active = false;
-            }, 0.3);
+            this.loser();
         }
     };
     Player.prototype.die_particle = function () {
@@ -229,6 +228,25 @@ var Player = /** @class */ (function (_super) {
         explode.getComponent(cc.ParticleSystem).endColor = this.Color.node.color;
         explode.getComponent(cc.ParticleSystem).endColorVar = this.Color.node.color;
         this.node.getChildByName('color').active = false;
+    };
+    Player.prototype.loser = function () {
+        var _this = this;
+        if (this.id) {
+            // self is creator
+            firebase.database().ref('in_game/' + this.room + '/joiner').set(-100, function () {
+                _this.scheduleOnce(function () {
+                    cc.director.loadScene("multi_lose");
+                }, 0.3);
+            });
+        }
+        else {
+            // self is joiner
+            firebase.database().ref('in_game/' + this.room + '/creator').set(-100, function () {
+                _this.scheduleOnce(function () {
+                    cc.director.loadScene("multi_lose");
+                }, 0.3);
+            });
+        }
     };
     Player.prototype.onEndContact = function (contact, self, other) {
         //a bug happens when the color of mound is same as the color of player, not solved yet 
@@ -276,10 +294,7 @@ var Player = /** @class */ (function (_super) {
             // diee
             // deploy white particles
             this.die_particle();
-            this.node.active = false;
-            this.scheduleOnce(function () {
-                cc.director.loadScene("lose");
-            }, 0.3);
+            this.loser();
         }
         this.camera_track();
         this.node.x += this.dir * 200 * dt;
@@ -336,21 +351,27 @@ var Player = /** @class */ (function (_super) {
                 ref.set((snapshot.val() - 1), function () {
                     _this.check_mail();
                 });
-                _this.recv_msg++;
-                console.log("messages left now " + _this.recv_msg);
-                cc.audioEngine.playEffect(_this.notif, false);
-                _this.Color.node.color = new cc.Color(255, 255, 255);
-                _this.unhide = true;
-                _this.scheduleOnce(function () {
-                    _this.recv_msg--;
-                    console.log("visible time up, messages left: " + _this.recv_msg);
-                    if (_this.recv_msg == 0) {
-                        _this.unhide = false;
-                        var color_str = _this.color_list[_this.base + _this.color];
-                        var color = new cc.Color(255, 255, 255);
-                        _this.Color.node.color = color.fromHEX(color_str);
-                    }
-                }, 3);
+                if (!_this.in_hiding) {
+                    _this.recv_msg++;
+                    console.log("messages left now " + _this.recv_msg);
+                    cc.audioEngine.playEffect(_this.notif, false);
+                    _this.Color.node.color = new cc.Color(255, 255, 255);
+                    _this.unhide = true;
+                    _this.scheduleOnce(function () {
+                        _this.recv_msg--;
+                        console.log("visible time up, messages left: " + _this.recv_msg);
+                        if (_this.recv_msg == 0) {
+                            _this.unhide = false;
+                            var color_str = _this.color_list[_this.base + _this.color];
+                            var color = new cc.Color(255, 255, 255);
+                            _this.Color.node.color = color.fromHEX(color_str);
+                        }
+                    }, 3);
+                }
+            }
+            else if (snapshot.val() == -100) {
+                //winner
+                cc.director.loadScene('multi_win');
             }
             else
                 _this.check_mail();
@@ -389,20 +410,24 @@ var Player = /** @class */ (function (_super) {
                         firebase.database().ref('in_game/' + _this.room + '/creator').set(ping + 1);
                     });
                 }
-                this.noisy = true;
+                this.noisy++;
+                var delay = 1 + Math.min(1.5, this.section_count / 8);
+                if (this.on_boost)
+                    delay *= 0.3;
                 this.scheduleOnce(function () {
-                    _this.noisy = false;
+                    _this.noisy--;
                     var color_str = _this.color_list[_this.base + _this.color];
                     var color = new cc.Color(255, 255, 255);
                     _this.Color.node.color = color.fromHEX(color_str);
-                }, 1);
+                }, delay);
             }
         }
         if (event.keyCode == cc.macro.KEY.r) { // ##
             // use color powerup
             var cl = this.Color.node.color;
             this.invis = true;
-            this.update_powerup(-1);
+            this.powerup--;
+            this.update_powerup();
             this.scheduleOnce(function () {
                 _this.Color.node.color = cl;
                 _this.invis = false;
@@ -410,12 +435,21 @@ var Player = /** @class */ (function (_super) {
         }
         else if (event.keyCode == cc.macro.KEY.s) { // ##
             // use bubble signal
-        }
-        else if (event.keyCode == cc.macro.KEY.d) { // ## //再enter實踐了
-            // use bubble data
+            this.on_boost++;
+            this.signal--;
+            this.update_signal();
+            this.scheduleOnce(function () {
+                _this.on_boost--;
+            }, 5);
         }
         else if (event.keyCode == cc.macro.KEY.f) { // ##
             // use bubble mute
+            this.in_hiding++;
+            this.mute--;
+            this.update_mute();
+            this.scheduleOnce(function () {
+                _this.in_hiding--;
+            }, 5);
         }
     };
     Player.prototype.onKeyUp = function (event) {
@@ -440,21 +474,17 @@ var Player = /** @class */ (function (_super) {
         this.coin += number;
         this.coin_point.getComponent(cc.Label).string = this.coin.toString();
     };
-    Player.prototype.update_powerup = function (number) {
-        this.powerup += number;
+    Player.prototype.update_powerup = function () {
         this.bubble_powerup.getComponent(cc.Label).string = this.powerup.toString();
     };
     //losy
-    Player.prototype.update_mute = function (number) {
-        this.mute += number;
+    Player.prototype.update_mute = function () {
         this.mute_point.getComponent(cc.Label).string = this.mute.toString();
     };
-    Player.prototype.update_signal = function (number) {
-        this.signal += number;
+    Player.prototype.update_signal = function () {
         this.signal_point.getComponent(cc.Label).string = this.signal.toString();
     };
-    Player.prototype.update_data = function (number) {
-        this.data += number;
+    Player.prototype.update_data = function () {
         this.data_point.getComponent(cc.Label).string = this.data.toString();
     };
     __decorate([

@@ -115,10 +115,11 @@ export class Player extends cc.Component {
     base: number = 0;
     last_x: number = 0.0;
 
+
     // color info of new_tileset
     color_list: any = {7: "#2b3a67",8: "#496a81",9: "#66999b", 10: "#b3af8f", 11: "#ffc582",
     13:"#1c3144", 14: "#596f62", 15: "#7ea16b",16: "#c3d898",17: "#70161d",
-    19 :"#edebd3", 20 :"#edebd3", 21 :"#da4167", 22 :"#f4d35e", 23 :"#f78664", 
+    19 :"#083e77", 20 :"#edebd3", 21 :"#da4167", 22 :"#f4d35e", 23 :"#f78664", 
     25  :"#562c2c", 26 :"#f2542d", 27 :"#f5dfbb", 28 :"#0e9595", 29 :"#127474", 
     31 :"#8e9aaf", 32 :"#cbc0d3", 33 :"#efd3d7", 34 :"#feeafa", 35 :"#dee2ff" }
 
@@ -185,27 +186,22 @@ export class Player extends cc.Component {
             }    
         } else if(other.node.group == 'coin'){ // @@ 
             cc.audioEngine.playEffect(this.get_coin, false); 
-            this.update_coin(1);
+            this.coin++;
+            this.update_coin();
             other.node.destroy();
         }else if(other.node.group == 'bubble'){ // @@ 
 
             if(other.tag == 1){ // bubble banana
                 cc.audioEngine.playEffect(this.get_B_L_bubble, false); 
-                this.update_banana(1);
+                this.banana++;
+                this.update_banana();
                 other.node.destroy();
            }else if(other.tag == 2){ // bubble lego
                 cc.audioEngine.playEffect(this.get_B_L_bubble, false); 
-                this.update_lego(1);
+                this.lego++;
+                this.update_lego();
                 other.node.destroy();
            }
-        }else if(other.node.name == 'missile'){
-            // diee
-            // deploy white particles
-            this.die_particle();
-            //this.node.active = false;
-            this.scheduleOnce(() => {
-                cc.director.loadScene("lose")
-            }, 0.3);
         }else if((other.node.name[0] == 's' && other.node.name[1] == 'h') || other.node.name == 'parent' || other.node.name == 'spider'){
             // diee
             // deploy white particles
@@ -213,9 +209,7 @@ export class Player extends cc.Component {
                 cc.audioEngine.playEffect(this.sharp_knife, false);
             }
             this.die_particle();
-            this.scheduleOnce(() => {
-                cc.director.loadScene("lose")
-            }, 0.3);
+            this.loser();
         }
 
     }
@@ -229,6 +223,17 @@ export class Player extends cc.Component {
         explode.getComponent(cc.ParticleSystem).endColor= this.Color.node.color;
         explode.getComponent(cc.ParticleSystem).endColorVar= this.Color.node.color;
         this.node.getChildByName('color').active = false;
+    }
+    loser(){
+        cc.sys.localStorage.setItem("coins", this.coin);
+        cc.sys.localStorage.setItem("lego", this.lego);
+        cc.sys.localStorage.setItem("banana", this.banana);
+        cc.sys.localStorage.setItem("nowscore", this.score);
+        cc.sys.localStorage.setItem("nowscene", 'day');
+        this.node.active = false;
+        this.scheduleOnce(()=>{
+            cc.director.loadScene("lose");
+        }, 0.3);
     }
     onEndContact(contact, self, other) {
         //a bug happens when the color of mound is same as the color of player, not solved yet 
@@ -245,6 +250,10 @@ export class Player extends cc.Component {
     }
 
     start () {
+        this.coin = cc.sys.localStorage.getItem("coins");
+        this.lego = cc.sys.localStorage.getItem("lego");
+        this.banana = cc.sys.localStorage.getItem("banana");
+
         this.dir = 0;
         this.sec_list = [this.sec0, this.sec1, this.sec2, this.sec3, this.sec4,this.sec5,this.sec6,this.sec7,this.sec8,this.sec9,this.sec10,this.sec11,this.sec12,this.sec13,this.sec14,this.sec15,this.sec16,this.sec17,this.sec18,this.sec19,this.sec20];
         this.score = 0;
@@ -264,10 +273,7 @@ export class Player extends cc.Component {
         if(this.node.y <= -400){
             // die
             // deploy white particles
-            this.node.active = false;
-            this.scheduleOnce(() => {
-                cc.director.loadScene("lose")
-            }, 0.3);
+            this.loser();
         }
         this.camera_track();
         this.node.x += this.dir * 200 * dt;
@@ -343,14 +349,16 @@ export class Player extends cc.Component {
             banana_pre.x = this.node.x;
             banana_pre.y = this.node.y;
             cc.find("Canvas/root").addChild(banana_pre);
-            this.update_banana(-1);
+            this.banana--;
+            this.update_banana();
         }else if(event.keyCode == cc.macro.KEY.w  && this.lego > 0){ //  put lego ##
             cc.audioEngine.playEffect(this.put_bubble, false); 
             var lego_pre = cc.instantiate(this.lego_Prefabs);
             lego_pre.x = this.node.x;
             lego_pre.y = this.node.y-1;
             cc.find("Canvas/root").addChild(lego_pre);
-            this.update_lego(-1);
+            this.lego--;
+            this.update_lego();
         }
     }
     onKeyUp(event){
@@ -371,16 +379,13 @@ export class Player extends cc.Component {
         if(!this.debug_mode) this.on_floor = false;
         console.log(this.prev_dir + "fly state: " + this.fly_state);
     }
-    update_coin(number){  // @@ 
-        this.coin += number;
+    update_coin(){  // @@ 
         this.coin_point.getComponent(cc.Label).string = this.coin.toString();
     }
-    update_banana(number){  // @@ 
-        this.banana += number;
+    update_banana(){  // @@ 
         this.bubble_banana.getComponent(cc.Label).string = this.banana.toString();
     }
-    update_lego(number){  // @@ 
-        this.lego += number;
+    update_lego(){  // @@ 
        this.bubble_lego.getComponent(cc.Label).string = this.lego.toString();
     }
 }

@@ -30,38 +30,52 @@ var lose = /** @class */ (function (_super) {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.lose_back_music = null; // @A@
         _this.uid = null;
+        _this.online = false;
         return _this;
     }
     lose.prototype.onload = function () {
-        this.uid = cc.sys.localStorage.getItem('uid');
+        var _this = this;
         cc.audioEngine.pauseMusic(); // @A@
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user)
+                _this.online = true;
+        });
     };
     lose.prototype.start = function () {
         var _this = this;
+        this.uid = cc.sys.localStorage.getItem('uid');
         this.playBGM();
         cc.debug.setDisplayStats(false);
         //cc.audioEngine.playMusic(this.bgm, true);
         var score = cc.sys.localStorage.getItem("nowscore");
         var scene = cc.sys.localStorage.getItem("nowscene");
         if (scene == 'night' && score > cc.sys.localStorage.getItem("highscore")) {
-            firebase.database().ref('/users/' + this.uid + '/highscore').set(score, function () {
+            firebase.database().ref('/users/' + this.uid + '/highscore').set(parseInt(score), function () {
                 cc.sys.localStorage.setItem("highscore", score);
             });
         }
         cc.find('score').getComponent(cc.Label).string = score.toString();
         //callback
-        firebase.database().ref('/users/' + this.uid + '/coins').set(cc.sys.localStorage.getItem("coins"));
-        firebase.database().ref('/users/' + this.uid + '/thing/lego').set(cc.sys.localStorage.getItem("lego"));
-        firebase.database().ref('/users/' + this.uid + '/thing/powerup').set(cc.sys.localStorage.getItem("powerup"));
-        firebase.database().ref('/users/' + this.uid + '/thing/banana').set(cc.sys.localStorage.getItem("banana"));
-        firebase.database().ref('/users/' + this.uid + '/thing/mute').set(cc.sys.localStorage.getItem("mute"));
-        firebase.database().ref('/users/' + this.uid + '/thing/signal').set(cc.sys.localStorage.getItem("signal"), function () {
-            var menu = new cc.Component.EventHandler();
-            menu.target = _this.node;
-            menu.component = "lose";
-            menu.handler = "loadmenu";
-            cc.find("Canvas/menu").getComponent(cc.Button).clickEvents.push(menu);
-        });
+        console.log(this.uid);
+        if (this.online) {
+            firebase.database().ref('/users/' + this.uid + '/coins').set(parseInt(cc.sys.localStorage.getItem("coins")));
+            firebase.database().ref('/users/' + this.uid + '/thing/lego').set(parseInt(cc.sys.localStorage.getItem("lego")));
+            firebase.database().ref('/users/' + this.uid + '/thing/powerup').set(parseInt(cc.sys.localStorage.getItem("powerup")));
+            firebase.database().ref('/users/' + this.uid + '/thing/banana').set(parseInt(cc.sys.localStorage.getItem("banana")));
+            firebase.database().ref('/users/' + this.uid + '/thing/mute').set(parseInt(cc.sys.localStorage.getItem("mute")));
+            firebase.database().ref('/users/' + this.uid + '/thing/signal').set(parseInt(cc.sys.localStorage.getItem("signal")), function () {
+                var menu = new cc.Component.EventHandler();
+                menu.target = _this.node;
+                menu.component = "lose";
+                menu.handler = "loadmenu";
+                cc.find("Canvas/menu").getComponent(cc.Button).clickEvents.push(menu);
+            });
+        }
+        var menu = new cc.Component.EventHandler();
+        menu.target = this.node;
+        menu.component = "lose";
+        menu.handler = "loadmenu";
+        cc.find("Canvas/menu").getComponent(cc.Button).clickEvents.push(menu);
     };
     lose.prototype.loadmenu = function () {
         //cc.audioEngine.playEffect(this.press, false);

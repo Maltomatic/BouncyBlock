@@ -54,6 +54,7 @@ var menu = /** @class */ (function (_super) {
                     var data = snapshot.val();
                     console.log(data);
                     cc.sys.localStorage.setItem("uid", uid);
+                    console.log('uid here ', cc.sys.localStorage.getItem("uid"));
                     cc.sys.localStorage.setItem("coins", data['coins']);
                     cc.sys.localStorage.setItem("lego", data['thing']['lego']);
                     cc.sys.localStorage.setItem("powerup", data['thing']['powerup']);
