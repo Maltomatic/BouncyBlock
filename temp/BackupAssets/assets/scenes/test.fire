@@ -3170,6 +3170,15 @@
     "die_audio": {
       "__uuid__": "98140a5d-2ca6-4578-b3c5-41b3e879437f"
     },
+    "sharp_knife": {
+      "__uuid__": "f812faac-738f-40d2-b5b8-6b99eee7ce25"
+    },
+    "get_powerup_bubble": {
+      "__uuid__": "7f26812f-8e67-464c-b330-db423d3ded2a"
+    },
+    "shooted": {
+      "__uuid__": "855fc174-d668-479c-9766-fa036dbcf12e"
+    },
     "_id": "8eoDUhe45OaZ4AbZszluTL"
   },
   {

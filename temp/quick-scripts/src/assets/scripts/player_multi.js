@@ -65,6 +65,7 @@ var Player = /** @class */ (function (_super) {
         _this.get_powerup_bubble = null;
         _this.sharp_knife = null;
         _this.shooted = null;
+        _this.multi_back_music = null; // @A@
         _this.data_point = null;
         _this.signal_point = null;
         _this.mute_point = null;
@@ -115,6 +116,7 @@ var Player = /** @class */ (function (_super) {
         //-------------------------------------------------
     };
     Player.prototype.onLoad = function () {
+        cc.audioEngine.pauseMusic();
         this.setcolor();
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
@@ -243,6 +245,7 @@ var Player = /** @class */ (function (_super) {
         }
     };
     Player.prototype.start = function () {
+        this.playBGM();
         this.dir = 0;
         this.sec_list = [this.sec0, this.sec1, this.sec2, this.sec3, this.sec4, this.sec5, this.sec10, this.sec11, this.sec12, this.sec13, this.sec17, this.sec18, this.sec19];
         this.score = 0;
@@ -253,6 +256,9 @@ var Player = /** @class */ (function (_super) {
         this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).endColorVar = this.Color.node.color;
         //-------------------------------------------------
         this.check_mail();
+    };
+    Player.prototype.playBGM = function () {
+        cc.audioEngine.playMusic(this.multi_back_music, true);
     };
     Player.prototype.update = function (dt) {
         if (this.invis && !this.unhide) {
@@ -553,6 +559,9 @@ var Player = /** @class */ (function (_super) {
     __decorate([
         property(cc.AudioClip)
     ], Player.prototype, "shooted", void 0);
+    __decorate([
+        property(cc.AudioClip)
+    ], Player.prototype, "multi_back_music", void 0);
     __decorate([
         property(cc.Node)
     ], Player.prototype, "data_point", void 0);

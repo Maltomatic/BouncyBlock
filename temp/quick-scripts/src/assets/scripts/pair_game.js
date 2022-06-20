@@ -38,6 +38,7 @@ var NewClass = /** @class */ (function (_super) {
     // onLoad () {}
     NewClass.prototype.onLoad = function () {
         var _this = this;
+        cc.audioEngine.pauseMusic(); // @A@
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
                 _this.uid = firebase.auth().currentUser.uid;

@@ -38,6 +38,9 @@ export class Bird extends cc.Component {
     @property(cc.AudioClip)
     get_coin : cc.AudioClip = null;
 
+    @property(cc.AudioClip)
+    bird_back_music : cc.AudioClip = null;// @A@
+
     section_count: number = 0;      // on contact with marker, if section_count * 1920 < this.node.x: init next section and section_count ++
     private score: number = 0;
 
@@ -70,6 +73,7 @@ export class Bird extends cc.Component {
     }
 
     onLoad () {
+        cc.audioEngine.pauseMusic(); // @A@
         this.setcolor();
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
@@ -82,7 +86,12 @@ export class Bird extends cc.Component {
     }
 
     start () {
+        this.playBGM();
         this.score = 0;
+    }
+
+    playBGM(){ // @A@
+        cc.audioEngine.playMusic(this.bird_back_music, true); 
     }
 
     update (dt) {

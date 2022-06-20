@@ -69,6 +69,7 @@ var Player = /** @class */ (function (_super) {
         _this.sharp_knife = null;
         _this.get_powerup_bubble = null;
         _this.shooted = null;
+        _this.night_back_music = null; // @A@
         _this.debug_mode = true;
         _this.hidden = false;
         _this.sec_list = [];
@@ -107,6 +108,7 @@ var Player = /** @class */ (function (_super) {
         //-------------------------------------------------
     };
     Player.prototype.onLoad = function () {
+        cc.audioEngine.pauseMusic();
         this.setcolor();
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
@@ -186,7 +188,7 @@ var Player = /** @class */ (function (_super) {
                 cc.director.loadScene("lose");
             }, 0.3);
         }
-        else if ((other.node.name[0] == 's' && other.node.name[1] == 'h') || other.node.name == 'parent') {
+        else if ((other.node.name[0] == 's' && other.node.name[1] == 'h') || other.node.name == 'spider') {
             if (other.node.name[0] == 's') {
                 cc.audioEngine.playEffect(this.sharp_knife, false);
             }
@@ -227,7 +229,11 @@ var Player = /** @class */ (function (_super) {
             // }
         }
     };
+    Player.prototype.playBGM = function () {
+        cc.audioEngine.playMusic(this.night_back_music, true);
+    };
     Player.prototype.start = function () {
+        this.playBGM();
         this.dir = 0;
         this.sec_list = [this.sec0, this.sec1, this.sec2, this.sec3, this.sec4, this.sec5, this.sec6, this.sec7, this.sec8, this.sec9, this.sec10, this.sec11, this.sec12, this.sec13, this.sec14, this.sec15, this.sec16, this.sec17, this.sec18, this.sec19, this.sec20];
         this.score = 0;
@@ -458,6 +464,9 @@ var Player = /** @class */ (function (_super) {
     __decorate([
         property(cc.AudioClip)
     ], Player.prototype, "shooted", void 0);
+    __decorate([
+        property(cc.AudioClip)
+    ], Player.prototype, "night_back_music", void 0);
     Player = __decorate([
         ccclass
     ], Player);

@@ -27,14 +27,20 @@ var _a = cc._decorator, ccclass = _a.ccclass, property = _a.property;
 var start_scene = /** @class */ (function (_super) {
     __extends(start_scene, _super);
     function start_scene() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.login_back_music = null; // @A@
+        return _this;
     }
+    start_scene.prototype.playBGM = function () {
+        cc.audioEngine.playMusic(this.login_back_music, true);
+    };
     start_scene.prototype.onload = function () {
         cc.debug.setDisplayStats(false);
         if (firebase.auth().currentUser.uid)
             this.uid = firebase.auth().currentUser.uid;
     };
     start_scene.prototype.start = function () {
+        this.playBGM();
         cc.debug.setDisplayStats(false);
         //cc.audioEngine.playMusic(this.bgm, true);
         cc.find("Canvas/back").on(cc.Node.EventType.MOUSE_DOWN, function () {
@@ -151,6 +157,9 @@ var start_scene = /** @class */ (function (_super) {
             alert(error);
         });
     };
+    __decorate([
+        property(cc.AudioClip)
+    ], start_scene.prototype, "login_back_music", void 0);
     start_scene = __decorate([
         ccclass
     ], start_scene);

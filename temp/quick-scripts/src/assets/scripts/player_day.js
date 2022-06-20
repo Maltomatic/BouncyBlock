@@ -60,8 +60,6 @@ var Player = /** @class */ (function (_super) {
         _this.banana = 0;
         _this.bubble_lego = null;
         _this.lego = 0;
-        _this.bubble_powerup = null;
-        _this.powerup = 0;
         _this.banana_Prefabs = null;
         _this.lego_Prefabs = null;
         _this.player_jump = null;
@@ -71,6 +69,7 @@ var Player = /** @class */ (function (_super) {
         _this.put_bubble = null;
         _this.sharp_knife = null;
         _this.die_audio = null;
+        _this.day_back_music = null; // @A@
         _this.debug_mode = true;
         _this.hidden = false;
         _this.sec_list = [];
@@ -107,6 +106,7 @@ var Player = /** @class */ (function (_super) {
         //-------------------------------------------------
     };
     Player.prototype.onLoad = function () {
+        cc.audioEngine.pauseMusic();
         this.setcolor();
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
@@ -167,11 +167,6 @@ var Player = /** @class */ (function (_super) {
                 this.update_lego(1);
                 other.node.destroy();
             }
-            else if (other.tag == 3) { // colorful bubble
-                cc.audioEngine.playEffect(this.get_powerup_bubble, false);
-                this.update_powerup(1);
-                other.node.destroy();
-            }
         }
         else if (other.node.name == 'missile') {
             // diee
@@ -182,7 +177,7 @@ var Player = /** @class */ (function (_super) {
                 cc.director.loadScene("lose");
             }, 0.3);
         }
-        else if ((other.node.name[0] == 's' && other.node.name[1] == 'h') || other.node.name == 'parent') {
+        else if ((other.node.name[0] == 's' && other.node.name[1] == 'h') || other.node.name == 'parent' || other.node.name == 'spider') {
             // diee
             // deploy white particles
             if (other.node.name[0] == 's') {
@@ -227,6 +222,10 @@ var Player = /** @class */ (function (_super) {
         this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).endColor = this.Color.node.color;
         this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).endColorVar = this.Color.node.color;
         //-------------------------------------------------
+        this.playBGM();
+    };
+    Player.prototype.playBGM = function () {
+        cc.audioEngine.playMusic(this.day_back_music, true);
     };
     Player.prototype.update = function (dt) {
         if (this.node.y <= -400) {
@@ -351,10 +350,6 @@ var Player = /** @class */ (function (_super) {
         this.lego += number;
         this.bubble_lego.getComponent(cc.Label).string = this.lego.toString();
     };
-    Player.prototype.update_powerup = function (number) {
-        this.powerup += number;
-        this.bubble_powerup.getComponent(cc.Label).string = this.powerup.toString();
-    };
     __decorate([
         property(cc.Node)
     ], Player.prototype, "camera", void 0);
@@ -440,9 +435,6 @@ var Player = /** @class */ (function (_super) {
         property(cc.Node)
     ], Player.prototype, "bubble_lego", void 0);
     __decorate([
-        property(cc.Node)
-    ], Player.prototype, "bubble_powerup", void 0);
-    __decorate([
         property(cc.Prefab)
     ], Player.prototype, "banana_Prefabs", void 0);
     __decorate([
@@ -469,6 +461,9 @@ var Player = /** @class */ (function (_super) {
     __decorate([
         property(cc.AudioClip)
     ], Player.prototype, "die_audio", void 0);
+    __decorate([
+        property(cc.AudioClip)
+    ], Player.prototype, "day_back_music", void 0);
     Player = __decorate([
         ccclass
     ], Player);

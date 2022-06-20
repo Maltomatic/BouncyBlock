@@ -85,6 +85,8 @@ export class Player extends cc.Component {
     get_powerup_bubble : cc.AudioClip = null;
     @property(cc.AudioClip)
     shooted : cc.AudioClip = null;
+    @property(cc.AudioClip)
+    night_back_music : cc.AudioClip = null;// @A@
 
     debug_mode: boolean = true;
     hidden: boolean = false;
@@ -130,6 +132,7 @@ export class Player extends cc.Component {
     }
 
     onLoad () {
+        cc.audioEngine.pauseMusic();
         this.setcolor();
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
@@ -207,7 +210,7 @@ export class Player extends cc.Component {
             this.scheduleOnce(() => {
                 cc.director.loadScene("lose")
             }, 0.3);
-        }else if((other.node.name[0] == 's'&&other.node.name[1] == 'h')||other.node.name == 'parent'){
+        }else if((other.node.name[0] == 's'&&other.node.name[1] == 'h') || other.node.name == 'spider'){
             if(other.node.name[0] == 's'){
                 cc.audioEngine.playEffect(this.sharp_knife, false);
             }
@@ -251,7 +254,12 @@ export class Player extends cc.Component {
         }
     }
 
+    playBGM(){ // @A@
+        cc.audioEngine.playMusic(this.night_back_music, true); 
+    }
+
     start () {
+        this.playBGM();
         this.dir = 0;
         this.sec_list = [this.sec0, this.sec1, this.sec2, this.sec3, this.sec4,this.sec5,this.sec6,this.sec7,this.sec8,this.sec9,this.sec10,this.sec11,this.sec12,this.sec13,this.sec14,this.sec15,this.sec16,this.sec17,this.sec18,this.sec19,this.sec20];
         this.score = 0;

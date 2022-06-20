@@ -754,6 +754,9 @@
       "__id__": 2
     },
     "_enabled": true,
+    "lose_back_music": {
+      "__uuid__": "81d5c504-45e9-422e-a3d2-f03d98e6cd5a"
+    },
     "_id": "edObnlXbRI9YvjGncEkRJv"
   }
 ]

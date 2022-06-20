@@ -46,6 +46,7 @@ var Bird = /** @class */ (function (_super) {
         _this.die_audio = null;
         _this.player_jump = null;
         _this.get_coin = null;
+        _this.bird_back_music = null; // @A@
         _this.section_count = 0; // on contact with marker, if section_count * 1920 < this.node.x: init next section and section_count ++
         _this.score = 0;
         _this.speed = 150;
@@ -76,6 +77,7 @@ var Bird = /** @class */ (function (_super) {
         //-------------------------------------------------
     };
     Bird.prototype.onLoad = function () {
+        cc.audioEngine.pauseMusic(); // @A@
         this.setcolor();
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
@@ -86,7 +88,11 @@ var Bird = /** @class */ (function (_super) {
         cc.systemEvent.off(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
     };
     Bird.prototype.start = function () {
+        this.playBGM();
         this.score = 0;
+    };
+    Bird.prototype.playBGM = function () {
+        cc.audioEngine.playMusic(this.bird_back_music, true);
     };
     Bird.prototype.update = function (dt) {
         this.camera_track();
@@ -199,6 +205,9 @@ var Bird = /** @class */ (function (_super) {
     __decorate([
         property(cc.AudioClip)
     ], Bird.prototype, "get_coin", void 0);
+    __decorate([
+        property(cc.AudioClip)
+    ], Bird.prototype, "bird_back_music", void 0);
     Bird = __decorate([
         ccclass
     ], Bird);

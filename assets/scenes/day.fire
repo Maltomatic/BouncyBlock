@@ -2993,7 +2993,6 @@
     "bubble_lego": {
       "__id__": 17
     },
-    "bubble_powerup": null,
     "banana_Prefabs": {
       "__uuid__": "25759dff-65ae-42cb-92b9-a925f16a7432"
     },
@@ -3020,6 +3019,9 @@
     },
     "die_audio": {
       "__uuid__": "855fc174-d668-479c-9766-fa036dbcf12e"
+    },
+    "day_back_music": {
+      "__uuid__": "c43764ca-1657-40c9-9a73-c95948cfe59e"
     },
     "_id": "b5nfTY+1hPN6vtQhxR7Ycp"
   },

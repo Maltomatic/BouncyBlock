@@ -28,14 +28,17 @@ var lose = /** @class */ (function (_super) {
     __extends(lose, _super);
     function lose() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.lose_back_music = null; // @A@
         _this.uid = null;
         return _this;
     }
     lose.prototype.onload = function () {
         this.uid = cc.sys.localStorage.getItem('uid');
+        cc.audioEngine.pauseMusic(); // @A@
     };
     lose.prototype.start = function () {
         var _this = this;
+        this.playBGM();
         cc.debug.setDisplayStats(false);
         //cc.audioEngine.playMusic(this.bgm, true);
         firebase.database().ref('/users/' + this.uid + '/coins').set(cc.sys.localStorage.getItem("data"), function () {
@@ -60,8 +63,15 @@ var lose = /** @class */ (function (_super) {
     };
     lose.prototype.loadmenu = function () {
         //cc.audioEngine.playEffect(this.press, false);
+        cc.audioEngine.pauseMusic();
         cc.director.loadScene("menu");
     };
+    lose.prototype.playBGM = function () {
+        cc.audioEngine.playMusic(this.lose_back_music, true);
+    };
+    __decorate([
+        property(cc.AudioClip)
+    ], lose.prototype, "lose_back_music", void 0);
     lose = __decorate([
         ccclass
     ], lose);

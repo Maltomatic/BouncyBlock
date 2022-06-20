@@ -79,6 +79,8 @@ export class Player extends cc.Component {
     sharp_knife : cc.AudioClip = null; 
     @property(cc.AudioClip)
     shooted : cc.AudioClip = null;
+    @property(cc.AudioClip)
+    multi_back_music : cc.AudioClip = null;// @A@
 
     @property(cc.Node)
     data_point : cc.Node = null; 
@@ -140,6 +142,7 @@ export class Player extends cc.Component {
     }
 
     onLoad () {
+        cc.audioEngine.pauseMusic();
         this.setcolor();
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
@@ -265,6 +268,7 @@ export class Player extends cc.Component {
     }
 
     start () {
+        this.playBGM();
         this.dir = 0;
         this.sec_list = [this.sec0, this.sec1, this.sec2, this.sec3, this.sec4,this.sec5,this.sec10,this.sec11,this.sec12,this.sec13,this.sec17,this.sec18,this.sec19];
         this.score = 0;
@@ -276,6 +280,9 @@ export class Player extends cc.Component {
         this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).endColorVar= this.Color.node.color;
         //-------------------------------------------------
         this.check_mail();
+    }
+    playBGM(){ // @A@
+        cc.audioEngine.playMusic(this.multi_back_music, true); 
     }
 
     update (dt) {

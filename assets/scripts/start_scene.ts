@@ -3,10 +3,17 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export default class start_scene extends cc.Component {
 
+    @property(cc.AudioClip)
+    login_back_music : cc.AudioClip = null; // @A@
+
     email_data: string;
     password_data: string;
     username: string;
     uid: string;
+
+    playBGM(){// @A@
+        cc.audioEngine.playMusic(this.login_back_music, true);
+    }
 
     onload() {
         cc.debug.setDisplayStats(false);
@@ -14,6 +21,7 @@ export default class start_scene extends cc.Component {
     }
  
     start () {
+        this.playBGM();
         cc.debug.setDisplayStats(false);
 
         //cc.audioEngine.playMusic(this.bgm, true);

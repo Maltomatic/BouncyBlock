@@ -251,6 +251,7 @@ var store = /** @class */ (function (_super) {
     };
     store.prototype.loadSignout = function () {
         //cc.audioEngine.playEffect(this.press, false);
+        console.log("back");
         cc.sys.localStorage.setItem("coins", this.money);
         cc.sys.localStorage.setItem("lego", this.lego);
         cc.sys.localStorage.setItem("powerup", this.powerup);

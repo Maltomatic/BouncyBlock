@@ -2,13 +2,19 @@ const {ccclass, property} = cc._decorator;
 
 @ccclass
 export default class lose extends cc.Component {
+
+    @property(cc.AudioClip)
+    lose_back_music : cc.AudioClip = null; // @A@
+
     private uid: string = null;
 
     onload(){
-        this.uid = cc.sys.localStorage.getItem('uid')
+        this.uid = cc.sys.localStorage.getItem('uid');
+        cc.audioEngine.pauseMusic(); // @A@
     }
 
     start () {
+        this.playBGM();
         cc.debug.setDisplayStats(false);
         //cc.audioEngine.playMusic(this.bgm, true);
 
@@ -39,7 +45,12 @@ export default class lose extends cc.Component {
 
     loadmenu() {
         //cc.audioEngine.playEffect(this.press, false);
+        cc.audioEngine.pauseMusic();
         cc.director.loadScene("menu");
+    }
+
+    playBGM(){// @A@
+        cc.audioEngine.playMusic(this.lose_back_music, true);
     }
 
 }

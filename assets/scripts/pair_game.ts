@@ -14,6 +14,7 @@ export default class NewClass extends cc.Component {
 
     // onLoad () {}
     onLoad () {
+        cc.audioEngine.pauseMusic(); // @A@
         firebase.auth().onAuthStateChanged((user) => {
             if(user){
                 this.uid = firebase.auth().currentUser.uid;

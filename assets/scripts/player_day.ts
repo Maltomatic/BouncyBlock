@@ -71,10 +71,6 @@ export class Player extends cc.Component {
     bubble_lego : cc.Node = null; 
     lego: number = 0;
 
-    @property(cc.Node)
-    bubble_powerup : cc.Node = null; 
-    powerup: number = 0;
-
     @property(cc.Prefab)
     banana_Prefabs: cc.Prefab = null;
     @property(cc.Prefab)
@@ -96,6 +92,9 @@ export class Player extends cc.Component {
 
     @property(cc.AudioClip)
     die_audio : cc.AudioClip = null; 
+
+    @property(cc.AudioClip)
+    day_back_music : cc.AudioClip = null;// @A@
 
     debug_mode: boolean = true;
     hidden: boolean = false;
@@ -139,6 +138,7 @@ export class Player extends cc.Component {
     }
 
     onLoad () {
+        cc.audioEngine.pauseMusic();
         this.setcolor();
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
@@ -197,11 +197,7 @@ export class Player extends cc.Component {
                 cc.audioEngine.playEffect(this.get_B_L_bubble, false); 
                 this.update_lego(1);
                 other.node.destroy();
-           }else if(other.tag == 3){ // colorful bubble
-                cc.audioEngine.playEffect(this.get_powerup_bubble, false); 
-                 this.update_powerup(1);
-                 other.node.destroy();
-             }
+           }
         }else if(other.node.name == 'missile'){
             // diee
             // deploy white particles
@@ -210,7 +206,7 @@ export class Player extends cc.Component {
             this.scheduleOnce(() => {
                 cc.director.loadScene("lose")
             }, 0.3);
-        }else if((other.node.name[0] == 's'&&other.node.name[1] == 'h')||other.node.name == 'parent'){
+        }else if((other.node.name[0] == 's' && other.node.name[1] == 'h') || other.node.name == 'parent' || other.node.name == 'spider'){
             // diee
             // deploy white particles
             if(other.node.name[0] == 's'){
@@ -258,6 +254,10 @@ export class Player extends cc.Component {
         this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).endColor= this.Color.node.color;
         this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).endColorVar= this.Color.node.color;
         //-------------------------------------------------
+        this.playBGM();
+    }
+    playBGM(){ // @A@
+        cc.audioEngine.playMusic(this.day_back_music, true);
     }
 
     update (dt) {
@@ -382,9 +382,5 @@ export class Player extends cc.Component {
     update_lego(number){  // @@ 
         this.lego += number;
        this.bubble_lego.getComponent(cc.Label).string = this.lego.toString();
-    }
-    update_powerup(number){  // @@ 
-        this.powerup += number;
-       this.bubble_powerup.getComponent(cc.Label).string = this.powerup.toString();
     }
 }
