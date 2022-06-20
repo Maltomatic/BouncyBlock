@@ -156,8 +156,6 @@ export class Player extends cc.Component {
     }
 
     onDestroy () {
-        this.id = cc.sys.localStorage.getItem('id');
-        this.room = cc.sys.localStorage.getItem('room');
         cc.systemEvent.off(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.off(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
     }
@@ -197,7 +195,8 @@ export class Player extends cc.Component {
             }    
         }else if(other.node.group == 'coin'){ // @@ 
             cc.audioEngine.playEffect(this.get_coin, false); 
-            this.update_coin(1);
+            this.coin++;
+            this.update_coin();
             other.node.destroy();
         }else if(other.node.group == 'bubble'){ // @@
             if(other.tag == 3){ // colorful bubble
@@ -288,6 +287,17 @@ export class Player extends cc.Component {
     }
 
     start () {
+        this.id = cc.sys.localStorage.getItem('id');
+        this.room = cc.sys.localStorage.getItem('room');
+        this.coin = cc.sys.localStorage.getItem("coins");
+        this.mute = cc.sys.localStorage.getItem("mute");
+        this.signal = cc.sys.localStorage.getItem("signal");
+        this.powerup = cc.sys.localStorage.getItem("powerup");
+        this.update_coin();
+        this.update_data();
+        this.update_mute();
+        this.update_signal();
+        this.update_powerup();
         this.playBGM();
         this.dir = 0;
         this.sec_list = [this.sec0, this.sec1, this.sec2, this.sec3, this.sec4,this.sec5,this.sec10,this.sec11,this.sec12,this.sec13,this.sec17,this.sec18,this.sec19];
@@ -375,6 +385,9 @@ export class Player extends cc.Component {
                                 other_score = parseInt(snap['joiner']);
                                 cc.sys.localStorage.setItem('multi_self', self_score);
                                 cc.sys.localStorage.setItem('multi_other', other_score);
+                                cc.sys.localStorage.setItem("coins", this.coin);
+                                cc.sys.localStorage.setItem("mute", this.mute);
+                                cc.sys.localStorage.setItem("signal", this.signal);
                                 if(self_score >= other_score){
                                     var explode=this.node.getChildByName("star_explode");
                                     explode.active = true;
@@ -394,6 +407,9 @@ export class Player extends cc.Component {
                                 other_score = parseInt(snap['creator']);
                                 cc.sys.localStorage.setItem('multi_self', self_score);
                                 cc.sys.localStorage.setItem('multi_other', other_score);
+                                cc.sys.localStorage.setItem("coins", this.coin);
+                                cc.sys.localStorage.setItem("mute", this.mute);
+                                cc.sys.localStorage.setItem("signal", this.signal);
                                 if(self_score >= other_score){
                                     var explode=this.node.getChildByName("star_explode");
                                     explode.active = true;
@@ -442,6 +458,9 @@ export class Player extends cc.Component {
                         var other_score = parseInt(snapshot.val());
                         cc.sys.localStorage.setItem('multi_self', self_score);
                         cc.sys.localStorage.setItem('multi_other', other_score);
+                        cc.sys.localStorage.setItem("coins", this.coin);
+                        cc.sys.localStorage.setItem("mute", this.mute);
+                        cc.sys.localStorage.setItem("signal", this.signal);
                         if(self_score >= other_score) cc.director.loadScene('multi_win');
                         else cc.director.loadScene('multi_lose');
                     }else this.check_mail();
@@ -453,6 +472,9 @@ export class Player extends cc.Component {
                         var other_score = parseInt(snapshot.val());
                         cc.sys.localStorage.setItem('multi_self', self_score);
                         cc.sys.localStorage.setItem('multi_other', other_score);
+                        cc.sys.localStorage.setItem("coins", this.coin);
+                        cc.sys.localStorage.setItem("mute", this.mute);
+                        cc.sys.localStorage.setItem("signal", this.signal);
                         if(self_score >= other_score) cc.director.loadScene('multi_win');
                         else cc.director.loadScene('multi_lose');
                     }else this.check_mail();
@@ -553,8 +575,7 @@ export class Player extends cc.Component {
         if(!this.debug_mode) this.on_floor = false;
         // console.log(this.prev_dir + "fly state: " + this.fly_state);
     }
-    update_coin(number){  // @@ 
-        this.coin += number;
+    update_coin(){  // @@ 
         this.coin_point.getComponent(cc.Label).string = this.coin.toString();
     }
     update_powerup(){  // @@ 

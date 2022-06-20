@@ -88,6 +88,8 @@ var Bird = /** @class */ (function (_super) {
         cc.systemEvent.off(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
     };
     Bird.prototype.start = function () {
+        this.coin = cc.sys.localStorage.getItem("coins");
+        this.update_coin();
         this.playBGM();
         this.score = 0;
     };
@@ -131,13 +133,17 @@ var Bird = /** @class */ (function (_super) {
             // diee
             this.die_particle();
             this.speed = 0;
+            cc.sys.localStorage.setItem("coins", this.coin);
+            cc.sys.localStorage.setItem("nowscore", this.score);
+            cc.sys.localStorage.setItem("nowscene", 'bird');
             this.scheduleOnce(function () {
                 cc.director.loadScene("lose");
             }, 0.3);
         }
         else if (other.node.name == 'coin') {
             cc.audioEngine.playEffect(this.get_coin, false);
-            this.update_coin(1);
+            this.coin++;
+            this.update_coin();
             other.node.destroy();
         }
     };
@@ -168,8 +174,7 @@ var Bird = /** @class */ (function (_super) {
         cc.audioEngine.playEffect(this.player_jump, false);
         this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 200);
     };
-    Bird.prototype.update_coin = function (number) {
-        this.coin += number;
+    Bird.prototype.update_coin = function () {
         this.coin_point.getComponent(cc.Label).string = this.coin.toString();
     };
     __decorate([

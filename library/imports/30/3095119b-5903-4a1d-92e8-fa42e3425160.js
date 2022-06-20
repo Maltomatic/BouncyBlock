@@ -220,6 +220,9 @@ var Player = /** @class */ (function (_super) {
         this.coin = cc.sys.localStorage.getItem("coins");
         this.lego = cc.sys.localStorage.getItem("lego");
         this.banana = cc.sys.localStorage.getItem("banana");
+        this.update_coin();
+        this.update_lego();
+        this.update_banana();
         this.dir = 0;
         this.sec_list = [this.sec0, this.sec1, this.sec2, this.sec3, this.sec4, this.sec5, this.sec6, this.sec7, this.sec8, this.sec9, this.sec10, this.sec11, this.sec12, this.sec13, this.sec14, this.sec15, this.sec16, this.sec17, this.sec18, this.sec19, this.sec20];
         this.score = 0;

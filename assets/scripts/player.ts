@@ -225,13 +225,7 @@ export class Player extends cc.Component {
     loser(){
         console.log("you died");
         cc.sys.localStorage.setItem("coins", this.coin);
-        cc.sys.localStorage.setItem("lego", this.lego);
         cc.sys.localStorage.setItem("powerup", this.powerup);
-        cc.sys.localStorage.setItem("banana", this.banana);
-        cc.sys.localStorage.setItem("mute", this.mute);
-        cc.sys.localStorage.setItem("signal", this.signal);
-        cc.sys.localStorage.setItem("nowscore", this.score);
-        cc.sys.localStorage.setItem("nowscene", 'night');
         this.node.active = false;
         this.scheduleOnce(()=>{
             cc.director.loadScene("lose");
@@ -255,11 +249,9 @@ export class Player extends cc.Component {
 
     start () {
         this.coin = cc.sys.localStorage.getItem("coins");
-        this.lego = cc.sys.localStorage.getItem("lego");
         this.powerup = cc.sys.localStorage.getItem("powerup");
-        this.banana = cc.sys.localStorage.getItem("banana");
-        this.mute = cc.sys.localStorage.getItem("mute");
-        this.signal = cc.sys.localStorage.getItem("signal");
+        this.update_coin();
+        this.update_powerup();
 
         this.playBGM();
         this.dir = 0;

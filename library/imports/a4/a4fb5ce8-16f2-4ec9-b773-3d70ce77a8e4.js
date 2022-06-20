@@ -202,13 +202,7 @@ var Player = /** @class */ (function (_super) {
     Player.prototype.loser = function () {
         console.log("you died");
         cc.sys.localStorage.setItem("coins", this.coin);
-        cc.sys.localStorage.setItem("lego", this.lego);
         cc.sys.localStorage.setItem("powerup", this.powerup);
-        cc.sys.localStorage.setItem("banana", this.banana);
-        cc.sys.localStorage.setItem("mute", this.mute);
-        cc.sys.localStorage.setItem("signal", this.signal);
-        cc.sys.localStorage.setItem("nowscore", this.score);
-        cc.sys.localStorage.setItem("nowscene", 'night');
         this.node.active = false;
         this.scheduleOnce(function () {
             cc.director.loadScene("lose");
@@ -231,11 +225,9 @@ var Player = /** @class */ (function (_super) {
     };
     Player.prototype.start = function () {
         this.coin = cc.sys.localStorage.getItem("coins");
-        this.lego = cc.sys.localStorage.getItem("lego");
         this.powerup = cc.sys.localStorage.getItem("powerup");
-        this.banana = cc.sys.localStorage.getItem("banana");
-        this.mute = cc.sys.localStorage.getItem("mute");
-        this.signal = cc.sys.localStorage.getItem("signal");
+        this.update_coin();
+        this.update_powerup();
         this.playBGM();
         this.dir = 0;
         this.sec_list = [this.sec0, this.sec1, this.sec2, this.sec3, this.sec4, this.sec5, this.sec6, this.sec7, this.sec8, this.sec9, this.sec10, this.sec11, this.sec12, this.sec13, this.sec14, this.sec15, this.sec16, this.sec17, this.sec18, this.sec19, this.sec20];
