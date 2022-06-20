@@ -81,6 +81,7 @@ export default class menu extends cc.Component {
         t.component = "menu";
         t.handler = "loadrule";
         cc.find("Canvas/rule").getComponent(cc.Button).clickEvents.push(t);
+
     }
 
     loadNight(){

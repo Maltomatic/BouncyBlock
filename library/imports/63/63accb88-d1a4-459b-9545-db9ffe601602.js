@@ -43,11 +43,8 @@ var store = /** @class */ (function (_super) {
     store.prototype.start = function () {
         var _this = this;
         cc.debug.setDisplayStats(false);
-        var data = {};
+        var data = cc.sys.localStorage.getItem("data");
         //cc.audioEngine.playMusic(this.bgm, true);
-        firebase.database().ref('/users/' + firebase.auth().currentUser.uid).once('value', function (e) {
-            data = e.val();
-        });
         this.scheduleOnce(function () {
             _this.money = data['coins'];
             _this.lego = data['thing']['lego'];
@@ -56,7 +53,6 @@ var store = /** @class */ (function (_super) {
             _this.mute = data['thing']['mute'];
             _this.signal = data['thing']['signal'];
             _this.color = data['thing']['color'];
-            console.log('here' + _this.color);
             cc.find('Canvas/coins').getComponent(cc.Label).string = _this.money.toString();
             cc.find('Canvas/lego/amount').getComponent(cc.Label).string = _this.lego.toString();
             cc.find('Canvas/banana/amount').getComponent(cc.Label).string = _this.banana.toString();
@@ -233,10 +229,22 @@ var store = /** @class */ (function (_super) {
         }
     };
     store.prototype.loadSignout = function () {
+        var _this = this;
         //cc.audioEngine.playEffect(this.press, false);
         this.scheduleOnce(function () {
-            cc.director.loadScene("menu");
-        }, 1.5);
+            var data = cc.sys.localStorage.getItem("data");
+            data['coins'] = _this.money;
+            data['thing']['lego'] = _this.lego;
+            data['thing']['banana'] = _this.banana;
+            data['thing']['powerup'] = _this.powerup;
+            data['thing']['mute'] = _this.mute;
+            data['thing']['signal'] = _this.signal;
+            data['thing']['color'] = _this.color;
+            cc.sys.localStorage.setItem("data", data);
+            _this.scheduleOnce(function () {
+                cc.director.loadScene("menu");
+            }, 0.5);
+        }, 0.5);
     };
     store = __decorate([
         ccclass

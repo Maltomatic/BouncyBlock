@@ -29,10 +29,8 @@ var menu = /** @class */ (function (_super) {
     function menu() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    menu.prototype.onload = function () {
-        cc.debug.setDisplayStats(false);
-    };
     menu.prototype.start = function () {
+        var _this = this;
         cc.debug.setDisplayStats(false);
         //cc.audioEngine.playMusic(this.bgm, true);
         var signout = new cc.Component.EventHandler();

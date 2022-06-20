@@ -17,11 +17,9 @@ export default class store extends cc.Component {
 
     start () {
         cc.debug.setDisplayStats(false);
-        var data = {};
+        var data = cc.sys.localStorage.getItem("data");
         //cc.audioEngine.playMusic(this.bgm, true);
-        firebase.database().ref('/users/'+ firebase.auth().currentUser.uid).once('value', e =>{
-            data = e.val();
-        });
+        
         this.scheduleOnce(() => {
             this.money = data['coins'];
             this.lego = data['thing']['lego'];
@@ -30,7 +28,7 @@ export default class store extends cc.Component {
             this.mute = data['thing']['mute'];
             this.signal = data['thing']['signal'];
             this.color = data['thing']['color'];
-            console.log('here' + this.color);
+            
 
             cc.find('Canvas/coins').getComponent(cc.Label).string = this.money.toString();
             cc.find('Canvas/lego/amount').getComponent(cc.Label).string = this.lego.toString();
@@ -220,8 +218,19 @@ export default class store extends cc.Component {
     loadSignout(){
         //cc.audioEngine.playEffect(this.press, false);
         this.scheduleOnce(()=> {
-            cc.director.loadScene("menu");
-        }, 1.5);
+            var data = cc.sys.localStorage.getItem("data");
+            data['coins'] = this.money;
+            data['thing']['lego'] = this.lego;
+            data['thing']['banana'] = this.banana;
+            data['thing']['powerup'] = this.powerup;
+            data['thing']['mute'] = this.mute;
+            data['thing']['signal'] = this.signal;
+            data['thing']['color'] = this.color;
+            cc.sys.localStorage.setItem("data",data);
+            this.scheduleOnce( ()=> {
+                cc.director.loadScene("menu");
+            }, 0.5);
+        }, 0.5);
     }
 
    
