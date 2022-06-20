@@ -65,6 +65,9 @@ var Player = /** @class */ (function (_super) {
         _this.get_powerup_bubble = null;
         _this.sharp_knife = null;
         _this.shooted = null;
+        _this.data_point = null;
+        _this.signal_point = null;
+        _this.mute_point = null;
         _this.debug_mode = true;
         _this.hidden = false;
         _this.noisy = false;
@@ -72,6 +75,8 @@ var Player = /** @class */ (function (_super) {
         // private ACK: number = 5;
         _this.recv_msg = 0;
         _this.data = 0;
+        _this.mute = 0;
+        _this.signal = 0;
         _this.sec_list = [];
         _this.dir = 0;
         _this.prev_dir = 0;
@@ -194,6 +199,22 @@ var Player = /** @class */ (function (_super) {
                 cc.director.loadScene("lose");
                 _this.node.active = false;
             }, 0.3);
+        }
+        //losy
+        else if (other.node.name == "bubble_mute") {
+            //  cc.audioEngine.playEffect(this.get_B_L_bubble, false); 
+            this.update_mute(1);
+            other.node.destroy();
+        }
+        else if (other.node.name == "bubble_data") {
+            //  cc.audioEngine.playEffect(this.get_B_L_bubble, false); 
+            this.update_data(1);
+            other.node.destroy();
+        }
+        else if (other.node.name == "bubble_signal") {
+            // cc.audioEngine.playEffect(this.get_B_L_bubble, false); 
+            this.update_signal(1);
+            other.node.destroy();
         }
     };
     Player.prototype.die_particle = function () {
@@ -383,7 +404,7 @@ var Player = /** @class */ (function (_super) {
         else if (event.keyCode == cc.macro.KEY.s) { // ##
             // use bubble signal
         }
-        else if (event.keyCode == cc.macro.KEY.d) { // ##
+        else if (event.keyCode == cc.macro.KEY.d) { // ## //再enter實踐了
             // use bubble data
         }
         else if (event.keyCode == cc.macro.KEY.f) { // ##
@@ -415,6 +436,19 @@ var Player = /** @class */ (function (_super) {
     Player.prototype.update_powerup = function (number) {
         this.powerup += number;
         this.bubble_powerup.getComponent(cc.Label).string = this.powerup.toString();
+    };
+    //losy
+    Player.prototype.update_mute = function (number) {
+        this.mute += number;
+        this.mute_point.getComponent(cc.Label).string = this.mute.toString();
+    };
+    Player.prototype.update_signal = function (number) {
+        this.signal += number;
+        this.signal_point.getComponent(cc.Label).string = this.signal.toString();
+    };
+    Player.prototype.update_data = function (number) {
+        this.data += number;
+        this.data_point.getComponent(cc.Label).string = this.data.toString();
     };
     __decorate([
         property(cc.Node)
@@ -518,6 +552,15 @@ var Player = /** @class */ (function (_super) {
     __decorate([
         property(cc.AudioClip)
     ], Player.prototype, "shooted", void 0);
+    __decorate([
+        property(cc.Node)
+    ], Player.prototype, "data_point", void 0);
+    __decorate([
+        property(cc.Node)
+    ], Player.prototype, "signal_point", void 0);
+    __decorate([
+        property(cc.Node)
+    ], Player.prototype, "mute_point", void 0);
     Player = __decorate([
         ccclass
     ], Player);

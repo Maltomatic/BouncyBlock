@@ -80,6 +80,13 @@ export class Player extends cc.Component {
     @property(cc.AudioClip)
     shooted : cc.AudioClip = null;
 
+    @property(cc.Node)
+    data_point : cc.Node = null; 
+    @property(cc.Node)
+    signal_point : cc.Node = null; 
+    @property(cc.Node)
+    mute_point : cc.Node = null; 
+
     debug_mode: boolean = true;
     hidden: boolean = false;
     private noisy: boolean = false;
@@ -88,7 +95,8 @@ export class Player extends cc.Component {
     private recv_msg: number = 0;
 
     private data: number = 0;
-
+    mute:number=0;
+    signal:number=0;
     private sec_list = [];
 
     private dir: number = 0;
@@ -211,6 +219,25 @@ export class Player extends cc.Component {
                 cc.director.loadScene("lose");
                 this.node.active = false;
             }, 0.3);
+        }
+        //losy
+        else if(other.node.name=="bubble_mute")
+        {
+          //  cc.audioEngine.playEffect(this.get_B_L_bubble, false); 
+            this.update_mute(1);
+            other.node.destroy();
+        }
+        else if(other.node.name=="bubble_data")
+        {
+          //  cc.audioEngine.playEffect(this.get_B_L_bubble, false); 
+            this.update_data(1);
+            other.node.destroy();
+        }
+        else if(other.node.name=="bubble_signal")
+        {
+           // cc.audioEngine.playEffect(this.get_B_L_bubble, false); 
+            this.update_signal(1);
+            other.node.destroy();
         }
 
     }
@@ -394,7 +421,7 @@ export class Player extends cc.Component {
         }  else if(event.keyCode == cc.macro.KEY.s){ // ##
             // use bubble signal
 
-        }  else if(event.keyCode == cc.macro.KEY.d){ // ##
+        }  else if(event.keyCode == cc.macro.KEY.d){ // ## //再enter實踐了
             // use bubble data
 
         } else if(event.keyCode == cc.macro.KEY.f){ // ##
@@ -429,5 +456,22 @@ export class Player extends cc.Component {
     update_powerup(number){  // @@ 
         this.powerup += number;
        this.bubble_powerup.getComponent(cc.Label).string = this.powerup.toString();
+    }
+    //losy
+    update_mute(number)
+    {
+        this.mute+=number;
+        this.mute_point.getComponent(cc.Label).string = this.mute.toString();
+        
+    }
+    update_signal(number)
+    {
+        this.signal+=number;
+        this.signal_point.getComponent(cc.Label).string = this.signal.toString();
+    }
+    update_data(number)
+    {
+        this.data+=number;
+        this.data_point.getComponent(cc.Label).string = this.data.toString();
     }
 }

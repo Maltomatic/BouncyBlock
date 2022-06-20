@@ -13,13 +13,13 @@
         "type": "dock-h",
         "children": [
           {
-            "width": 265,
-            "height": 714,
+            "width": 262.3125,
+            "height": 687,
             "type": "dock-v",
             "children": [
               {
-                "width": 265,
-                "height": 380,
+                "width": 262.3125,
+                "height": 365.5703125,
                 "type": "panel",
                 "active": 0,
                 "children": [
@@ -27,8 +27,8 @@
                 ]
               },
               {
-                "width": 265,
-                "height": 331,
+                "width": 262.3125,
+                "height": 318.4296875,
                 "type": "panel",
                 "active": 0,
                 "children": [
@@ -38,13 +38,13 @@
             ]
           },
           {
-            "width": 633,
-            "height": 714,
+            "width": 626.5703125,
+            "height": 687,
             "type": "dock-v",
             "children": [
               {
-                "width": 633,
-                "height": 426,
+                "width": 626.5703125,
+                "height": 409.8203125,
                 "type": "panel",
                 "active": 0,
                 "children": [
@@ -52,8 +52,8 @@
                 ]
               },
               {
-                "width": 633,
-                "height": 285,
+                "width": 626.5703125,
+                "height": 274.1796875,
                 "type": "panel",
                 "active": 0,
                 "children": [
@@ -65,8 +65,8 @@
             ]
           },
           {
-            "width": 383,
-            "height": 714,
+            "width": 379.109375,
+            "height": 687,
             "type": "panel",
             "active": 0,
             "children": [
@@ -86,7 +86,9 @@
         "inspector",
         "cocos-services"
       ]
-    }
+    },
+    " common-asset-worker-worker": {},
+    "window-1655720732973": {}
   },
   "panels": {
     "project-settings": {
