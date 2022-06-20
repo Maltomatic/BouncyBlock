@@ -129,7 +129,7 @@ var Player = /** @class */ (function (_super) {
     };
     Player.prototype.onBeginContact = function (contact, self, other) {
         var _this = this;
-        // // console.log(other.node.group);
+        console.log(other.tag);
         var touch = contact.getWorldManifold().normal;
         // // console.log("hit node with color " + other.node.getComponent(cc.TiledTile).gid);
         if (other.tag == 1000) {
@@ -169,10 +169,27 @@ var Player = /** @class */ (function (_super) {
             this.update_coin(1);
             other.node.destroy();
         }
-        else if (other.node.group == 'bubble') { // @@ 
+        else if (other.node.group == 'bubble') { // @@
             if (other.tag == 3) { // colorful bubble
                 cc.audioEngine.playEffect(this.get_powerup_bubble, false);
                 this.update_powerup(1);
+                other.node.destroy();
+            }
+            //losy
+            else if (other.tag == 4) { // bubble mute 
+                //  cc.audioEngine.playEffect(this.get_B_L_bubble, false); 
+                this.update_mute(1);
+                other.node.destroy();
+            }
+            else if (other.tag == 5) { // bubble signal
+                // cc.audioEngine.playEffect(this.get_B_L_bubble, false); 
+                this.update_signal(1);
+                other.node.destroy();
+                other.node.destroy();
+            }
+            else if (other.tag == 6) { // colorful data
+                //  cc.audioEngine.playEffect(this.get_B_L_bubble, false); 
+                this.update_data(1);
                 other.node.destroy();
             }
         }
@@ -199,22 +216,6 @@ var Player = /** @class */ (function (_super) {
                 cc.director.loadScene("lose");
                 _this.node.active = false;
             }, 0.3);
-        }
-        //losy
-        else if (other.node.name == "bubble_mute") {
-            //  cc.audioEngine.playEffect(this.get_B_L_bubble, false); 
-            this.update_mute(1);
-            other.node.destroy();
-        }
-        else if (other.node.name == "bubble_data") {
-            //  cc.audioEngine.playEffect(this.get_B_L_bubble, false); 
-            this.update_data(1);
-            other.node.destroy();
-        }
-        else if (other.node.name == "bubble_signal") {
-            // cc.audioEngine.playEffect(this.get_B_L_bubble, false); 
-            this.update_signal(1);
-            other.node.destroy();
         }
     };
     Player.prototype.die_particle = function () {
