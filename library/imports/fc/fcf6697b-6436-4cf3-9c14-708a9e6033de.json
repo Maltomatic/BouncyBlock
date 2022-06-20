@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "sharp_down",
+    "texture": "93bea0c1-19cf-40d0-8daf-900df7954747",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      131,
+      174
+    ],
+    "offset": [
+      0,
+      31
+    ],
+    "originalSize": [
+      131,
+      236
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

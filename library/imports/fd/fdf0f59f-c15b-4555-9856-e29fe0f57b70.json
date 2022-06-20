@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "sign_in",
+    "texture": "6107ec3e-b574-4402-b732-3dd4a9f9a17e",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      2880,
+      1920
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      2880,
+      1920
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

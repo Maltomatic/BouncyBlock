@@ -1,0 +1,8 @@
+{
+  "__type__": "cc.AudioClip",
+  "_name": "footstep",
+  "_objFlags": 0,
+  "_native": ".wav",
+  "duration": 9.64,
+  "loadMode": 0
+}
