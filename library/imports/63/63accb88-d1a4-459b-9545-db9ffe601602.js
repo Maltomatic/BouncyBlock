@@ -232,7 +232,9 @@ var store = /** @class */ (function (_super) {
     };
     store.prototype.loadSignout = function () {
         //cc.audioEngine.playEffect(this.press, false);
-        cc.director.loadScene("menu");
+        this.scheduleOnce(function () {
+            cc.director.loadScene("menu");
+        }, 0.5);
     };
     store = __decorate([
         ccclass

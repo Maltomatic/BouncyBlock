@@ -217,7 +217,9 @@ export default class store extends cc.Component {
     }
     loadSignout(){
         //cc.audioEngine.playEffect(this.press, false);
-        cc.director.loadScene("menu");
+        this.scheduleOnce(()=> {
+            cc.director.loadScene("menu");
+        }, 0.5);
     }
 
    
