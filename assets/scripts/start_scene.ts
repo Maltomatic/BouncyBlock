@@ -17,6 +17,9 @@ export default class start_scene extends cc.Component {
         cc.debug.setDisplayStats(false);
 
         //cc.audioEngine.playMusic(this.bgm, true);
+        cc.find("Canvas/back").on(cc.Node.EventType.MOUSE_DOWN, () => {
+            cc.director.loadScene('menu');
+        }, this);
 
         this.email_data = "";
         this.password_data = "";

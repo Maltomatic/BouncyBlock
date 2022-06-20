@@ -31,6 +31,7 @@ var BirdBase = /** @class */ (function (_super) {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.base = 6;
         _this.strip = 1;
+        _this.coin = null;
         return _this;
     }
     BirdBase.prototype.onLoad = function () {
@@ -114,6 +115,7 @@ var BirdBase = /** @class */ (function (_super) {
                 pathrange[0] = up_bound;
                 pathrange[1] = down_bound;
             }
+            var section_count = cc.find('Canvas/root/bird_player').getComponent('bird_player').section_count;
             for (var i = 0; i < layerSz.width; i++) {
                 for (var j = 0; j < layerSz.height; j++) {
                     var FloorTile = floor.getTiledTileAt(i, j, true);
@@ -130,9 +132,37 @@ var BirdBase = /** @class */ (function (_super) {
                         collider.apply();
                     }
                 }
+                var max_allowed = 5;
+                for (var j = 3; j < layerSz.height - 3; j++) {
+                    var FloorTile = floor.getTiledTileAt(i, j, true);
+                    if (FloorTile.gid == 0) {
+                        if (floor.getTiledTileAt(i, j - 3, true).gid != 0)
+                            continue;
+                        var nocoin = Math.floor(Math.random() * 8);
+                        if (!nocoin) {
+                            //init coin
+                            max_allowed--;
+                            var c = cc.instantiate(this.coin);
+                            c.x = section_count * 1920 + FloorTile.node.x;
+                            c.y = FloorTile.node.y;
+                            console.log("coin at " + c.x, c.y);
+                            //c.active = true;
+                            cc.find("Canvas/root/mapworld/coin_bubble").addChild(c);
+                            if (!max_allowed)
+                                break;
+                        }
+                        else {
+                            if (floor.getTiledTileAt(i, j + 3, true).gid != 0)
+                                break;
+                        }
+                    }
+                }
             }
         }
     };
+    __decorate([
+        property(cc.Prefab)
+    ], BirdBase.prototype, "coin", void 0);
     BirdBase = __decorate([
         ccclass
     ], BirdBase);

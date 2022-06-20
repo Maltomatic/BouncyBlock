@@ -6,6 +6,9 @@ export class BirdBase extends cc.Component {
     private base: number = 6;
     private strip: number = 1;
 
+    @property(cc.Prefab)
+    coin: cc.Prefab = null;
+
     onLoad () {
         cc.director.getCollisionManager().enabled = true;
         cc.director.getCollisionManager().enabledDrawBoundingBox = true;
@@ -96,6 +99,7 @@ export class BirdBase extends cc.Component {
                 pathrange[1] = down_bound;
             }
 
+            var section_count = cc.find('Canvas/root/bird_player').getComponent('bird_player').section_count;
             for(var i = 0; i < layerSz.width; i++){
                 for(var j = 0; j < layerSz.height; j++){
                     var FloorTile = floor.getTiledTileAt(i, j, true);
@@ -110,6 +114,27 @@ export class BirdBase extends cc.Component {
                         collider.offset = cc.v2(sz.width/2, sz.height/2);
                         collider.size = sz;
                         collider.apply();
+                    }
+                }
+                var max_allowed = 5;
+                for(var j = 3; j < layerSz.height-3; j++){
+                    var FloorTile = floor.getTiledTileAt(i, j, true);
+                    if(FloorTile.gid == 0){
+                        if(floor.getTiledTileAt(i, j-3, true).gid != 0) continue;
+                        var nocoin = Math.floor(Math.random() * 8);
+                        if(!nocoin){
+                            //init coin
+                            max_allowed--;
+                            var c = cc.instantiate(this.coin);
+                            c.x = section_count * 1920 + FloorTile.node.x;
+                            c.y = FloorTile.node.y;
+                            console.log("coin at " + c.x, c.y);
+                            //c.active = true;
+                            cc.find("Canvas/root/mapworld/coin_bubble").addChild(c);
+                            if(!max_allowed) break;
+                        }else{
+                            if(floor.getTiledTileAt(i, j+3, true).gid != 0) break;
+                        }
                     }
                 }
             }

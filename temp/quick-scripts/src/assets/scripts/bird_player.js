@@ -87,7 +87,7 @@ var Bird = /** @class */ (function (_super) {
     };
     Bird.prototype.update = function (dt) {
         this.camera_track();
-        this.node.x += this.speed * dt;
+        this.node.x += this.speed * dt * Math.max(1, this.section_count / 3);
         //--------score-------------------------------
         this.score = (Math.round(this.node.x / 35) > this.score) ? Math.round(this.node.x / 35) : this.score;
         this.Score.getComponent(cc.Label).string = this.score.toString();
@@ -126,6 +126,10 @@ var Bird = /** @class */ (function (_super) {
             this.scheduleOnce(function () {
                 cc.director.loadScene("lose");
             }, 0.3);
+        }
+        else if (other.node.name == 'coin') {
+            // increase coin
+            other.node.destroy();
         }
     };
     Bird.prototype.die_particle = function () {

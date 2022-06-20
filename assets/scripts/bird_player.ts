@@ -32,7 +32,7 @@ export class Bird extends cc.Component {
     @property(cc.AudioClip)
     player_jump : cc.AudioClip = null;
 
-    private section_count: number = 0;      // on contact with marker, if section_count * 1920 < this.node.x: init next section and section_count ++
+    section_count: number = 0;      // on contact with marker, if section_count * 1920 < this.node.x: init next section and section_count ++
     private score: number = 0;
 
     private speed: number = 150;
@@ -80,7 +80,7 @@ export class Bird extends cc.Component {
 
     update (dt) {
         this.camera_track();
-        this.node.x += this.speed * dt;
+        this.node.x += this.speed * dt * Math.max(1, this.section_count/3);
         
         //--------score-------------------------------
         this.score = (Math.round(this.node.x / 35) > this.score) ? Math.round(this.node.x / 35) : this.score;
@@ -119,6 +119,9 @@ export class Bird extends cc.Component {
             this.scheduleOnce(() => {
                 cc.director.loadScene("lose");
             }, 0.3);
+        }else if(other.node.name == 'coin'){
+            // increase coin
+            other.node.destroy();
         }
     }
 

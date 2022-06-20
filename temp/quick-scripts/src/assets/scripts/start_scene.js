@@ -37,6 +37,9 @@ var start_scene = /** @class */ (function (_super) {
     start_scene.prototype.start = function () {
         cc.debug.setDisplayStats(false);
         //cc.audioEngine.playMusic(this.bgm, true);
+        cc.find("Canvas/back").on(cc.Node.EventType.MOUSE_DOWN, function () {
+            cc.director.loadScene('menu');
+        }, this);
         this.email_data = "";
         this.password_data = "";
         this.username = "";
