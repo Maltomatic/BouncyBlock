@@ -31,6 +31,12 @@ export class Section extends cc.Component {
 
     @property(cc.Prefab)
     banana_pre: cc.Prefab=null;
+    @property(cc.Prefab)
+    data_pre: cc.Prefab=null;
+    @property(cc.Prefab)
+    signal_pre: cc.Prefab=null;
+    @property(cc.Prefab)
+    mute_pre: cc.Prefab=null;
 
     private lv: number = 0;
 
@@ -234,11 +240,22 @@ export class Section extends cc.Component {
                 else if(tile.gid == 225 + 61){  
                     tile.gid = 0;
                     if(cc.director.getScene().name == 'day'){
-                        console.log('herereeeeee')
                         var rad = 1 + Math.floor(Math.random() * 2);  
                         var b = new cc.Node;
                         if(rad == 1) b = cc.instantiate(this.banana_pre);
                         else if(rad == 2) b = cc.instantiate(this.lego_pre);
+                        // else b = cc.instantiate(this.bubble_pre);
+                        b.x = section_count * 1920 + tile.node.x;
+                        b.y = tile.node.y;
+                        //c.active = true;
+                        cc.find("Canvas/root/mapworld/coin_bubble").addChild(b);
+                    }else if(cc.director.getScene().name == 'multi'){
+                        var rad = 1 + Math.floor(Math.random() * 4);  
+                        var b = new cc.Node;
+                        if(rad == 1) b = cc.instantiate(this.bubble_pre);
+                        else if(rad == 2) b = cc.instantiate(this.data_pre);
+                        else if(rad == 2) b = cc.instantiate(this.signal_pre);
+                        else if(rad == 2) b = cc.instantiate(this.mute_pre);
                         // else b = cc.instantiate(this.bubble_pre);
                         b.x = section_count * 1920 + tile.node.x;
                         b.y = tile.node.y;

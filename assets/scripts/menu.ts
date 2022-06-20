@@ -7,9 +7,7 @@ export default class menu extends cc.Component {
     menu_music : cc.AudioClip = null;// @A@
 
     onload() {
-        cc.debug.setDisplayStats(false);
-        cc.sys.localStorage.setItem("uid", 'local');
-        
+        cc.debug.setDisplayStats(false);       
     }
     playBGM(){ // @A@
         cc.audioEngine.playMusic(this.menu_music, true); 
@@ -26,8 +24,9 @@ export default class menu extends cc.Component {
             if(user){
                 signout.handler = "loadSignout";
                 // grab logged in data from Firebase
+                var uid = firebase.auth().currentUser.uid;
                 var data = {};
-                firebase.database().ref('users/' + user.uid ).once('value', (snapshot) => {
+                firebase.database().ref('users/' + uid ).once('value', (snapshot) => {
                     var data = snapshot.val();
                     console.log(data);
                     cc.sys.localStorage.setItem("uid", user.uid);
@@ -48,10 +47,9 @@ export default class menu extends cc.Component {
                     }
 
                     cc.sys.localStorage.setItem("color", s);
-                    //console.log(cc.sys.localStorage.getItem("color"), cc.sys.localStorage.getItem("coins"));
-
                 });
             }else{
+                cc.sys.localStorage.setItem("uid", 'local');
                 cc.sys.localStorage.setItem("coins", 0);
                 cc.sys.localStorage.setItem("lego", 0);
                 cc.sys.localStorage.setItem("powerup", 0);
@@ -61,6 +59,7 @@ export default class menu extends cc.Component {
                 cc.sys.localStorage.setItem("highscore", 0);
                 cc.sys.localStorage.setItem("name", 0);
                 cc.sys.localStorage.setItem("email", 0);
+                cc.sys.localStorage.setItem("color", '010000');
                 // sign in button instead
                 cc.find("Canvas/out").getComponent(cc.Label).string = "sign in"
                 cc.find("Canvas/SignOut").scaleX = -1;

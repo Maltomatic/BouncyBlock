@@ -132,7 +132,6 @@ var start_scene = /** @class */ (function (_super) {
         firebase.auth().createUserWithEmailAndPassword(this.email_data, this.password_data).then(function (result) {
             // firebase.database().ref('/users').once("value").then( (snapshot)=> {
             // if(snapshot.child(result.uid).exists() == false) {
-            var a = {};
             var tmp = {};
             tmp['coins'] = 0;
             tmp['email'] = _this.email_data; //firebase.auth().currentUser.email;
@@ -141,8 +140,7 @@ var start_scene = /** @class */ (function (_super) {
             console.log('name = ', _this.username, _this.email_data);
             var t = { 'lego': 0, 'banana': 0, 'color': { 1: true, 2: false, 3: false, 4: false, 5: false }, 'powerup': 0, 'signal': 0, 'mute': 0 };
             tmp['thing'] = t;
-            a[result.user.uid /*firebase.auth().currentUser.uid*/] = tmp;
-            firebase.database().ref('/users/').set(a, function () {
+            firebase.database().ref('/users/' + result.user.uid).set(tmp, function () {
                 _this.loadsignin();
             });
             //     }

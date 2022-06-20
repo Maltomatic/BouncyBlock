@@ -113,7 +113,6 @@ export default class start_scene extends cc.Component {
         firebase.auth().createUserWithEmailAndPassword(this.email_data, this.password_data).then( (result) => {
             // firebase.database().ref('/users').once("value").then( (snapshot)=> {
                 // if(snapshot.child(result.uid).exists() == false) {
-                    var a = {};
                     var tmp = {};
                     tmp['coins'] = 0;
                     tmp['email'] = this.email_data; //firebase.auth().currentUser.email;
@@ -122,8 +121,7 @@ export default class start_scene extends cc.Component {
                     console.log('name = ', this.username, this.email_data);
                     var t = {'lego':0, 'banana': 0, 'color': {1:true, 2: false, 3: false, 4: false, 5: false}, 'powerup': 0, 'signal': 0, 'mute': 0}
                     tmp['thing'] = t;
-                    a[result.user.uid/*firebase.auth().currentUser.uid*/] = tmp;
-                    firebase.database().ref('/users/').set(a, () =>{
+                    firebase.database().ref('/users/' + result.user.uid).set(tmp, () =>{
                         this.loadsignin();
                     });
             //     }

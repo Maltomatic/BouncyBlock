@@ -40,6 +40,9 @@ var Section = /** @class */ (function (_super) {
         _this.lego_pre = null;
         _this.bubble_pre = null;
         _this.banana_pre = null;
+        _this.data_pre = null;
+        _this.signal_pre = null;
+        _this.mute_pre = null;
         _this.lv = 0;
         return _this;
     }
@@ -237,13 +240,29 @@ var Section = /** @class */ (function (_super) {
                 else if (tile.gid == 225 + 61) {
                     tile.gid = 0;
                     if (cc.director.getScene().name == 'day') {
-                        console.log('herereeeeee');
                         var rad = 1 + Math.floor(Math.random() * 2);
                         var b = new cc.Node;
                         if (rad == 1)
                             b = cc.instantiate(this.banana_pre);
                         else if (rad == 2)
                             b = cc.instantiate(this.lego_pre);
+                        // else b = cc.instantiate(this.bubble_pre);
+                        b.x = section_count * 1920 + tile.node.x;
+                        b.y = tile.node.y;
+                        //c.active = true;
+                        cc.find("Canvas/root/mapworld/coin_bubble").addChild(b);
+                    }
+                    else if (cc.director.getScene().name == 'multi') {
+                        var rad = 1 + Math.floor(Math.random() * 4);
+                        var b = new cc.Node;
+                        if (rad == 1)
+                            b = cc.instantiate(this.bubble_pre);
+                        else if (rad == 2)
+                            b = cc.instantiate(this.data_pre);
+                        else if (rad == 2)
+                            b = cc.instantiate(this.signal_pre);
+                        else if (rad == 2)
+                            b = cc.instantiate(this.mute_pre);
                         // else b = cc.instantiate(this.bubble_pre);
                         b.x = section_count * 1920 + tile.node.x;
                         b.y = tile.node.y;
@@ -341,6 +360,15 @@ var Section = /** @class */ (function (_super) {
     __decorate([
         property(cc.Prefab)
     ], Section.prototype, "banana_pre", void 0);
+    __decorate([
+        property(cc.Prefab)
+    ], Section.prototype, "data_pre", void 0);
+    __decorate([
+        property(cc.Prefab)
+    ], Section.prototype, "signal_pre", void 0);
+    __decorate([
+        property(cc.Prefab)
+    ], Section.prototype, "mute_pre", void 0);
     Section = __decorate([
         ccclass
     ], Section);

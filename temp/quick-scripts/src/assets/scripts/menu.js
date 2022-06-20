@@ -33,7 +33,6 @@ var menu = /** @class */ (function (_super) {
     }
     menu.prototype.onload = function () {
         cc.debug.setDisplayStats(false);
-        cc.sys.localStorage.setItem("uid", 'local');
     };
     menu.prototype.playBGM = function () {
         cc.audioEngine.playMusic(this.menu_music, true);
@@ -49,8 +48,9 @@ var menu = /** @class */ (function (_super) {
             if (user) {
                 signout.handler = "loadSignout";
                 // grab logged in data from Firebase
+                var uid = firebase.auth().currentUser.uid;
                 var data = {};
-                firebase.database().ref('users/' + user.uid).once('value', function (snapshot) {
+                firebase.database().ref('users/' + uid).once('value', function (snapshot) {
                     var data = snapshot.val();
                     console.log(data);
                     cc.sys.localStorage.setItem("uid", user.uid);
@@ -72,10 +72,10 @@ var menu = /** @class */ (function (_super) {
                             s = s + '0';
                     }
                     cc.sys.localStorage.setItem("color", s);
-                    //console.log(cc.sys.localStorage.getItem("color"), cc.sys.localStorage.getItem("coins"));
                 });
             }
             else {
+                cc.sys.localStorage.setItem("uid", 'local');
                 cc.sys.localStorage.setItem("coins", 0);
                 cc.sys.localStorage.setItem("lego", 0);
                 cc.sys.localStorage.setItem("powerup", 0);
@@ -85,6 +85,7 @@ var menu = /** @class */ (function (_super) {
                 cc.sys.localStorage.setItem("highscore", 0);
                 cc.sys.localStorage.setItem("name", 0);
                 cc.sys.localStorage.setItem("email", 0);
+                cc.sys.localStorage.setItem("color", '010000');
                 // sign in button instead
                 cc.find("Canvas/out").getComponent(cc.Label).string = "sign in";
                 cc.find("Canvas/SignOut").scaleX = -1;

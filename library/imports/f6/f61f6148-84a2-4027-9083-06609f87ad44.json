@@ -1,14 +1,14 @@
 {
   "__type__": "cc.SpriteFrame",
   "content": {
-    "name": "data",
-    "texture": "0af2b57b-15ea-4faf-8e70-7ed70773fb7b",
+    "name": "signal",
+    "texture": "cb8a241b-03eb-42e0-92ae-be0ad20e0326",
     "atlas": "",
     "rect": [
       0,
-      0,
+      7,
       64,
-      64
+      50
     ],
     "offset": [
       0,
