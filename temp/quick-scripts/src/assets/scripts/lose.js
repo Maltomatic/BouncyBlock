@@ -27,20 +27,36 @@ var _a = cc._decorator, ccclass = _a.ccclass, property = _a.property;
 var lose = /** @class */ (function (_super) {
     __extends(lose, _super);
     function lose() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.uid = null;
+        return _this;
     }
+    lose.prototype.onload = function () {
+        this.uid = cc.sys.localStorage.getItem('uid');
+    };
     lose.prototype.start = function () {
         var _this = this;
         cc.debug.setDisplayStats(false);
         //cc.audioEngine.playMusic(this.bgm, true);
-        firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/coins').set(cc.sys.localStorage.getItem("data"));
-        var menu = new cc.Component.EventHandler();
-        this.scheduleOnce(function () {
+        firebase.database().ref('/users/' + this.uid + '/coins').set(cc.sys.localStorage.getItem("data"), function () {
+            var menu = new cc.Component.EventHandler();
             menu.target = _this.node;
             menu.component = "lose";
             menu.handler = "loadmenu";
             cc.find("Canvas/menu").getComponent(cc.Button).clickEvents.push(menu);
-        }, 0.7);
+        });
+        //callback
+        firebase.database().ref('/users/' + this.uid + '/coins').set(cc.sys.localStorage.getItem("coins"));
+        firebase.database().ref('/users/' + this.uid + '/thing/lego').set(cc.sys.localStorage.getItem("lego"));
+        firebase.database().ref('/users/' + this.uid + '/thing/powerup').set(cc.sys.localStorage.getItem("powerup"));
+        firebase.database().ref('/users/' + this.uid + '/thing/banana').set(cc.sys.localStorage.getItem("banana"));
+        firebase.database().ref('/users/' + this.uid + '/thing/mute').set(cc.sys.localStorage.getItem("mute"));
+        firebase.database().ref('/users/' + this.uid + '/thing/signal').set(cc.sys.localStorage.getItem("signal"));
+        var menu = new cc.Component.EventHandler();
+        menu.target = this.node;
+        menu.component = "lose";
+        menu.handler = "loadmenu";
+        cc.find("Canvas/menu").getComponent(cc.Button).clickEvents.push(menu);
     };
     lose.prototype.loadmenu = function () {
         //cc.audioEngine.playEffect(this.press, false);

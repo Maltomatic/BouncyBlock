@@ -20,16 +20,28 @@ export default class menu extends cc.Component {
                 // grab logged in data from Firebase
                 var data = {};
                 firebase.database().ref('users/' + user.uid ).once('value', (snapshot) => {
-                    data['coins'] = snapshot.child('coins').val();
-                    data['email'] = snapshot.child('email').val();
-                    data['highscore'] = snapshot.child('highscore').val();
-                    data['name'] = snapshot.child('name').val();
-                    data['banana'] = snapshot.child('thing/banana').val();
-                    data['color'] = snapshot.child('thing/color').val();
-                    data['lego'] = snapshot.child('thing/lego').val();
-                    data['mute'] = snapshot.child('thing/mute').val();
-                    data['powerup'] = snapshot.child('thing/powerup').val();
-                    data['signal'] = snapshot.child('thing/signal').val();
+                    var data = snapshot.val();
+                    console.log(data);
+                    cc.sys.localStorage.setItem("uid", user.uid);
+                    cc.sys.localStorage.setItem("coins", data['coins']);
+                    cc.sys.localStorage.setItem("lego", data['thing']['lego']);
+                    cc.sys.localStorage.setItem("powerup", data['thing']['powerup']);
+                    cc.sys.localStorage.setItem("banana", data['thing']['banana']);
+                    cc.sys.localStorage.setItem("mute", data['thing']['mute']);
+                    cc.sys.localStorage.setItem("signal", data['thing']['signal']);
+                    cc.sys.localStorage.setItem("highscore", data['highscore']);
+                    cc.sys.localStorage.setItem("name", data['name']);
+                    cc.sys.localStorage.setItem("email", data['email']);
+                    var s = "0";
+                    for( let i = 1; i <= 5; i++) {
+                        //console.log(data['thing']['color'][i]);
+                        if(data['thing']['color'][i]) s = s + '1';
+                        else s = s + '0';
+                    }
+
+                    cc.sys.localStorage.setItem("color", s);
+                    //console.log(cc.sys.localStorage.getItem("color"), cc.sys.localStorage.getItem("coins"));
+
                 });
             }else{
                 // sign in button instead

@@ -62,10 +62,16 @@ export class Player extends cc.Component {
     @property(cc.Node)
     coin_point : cc.Node = null;  
     coin: number = 0;
+    lego: number = 0;
+    banana: number = 0;
+    powerup: number = 0;
+    mute: number = 0;
+    signal: number = 0;
+    color_avail: any = {1: true, 2: false, 3: false, 4: false, 5: false};
+
 
     @property(cc.Node)
     bubble_powerup : cc.Node = null; 
-    powerup: number = 0;
 
     @property(cc.AudioClip)
     player_jump : cc.AudioClip = null;
@@ -129,6 +135,18 @@ export class Player extends cc.Component {
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
         this.dir = 0;
         this.section_count = 0;
+
+        this.coin = cc.sys.localStorage.getItem("coins");
+        this.lego = cc.sys.localStorage.getItem("lego");
+        this.powerup = cc.sys.localStorage.getItem("powerup");
+        this.banana = cc.sys.localStorage.getItem("banana");
+        this.mute = cc.sys.localStorage.getItem("mute");
+        this.signal = cc.sys.localStorage.getItem("signal");
+        
+        var c = cc.sys.localStorage.getItem("color").split("");
+        for( let i = 1; i <= 5; i++) {
+            this.color_avail[i] = parseInt(c[i]);
+        }
     }
 
     onDestroy () {
@@ -171,12 +189,14 @@ export class Player extends cc.Component {
             }    
         }else if(other.node.group == 'coin'){ // @@ 
             cc.audioEngine.playEffect(this.get_coin, false); 
-            this.update_coin(1);
+            this.coin++;
+            this.update_coin();
             other.node.destroy();
         }else if(other.node.group == 'bubble'){ // @@ 
            if(other.tag == 3){ // colorful bubble
                 cc.audioEngine.playEffect(this.get_powerup_bubble, false); 
-                this.update_powerup(1);
+                this.powerup++;
+                this.update_powerup();
                 other.node.destroy();
             }
         }else if(other.node.name == 'missile'){
@@ -196,6 +216,15 @@ export class Player extends cc.Component {
             // this.node.active = false;
             this.scheduleOnce(() => {
                 cc.director.loadScene("lose")
+
+                // var data = cc.sys.localStorage.getItem("data");
+                // data['coins'] = this.money;
+                // data['thing']['lego'] = this.lego;
+                // data['thing']['banana'] = this.banana;
+                // data['thing']['powerup'] = this.powerup;
+                // data['thing']['mute'] = this.mute;
+                // data['thing']['signal'] = this.signal;
+                // data['thing']['color'] = this.color_avail;
             }, 0.3);
         }
 
@@ -311,7 +340,8 @@ export class Player extends cc.Component {
             // use color powerup
             var cl = this.Color.node.color;
             this.invis = true;
-            this.update_powerup(-1);
+            this.powerup--;
+            this.update_powerup();
             this.scheduleOnce(() => {
                 this.Color.node.color = cl;
                 this.invis = false;
@@ -344,12 +374,10 @@ export class Player extends cc.Component {
         if(!this.debug_mode) this.on_floor = false;
         console.log(this.prev_dir + "fly state: " + this.fly_state);
     }
-    update_coin(number){  // @@ 
-        this.coin += number;
+    update_coin(){  // @@ 
         this.coin_point.getComponent(cc.Label).string = this.coin.toString();
     }
-    update_powerup(number){  // @@ 
-        this.powerup += number;
+    update_powerup(){  // @@ 
        this.bubble_powerup.getComponent(cc.Label).string = this.powerup.toString();
     }
 }

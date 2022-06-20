@@ -829,11 +829,6 @@
     "meta": 1655737057895,
     "relativePath": "scenes\\menu.fire"
   },
-  "3e7b2463-e729-4784-9227-e7749c387a40": {
-    "asset": 1655728345223,
-    "meta": 1655728354589,
-    "relativePath": "scenes\\multi.fire"
-  },
   "63f93d4f-8b5d-4ab3-827b-471e0cb9c419": {
     "asset": 1655735672004,
     "meta": 1655735672034,
@@ -853,16 +848,6 @@
     "asset": 1655728345227,
     "meta": 1655728354935,
     "relativePath": "scenes\\store.fire"
-  },
-  "a4ea169f-e7a5-48fe-a76a-3f69d22f0a2e": {
-    "asset": 1655728345238,
-    "meta": 1655728355094,
-    "relativePath": "scripts\\player_multi.ts"
-  },
-  "a4fb5ce8-16f2-4ec9-b773-3d70ce77a8e4": {
-    "asset": 1655728345235,
-    "meta": 1655728355219,
-    "relativePath": "scripts\\player.ts"
   },
   "ca4b2559-ca3b-47d0-b95b-17f8160ad309": {
     "asset": 1655728345229,
@@ -1484,21 +1469,6 @@
     "meta": 1655733081503,
     "relativePath": "scripts\\loadgame.ts"
   },
-  "1e31aad1-8607-4726-b210-6ea79c600e2f": {
-    "asset": 1655734442457,
-    "meta": 1655734642464,
-    "relativePath": "scripts\\menu.ts"
-  },
-  "63accb88-d1a4-459b-9545-db9ffe601602": {
-    "asset": 1655734322468,
-    "meta": 1655734642624,
-    "relativePath": "scripts\\store.ts"
-  },
-  "c2aff0ba-7329-4daf-9b7a-bb81a3ab84b1": {
-    "asset": 1655734322463,
-    "meta": 1655734642646,
-    "relativePath": "scripts\\lose.ts"
-  },
   "70fdd7c0-9fce-41ee-ad1c-0ad0681c277b": {
     "asset": 1655734322462,
     "meta": 1655734642657,
@@ -1518,5 +1488,75 @@
     "asset": 1655739011563,
     "meta": 1655739283638,
     "relativePath": "scripts\\bird_player.ts"
+  },
+  "a4ea169f-e7a5-48fe-a76a-3f69d22f0a2e": {
+    "asset": 1655743768212,
+    "meta": 1655743803783,
+    "relativePath": "scripts\\player_multi.ts"
+  },
+  "3e7b2463-e729-4784-9227-e7749c387a40": {
+    "asset": 1655743768207,
+    "meta": 1655743804226,
+    "relativePath": "scenes\\multi.fire"
+  },
+  "c2aff0ba-7329-4daf-9b7a-bb81a3ab84b1": {
+    "asset": 1655746430034,
+    "meta": 1655746518071,
+    "relativePath": "scripts\\lose.ts"
+  },
+  "1e31aad1-8607-4726-b210-6ea79c600e2f": {
+    "asset": 1655746395079,
+    "meta": 1655746518140,
+    "relativePath": "scripts\\menu.ts"
+  },
+  "63accb88-d1a4-459b-9545-db9ffe601602": {
+    "asset": 1655746499093,
+    "meta": 1655746518425,
+    "relativePath": "scripts\\store.ts"
+  },
+  "a4fb5ce8-16f2-4ec9-b773-3d70ce77a8e4": {
+    "asset": 1655747054374,
+    "meta": 1655747056641,
+    "relativePath": "scripts\\player.ts"
+  },
+  "2ffa1a9d-95a2-4fb1-b65f-8ee0de904cea": {
+    "asset": 1655747280818,
+    "meta": 1655747492069,
+    "relativePath": "background_music"
+  },
+  "81d5c504-45e9-422e-a3d2-f03d98e6cd5a": {
+    "asset": 1655747143255,
+    "meta": 1655747492868,
+    "relativePath": "background_music\\lose.mp3"
+  },
+  "803b6856-d5f5-4178-b957-9fc31ed3aaec": {
+    "asset": 1655747143142,
+    "meta": 1655747492875,
+    "relativePath": "background_music\\dark_back.mp3"
+  },
+  "cfa0bcfd-9911-4cb1-ac8f-a01d4250250c": {
+    "asset": 1655747143096,
+    "meta": 1655747492878,
+    "relativePath": "background_music\\bird_back.mp3"
+  },
+  "e6868a97-3cb3-4fc9-9bf9-6fd4c30c5e89": {
+    "asset": 1655747143039,
+    "meta": 1655747492898,
+    "relativePath": "background_music\\win.wav"
+  },
+  "c43764ca-1657-40c9-9a73-c95948cfe59e": {
+    "asset": 1655747143214,
+    "meta": 1655747492906,
+    "relativePath": "background_music\\day_back.mp3"
+  },
+  "c68ca03c-3e0c-4021-b746-59d2277dcacf": {
+    "asset": 1655747143431,
+    "meta": 1655747492911,
+    "relativePath": "background_music\\multi_back.mp3"
+  },
+  "5e094a53-a6c6-4f4f-9b9d-175618e12df0": {
+    "asset": 1655747143353,
+    "meta": 1655747492921,
+    "relativePath": "background_music\\menu.mp3"
   }
 }

@@ -34,41 +34,51 @@ var store = /** @class */ (function (_super) {
         _this.powerup = 0;
         _this.mute = 0;
         _this.signal = 0;
-        _this.color = {};
+        _this.color = { 1: true, 2: false, 3: false, 4: false, 5: false };
+        _this.uid = null;
         return _this;
     }
     store.prototype.onload = function () {
         cc.debug.setDisplayStats(false);
+        this.uid = cc.sys.localStorage.getItem('uid');
     };
     store.prototype.start = function () {
-        var _this = this;
         cc.debug.setDisplayStats(false);
-        var data = cc.sys.localStorage.getItem("data");
-        //cc.audioEngine.playMusic(this.bgm, true);
-        this.scheduleOnce(function () {
-            _this.money = data['coins'];
-            _this.lego = data['thing']['lego'];
-            _this.banana = data['thing']['banana'];
-            _this.powerup = data['thing']['powerup'];
-            _this.mute = data['thing']['mute'];
-            _this.signal = data['thing']['signal'];
-            _this.color = data['thing']['color'];
-            cc.find('Canvas/coins').getComponent(cc.Label).string = _this.money.toString();
-            cc.find('Canvas/lego/amount').getComponent(cc.Label).string = _this.lego.toString();
-            cc.find('Canvas/banana/amount').getComponent(cc.Label).string = _this.banana.toString();
-            cc.find('Canvas/powerup/amount').getComponent(cc.Label).string = _this.powerup.toString();
-            cc.find('Canvas/mute/amount').getComponent(cc.Label).string = _this.mute.toString();
-            cc.find('Canvas/signal/amount').getComponent(cc.Label).string = _this.signal.toString();
-            cc.find('Canvas/color1/check').active = true;
-            if (_this.color[2])
-                cc.find('Canvas/color2/check').active = true;
-            if (_this.color[3])
-                cc.find('Canvas/color3/check').active = true;
-            if (_this.color[4])
-                cc.find('Canvas/color4/check').active = true;
-            if (_this.color[5])
-                cc.find('Canvas/color5/check').active = true;
-        }, 0.7);
+        this.money = cc.sys.localStorage.getItem("coins");
+        this.lego = cc.sys.localStorage.getItem("lego");
+        this.powerup = cc.sys.localStorage.getItem("powerup");
+        this.banana = cc.sys.localStorage.getItem("banana");
+        this.mute = cc.sys.localStorage.getItem("mute");
+        this.signal = cc.sys.localStorage.getItem("signal");
+        console.log(this.banana, this.signal, this.mute);
+        var c = cc.sys.localStorage.getItem("color").split("");
+        for (var i = 1; i <= 5; i++) {
+            if (parseInt(c[i]))
+                this.color[i] = true;
+            else
+                this.color[i] = false;
+        }
+        var a = this.money;
+        cc.find('Canvas/coins').getComponent(cc.Label).string = a.toString();
+        a = this.lego;
+        cc.find('Canvas/lego/amount').getComponent(cc.Label).string = a.toString();
+        a = this.banana;
+        cc.find('Canvas/banana/amount').getComponent(cc.Label).string = a.toString();
+        a = this.powerup;
+        cc.find('Canvas/powerup/amount').getComponent(cc.Label).string = a.toString();
+        a = this.mute;
+        cc.find('Canvas/mute/amount').getComponent(cc.Label).string = a.toString();
+        a = this.signal;
+        cc.find('Canvas/signal/amount').getComponent(cc.Label).string = a.toString();
+        cc.find('Canvas/color1/check').active = true;
+        if (this.color[2])
+            cc.find('Canvas/color2/check').active = true;
+        if (this.color[3])
+            cc.find('Canvas/color3/check').active = true;
+        if (this.color[4])
+            cc.find('Canvas/color4/check').active = true;
+        if (this.color[5])
+            cc.find('Canvas/color5/check').active = true;
         var l = new cc.Component.EventHandler();
         l.target = this.node;
         l.component = "store";
@@ -125,11 +135,13 @@ var store = /** @class */ (function (_super) {
         var price = 60;
         if (this.money >= price) {
             this.money -= price;
-            this.powerup += 1;
-            cc.find('Canvas/powerup/amount').getComponent(cc.Label).string = this.powerup.toString();
-            cc.find('Canvas/coins').getComponent(cc.Label).string = this.money.toString();
-            firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/coins').set(this.money);
-            firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/thing/powerup').set(this.powerup);
+            this.powerup++;
+            firebase.database().ref('/users/' + this.uid + '/coins').set(this.money);
+            firebase.database().ref('/users/' + this.uid + '/thing/powerup').set(this.powerup);
+            var a = this.powerup;
+            cc.find('Canvas/powerup/amount').getComponent(cc.Label).string = a.toString();
+            a = this.money;
+            cc.find('Canvas/coins').getComponent(cc.Label).string = a.toString();
         }
     };
     store.prototype.loadmute = function () {
@@ -137,11 +149,13 @@ var store = /** @class */ (function (_super) {
         var price = 70;
         if (this.money >= price) {
             this.money -= price;
-            this.mute += 1;
-            cc.find('Canvas/mute/amount').getComponent(cc.Label).string = this.mute.toString();
-            cc.find('Canvas/coins').getComponent(cc.Label).string = this.money.toString();
-            firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/coins').set(this.money);
-            firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/thing/mute').set(this.mute);
+            this.mute++;
+            firebase.database().ref('/users/' + this.uid + '/coins').set(this.money);
+            firebase.database().ref('/users/' + this.uid + '/thing/mute').set(this.mute);
+            var a = this.mute;
+            cc.find('Canvas/mute/amount').getComponent(cc.Label).string = a.toString();
+            a = this.money;
+            cc.find('Canvas/coins').getComponent(cc.Label).string = a.toString();
         }
     };
     store.prototype.loadsignal = function () {
@@ -149,11 +163,13 @@ var store = /** @class */ (function (_super) {
         var price = 70;
         if (this.money >= price) {
             this.money -= price;
-            this.signal += 1;
-            cc.find('Canvas/signal/amount').getComponent(cc.Label).string = this.signal.toString();
-            cc.find('Canvas/coins').getComponent(cc.Label).string = this.money.toString();
-            firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/coins').set(this.money);
-            firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/thing/signal').set(this.signal);
+            this.signal++;
+            firebase.database().ref('/users/' + this.uid + '/coins').set(this.money);
+            firebase.database().ref('/users/' + this.uid + '/thing/signal').set(this.signal);
+            var a = this.signal;
+            cc.find('Canvas/signal/amount').getComponent(cc.Label).string = a.toString();
+            a = this.money;
+            cc.find('Canvas/coins').getComponent(cc.Label).string = a.toString();
         }
     };
     store.prototype.loadlego = function () {
@@ -161,22 +177,27 @@ var store = /** @class */ (function (_super) {
         var price = 50;
         if (this.money >= price) {
             this.money -= price;
-            this.lego += 1;
-            cc.find('Canvas/lego/amount').getComponent(cc.Label).string = this.lego.toString();
-            cc.find('Canvas/coins').getComponent(cc.Label).string = this.money.toString();
-            firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/coins').set(this.money);
-            firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/thing/lego').set(this.lego);
+            this.lego++;
+            firebase.database().ref('/users/' + this.uid + '/coins').set(this.money);
+            firebase.database().ref('/users/' + this.uid + '/thing/lego').set(this.lego);
+            var a = this.lego;
+            cc.find('Canvas/lego/amount').getComponent(cc.Label).string = a.toString();
+            a = this.money;
+            cc.find('Canvas/coins').getComponent(cc.Label).string = a.toString();
         }
     };
     store.prototype.loadbanana = function () {
         var price = 80;
         if (this.money >= price) {
             this.money -= price;
-            this.banana += 1;
-            cc.find('Canvas/banana/amount').getComponent(cc.Label).string = this.banana.toString();
-            cc.find('Canvas/coins').getComponent(cc.Label).string = this.money.toString();
-            firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/coins').set(this.money);
-            firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/thing/banana').set(this.banana);
+            this.banana++;
+            console.log(this.banana);
+            firebase.database().ref('/users/' + this.uid + '/coins').set(this.money);
+            firebase.database().ref('/users/' + this.uid + '/thing/banana').set(this.banana);
+            var a = this.banana;
+            cc.find('Canvas/banana/amount').getComponent(cc.Label).string = a.toString();
+            a = this.money;
+            cc.find('Canvas/coins').getComponent(cc.Label).string = a.toString();
         }
     };
     store.prototype.loadcolor2 = function () {
@@ -185,10 +206,10 @@ var store = /** @class */ (function (_super) {
         if (this.money >= price && this.color[2] == false) {
             this.money -= price;
             this.color[2] = true;
+            firebase.database().ref('/users/' + this.uid + '/coins').set(this.money);
+            firebase.database().ref('/users/' + this.uid + '/thing/color').set(this.color);
             cc.find('Canvas/color2/check').active = true;
             cc.find('Canvas/coins').getComponent(cc.Label).string = this.money.toString();
-            firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/coins').set(this.money);
-            firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/thing/color').set(this.color);
         }
     };
     store.prototype.loadcolor3 = function () {
@@ -197,10 +218,10 @@ var store = /** @class */ (function (_super) {
         if (this.money >= price && this.color[3] == false) {
             this.money -= price;
             this.color[3] = true;
+            firebase.database().ref('/users/' + this.uid + '/coins').set(this.money);
+            firebase.database().ref('/users/' + this.uid + '/thing/color').set(this.color);
             cc.find('Canvas/color3/check').active = true;
             cc.find('Canvas/coins').getComponent(cc.Label).string = this.money.toString();
-            firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/coins').set(this.money);
-            firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/thing/color').set(this.color);
         }
     };
     store.prototype.loadcolor4 = function () {
@@ -209,10 +230,10 @@ var store = /** @class */ (function (_super) {
         if (this.money >= price && this.color[4] == false) {
             this.money -= price;
             this.color[4] = true;
+            firebase.database().ref('/users/' + this.uid + '/coins').set(this.money);
+            firebase.database().ref('/users/' + this.uid + '/thing/color').set(this.color);
             cc.find('Canvas/color4/check').active = true;
             cc.find('Canvas/coins').getComponent(cc.Label).string = this.money.toString();
-            firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/coins').set(this.money);
-            firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/thing/color').set(this.color);
         }
     };
     store.prototype.loadcolor5 = function () {
@@ -221,30 +242,22 @@ var store = /** @class */ (function (_super) {
         if (this.money >= price && this.color[5] == false) {
             this.money -= price;
             this.color[5] = true;
+            firebase.database().ref('/users/' + this.uid + '/coins').set(this.money);
+            firebase.database().ref('/users/' + this.uid + '/thing/color').set(this.color);
             cc.find('Canvas/color5/check').active = true;
             cc.find('Canvas/coins').getComponent(cc.Label).string = this.money.toString();
-            firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/coins').set(this.money);
-            firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/thing/color').set(this.color);
             console.log(this.color);
         }
     };
     store.prototype.loadSignout = function () {
-        var _this = this;
         //cc.audioEngine.playEffect(this.press, false);
-        this.scheduleOnce(function () {
-            var data = cc.sys.localStorage.getItem("data");
-            data['coins'] = _this.money;
-            data['thing']['lego'] = _this.lego;
-            data['thing']['banana'] = _this.banana;
-            data['thing']['powerup'] = _this.powerup;
-            data['thing']['mute'] = _this.mute;
-            data['thing']['signal'] = _this.signal;
-            data['thing']['color'] = _this.color;
-            cc.sys.localStorage.setItem("data", data);
-            _this.scheduleOnce(function () {
-                cc.director.loadScene("menu");
-            }, 0.5);
-        }, 0.5);
+        cc.sys.localStorage.setItem("coins", this.money);
+        cc.sys.localStorage.setItem("lego", this.lego);
+        cc.sys.localStorage.setItem("powerup", this.powerup);
+        cc.sys.localStorage.setItem("banana", this.banana);
+        cc.sys.localStorage.setItem("mute", this.mute);
+        cc.sys.localStorage.setItem("signal", this.signal);
+        cc.director.loadScene('menu');
     };
     store = __decorate([
         ccclass

@@ -56,8 +56,13 @@ var Player = /** @class */ (function (_super) {
         _this.Color = null;
         _this.coin_point = null;
         _this.coin = 0;
-        _this.bubble_powerup = null;
+        _this.lego = 0;
+        _this.banana = 0;
         _this.powerup = 0;
+        _this.mute = 0;
+        _this.signal = 0;
+        _this.color_avail = { 1: true, 2: false, 3: false, 4: false, 5: false };
+        _this.bubble_powerup = null;
         _this.player_jump = null;
         _this.get_coin = null;
         _this.die_audio = null;
@@ -107,6 +112,16 @@ var Player = /** @class */ (function (_super) {
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
         this.dir = 0;
         this.section_count = 0;
+        this.coin = cc.sys.localStorage.getItem("coins");
+        this.lego = cc.sys.localStorage.getItem("lego");
+        this.powerup = cc.sys.localStorage.getItem("powerup");
+        this.banana = cc.sys.localStorage.getItem("banana");
+        this.mute = cc.sys.localStorage.getItem("mute");
+        this.signal = cc.sys.localStorage.getItem("signal");
+        var c = cc.sys.localStorage.getItem("color").split("");
+        for (var i = 1; i <= 5; i++) {
+            this.color_avail[i] = parseInt(c[i]);
+        }
     };
     Player.prototype.onDestroy = function () {
         cc.systemEvent.off(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
@@ -150,13 +165,15 @@ var Player = /** @class */ (function (_super) {
         }
         else if (other.node.group == 'coin') { // @@ 
             cc.audioEngine.playEffect(this.get_coin, false);
-            this.update_coin(1);
+            this.coin++;
+            this.update_coin();
             other.node.destroy();
         }
         else if (other.node.group == 'bubble') { // @@ 
             if (other.tag == 3) { // colorful bubble
                 cc.audioEngine.playEffect(this.get_powerup_bubble, false);
-                this.update_powerup(1);
+                this.powerup++;
+                this.update_powerup();
                 other.node.destroy();
             }
         }
@@ -178,6 +195,14 @@ var Player = /** @class */ (function (_super) {
             // this.node.active = false;
             this.scheduleOnce(function () {
                 cc.director.loadScene("lose");
+                // var data = cc.sys.localStorage.getItem("data");
+                // data['coins'] = this.money;
+                // data['thing']['lego'] = this.lego;
+                // data['thing']['banana'] = this.banana;
+                // data['thing']['powerup'] = this.powerup;
+                // data['thing']['mute'] = this.mute;
+                // data['thing']['signal'] = this.signal;
+                // data['thing']['color'] = this.color_avail;
             }, 0.3);
         }
     };
@@ -294,7 +319,8 @@ var Player = /** @class */ (function (_super) {
             // use color powerup
             var cl = this.Color.node.color;
             this.invis = true;
-            this.update_powerup(-1);
+            this.powerup--;
+            this.update_powerup();
             this.scheduleOnce(function () {
                 _this.Color.node.color = cl;
                 _this.invis = false;
@@ -327,12 +353,10 @@ var Player = /** @class */ (function (_super) {
             this.on_floor = false;
         console.log(this.prev_dir + "fly state: " + this.fly_state);
     };
-    Player.prototype.update_coin = function (number) {
-        this.coin += number;
+    Player.prototype.update_coin = function () {
         this.coin_point.getComponent(cc.Label).string = this.coin.toString();
     };
-    Player.prototype.update_powerup = function (number) {
-        this.powerup += number;
+    Player.prototype.update_powerup = function () {
         this.bubble_powerup.getComponent(cc.Label).string = this.powerup.toString();
     };
     __decorate([

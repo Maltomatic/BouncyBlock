@@ -9,41 +9,50 @@ export default class store extends cc.Component {
     powerup: number = 0
     mute: number = 0
     signal: number = 0
-    color: any= {};
+    color: any = {1: true, 2: false, 3: false, 4: false, 5: false};
+    private uid: string = null;
 
     onload() {
         cc.debug.setDisplayStats(false);
+        this.uid = cc.sys.localStorage.getItem('uid');
     }
 
     start () {
         cc.debug.setDisplayStats(false);
-        var data = cc.sys.localStorage.getItem("data");
-        //cc.audioEngine.playMusic(this.bgm, true);
         
-        this.scheduleOnce(() => {
-            this.money = data['coins'];
-            this.lego = data['thing']['lego'];
-            this.banana = data['thing']['banana'];
-            this.powerup = data['thing']['powerup'];
-            this.mute = data['thing']['mute'];
-            this.signal = data['thing']['signal'];
-            this.color = data['thing']['color'];
-            
+        this.money = cc.sys.localStorage.getItem("coins");
+        this.lego = cc.sys.localStorage.getItem("lego");
+        this.powerup = cc.sys.localStorage.getItem("powerup");
+        this.banana = cc.sys.localStorage.getItem("banana");
+        this.mute = cc.sys.localStorage.getItem("mute");
+        this.signal = cc.sys.localStorage.getItem("signal");
 
-            cc.find('Canvas/coins').getComponent(cc.Label).string = this.money.toString();
-            cc.find('Canvas/lego/amount').getComponent(cc.Label).string = this.lego.toString();
-            cc.find('Canvas/banana/amount').getComponent(cc.Label).string = this.banana.toString();
-            cc.find('Canvas/powerup/amount').getComponent(cc.Label).string = this.powerup.toString();
-            cc.find('Canvas/mute/amount').getComponent(cc.Label).string = this.mute.toString();
-            cc.find('Canvas/signal/amount').getComponent(cc.Label).string = this.signal.toString();
-            
-            cc.find('Canvas/color1/check').active = true;
-            if(this.color[2]) cc.find('Canvas/color2/check').active = true;
-            if(this.color[3]) cc.find('Canvas/color3/check').active = true;
-            if(this.color[4]) cc.find('Canvas/color4/check').active = true;
-            if(this.color[5]) cc.find('Canvas/color5/check').active = true;
+        console.log(this.banana, this.signal, this.mute);
+        
+        var c = cc.sys.localStorage.getItem("color").split("");
+        for( let i = 1; i <= 5; i++) {
+            if(parseInt(c[i])) this.color[i] = true;
+            else this.color[i] = false;
+        }
 
-        }, 0.7);
+        var a = this.money;
+        cc.find('Canvas/coins').getComponent(cc.Label).string = a.toString();
+        a = this.lego;
+        cc.find('Canvas/lego/amount').getComponent(cc.Label).string = a.toString();
+        a = this.banana;
+        cc.find('Canvas/banana/amount').getComponent(cc.Label).string = a.toString();
+        a = this.powerup;
+        cc.find('Canvas/powerup/amount').getComponent(cc.Label).string = a.toString();
+        a = this.mute;
+        cc.find('Canvas/mute/amount').getComponent(cc.Label).string = a.toString();
+        a = this.signal;
+        cc.find('Canvas/signal/amount').getComponent(cc.Label).string = a.toString();
+        
+        cc.find('Canvas/color1/check').active = true;
+        if(this.color[2]) cc.find('Canvas/color2/check').active = true;
+        if(this.color[3]) cc.find('Canvas/color3/check').active = true;
+        if(this.color[4]) cc.find('Canvas/color4/check').active = true;
+        if(this.color[5]) cc.find('Canvas/color5/check').active = true;
 
         let l = new cc.Component.EventHandler();
         l.target = this.node;
@@ -111,11 +120,15 @@ export default class store extends cc.Component {
         var price = 60;
         if(this.money >= price) {
             this.money -= price;
-            this.powerup += 1;
-            cc.find('Canvas/powerup/amount').getComponent(cc.Label).string = this.powerup.toString();
-            cc.find('Canvas/coins').getComponent(cc.Label).string = this.money.toString();
-            firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/coins').set(this.money);
-            firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/thing/powerup').set(this.powerup);
+            this.powerup++;
+
+            firebase.database().ref('/users/' + this.uid + '/coins').set(this.money);
+            firebase.database().ref('/users/' + this.uid + '/thing/powerup').set(this.powerup);
+
+            var a= this.powerup;
+            cc.find('Canvas/powerup/amount').getComponent(cc.Label).string = a.toString();
+            a = this.money;
+            cc.find('Canvas/coins').getComponent(cc.Label).string = a.toString();
         }
     }
     loadmute(){
@@ -123,11 +136,15 @@ export default class store extends cc.Component {
         var price = 70;
         if(this.money >= price) {
             this.money -= price;
-            this.mute += 1;
-            cc.find('Canvas/mute/amount').getComponent(cc.Label).string = this.mute.toString();
-            cc.find('Canvas/coins').getComponent(cc.Label).string = this.money.toString();
-            firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/coins').set(this.money);
-            firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/thing/mute').set(this.mute);
+            this.mute++;
+
+            firebase.database().ref('/users/' + this.uid + '/coins').set(this.money);
+            firebase.database().ref('/users/' + this.uid + '/thing/mute').set(this.mute);
+
+            var a= this.mute;
+            cc.find('Canvas/mute/amount').getComponent(cc.Label).string = a.toString();
+            a = this.money;
+            cc.find('Canvas/coins').getComponent(cc.Label).string = a.toString();
         }
     }
     loadsignal(){
@@ -135,11 +152,14 @@ export default class store extends cc.Component {
         var price = 70;
         if(this.money >= price) {
             this.money -= price;
-            this.signal += 1;
-            cc.find('Canvas/signal/amount').getComponent(cc.Label).string = this.signal.toString();
-            cc.find('Canvas/coins').getComponent(cc.Label).string = this.money.toString();
-            firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/coins').set(this.money);
-            firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/thing/signal').set(this.signal);
+            this.signal++;
+            firebase.database().ref('/users/' + this.uid + '/coins').set(this.money);
+            firebase.database().ref('/users/' + this.uid + '/thing/signal').set(this.signal);
+
+            var a= this.signal;
+            cc.find('Canvas/signal/amount').getComponent(cc.Label).string = a.toString();
+            a = this.money;
+            cc.find('Canvas/coins').getComponent(cc.Label).string = a.toString();
         }
     }
     loadlego(){
@@ -147,22 +167,31 @@ export default class store extends cc.Component {
         var price = 50;
         if(this.money >= price) {
             this.money -= price;
-            this.lego += 1;
-            cc.find('Canvas/lego/amount').getComponent(cc.Label).string = this.lego.toString();
-            cc.find('Canvas/coins').getComponent(cc.Label).string = this.money.toString();
-            firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/coins').set(this.money);
-            firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/thing/lego').set(this.lego);
+            this.lego++;
+
+            firebase.database().ref('/users/' + this.uid + '/coins').set(this.money);
+            firebase.database().ref('/users/' + this.uid + '/thing/lego').set(this.lego);
+
+            var a= this.lego;
+            cc.find('Canvas/lego/amount').getComponent(cc.Label).string = a.toString();
+            a = this.money;
+            cc.find('Canvas/coins').getComponent(cc.Label).string = a.toString();
         }
     }
     loadbanana() {
         var price = 80;
         if(this.money >= price) {
             this.money -= price;
-            this.banana += 1;
-            cc.find('Canvas/banana/amount').getComponent(cc.Label).string = this.banana.toString();
-            cc.find('Canvas/coins').getComponent(cc.Label).string = this.money.toString();
-            firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/coins').set(this.money);
-            firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/thing/banana').set(this.banana);
+            this.banana++;
+            console.log(this.banana);
+
+            firebase.database().ref('/users/' + this.uid + '/coins').set(this.money);
+            firebase.database().ref('/users/' + this.uid + '/thing/banana').set(this.banana);
+
+            var a= this.banana;
+            cc.find('Canvas/banana/amount').getComponent(cc.Label).string = a.toString();
+            a = this.money;
+            cc.find('Canvas/coins').getComponent(cc.Label).string = a.toString();
         }
     }
     loadcolor2(){
@@ -171,10 +200,10 @@ export default class store extends cc.Component {
         if(this.money >= price && this.color[2] == false) {
             this.money -= price;
             this.color[2] = true;
+            firebase.database().ref('/users/' + this.uid + '/coins').set(this.money);
+            firebase.database().ref('/users/' + this.uid + '/thing/color').set(this.color);
             cc.find('Canvas/color2/check').active = true;
             cc.find('Canvas/coins').getComponent(cc.Label).string = this.money.toString();
-            firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/coins').set(this.money);
-            firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/thing/color').set(this.color);
         }
     }
 
@@ -183,11 +212,13 @@ export default class store extends cc.Component {
         var price = 200;
         if(this.money >= price && this.color[3] == false) {
             this.money -= price;
-            this.color[3] = true
+            this.color[3] = true;
+            
+            firebase.database().ref('/users/' + this.uid + '/coins').set(this.money);
+            firebase.database().ref('/users/' + this.uid + '/thing/color').set(this.color);
+
             cc.find('Canvas/color3/check').active = true;
             cc.find('Canvas/coins').getComponent(cc.Label).string = this.money.toString();
-            firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/coins').set(this.money);
-            firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/thing/color').set(this.color);
         }
     }
     loadcolor4(){
@@ -196,10 +227,12 @@ export default class store extends cc.Component {
         if(this.money >= price && this.color[4] == false) {
             this.money -= price;
             this.color[4] = true;
+           
+            firebase.database().ref('/users/' + this.uid + '/coins').set(this.money);
+            firebase.database().ref('/users/' + this.uid + '/thing/color').set(this.color);
+
             cc.find('Canvas/color4/check').active = true;
             cc.find('Canvas/coins').getComponent(cc.Label).string = this.money.toString();
-            firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/coins').set(this.money);
-            firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/thing/color').set(this.color);
         }
     }
     loadcolor5(){
@@ -207,30 +240,25 @@ export default class store extends cc.Component {
         var price = 500;
         if(this.money >= price && this.color[5] == false) {
             this.money -= price;
-            this.color[5] = true
+            this.color[5] = true;
+            firebase.database().ref('/users/' + this.uid + '/coins').set(this.money);
+            firebase.database().ref('/users/' + this.uid + '/thing/color').set(this.color);
+
             cc.find('Canvas/color5/check').active = true;
             cc.find('Canvas/coins').getComponent(cc.Label).string = this.money.toString();
-            firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/coins').set(this.money);
-            firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/thing/color').set(this.color);
             console.log(this.color);
         }
     }
     loadSignout(){
         //cc.audioEngine.playEffect(this.press, false);
-        this.scheduleOnce(()=> {
-            var data = cc.sys.localStorage.getItem("data");
-            data['coins'] = this.money;
-            data['thing']['lego'] = this.lego;
-            data['thing']['banana'] = this.banana;
-            data['thing']['powerup'] = this.powerup;
-            data['thing']['mute'] = this.mute;
-            data['thing']['signal'] = this.signal;
-            data['thing']['color'] = this.color;
-            cc.sys.localStorage.setItem("data",data);
-            this.scheduleOnce( ()=> {
-                cc.director.loadScene("menu");
-            }, 0.5);
-        }, 0.5);
+        cc.sys.localStorage.setItem("coins", this.money);
+        cc.sys.localStorage.setItem("lego", this.lego);
+        cc.sys.localStorage.setItem("powerup", this.powerup);
+        cc.sys.localStorage.setItem("banana", this.banana);
+        cc.sys.localStorage.setItem("mute", this.mute);
+        cc.sys.localStorage.setItem("signal", this.signal);
+
+        cc.director.loadScene('menu');
     }
 
    
