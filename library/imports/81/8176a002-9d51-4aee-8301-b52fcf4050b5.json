@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "bubble_mute",
+    "texture": "5b6007bc-b651-4194-b2e1-ba63a05fc467",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      341,
+      341
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      341,
+      341
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

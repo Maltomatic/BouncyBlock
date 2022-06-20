@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "bubble_powerup",
+    "texture": "d3d37e95-3a69-4e49-9e8e-043526c7cce9",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      341,
+      341
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      341,
+      341
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

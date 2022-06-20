@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "searchlight",
+    "texture": "54c4209b-673a-41f5-a6a0-ff907b6f4166",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      100,
+      98
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      100,
+      98
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}
