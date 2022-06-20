@@ -5,7 +5,7 @@
       "main": true,
       "url": "app://editor/index.html",
       "windowType": "dockable",
-      "x": 23,
+      "x": 81,
       "y": 25,
       "width": 1287,
       "height": 801,
@@ -13,12 +13,12 @@
         "type": "dock-h",
         "children": [
           {
-            "width": 264.5,
+            "width": 265,
             "height": 714,
             "type": "dock-v",
             "children": [
               {
-                "width": 264.5,
+                "width": 265,
                 "height": 380,
                 "type": "panel",
                 "active": 0,
@@ -27,7 +27,7 @@
                 ]
               },
               {
-                "width": 264.5,
+                "width": 265,
                 "height": 331,
                 "type": "panel",
                 "active": 0,
@@ -38,13 +38,13 @@
             ]
           },
           {
-            "width": 633.390625,
+            "width": 633,
             "height": 714,
             "type": "dock-v",
             "children": [
               {
-                "width": 633.390625,
-                "height": 425.546875,
+                "width": 633,
+                "height": 426,
                 "type": "panel",
                 "active": 0,
                 "children": [
@@ -52,8 +52,8 @@
                 ]
               },
               {
-                "width": 633.390625,
-                "height": 285.4375,
+                "width": 633,
+                "height": 285,
                 "type": "panel",
                 "active": 0,
                 "children": [
@@ -65,7 +65,7 @@
             ]
           },
           {
-            "width": 383.078125,
+            "width": 383,
             "height": 714,
             "type": "panel",
             "active": 0,
@@ -86,8 +86,7 @@
         "inspector",
         "cocos-services"
       ]
-    },
-    " common-asset-worker-worker": {}
+    }
   },
   "panels": {
     "project-settings": {
