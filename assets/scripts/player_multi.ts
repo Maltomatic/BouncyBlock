@@ -117,6 +117,7 @@ export class Player extends cc.Component {
     section_count = 0;      // on contact with marker, if section_count * 1920 < this.node.x: init next section and section_count ++
 
     score: number = 0;
+    private hiatus: boolean = false;
 
     color: number = 0;
     strip: number = 0;
@@ -152,11 +153,11 @@ export class Player extends cc.Component {
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
         this.dir = 0;
         this.section_count = 0;
-        this.id = cc.sys.localStorage.getItem('id');
-        this.room = cc.sys.localStorage.getItem('room');
     }
 
     onDestroy () {
+        this.id = cc.sys.localStorage.getItem('id');
+        this.room = cc.sys.localStorage.getItem('room');
         cc.systemEvent.off(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.off(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
     }
@@ -256,16 +257,18 @@ export class Player extends cc.Component {
         if(this.id){
             // self is creator
             firebase.database().ref('in_game/' + this.room + '/joiner').set(-100, () =>{
-                this.scheduleOnce(() => {
-                    cc.director.loadScene("multi_lose");
-                }, 0.3);
+                firebase.database().ref('in_game/' + this.room + 'res/creator_res').set(this.score, ()=>{
+                    this.hiatus = true;
+                    this.check_mail();
+                });
             });
         }else{
             // self is joiner
             firebase.database().ref('in_game/' + this.room + '/creator').set(-100, () =>{
-                this.scheduleOnce(() => {
-                    cc.director.loadScene("multi_lose");
-                }, 0.3);
+                firebase.database().ref('in_game/' + this.room + 'res/joiner_res').set(this.score, ()=>{
+                    this.hiatus = true;
+                    this.check_mail();
+                });
             });
         }
     }
@@ -358,37 +361,104 @@ export class Player extends cc.Component {
     }
 
     check_mail(){
-        var ref = firebase.database().ref('in_game/' + this.room + ((this.id == 1)? '/creator' : '/joiner'));
-        // this.scheduleOnce(() => {       // get Firebase data; here simulated with timer. // if id = 1 read from creator, else read crom joiner
-            // if(Math.floor(Math.random()*4) > 2){        // should be if pinged on Firebase
-        ref.once('value', (snapshot) => {
-            if(snapshot.val() > 0){
-                console.log("received message");
-                ref.set((snapshot.val()-1), () => {
-                    this.check_mail();
-                });
-                if(!this.in_hiding){
-                    this.recv_msg ++;
-                    console.log("messages left now " + this.recv_msg);
-                    cc.audioEngine.playEffect(this.notif, false);
-                    this.Color.node.color = new cc.Color(255,255,255);
-                    this.unhide = true;
-                    this.scheduleOnce(() => {
-                        this.recv_msg--;
-                        console.log("visible time up, messages left: " + this.recv_msg);
-                        if(this.recv_msg == 0){
-                            this.unhide = false;
-                            var color_str = this.color_list[this.base + this.color];
-                            var color = new cc.Color(255,255,255);
-                            this.Color.node.color = color.fromHEX(color_str);
+        if(!this.hiatus){
+            var ref = firebase.database().ref('in_game/' + this.room + ((this.id == 1)? '/creator' : '/joiner'));
+            ref.once('value', (snapshot) => {
+                var rd = parseInt(snapshot.val());
+                console.log("read message value:" + rd);
+                if(rd < -50){
+                    firebase.database().ref('in_game/' + this.room + '/res').once('value', (snap) => {
+                        var self_score = this.score;
+                        var other_score = 0;
+                        if(this.id){
+                            firebase.database().ref('in_game/' + this.room + 'res/creator_res').set(this.score, ()=>{
+                                other_score = parseInt(snap['joiner']);
+                                cc.sys.localStorage.setItem('multi_self', self_score);
+                                cc.sys.localStorage.setItem('multi_other', other_score);
+                                if(self_score >= other_score){
+                                    var explode=this.node.getChildByName("star_explode");
+                                    explode.active = true;
+                                    explode.getComponent(cc.ParticleSystem).startColor = cc.color(0, 0, 0);
+                                    explode.getComponent(cc.ParticleSystem).endColor = cc.color(229, 229, 22);
+                                    explode.getComponent(cc.ParticleSystem).endColorVar = this.Color.node.color;
+                                    this.scheduleOnce(() => {
+                                        cc.director.loadScene('multi_win');
+                                    }, 0.3);
+                                }else{
+                                    this.die_particle();
+                                    cc.director.loadScene('multi_lose');
+                                }
+                            });
+                        }else{
+                            firebase.database().ref('in_game/' + this.room + 'res/joiner_res').set(this.score, ()=>{
+                                other_score = parseInt(snap['creator']);
+                                cc.sys.localStorage.setItem('multi_self', self_score);
+                                cc.sys.localStorage.setItem('multi_other', other_score);
+                                if(self_score >= other_score){
+                                    var explode=this.node.getChildByName("star_explode");
+                                    explode.active = true;
+                                    explode.getComponent(cc.ParticleSystem).startColor = cc.color(0, 0, 0);
+                                    explode.getComponent(cc.ParticleSystem).endColor = cc.color(229, 229, 22);
+                                    explode.getComponent(cc.ParticleSystem).endColorVar = this.Color.node.color;
+                                    this.scheduleOnce(() => {
+                                        cc.director.loadScene('multi_win');
+                                    }, 0.3);
+                                }else{
+                                    this.die_particle();
+                                    cc.director.loadScene('multi_lose');
+                                }
+                            });
                         }
-                    }, 3);
-                }
-            }else if(snapshot.val() == -100){
-                //winner
-                cc.director.loadScene('multi_win');
-            }else this.check_mail();
-        });
+                    });
+                }else if(rd > 0){
+                    console.log("received message");
+                    ref.set((rd-1), () => {
+                        this.check_mail();
+                    });
+                    if(!this.in_hiding){
+                        this.recv_msg ++;
+                        console.log("messages left now " + this.recv_msg);
+                        cc.audioEngine.playEffect(this.notif, false);
+                        this.Color.node.color = new cc.Color(255,255,255);
+                        this.unhide = true;
+                        this.scheduleOnce(() => {
+                            this.recv_msg--;
+                            console.log("visible time up, messages left: " + this.recv_msg);
+                            if(this.recv_msg == 0){
+                                this.unhide = false;
+                                var color_str = this.color_list[this.base + this.color];
+                                var color = new cc.Color(255,255,255);
+                                this.Color.node.color = color.fromHEX(color_str);
+                            }
+                        }, 3);
+                    }
+                }else this.check_mail();
+            });
+        }else{
+            if(this.id){
+                firebase.database().ref('in_game/' + this.room + '/res/joiner_res').once('value', (snapshot)=>{
+                    if(snapshot.exists()){
+                        var self_score = this.score;
+                        var other_score = parseInt(snapshot.val());
+                        cc.sys.localStorage.setItem('multi_self', self_score);
+                        cc.sys.localStorage.setItem('multi_other', other_score);
+                        if(self_score >= other_score) cc.director.loadScene('multi_win');
+                        else cc.director.loadScene('multi_lose');
+                    }else this.check_mail();
+                });
+            }else{
+                firebase.database().ref('in_game/' + this.room + '/res/creator_res').once('value', (snapshot)=>{
+                    if(snapshot.exists()){
+                        var self_score = this.score;
+                        var other_score = parseInt(snapshot.val());
+                        cc.sys.localStorage.setItem('multi_self', self_score);
+                        cc.sys.localStorage.setItem('multi_other', other_score);
+                        if(self_score >= other_score) cc.director.loadScene('multi_win');
+                        else cc.director.loadScene('multi_lose');
+                    }else this.check_mail();
+                });
+            }
+        }
     }
 
     onKeyDown(event){

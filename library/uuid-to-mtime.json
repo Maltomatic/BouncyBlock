@@ -1420,8 +1420,8 @@
     "relativePath": "scripts\\bird_map_init.ts"
   },
   "3e7b2463-e729-4784-9227-e7749c387a40": {
-    "asset": 1655753365293,
-    "meta": 1655753365326,
+    "asset": 1655763855207,
+    "meta": 1655763855239,
     "relativePath": "scenes\\multi.fire"
   },
   "2ffa1a9d-95a2-4fb1-b65f-8ee0de904cea": {
@@ -1650,8 +1650,8 @@
     "relativePath": "scenes\\multi_lose.fire"
   },
   "a4ea169f-e7a5-48fe-a76a-3f69d22f0a2e": {
-    "asset": 1655763398385,
-    "meta": 1655763410664,
+    "asset": 1655767463362,
+    "meta": 1655767479850,
     "relativePath": "scripts\\player_multi.ts"
   }
 }

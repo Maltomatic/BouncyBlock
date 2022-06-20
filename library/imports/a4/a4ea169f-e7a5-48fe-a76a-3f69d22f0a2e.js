@@ -92,6 +92,7 @@ var Player = /** @class */ (function (_super) {
         _this.room = null;
         _this.section_count = 0; // on contact with marker, if section_count * 1920 < this.node.x: init next section and section_count ++
         _this.score = 0;
+        _this.hiatus = false;
         _this.color = 0;
         _this.strip = 0;
         _this.base = 0;
@@ -124,10 +125,10 @@ var Player = /** @class */ (function (_super) {
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
         this.dir = 0;
         this.section_count = 0;
-        this.id = cc.sys.localStorage.getItem('id');
-        this.room = cc.sys.localStorage.getItem('room');
     };
     Player.prototype.onDestroy = function () {
+        this.id = cc.sys.localStorage.getItem('id');
+        this.room = cc.sys.localStorage.getItem('room');
         cc.systemEvent.off(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.off(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
     };
@@ -234,17 +235,19 @@ var Player = /** @class */ (function (_super) {
         if (this.id) {
             // self is creator
             firebase.database().ref('in_game/' + this.room + '/joiner').set(-100, function () {
-                _this.scheduleOnce(function () {
-                    cc.director.loadScene("multi_lose");
-                }, 0.3);
+                firebase.database().ref('in_game/' + _this.room + 'res/creator_res').set(_this.score, function () {
+                    _this.hiatus = true;
+                    _this.check_mail();
+                });
             });
         }
         else {
             // self is joiner
             firebase.database().ref('in_game/' + this.room + '/creator').set(-100, function () {
-                _this.scheduleOnce(function () {
-                    cc.director.loadScene("multi_lose");
-                }, 0.3);
+                firebase.database().ref('in_game/' + _this.room + 'res/joiner_res').set(_this.score, function () {
+                    _this.hiatus = true;
+                    _this.check_mail();
+                });
             });
         }
     };
@@ -342,40 +345,120 @@ var Player = /** @class */ (function (_super) {
     };
     Player.prototype.check_mail = function () {
         var _this = this;
-        var ref = firebase.database().ref('in_game/' + this.room + ((this.id == 1) ? '/creator' : '/joiner'));
-        // this.scheduleOnce(() => {       // get Firebase data; here simulated with timer. // if id = 1 read from creator, else read crom joiner
-        // if(Math.floor(Math.random()*4) > 2){        // should be if pinged on Firebase
-        ref.once('value', function (snapshot) {
-            if (snapshot.val() > 0) {
-                console.log("received message");
-                ref.set((snapshot.val() - 1), function () {
-                    _this.check_mail();
-                });
-                if (!_this.in_hiding) {
-                    _this.recv_msg++;
-                    console.log("messages left now " + _this.recv_msg);
-                    cc.audioEngine.playEffect(_this.notif, false);
-                    _this.Color.node.color = new cc.Color(255, 255, 255);
-                    _this.unhide = true;
-                    _this.scheduleOnce(function () {
-                        _this.recv_msg--;
-                        console.log("visible time up, messages left: " + _this.recv_msg);
-                        if (_this.recv_msg == 0) {
-                            _this.unhide = false;
-                            var color_str = _this.color_list[_this.base + _this.color];
-                            var color = new cc.Color(255, 255, 255);
-                            _this.Color.node.color = color.fromHEX(color_str);
+        if (!this.hiatus) {
+            var ref = firebase.database().ref('in_game/' + this.room + ((this.id == 1) ? '/creator' : '/joiner'));
+            ref.once('value', function (snapshot) {
+                var rd = parseInt(snapshot.val());
+                console.log("read message value:" + rd);
+                if (rd < -50) {
+                    firebase.database().ref('in_game/' + _this.room + '/res').once('value', function (snap) {
+                        var self_score = _this.score;
+                        var other_score = 0;
+                        if (_this.id) {
+                            firebase.database().ref('in_game/' + _this.room + 'res/creator_res').set(_this.score, function () {
+                                other_score = parseInt(snap['joiner']);
+                                cc.sys.localStorage.setItem('multi_self', self_score);
+                                cc.sys.localStorage.setItem('multi_other', other_score);
+                                if (self_score >= other_score) {
+                                    var explode = _this.node.getChildByName("star_explode");
+                                    explode.active = true;
+                                    explode.getComponent(cc.ParticleSystem).startColor = cc.color(0, 0, 0);
+                                    explode.getComponent(cc.ParticleSystem).endColor = cc.color(229, 229, 22);
+                                    explode.getComponent(cc.ParticleSystem).endColorVar = _this.Color.node.color;
+                                    _this.scheduleOnce(function () {
+                                        cc.director.loadScene('multi_win');
+                                    }, 0.3);
+                                }
+                                else {
+                                    _this.die_particle();
+                                    cc.director.loadScene('multi_lose');
+                                }
+                            });
                         }
-                    }, 3);
+                        else {
+                            firebase.database().ref('in_game/' + _this.room + 'res/joiner_res').set(_this.score, function () {
+                                other_score = parseInt(snap['creator']);
+                                cc.sys.localStorage.setItem('multi_self', self_score);
+                                cc.sys.localStorage.setItem('multi_other', other_score);
+                                if (self_score >= other_score) {
+                                    var explode = _this.node.getChildByName("star_explode");
+                                    explode.active = true;
+                                    explode.getComponent(cc.ParticleSystem).startColor = cc.color(0, 0, 0);
+                                    explode.getComponent(cc.ParticleSystem).endColor = cc.color(229, 229, 22);
+                                    explode.getComponent(cc.ParticleSystem).endColorVar = _this.Color.node.color;
+                                    _this.scheduleOnce(function () {
+                                        cc.director.loadScene('multi_win');
+                                    }, 0.3);
+                                }
+                                else {
+                                    _this.die_particle();
+                                    cc.director.loadScene('multi_lose');
+                                }
+                            });
+                        }
+                    });
                 }
+                else if (rd > 0) {
+                    console.log("received message");
+                    ref.set((rd - 1), function () {
+                        _this.check_mail();
+                    });
+                    if (!_this.in_hiding) {
+                        _this.recv_msg++;
+                        console.log("messages left now " + _this.recv_msg);
+                        cc.audioEngine.playEffect(_this.notif, false);
+                        _this.Color.node.color = new cc.Color(255, 255, 255);
+                        _this.unhide = true;
+                        _this.scheduleOnce(function () {
+                            _this.recv_msg--;
+                            console.log("visible time up, messages left: " + _this.recv_msg);
+                            if (_this.recv_msg == 0) {
+                                _this.unhide = false;
+                                var color_str = _this.color_list[_this.base + _this.color];
+                                var color = new cc.Color(255, 255, 255);
+                                _this.Color.node.color = color.fromHEX(color_str);
+                            }
+                        }, 3);
+                    }
+                }
+                else
+                    _this.check_mail();
+            });
+        }
+        else {
+            if (this.id) {
+                firebase.database().ref('in_game/' + this.room + '/res/joiner_res').once('value', function (snapshot) {
+                    if (snapshot.exists()) {
+                        var self_score = _this.score;
+                        var other_score = parseInt(snapshot.val());
+                        cc.sys.localStorage.setItem('multi_self', self_score);
+                        cc.sys.localStorage.setItem('multi_other', other_score);
+                        if (self_score >= other_score)
+                            cc.director.loadScene('multi_win');
+                        else
+                            cc.director.loadScene('multi_lose');
+                    }
+                    else
+                        _this.check_mail();
+                });
             }
-            else if (snapshot.val() == -100) {
-                //winner
-                cc.director.loadScene('multi_win');
+            else {
+                firebase.database().ref('in_game/' + this.room + '/res/creator_res').once('value', function (snapshot) {
+                    if (snapshot.exists()) {
+                        var self_score = _this.score;
+                        var other_score = parseInt(snapshot.val());
+                        cc.sys.localStorage.setItem('multi_self', self_score);
+                        cc.sys.localStorage.setItem('multi_other', other_score);
+                        if (self_score >= other_score)
+                            cc.director.loadScene('multi_win');
+                        else
+                            cc.director.loadScene('multi_lose');
+                    }
+                    else
+                        _this.check_mail();
+                });
             }
-            else
-                _this.check_mail();
-        });
+        }
     };
     Player.prototype.onKeyDown = function (event) {
         var _this = this;
