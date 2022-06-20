@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "banana_trample",
+    "texture": "593808c0-8822-436b-ba4e-5061272e6d60",
+    "atlas": "",
+    "rect": [
+      7,
+      122,
+      286,
+      124
+    ],
+    "offset": [
+      -10,
+      -60
+    ],
+    "originalSize": [
+      320,
+      248
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}
