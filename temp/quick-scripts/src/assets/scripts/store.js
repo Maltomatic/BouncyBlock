@@ -124,11 +124,9 @@ var store = /** @class */ (function (_super) {
         color5.component = "store";
         color5.handler = "loadcolor5";
         cc.find("Canvas/color5").getComponent(cc.Button).clickEvents.push(color5);
-        var signout = new cc.Component.EventHandler();
-        signout.target = this.node;
-        signout.component = "store";
-        signout.handler = "loadSignout";
-        cc.find("Canvas/SignOut").getComponent(cc.Button).clickEvents.push(signout);
+        cc.find("Canvas/SignOut").on(cc.Node.EventType.MOUSE_DOWN, function () {
+            cc.director.loadScene('menu');
+        }, this);
     };
     store.prototype.loadpowerup = function () {
         //cc.audioEngine.playEffect(this.press, false);

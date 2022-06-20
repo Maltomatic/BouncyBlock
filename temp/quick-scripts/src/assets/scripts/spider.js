@@ -41,8 +41,9 @@ var spider = /** @class */ (function (_super) {
         //body.linearVelocity = cc.v2(250,0);
         console.log("V = ", body.linearVelocity);
     };
-    spider.prototype.update = function () {
-        this.node.x += 5 * this.moveDir;
+    spider.prototype.update = function (dt) {
+        this.node.x += 220 * dt * this.moveDir;
+        this.node.skewX += 20 * dt * this.moveDir;
         //this.node.scaleX = (this.moveDir >= 0) ? 1 : -1;
     };
     spider.prototype.onBeginContact = function (contact, self, other) {

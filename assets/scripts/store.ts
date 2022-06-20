@@ -108,11 +108,9 @@ export default class store extends cc.Component {
         color5.handler = "loadcolor5";
         cc.find("Canvas/color5").getComponent(cc.Button).clickEvents.push(color5);
 
-        let signout = new cc.Component.EventHandler();
-        signout.target = this.node;
-        signout.component = "store";
-        signout.handler = "loadSignout";
-        cc.find("Canvas/SignOut").getComponent(cc.Button).clickEvents.push(signout);
+        cc.find("Canvas/SignOut").on(cc.Node.EventType.MOUSE_DOWN, () => {
+            cc.director.loadScene('menu');
+        }, this);
     }
 
     loadpowerup(){

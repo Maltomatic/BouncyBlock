@@ -27,12 +27,19 @@ var _a = cc._decorator, ccclass = _a.ccclass, property = _a.property;
 var menu = /** @class */ (function (_super) {
     __extends(menu, _super);
     function menu() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.menu_music = null; // @A@
+        return _this;
     }
     menu.prototype.onload = function () {
         cc.debug.setDisplayStats(false);
+        cc.sys.localStorage.setItem("uid", 'local');
+    };
+    menu.prototype.playBGM = function () {
+        cc.audioEngine.playMusic(this.menu_music, true);
     };
     menu.prototype.start = function () {
+        this.playBGM();
         cc.debug.setDisplayStats(false);
         //cc.audioEngine.playMusic(this.bgm, true);
         var signout = new cc.Component.EventHandler();
@@ -69,6 +76,15 @@ var menu = /** @class */ (function (_super) {
                 });
             }
             else {
+                cc.sys.localStorage.setItem("coins", 0);
+                cc.sys.localStorage.setItem("lego", 0);
+                cc.sys.localStorage.setItem("powerup", 0);
+                cc.sys.localStorage.setItem("banana", 0);
+                cc.sys.localStorage.setItem("mute", 0);
+                cc.sys.localStorage.setItem("signal", 0);
+                cc.sys.localStorage.setItem("highscore", 0);
+                cc.sys.localStorage.setItem("name", 0);
+                cc.sys.localStorage.setItem("email", 0);
                 // sign in button instead
                 cc.find("Canvas/out").getComponent(cc.Label).string = "sign in";
                 cc.find("Canvas/SignOut").scaleX = -1;
@@ -152,6 +168,9 @@ var menu = /** @class */ (function (_super) {
     menu.prototype.loadrule = function () {
         cc.director.loadScene("tutorial");
     };
+    __decorate([
+        property(cc.AudioClip)
+    ], menu.prototype, "menu_music", void 0);
     menu = __decorate([
         ccclass
     ], menu);

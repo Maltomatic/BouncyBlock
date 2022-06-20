@@ -3,12 +3,20 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export default class menu extends cc.Component {
 
+    @property(cc.AudioClip)
+    menu_music : cc.AudioClip = null;// @A@
+
     onload() {
         cc.debug.setDisplayStats(false);
+        cc.sys.localStorage.setItem("uid", 'local');
         
+    }
+    playBGM(){ // @A@
+        cc.audioEngine.playMusic(this.menu_music, true); 
     }
 
     start () {
+        this.playBGM();
         cc.debug.setDisplayStats(false);
         //cc.audioEngine.playMusic(this.bgm, true);
         let signout = new cc.Component.EventHandler();
@@ -44,6 +52,15 @@ export default class menu extends cc.Component {
 
                 });
             }else{
+                cc.sys.localStorage.setItem("coins", 0);
+                cc.sys.localStorage.setItem("lego", 0);
+                cc.sys.localStorage.setItem("powerup", 0);
+                cc.sys.localStorage.setItem("banana", 0);
+                cc.sys.localStorage.setItem("mute", 0);
+                cc.sys.localStorage.setItem("signal", 0);
+                cc.sys.localStorage.setItem("highscore", 0);
+                cc.sys.localStorage.setItem("name", 0);
+                cc.sys.localStorage.setItem("email", 0);
                 // sign in button instead
                 cc.find("Canvas/out").getComponent(cc.Label).string = "sign in"
                 cc.find("Canvas/SignOut").scaleX = -1;

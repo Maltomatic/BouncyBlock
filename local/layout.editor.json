@@ -13,13 +13,13 @@
         "type": "dock-h",
         "children": [
           {
-            "width": 306.1145935058594,
-            "height": 847,
+            "width": 309,
+            "height": 861,
             "type": "dock-v",
             "children": [
               {
-                "width": 306.1145935058594,
-                "height": 435.26043701171875,
+                "width": 309,
+                "height": 442.47918701171875,
                 "type": "panel",
                 "active": 0,
                 "children": [
@@ -27,8 +27,8 @@
                 ]
               },
               {
-                "width": 306.1145935058594,
-                "height": 408.7395935058594,
+                "width": 309,
+                "height": 415.5208435058594,
                 "type": "panel",
                 "active": 0,
                 "children": [
@@ -38,13 +38,13 @@
             ]
           },
           {
-            "width": 734.0729370117188,
-            "height": 847,
+            "width": 741,
+            "height": 861,
             "type": "dock-v",
             "children": [
               {
-                "width": 734.0729370117188,
-                "height": 504.625,
+                "width": 741,
+                "height": 513,
                 "type": "panel",
                 "active": 0,
                 "children": [
@@ -52,8 +52,8 @@
                 ]
               },
               {
-                "width": 734.0729370117188,
-                "height": 339.375,
+                "width": 741,
+                "height": 345,
                 "type": "panel",
                 "active": 0,
                 "children": [
@@ -65,8 +65,8 @@
             ]
           },
           {
-            "width": 443.8125,
-            "height": 847,
+            "width": 448,
+            "height": 861,
             "type": "panel",
             "active": 0,
             "children": [
@@ -87,8 +87,7 @@
         "cocos-services"
       ]
     },
-    " common-asset-worker-worker": {},
-    " load-media-worker": {}
+    " common-asset-worker-worker": {}
   },
   "panels": {
     "project-settings": {
