@@ -20,6 +20,7 @@ require('./assets/scripts/enemy moving sharp');
 require('./assets/scripts/enemy_wrapper');
 require('./assets/scripts/leader');
 require('./assets/scripts/light');
+require('./assets/scripts/loadgame');
 require('./assets/scripts/lose_canvas');
 require('./assets/scripts/menu');
 require('./assets/scripts/missile');

@@ -36,36 +36,32 @@ var start_scene = /** @class */ (function (_super) {
     };
     start_scene.prototype.start = function () {
         cc.debug.setDisplayStats(false);
-        var count = 4;
-        this.schedule(function () {
-            count -= 1;
-            cc.find('background/number').getComponent(cc.Label).string = count.toString();
-        }, 1, 4);
-        this.scheduleOnce(function () {
-            cc.find('background').active = false;
-        }, 4);
         //cc.audioEngine.playMusic(this.bgm, true);
         this.email_data = "";
         this.password_data = "";
         this.username = "";
-        var email = new cc.Component.EventHandler();
-        email.target = this.node; //这个 node 节点是你的事件处理代码组件所属的节点
-        email.component = "start_scene";
-        email.handler = "emailUpdate";
-        email.customEventData = "foobar";
-        cc.find("Canvas/Email").getComponent(cc.EditBox).textChanged.push(email);
-        var n = new cc.Component.EventHandler();
-        n.target = this.node; //这个 node 节点是你的事件处理代码组件所属的节点
-        n.component = "start_scene";
-        n.handler = "nameUpdate";
-        n.customEventData = "foobar";
-        cc.find("Canvas/Name").getComponent(cc.EditBox).textChanged.push(n);
-        var password = new cc.Component.EventHandler();
-        password.target = this.node; //这个 node 节点是你的事件处理代码组件所属的节点
-        password.component = "start_scene";
-        password.handler = "passwordUpdate";
-        password.customEventData = "foobar";
-        cc.find("Canvas/Password").getComponent(cc.EditBox).textChanged.push(password);
+        /*
+                // var email = new cc.Component.EventHandler();
+                // email.target = this.node; //这个 node 节点是你的事件处理代码组件所属的节点
+                // email.component = "start_scene"
+                // email.handler = "emailUpdate";
+                // email.customEventData = "foobar";
+                // cc.find("Canvas/Email").getComponent(cc.EditBox).textChanged.push(email);
+        
+                // var n = new cc.Component.EventHandler();
+                // n.target = this.node; //这个 node 节点是你的事件处理代码组件所属的节点
+                // n.component = "start_scene"
+                // n.handler = "nameUpdate";
+                // n.customEventData = "foobar";
+                // cc.find("Canvas/Name").getComponent(cc.EditBox).textChanged.push(n);
+        
+                // var password = new cc.Component.EventHandler();
+                // password.target = this.node; //这个 node 节点是你的事件处理代码组件所属的节点
+                // password.component = "start_scene"
+                // password.handler = "passwordUpdate";
+                // password.customEventData = "foobar";
+                // cc.find("Canvas/Password").getComponent(cc.EditBox).textChanged.push(password);
+        */
         var signin = new cc.Component.EventHandler();
         signin.target = this.node;
         signin.component = "start_scene";
@@ -77,67 +73,77 @@ var start_scene = /** @class */ (function (_super) {
         signup.handler = "loadsignup";
         cc.find("Canvas/SignUp").getComponent(cc.Button).clickEvents.push(signup);
     };
-    start_scene.prototype.emailUpdate = function (text, editbox, customEventData) {
-        this.email_data = text;
-        //console.log(this.email_data);
-    };
-    start_scene.prototype.nameUpdate = function (text, editbox, customEventData) {
-        this.username = text;
-        //console.log(this.email_data);
-    };
-    start_scene.prototype.passwordUpdate = function (text, editbox, customEventData) {
-        this.password_data = text;
-    };
+    /*
+    // emailUpdate(text, editbox, customEventData) {
+    //     this.email_data = text;
+    //     //console.log(this.email_data);
+    // }
+    // nameUpdate(text, editbox, customEventData) {
+    //     this.username = text;
+    //     //console.log(this.email_data);
+    // }
+    // passwordUpdate(text, editbox, customEventData) {
+    //     this.password_data = text;
+    // }
+    */
     start_scene.prototype.loadsignin = function () {
         var _this = this;
+        this.password_data = cc.find("Canvas/Password").getComponent(cc.EditBox).string;
+        this.email_data = cc.find("Canvas/Email").getComponent(cc.EditBox).string;
         //cc.audioEngine.playEffect(this.press, false);
         firebase.auth().signInWithEmailAndPassword(this.email_data, this.password_data).then(function (result) {
-            firebase.database().ref('/users').once("value").then(function (snapshot) {
-                if (snapshot.child(_this.uid).exists() == false) {
-                    var a = {};
-                    var tmp = {};
-                    tmp['coins'] = 0;
-                    tmp['email'] = firebase.auth().currentUser.email;
-                    tmp['highscore'] = 0;
-                    console.log('name = ', _this.username);
-                    tmp['name'] = _this.username;
-                    var t = { 'lego': 0, 'banana': 0, 'color': { 1: true, 2: false, 3: false, 4: false, 5: false }, 'powerup': 0, 'signal': 0, 'mute': 0 };
-                    tmp['thing'] = t;
-                    a[_this.uid] = tmp;
-                    firebase.database().ref('/users/').update(a);
-                }
-                _this.scheduleOnce(function () {
-                    cc.director.loadScene("menu");
-                }, 1);
-            });
+            /*
+                // firebase.database().ref('/users').once("value").then( (snapshot) => {
+                    // if(snapshot.child(this.uid).exists() == false) {
+                    //     var a = {};
+                    //     var tmp = {};
+                    //     tmp['coins'] = 0;
+                    //     tmp['email'] = firebase.auth().currentUser.email;
+                    //     tmp['highscore'] = 0;
+                    //     console.log('name = ', this.username)
+                    //     tmp['name'] = this.username;
+                    //     var t = {'lego':0, 'banana': 0, 'color': {1: true, 2: false, 3: false, 4: false, 5: false}, 'powerup': 0, 'signal': 0, 'mute': 0}
+                    //     tmp['thing'] = t;
+                    //     a[this.uid] = tmp;
+                    //     firebase.database().ref('/users/').update(a);
+                    // }
+                    // this.scheduleOnce(()=>{
+            */
+            _this.password_data = '';
+            _this.email_data = '';
+            cc.director.loadScene("menu");
+            // }, 1);
+            // });
         }).catch(function (error) {
             alert(error);
         });
     };
     start_scene.prototype.loadsignup = function () {
         var _this = this;
+        this.username = cc.find("Canvas/Name").getComponent(cc.EditBox).string;
+        this.password_data = cc.find("Canvas/Password").getComponent(cc.EditBox).string;
+        this.email_data = cc.find("Canvas/Email").getComponent(cc.EditBox).string;
         //cc.audioEngine.playEffect(this.press, false);
         //console.log(this.email_data, this.password_data);
         console.log('name = ', this.username);
         firebase.auth().createUserWithEmailAndPassword(this.email_data, this.password_data).then(function (result) {
-            firebase.database().ref('/users').once("value").then(function (snapshot) {
-                if (snapshot.child(_this.uid).exists() == false) {
-                    var a = {};
-                    var tmp = {};
-                    tmp['coins'] = 0;
-                    tmp['email'] = firebase.auth().currentUser.email;
-                    tmp['highscore'] = 0;
-                    tmp['name'] = _this.username;
-                    console.log('name = ', _this.username, _this.email_data);
-                    var t = { 'lego': 0, 'banana': 0, 'color': { 1: true, 2: false, 3: false, 4: false, 5: false }, 'powerup': 0, 'signal': 0, 'mute': 0 };
-                    tmp['thing'] = t;
-                    a[firebase.auth().currentUser.uid] = tmp;
-                    firebase.database().ref('/users/').update(a);
-                }
-                _this.scheduleOnce(function () {
-                    cc.director.loadScene("menu");
-                }, 1);
+            // firebase.database().ref('/users').once("value").then( (snapshot)=> {
+            // if(snapshot.child(result.uid).exists() == false) {
+            var a = {};
+            var tmp = {};
+            tmp['coins'] = 0;
+            tmp['email'] = _this.email_data; //firebase.auth().currentUser.email;
+            tmp['highscore'] = 0;
+            tmp['name'] = _this.username;
+            console.log('name = ', _this.username, _this.email_data);
+            var t = { 'lego': 0, 'banana': 0, 'color': { 1: true, 2: false, 3: false, 4: false, 5: false }, 'powerup': 0, 'signal': 0, 'mute': 0 };
+            tmp['thing'] = t;
+            a[result.user.uid /*firebase.auth().currentUser.uid*/] = tmp;
+            firebase.database().ref('/users/').set(a, function () {
+                _this.loadsignin();
             });
+            //     }
+            // });
         }).catch(function (error) {
             alert(error);
         });

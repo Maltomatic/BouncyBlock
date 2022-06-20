@@ -1767,7 +1767,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "cce3fbdd-d588-4e12-9620-9dbe2b633d76"
+      "__uuid__": "a4b33396-a2b6-44fd-89a2-f3a9addfabf5"
     },
     "_type": 1,
     "_sizeMode": 0,
@@ -1870,7 +1870,7 @@
       "a": 200
     },
     "_N$normalSprite": {
-      "__uuid__": "cce3fbdd-d588-4e12-9620-9dbe2b633d76"
+      "__uuid__": "a4b33396-a2b6-44fd-89a2-f3a9addfabf5"
     },
     "_N$pressedSprite": {
       "__uuid__": "e9ec654c-97a2-4787-9325-e6a10375219a"

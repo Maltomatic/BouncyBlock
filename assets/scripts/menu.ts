@@ -5,16 +5,39 @@ export default class menu extends cc.Component {
 
     onload() {
         cc.debug.setDisplayStats(false);
+        
     }
 
     start () {
         cc.debug.setDisplayStats(false);
         //cc.audioEngine.playMusic(this.bgm, true);
-
         let signout = new cc.Component.EventHandler();
         signout.target = this.node;
         signout.component = "menu";
-        signout.handler = "loadSignout";
+        firebase.auth().onAuthStateChanged((user) => {
+            if(user){
+                signout.handler = "loadSignout";
+                // grab logged in data from Firebase
+                var data = {};
+                firebase.database().ref('users/' + user.uid ).once('value', (snapshot) => {
+                    data['coins'] = snapshot.child('coins').val();
+                    data['email'] = snapshot.child('email').val();
+                    data['highscore'] = snapshot.child('highscore').val();
+                    data['name'] = snapshot.child('name').val();
+                    data['banana'] = snapshot.child('thing/banana').val();
+                    data['color'] = snapshot.child('thing/color').val();
+                    data['lego'] = snapshot.child('thing/lego').val();
+                    data['mute'] = snapshot.child('thing/mute').val();
+                    data['powerup'] = snapshot.child('thing/powerup').val();
+                    data['signal'] = snapshot.child('thing/signal').val();
+                });
+            }else{
+                // sign in button instead
+                cc.find("Canvas/out").getComponent(cc.Label).string = "sign in"
+                cc.find("Canvas/SignOut").scaleX = -1;
+                signout.handler = "loadSignIn";
+            }
+        });
         cc.find("Canvas/SignOut").getComponent(cc.Button).clickEvents.push(signout);
 
         let leader = new cc.Component.EventHandler();
@@ -77,6 +100,16 @@ export default class menu extends cc.Component {
         cc.director.loadScene("bird");
     }
     loadSignout(){
+        //cc.audioEngine.playEffect(this.press, false);
+        // kick player off
+        firebase.auth().signOut().then(()=>{
+            cc.director.loadScene("menu");
+            alert("You have been signed out.");
+        }).catch((e)=>{
+            console.log(e.message);
+        })
+    }
+    loadSignIn(){
         //cc.audioEngine.playEffect(this.press, false);
         cc.director.loadScene("start");
     }
