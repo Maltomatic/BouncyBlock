@@ -40,12 +40,16 @@ var Bird = /** @class */ (function (_super) {
         _this.section = null;
         _this.Score = null;
         _this.Scoretag = null;
+        _this.Cointag = null;
+        _this.coin_point = null;
         _this.Color = null;
         _this.die_audio = null;
         _this.player_jump = null;
+        _this.get_coin = null;
         _this.section_count = 0; // on contact with marker, if section_count * 1920 < this.node.x: init next section and section_count ++
         _this.score = 0;
         _this.speed = 150;
+        _this.coin = 0;
         _this.color = 0;
         _this.strip = 0;
         _this.base = 0;
@@ -57,7 +61,6 @@ var Bird = /** @class */ (function (_super) {
             25: "#562c2c", 26: "#f2542d", 27: "#f5dfbb", 28: "#0e9595", 29: "#127474",
             31: "#8e9aaf", 32: "#cbc0d3", 33: "#efd3d7", 34: "#feeafa", 35: "#dee2ff" };
         return _this;
-        // update (dt) {}
     }
     // LIFE-CYCLE CALLBACKS:
     Bird.prototype.setcolor = function () {
@@ -95,6 +98,7 @@ var Bird = /** @class */ (function (_super) {
     };
     Bird.prototype.camera_track = function () {
         this.Scoretag.x = Math.max(this.node.x - 500, -389.764);
+        this.Cointag.x = Math.max(this.node.x - 320, -209.764);
         if (this.node.x < 100)
             this.camera.x = 0;
         else
@@ -110,8 +114,6 @@ var Bird = /** @class */ (function (_super) {
                 console.log("init next section");
                 this.speed *= 1.1;
                 this.section_count++;
-                var rand = Math.floor(Math.random() * 3);
-                //console.log(rand);
                 var next_section = cc.instantiate(this.section);
                 next_section.x = 1920 * this.section_count;
                 next_section.y = 0;
@@ -128,7 +130,8 @@ var Bird = /** @class */ (function (_super) {
             }, 0.3);
         }
         else if (other.node.name == 'coin') {
-            // increase coin
+            cc.audioEngine.playEffect(this.get_coin, false);
+            this.update_coin(1);
             other.node.destroy();
         }
     };
@@ -159,6 +162,10 @@ var Bird = /** @class */ (function (_super) {
         cc.audioEngine.playEffect(this.player_jump, false);
         this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 200);
     };
+    Bird.prototype.update_coin = function (number) {
+        this.coin += number;
+        this.coin_point.getComponent(cc.Label).string = this.coin.toString();
+    };
     __decorate([
         property(cc.Node)
     ], Bird.prototype, "camera", void 0);
@@ -175,6 +182,12 @@ var Bird = /** @class */ (function (_super) {
         property(cc.Node)
     ], Bird.prototype, "Scoretag", void 0);
     __decorate([
+        property(cc.Node)
+    ], Bird.prototype, "Cointag", void 0);
+    __decorate([
+        property(cc.Node)
+    ], Bird.prototype, "coin_point", void 0);
+    __decorate([
         property(cc.Sprite)
     ], Bird.prototype, "Color", void 0);
     __decorate([
@@ -183,6 +196,9 @@ var Bird = /** @class */ (function (_super) {
     __decorate([
         property(cc.AudioClip)
     ], Bird.prototype, "player_jump", void 0);
+    __decorate([
+        property(cc.AudioClip)
+    ], Bird.prototype, "get_coin", void 0);
     Bird = __decorate([
         ccclass
     ], Bird);

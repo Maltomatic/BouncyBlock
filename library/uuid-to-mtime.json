@@ -815,8 +815,8 @@
     "relativePath": "prefabs\\bubble signal.prefab"
   },
   "f51a59a5-a0f4-4c8b-a82a-a1c5afdf7bfb": {
-    "asset": 1655735804101,
-    "meta": 1655735804123,
+    "asset": 1655738728425,
+    "meta": 1655738728463,
     "relativePath": "scenes\\bird.fire"
   },
   "e19b5114-6ae0-44c7-aaf8-d3a9a5a14998": {
@@ -1509,14 +1509,14 @@
     "meta": 1655735052149,
     "relativePath": "scripts\\start_scene.ts"
   },
-  "e8f7891e-9689-4fd7-a194-48ae189b2f2b": {
-    "asset": 1655736260044,
-    "meta": 1655736274899,
-    "relativePath": "scripts\\bird_player.ts"
-  },
   "77477a70-be23-4af6-b183-bf7d2817badf": {
-    "asset": 1655737012325,
-    "meta": 1655737016022,
+    "asset": 1655739281034,
+    "meta": 1655739283552,
     "relativePath": "scripts\\bird_map_init.ts"
+  },
+  "e8f7891e-9689-4fd7-a194-48ae189b2f2b": {
+    "asset": 1655739011563,
+    "meta": 1655739283638,
+    "relativePath": "scripts\\bird_player.ts"
   }
 }

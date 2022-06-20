@@ -23,6 +23,10 @@ export class Bird extends cc.Component {
     Score: cc.Node = null;
     @property(cc.Node)
     Scoretag: cc.Node = null;
+    @property(cc.Node)
+    Cointag: cc.Node = null;
+    @property(cc.Node)
+    coin_point : cc.Node = null; 
 
     @property(cc.Sprite)
     Color: cc.Sprite = null;
@@ -31,11 +35,14 @@ export class Bird extends cc.Component {
     die_audio : cc.AudioClip = null; 
     @property(cc.AudioClip)
     player_jump : cc.AudioClip = null;
+    @property(cc.AudioClip)
+    get_coin : cc.AudioClip = null;
 
     section_count: number = 0;      // on contact with marker, if section_count * 1920 < this.node.x: init next section and section_count ++
     private score: number = 0;
 
     private speed: number = 150;
+    coin: number = 0;
     color: number = 0;
     strip: number = 0;
     base: number = 0;
@@ -90,6 +97,7 @@ export class Bird extends cc.Component {
 
     camera_track(){
         this.Scoretag.x = Math.max(this.node.x - 500, -389.764);
+        this.Cointag.x = Math.max(this.node.x - 320, -209.764);
         if(this.node.x < 100) this.camera.x = 0;
         else this.camera.x = this.node.x - 100;
     }
@@ -104,8 +112,6 @@ export class Bird extends cc.Component {
                 console.log("init next section");
                 this.speed *= 1.1;
                 this.section_count++;
-                var rand = Math.floor(Math.random() * 3)
-                //console.log(rand);
                 var next_section = cc.instantiate(this.section);
                 next_section.x = 1920 * this.section_count;
                 next_section.y = 0;
@@ -120,7 +126,8 @@ export class Bird extends cc.Component {
                 cc.director.loadScene("lose");
             }, 0.3);
         }else if(other.node.name == 'coin'){
-            // increase coin
+            cc.audioEngine.playEffect(this.get_coin, false); 
+            this.update_coin(1);
             other.node.destroy();
         }
     }
@@ -156,5 +163,8 @@ export class Bird extends cc.Component {
         this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 200);
     }
 
-    // update (dt) {}
+    update_coin(number){  // @@ 
+        this.coin += number;
+        this.coin_point.getComponent(cc.Label).string = this.coin.toString();
+    }
 }

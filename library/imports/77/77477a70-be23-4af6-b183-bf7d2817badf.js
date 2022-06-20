@@ -97,10 +97,10 @@ var BirdBase = /** @class */ (function (_super) {
             var pathrange = [2, 17]; // path should be range between j = 2 and j = 17
             for (var i = 0; i < layerSz.width; i++) {
                 // set gid to 0 for path
-                var range = Math.floor(Math.random() * 6);
+                var range = Math.floor(Math.random() * 3);
                 var up_range_min = Math.max(2, pathrange[0] - range);
                 var down_range_min = Math.min(17, pathrange[1] + range);
-                range = Math.floor(Math.random() * 6);
+                range = Math.floor(Math.random() * 3);
                 var up_range_max = Math.min(pathrange[1] - range, pathrange[0] + range);
                 var down_range_max = Math.max(pathrange[0] + range, pathrange[1] - range);
                 var down_bound = Math.floor(Math.random() * (down_range_max - down_range_min)) + down_range_min;

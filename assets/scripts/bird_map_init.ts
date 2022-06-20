@@ -78,10 +78,10 @@ export class BirdBase extends cc.Component {
 
             for(var i = 0; i < layerSz.width; i++){
                 // set gid to 0 for path
-                var range = Math.floor(Math.random() * 6);
+                var range = Math.floor(Math.random() * 3);
                 var up_range_min = Math.max(2, pathrange[0]-range);
                 var down_range_min = Math.min(17, pathrange[1]+range);
-                range = Math.floor(Math.random() * 6);
+                range = Math.floor(Math.random() * 3);
                 var up_range_max = Math.min(pathrange[1]-range, pathrange[0]+range);
                 var down_range_max = Math.max(pathrange[0]+range, pathrange[1]-range);
                 
