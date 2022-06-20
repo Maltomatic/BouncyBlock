@@ -184,9 +184,7 @@ var Player = /** @class */ (function (_super) {
             // deploy white particles
             this.die_particle();
             // this.node.active = false;
-            this.scheduleOnce(function () {
-                cc.director.loadScene("lose");
-            }, 0.3);
+            this.loser();
         }
         else if ((other.node.name[0] == 's' && other.node.name[1] == 'h') || other.node.name == 'spider') {
             if (other.node.name[0] == 's') {
@@ -195,17 +193,7 @@ var Player = /** @class */ (function (_super) {
             // deploy white particles
             this.die_particle();
             // this.node.active = false;
-            this.scheduleOnce(function () {
-                cc.director.loadScene("lose");
-                // var data = cc.sys.localStorage.getItem("data");
-                // data['coins'] = this.money;
-                // data['thing']['lego'] = this.lego;
-                // data['thing']['banana'] = this.banana;
-                // data['thing']['powerup'] = this.powerup;
-                // data['thing']['mute'] = this.mute;
-                // data['thing']['signal'] = this.signal;
-                // data['thing']['color'] = this.color_avail;
-            }, 0.3);
+            this.loser();
         }
     };
     Player.prototype.die_particle = function () {
@@ -216,6 +204,20 @@ var Player = /** @class */ (function (_super) {
         explode.getComponent(cc.ParticleSystem).endColor = this.Color.node.color;
         explode.getComponent(cc.ParticleSystem).endColorVar = this.Color.node.color;
         this.node.getChildByName('color').active = false;
+    };
+    Player.prototype.loser = function () {
+        cc.sys.localStorage.setItem("coins", this.coin);
+        cc.sys.localStorage.setItem("lego", this.lego);
+        cc.sys.localStorage.setItem("powerup", this.powerup);
+        cc.sys.localStorage.setItem("banana", this.banana);
+        cc.sys.localStorage.setItem("mute", this.mute);
+        cc.sys.localStorage.setItem("signal", this.signal);
+        cc.sys.localStorage.setItem("nowscore", this.score);
+        cc.sys.localStorage.setItem("nowscene", 'night');
+        this.node.active = false;
+        this.scheduleOnce(function () {
+            cc.director.loadScene("lose");
+        }, 0.3);
     };
     Player.prototype.onEndContact = function (contact, self, other) {
         if (this.getComponent(cc.RigidBody).linearVelocity.y != 0) {
@@ -258,10 +260,7 @@ var Player = /** @class */ (function (_super) {
             this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).emitterMode = 1;
             this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).emissionRate = 100;
             // deploy white particles
-            this.node.active = false;
-            this.scheduleOnce(function () {
-                cc.director.loadScene("lose");
-            }, 0.3);
+            this.loser();
         }
         this.camera_track();
         this.node.x += this.dir * 200 * dt;

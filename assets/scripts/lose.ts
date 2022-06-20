@@ -18,15 +18,15 @@ export default class lose extends cc.Component {
         cc.debug.setDisplayStats(false);
         //cc.audioEngine.playMusic(this.bgm, true);
 
-        firebase.database().ref('/users/' + this.uid + '/coins').set(cc.sys.localStorage.getItem("data"), ()=> {
-            let menu = new cc.Component.EventHandler();
-            menu.target = this.node;
-            menu.component = "lose";
-            menu.handler = "loadmenu";
-            cc.find("Canvas/menu").getComponent(cc.Button).clickEvents.push(menu);
-        });
+        var score = cc.sys.localStorage.getItem("nowscore");
+        var scene = cc.sys.localStorage.getItem("nowscene");
+        if(scene == 'night' && score > cc.sys.localStorage.getItem("highscore")) {
+            firebase.database().ref('/users/' + this.uid + '/highscore').set(score, ()=> {
+                cc.sys.localStorage.setItem("highscore", score);
+            });
 
-
+        }
+        cc.find('score').getComponent(cc.Label).string = score.toString();
 
         //callback
         firebase.database().ref('/users/' + this.uid + '/coins').set(cc.sys.localStorage.getItem("coins"));
@@ -34,13 +34,13 @@ export default class lose extends cc.Component {
         firebase.database().ref('/users/' + this.uid + '/thing/powerup').set(cc.sys.localStorage.getItem("powerup"));
         firebase.database().ref('/users/' + this.uid + '/thing/banana').set(cc.sys.localStorage.getItem("banana"));
         firebase.database().ref('/users/' + this.uid + '/thing/mute').set(cc.sys.localStorage.getItem("mute"));
-        firebase.database().ref('/users/' + this.uid + '/thing/signal').set(cc.sys.localStorage.getItem("signal"));
-
-        let menu = new cc.Component.EventHandler();
-        menu.target = this.node;
-        menu.component = "lose";
-        menu.handler = "loadmenu";
-        cc.find("Canvas/menu").getComponent(cc.Button).clickEvents.push(menu);
+        firebase.database().ref('/users/' + this.uid + '/thing/signal').set(cc.sys.localStorage.getItem("signal"), ()=>{
+            let menu = new cc.Component.EventHandler();
+            menu.target = this.node;
+            menu.component = "lose";
+            menu.handler = "loadmenu";
+            cc.find("Canvas/menu").getComponent(cc.Button).clickEvents.push(menu);
+        });
     }
 
     loadmenu() {

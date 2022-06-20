@@ -29,7 +29,7 @@ export default class menu extends cc.Component {
                 firebase.database().ref('users/' + uid ).once('value', (snapshot) => {
                     var data = snapshot.val();
                     console.log(data);
-                    cc.sys.localStorage.setItem("uid", user.uid);
+                    cc.sys.localStorage.setItem("uid", uid);
                     cc.sys.localStorage.setItem("coins", data['coins']);
                     cc.sys.localStorage.setItem("lego", data['thing']['lego']);
                     cc.sys.localStorage.setItem("powerup", data['thing']['powerup']);

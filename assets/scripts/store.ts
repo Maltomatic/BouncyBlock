@@ -259,6 +259,4 @@ export default class store extends cc.Component {
 
         cc.director.loadScene('menu');
     }
-
-   
 }
