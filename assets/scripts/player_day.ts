@@ -100,6 +100,7 @@ export class Player extends cc.Component {
     hidden: boolean = false;
 
     private sec_list = [];
+    private paused: boolean = false;
 
     private dir: number = 0;
     private prev_dir: number = 0;
@@ -340,11 +341,13 @@ export class Player extends cc.Component {
         }
         
         if(event.keyCode == cc.macro.KEY.p){
-            cc.audioEngine.pauseAll();
-            cc.director.pause();
-        }else if(event.keyCode == cc.macro.KEY.r){
-            cc.audioEngine.resumeAll();
-            cc.director.resume();
+            if(this.paused){
+                cc.audioEngine.resumeAll();
+                cc.director.resume();
+            }else{
+                cc.audioEngine.pauseAll();
+                cc.director.pause();
+            }            
         }
 
         if(event.keyCode == cc.macro.KEY.e && this.banana > 0 ){// put banana ##

@@ -92,6 +92,7 @@ export class Player extends cc.Component {
     hidden: boolean = false;
 
     private sec_list = [];
+    private paused: boolean = false;
 
     private dir: number = 0;
     private prev_dir: number = 0;
@@ -337,7 +338,7 @@ export class Player extends cc.Component {
             this.prev_dir = this.dir;
         }
         
-        if(event.keyCode == cc.macro.KEY.r){ // ## 
+        if((event.keyCode == cc.macro.KEY.r) && this.powerup){ // ## 
             // use color powerup
             var cl = this.Color.node.color;
             this.invis = true;
@@ -350,11 +351,13 @@ export class Player extends cc.Component {
         }
         
         if(event.keyCode == cc.macro.KEY.p){
-            cc.audioEngine.pauseAll();
-            cc.director.pause();
-        }else if(event.keyCode == cc.macro.KEY.r){
-            cc.audioEngine.resumeAll();
-            cc.director.resume();
+            if(this.paused){
+                cc.audioEngine.resumeAll();
+                cc.director.resume();
+            }else{
+                cc.audioEngine.pauseAll();
+                cc.director.pause();
+            }            
         }
     }
     onKeyUp(event){

@@ -49,6 +49,7 @@ var Bird = /** @class */ (function (_super) {
         _this.bird_back_music = null; // @A@
         _this.section_count = 0; // on contact with marker, if section_count * 1920 < this.node.x: init next section and section_count ++
         _this.score = 0;
+        _this.paused = false;
         _this.speed = 150;
         _this.coin = 0;
         _this.color = 0;
@@ -162,12 +163,14 @@ var Bird = /** @class */ (function (_super) {
             this.jump();
         }
         if (event.keyCode == cc.macro.KEY.p) {
-            cc.audioEngine.pauseAll();
-            cc.director.pause();
-        }
-        else if (event.keyCode == cc.macro.KEY.r) {
-            cc.audioEngine.resumeAll();
-            cc.director.resume();
+            if (this.paused) {
+                cc.audioEngine.resumeAll();
+                cc.director.resume();
+            }
+            else {
+                cc.audioEngine.pauseAll();
+                cc.director.pause();
+            }
         }
     };
     Bird.prototype.jump = function () {

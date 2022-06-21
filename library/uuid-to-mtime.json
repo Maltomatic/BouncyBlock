@@ -1604,11 +1604,6 @@
     "meta": 1655769941203,
     "relativePath": "scenes\\multi_lose.fire"
   },
-  "e8f7891e-9689-4fd7-a194-48ae189b2f2b": {
-    "asset": 1655768152634,
-    "meta": 1655768272565,
-    "relativePath": "scripts\\bird_player.ts"
-  },
   "a6bc94fb-bffc-4a7b-b4f4-dc58ca6beb38": {
     "asset": 1655770774768,
     "meta": 1655771003514,
@@ -1644,24 +1639,29 @@
     "meta": 1655775397862,
     "relativePath": "scripts\\multi_res_win.ts"
   },
+  "c2aff0ba-7329-4daf-9b7a-bb81a3ab84b1": {
+    "asset": 1655778781894,
+    "meta": 1655779118316,
+    "relativePath": "scripts\\lose.ts"
+  },
+  "e8f7891e-9689-4fd7-a194-48ae189b2f2b": {
+    "asset": 1655779516197,
+    "meta": 1655779909586,
+    "relativePath": "scripts\\bird_player.ts"
+  },
   "3095119b-5903-4a1d-92e8-fa42e3425160": {
-    "asset": 1655775894837,
-    "meta": 1655775899127,
+    "asset": 1655779491182,
+    "meta": 1655779909704,
     "relativePath": "scripts\\player_day.ts"
   },
   "a4fb5ce8-16f2-4ec9-b773-3d70ce77a8e4": {
-    "asset": 1655775866492,
-    "meta": 1655775899335,
+    "asset": 1655779411121,
+    "meta": 1655779909931,
     "relativePath": "scripts\\player.ts"
   },
-  "c2aff0ba-7329-4daf-9b7a-bb81a3ab84b1": {
-    "asset": 1655777037293,
-    "meta": 1655777087040,
-    "relativePath": "scripts\\lose.ts"
-  },
   "a4ea169f-e7a5-48fe-a76a-3f69d22f0a2e": {
-    "asset": 1655777242107,
-    "meta": 1655777245531,
+    "asset": 1655779994769,
+    "meta": 1655779996399,
     "relativePath": "scripts\\player_multi.ts"
   }
 }

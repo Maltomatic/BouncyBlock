@@ -73,6 +73,7 @@ var Player = /** @class */ (function (_super) {
         _this.debug_mode = true;
         _this.hidden = false;
         _this.sec_list = [];
+        _this.paused = false;
         _this.dir = 0;
         _this.prev_dir = 0;
         _this.fly_state = 0; // 0 for on ground, 1 for flying, -1 for falling
@@ -315,7 +316,7 @@ var Player = /** @class */ (function (_super) {
             this.dir = 1;
             this.prev_dir = this.dir;
         }
-        if (event.keyCode == cc.macro.KEY.r) { // ## 
+        if ((event.keyCode == cc.macro.KEY.r) && this.powerup) { // ## 
             // use color powerup
             var cl = this.Color.node.color;
             this.invis = true;
@@ -327,12 +328,14 @@ var Player = /** @class */ (function (_super) {
             }, 5);
         }
         if (event.keyCode == cc.macro.KEY.p) {
-            cc.audioEngine.pauseAll();
-            cc.director.pause();
-        }
-        else if (event.keyCode == cc.macro.KEY.r) {
-            cc.audioEngine.resumeAll();
-            cc.director.resume();
+            if (this.paused) {
+                cc.audioEngine.resumeAll();
+                cc.director.resume();
+            }
+            else {
+                cc.audioEngine.pauseAll();
+                cc.director.pause();
+            }
         }
     };
     Player.prototype.onKeyUp = function (event) {

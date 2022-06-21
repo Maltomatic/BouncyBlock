@@ -281,6 +281,7 @@ var Player = /** @class */ (function (_super) {
         this.dir = 0;
         this.sec_list = [this.sec0, this.sec1, this.sec2, this.sec3, this.sec4, this.sec5, this.sec10, this.sec11, this.sec12, this.sec13, this.sec17, this.sec18, this.sec19];
         this.score = 0;
+        console.log("joining as " + this.id, this.room);
         //------------sparkle color------------------------
         this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).startColor = this.Color.node.color;
         this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).endColor = this.Color.node.color;
@@ -356,7 +357,11 @@ var Player = /** @class */ (function (_super) {
     Player.prototype.check_mail = function () {
         var _this = this;
         if (!this.hiatus) {
-            var ref = firebase.database().ref('in_game/' + this.room + ((this.id == 1) ? '/creator' : '/joiner'));
+            var ref;
+            if (this.id == 1)
+                ref = firebase.database().ref('in_game/' + this.room + '/creator');
+            else
+                ref = firebase.database().ref('in_game/' + this.room + '/joiner');
             ref.once('value', function (snapshot) {
                 var rd = parseInt(snapshot.val());
                 console.log("read message value:" + rd);
@@ -508,14 +513,14 @@ var Player = /** @class */ (function (_super) {
                 if (this.id) {
                     // self is creator
                     firebase.database().ref('in_game/' + this.room + '/joiner').once('value', function (snapshot) {
-                        var ping = snapshot.val();
+                        var ping = parseInt(snapshot.val());
                         firebase.database().ref('in_game/' + _this.room + '/joiner').set(ping + 1);
                     });
                 }
                 else {
                     // self is joiner
                     firebase.database().ref('in_game/' + this.room + '/creator').once('value', function (snapshot) {
-                        var ping = snapshot.val();
+                        var ping = parseInt(snapshot.val());
                         firebase.database().ref('in_game/' + _this.room + '/creator').set(ping + 1);
                     });
                 }
@@ -533,7 +538,7 @@ var Player = /** @class */ (function (_super) {
                 }, delay);
             }
         }
-        if (event.keyCode == cc.macro.KEY.r) { // ##
+        if ((event.keyCode == cc.macro.KEY.r) && this.powerup) { // ##
             // use color powerup
             var cl = this.Color.node.color;
             this.invis = true;
@@ -544,7 +549,7 @@ var Player = /** @class */ (function (_super) {
                 _this.invis = false;
             }, 5);
         }
-        else if (event.keyCode == cc.macro.KEY.s) { // ##
+        if ((event.keyCode == cc.macro.KEY.s) && this.signal) { // ##
             // use bubble signal
             this.on_boost++;
             this.signal_point.color = cc.color(26, 219, 34);
@@ -556,7 +561,7 @@ var Player = /** @class */ (function (_super) {
                     _this.signal_point.color = cc.color(255, 255, 255);
             }, 5);
         }
-        else if (event.keyCode == cc.macro.KEY.f) { // ##
+        if ((event.keyCode == cc.macro.KEY.f) && this.mute) { // ##
             // use bubble mute
             this.in_hiding++;
             this.mute_point.color = cc.color(26, 219, 34);

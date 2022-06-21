@@ -24,15 +24,22 @@ export default class lose extends cc.Component {
         cc.debug.setDisplayStats(false);
         //cc.audioEngine.playMusic(this.bgm, true);
 
-        var score = cc.sys.localStorage.getItem("nowscore");
+        var score = parseInt(cc.sys.localStorage.getItem("nowscore"));
         var scene = cc.sys.localStorage.getItem("nowscene");
-        if(this.uid != 'local' && scene == 'test' && score > cc.sys.localStorage.getItem("highscore")) {
-            firebase.database().ref('/users/' + this.uid + '/highscore').set(parseInt(score), ()=> {
+        var h_score = parseInt(cc.sys.localStorage.getItem("highscore"));
+        // console.log(score);
+        // console.log(this.uid, scene, h_score);
+        // console.log("storing data if highscore");
+        // console.log((this.uid != 'local'));
+        // console.log((this.uid != 'local'));
+        // console.log((score > h_score));
+        // console.log((this.uid != 'local') && (scene == 'test') && (score > h_score));
+        if((this.uid != 'local') && (scene == 'test') && (score > h_score)) {
+            firebase.database().ref('/users/' + this.uid + '/highscore').set(score, ()=> {
                 cc.sys.localStorage.setItem("highscore", score);
             });
 
         }
-        console.log(score);
         cc.find('score').getComponent(cc.Label).string = score.toString();
 
         //callback

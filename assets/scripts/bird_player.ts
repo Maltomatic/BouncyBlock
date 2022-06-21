@@ -43,7 +43,7 @@ export class Bird extends cc.Component {
 
     section_count: number = 0;      // on contact with marker, if section_count * 1920 < this.node.x: init next section and section_count ++
     private score: number = 0;
-
+    private paused: boolean = false;
     private speed: number = 150;
     coin: number = 0;
     color: number = 0;
@@ -165,11 +165,13 @@ export class Bird extends cc.Component {
         }
         
         if(event.keyCode == cc.macro.KEY.p){
-            cc.audioEngine.pauseAll();
-            cc.director.pause();
-        }else if(event.keyCode == cc.macro.KEY.r){
-            cc.audioEngine.resumeAll();
-            cc.director.resume();
+            if(this.paused){
+                cc.audioEngine.resumeAll();
+                cc.director.resume();
+            }else{
+                cc.audioEngine.pauseAll();
+                cc.director.pause();
+            }            
         }
     }
 
