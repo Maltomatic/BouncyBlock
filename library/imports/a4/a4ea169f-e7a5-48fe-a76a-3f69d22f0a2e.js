@@ -375,7 +375,7 @@ var Player = /** @class */ (function (_super) {
                         var other_score = 0;
                         console.log(_this.id + " logging scores");
                         firebase.database().ref('in_game/' + _this.room + '/res/' + _this.id + '_res').set(_this.score, function () {
-                            if (!snap.child('joiner_res').exists() || !snap.child('creator_res').val().exists())
+                            if (!snap.child('joiner_res').exists() || !snap.child('creator_res').exists())
                                 _this.check_mail();
                             if (_this.id == 'creator')
                                 other_score = parseInt(snap.child('joiner_res').val());

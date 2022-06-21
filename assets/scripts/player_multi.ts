@@ -389,7 +389,7 @@ export class Player extends cc.Component {
                         var other_score = 0;
                         console.log(this.id + " logging scores");
                         firebase.database().ref('in_game/' + this.room + '/res/' + this.id + '_res').set(this.score, ()=>{
-                            if(!snap.child('joiner_res').exists() || !snap.child('creator_res').val().exists()) this.check_mail();
+                            if(!snap.child('joiner_res').exists() || !snap.child('creator_res').exists()) this.check_mail();
 
                             if(this.id == 'creator') other_score = parseInt(snap.child('joiner_res').val());
                             else other_score = parseInt(snap.child('creator_res').val());
