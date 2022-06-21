@@ -86,6 +86,7 @@ var Player = /** @class */ (function (_super) {
         _this.fly_state = 0; // 0 for on ground, 1 for flying, -1 for falling
         _this.on_floor = true;
         _this.stick = false;
+        _this.stick2 = false;
         _this.invis = false;
         _this.chameleon = null;
         _this.id = null;
@@ -157,6 +158,10 @@ var Player = /** @class */ (function (_super) {
                     this.on_floor = true;
             }
             if (other.node.group == 'mound') {
+                if (touch.y && !touch.x) {
+                    contact.disabled = true;
+                    this.stick2 = true;
+                }
                 if ((other.node.getComponent(cc.TiledTile).gid == this.color + this.base && touch.x) || this.invis) {
                     this.node.getChildByName('eye').active = false;
                     this.hidden = true;
@@ -297,6 +302,11 @@ var Player = /** @class */ (function (_super) {
         cc.audioEngine.playMusic(this.multi_back_music, true);
     };
     Player.prototype.update = function (dt) {
+        if (this.stick2) {
+            this.node.x -= 0.4 * this.dir;
+            this.dir = 0;
+            this.stick2 = false;
+        }
         if (this.invis && !this.unhide) {
             if (!this.hidden) {
                 var cl = new cc.Color(0, 0, 0);

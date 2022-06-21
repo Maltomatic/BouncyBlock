@@ -41,8 +41,7 @@ var NewClass = /** @class */ (function (_super) {
         cc.audioEngine.pauseMusic(); // @A@
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
-                _this.uid = firebase.auth().currentUser.uid;
-                _this.key = _this.uid.substring(0, 5);
+                console.log("logged in");
             }
             else {
                 _this.kick = true;
@@ -51,6 +50,8 @@ var NewClass = /** @class */ (function (_super) {
     };
     NewClass.prototype.start = function () {
         var _this = this;
+        this.uid = cc.sys.localStorage.getItem("uid");
+        this.key = this.uid.substring(0, 5);
         cc.find("Canvas/root/Create").on(cc.Node.EventType.MOUSE_DOWN, function () {
             if (_this.kick) {
                 alert("Multiplayer is not accessible when you are not signed in.");
@@ -68,8 +69,7 @@ var NewClass = /** @class */ (function (_super) {
                 _this.joinGame();
         }, this);
         cc.find("Canvas/root/back").on(cc.Node.EventType.MOUSE_DOWN, function () {
-            var key = _this.uid.substring(0, 5);
-            firebase.database().ref('waiting_room/' + key).remove();
+            firebase.database().ref('waiting_room/' + _this.key).remove();
             firebase.database().ref('in_game/' + _this.uid).remove();
             _this.invite_code.string = '';
             cc.director.loadScene('menu');

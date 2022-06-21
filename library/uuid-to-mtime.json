@@ -1,7 +1,7 @@
 {
   "808dbc7e-750d-4f06-a439-10751a468f5e": {
-    "asset": 1655675884441,
-    "meta": 1655729030065,
+    "asset": 1655752012277,
+    "meta": 1655789415100,
     "relativePath": "Animation"
   },
   "e449813f-b6ab-4724-a9c5-9003463f9a75": {
@@ -130,8 +130,8 @@
     "relativePath": "audio\\footstep.wav"
   },
   "f440d094-9e58-4029-9a31-9d4057e5e2ee": {
-    "asset": 1655728345211,
-    "meta": 1655729030069,
+    "asset": 1655758795156,
+    "meta": 1655789415103,
     "relativePath": "image"
   },
   "996126dd-43e4-4fd7-864c-d87bbe5d354c": {
@@ -275,8 +275,8 @@
     "relativePath": "image\\sharp_down.png"
   },
   "6f12df5d-d5da-4eec-857a-07fadfdfc319": {
-    "asset": 1655728345216,
-    "meta": 1655729030071,
+    "asset": 1655756549818,
+    "meta": 1655789415105,
     "relativePath": "prefabs"
   },
   "9e45da6a-cbd3-416d-8e81-5769c5066ca2": {
@@ -460,8 +460,8 @@
     "relativePath": "prefabs\\section7.prefab"
   },
   "e8cb6686-0da8-4260-99a8-b5d5b8aac11c": {
-    "asset": 1655728345229,
-    "meta": 1655729030072,
+    "asset": 1655762224915,
+    "meta": 1655789415107,
     "relativePath": "scenes"
   },
   "8610c8cd-540f-455c-9f28-772387b28de8": {
@@ -495,8 +495,8 @@
     "relativePath": "prefabs\\star_explode.prefab"
   },
   "240792ee-e159-498e-9d53-7f96c7aafa0b": {
-    "asset": 1655728345243,
-    "meta": 1655729030074,
+    "asset": 1655768792584,
+    "meta": 1655789415109,
     "relativePath": "scripts"
   },
   "39f308ea-905f-4fc8-8004-c5ade8bc02ab": {
@@ -1335,8 +1335,8 @@
     "relativePath": "background_music\\menu.mp3"
   },
   "c676e8bc-b7a2-4ccd-90b3-2ef03d90bb2b": {
-    "asset": 1655748023335,
-    "meta": 1655748511079,
+    "asset": 1655782588671,
+    "meta": 1655789415192,
     "relativePath": "scripts\\pair_game.ts"
   },
   "f0e6fab3-4fb9-4702-a737-38535dc25695": {
@@ -1364,19 +1364,14 @@
     "meta": 1655753067145,
     "relativePath": "image\\signal.png"
   },
-  "9cb3f2d5-5b5e-407e-8ae8-94e03d54ed7f": {
-    "asset": 1655756506702,
-    "meta": 1655756557462,
-    "relativePath": "scripts\\spider.ts"
-  },
   "73edc454-e24d-45f0-908d-c4e3183948ae": {
-    "asset": 1655756506704,
-    "meta": 1655756557523,
+    "asset": 1655782649124,
+    "meta": 1655789415276,
     "relativePath": "scripts\\start_scene.ts"
   },
   "3daecba3-d1b8-41a9-aec2-60ca42f70386": {
-    "asset": 1655756506683,
-    "meta": 1655756557525,
+    "asset": 1655789442870,
+    "meta": 1655789442885,
     "relativePath": "prefabs\\spider.prefab"
   },
   "70fdd7c0-9fce-41ee-ad1c-0ad0681c277b": {
@@ -1644,11 +1639,6 @@
     "meta": 1655787106528,
     "relativePath": "scripts\\player_day.ts"
   },
-  "a4ea169f-e7a5-48fe-a76a-3f69d22f0a2e": {
-    "asset": 1655787006491,
-    "meta": 1655787106645,
-    "relativePath": "scripts\\player_multi.ts"
-  },
   "a6bc94fb-bffc-4a7b-b4f4-dc58ca6beb38": {
     "asset": 1655787144604,
     "meta": 1655787145917,
@@ -1659,9 +1649,19 @@
     "meta": 1655788932072,
     "relativePath": "scripts\\section_init.ts"
   },
+  "9cb3f2d5-5b5e-407e-8ae8-94e03d54ed7f": {
+    "asset": 1655789396061,
+    "meta": 1655789397367,
+    "relativePath": "scripts\\spider.ts"
+  },
   "a4fb5ce8-16f2-4ec9-b773-3d70ce77a8e4": {
-    "asset": 1655789298135,
-    "meta": 1655789299353,
+    "asset": 1655790031973,
+    "meta": 1655790033247,
     "relativePath": "scripts\\player.ts"
+  },
+  "a4ea169f-e7a5-48fe-a76a-3f69d22f0a2e": {
+    "asset": 1655790319591,
+    "meta": 1655790326054,
+    "relativePath": "scripts\\player_multi.ts"
   }
 }

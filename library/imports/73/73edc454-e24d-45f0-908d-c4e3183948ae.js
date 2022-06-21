@@ -129,6 +129,10 @@ var start_scene = /** @class */ (function (_super) {
         //cc.audioEngine.playEffect(this.press, false);
         //console.log(this.email_data, this.password_data);
         console.log('name = ', this.username);
+        if (this.username == '') {
+            alert('Username cannot be empty.');
+            return;
+        }
         firebase.auth().createUserWithEmailAndPassword(this.email_data, this.password_data).then(function (result) {
             // firebase.database().ref('/users').once("value").then( (snapshot)=> {
             // if(snapshot.child(result.uid).exists() == false) {

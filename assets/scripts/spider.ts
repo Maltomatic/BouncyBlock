@@ -21,7 +21,6 @@ export class spider extends cc.Component {
     }
     update(dt) {
         this.node.x += 220 * dt * this.moveDir;
-        this.node.skewX += 20 * dt * this.moveDir;
         //this.node.scaleX = (this.moveDir >= 0) ? 1 : -1;
     }
      onBeginContact(contact , self , other){

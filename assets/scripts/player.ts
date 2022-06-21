@@ -99,6 +99,7 @@ export class Player extends cc.Component {
     private fly_state: number = 0;  // 0 for on ground, 1 for flying, -1 for falling
     private on_floor: boolean = true;
     private stick: boolean = false;
+    private stick2: boolean = false;
     private invis: boolean = false;
     private chameleon: string = null;
     section_count = 0;      // on contact with marker, if section_count * 1920 < this.node.x: init next section and section_count ++
@@ -179,8 +180,7 @@ export class Player extends cc.Component {
             if(other.node.group == 'mound') {
                 if(touch.y && !touch.x){
                     contact.disabled = true;
-                    this.node.x -= 0.2*this.dir;
-                    this.dir = 0;
+                    this.stick2 = true;
                 }
                 if((other.node.getComponent(cc.TiledTile).gid == this.color + this.base && touch.x) || this.invis) {
                     this.node.getChildByName('eye').active = false;
@@ -275,6 +275,11 @@ export class Player extends cc.Component {
     }
 
     update (dt) {
+        if(this.stick2){
+            this.node.x -= 0.4 * this.dir;
+            this.dir = 0;
+            this.stick2 = false;
+        }
         if(this.invis){
             if(!this.hidden){
                 var cl = new cc.Color(0, 0, 0);
