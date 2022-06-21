@@ -19,10 +19,10 @@ export class Loadscene extends cc.Component {
             // count -= 1;
             var str = cc.find('Canvas/load_background/str').getComponent(cc.Label);
             str.string = str.string + '.';
-        }, 1, 3);
+        }, 0.3, 3);
         this.scheduleOnce(()=> {
             cc.director.loadScene('menu');
-        }, 3.1);
+        }, 1);
         cc.sys.localStorage.setItem("uid", 'local');
         cc.sys.localStorage.setItem("coins", 0);
         cc.sys.localStorage.setItem("lego", 0);

@@ -70,7 +70,7 @@ var Player = /** @class */ (function (_super) {
         _this.get_powerup_bubble = null;
         _this.shooted = null;
         _this.night_back_music = null; // @A@
-        _this.debug_mode = true;
+        _this.debug_mode = false;
         _this.hidden = false;
         _this.sec_list = [];
         _this.paused = false;
@@ -147,10 +147,15 @@ var Player = /** @class */ (function (_super) {
             if (touch.y && this.fly_state == -1) {
                 this.stick = true;
                 this.fly_state = 0;
-                if (!this.on_floor && touch.y < 0)
+                if (!this.on_floor && touch.y)
                     this.on_floor = true;
             }
             if (other.node.group == 'mound') {
+                if (touch.y && !touch.x) {
+                    contact.disabled = true;
+                    this.node.x -= 0.2 * this.dir;
+                    this.dir = 0;
+                }
                 if ((other.node.getComponent(cc.TiledTile).gid == this.color + this.base && touch.x) || this.invis) {
                     this.node.getChildByName('eye').active = false;
                     this.hidden = true;
@@ -201,6 +206,7 @@ var Player = /** @class */ (function (_super) {
         this.node.getChildByName('color').active = false;
     };
     Player.prototype.loser = function () {
+        this.unscheduleAllCallbacks();
         console.log("you died");
         cc.sys.localStorage.setItem("coins", this.coin);
         cc.sys.localStorage.setItem("powerup", this.powerup);
@@ -265,7 +271,7 @@ var Player = /** @class */ (function (_super) {
             this.fly_state = -1;
         }
         else if (this.stick) {
-            console.log("stick");
+            // console.log("stick");
             this.node.x += this.prev_dir * 0.4;
             this.stick = false;
         }
@@ -354,7 +360,7 @@ var Player = /** @class */ (function (_super) {
         this.fly_state = 1;
         if (!this.debug_mode)
             this.on_floor = false;
-        console.log(this.prev_dir + "fly state: " + this.fly_state);
+        // console.log(this.prev_dir + "fly state: " + this.fly_state);
     };
     Player.prototype.update_coin = function () {
         this.coin_point.getComponent(cc.Label).string = this.coin.toString();

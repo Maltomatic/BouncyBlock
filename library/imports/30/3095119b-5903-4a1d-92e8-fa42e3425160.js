@@ -70,8 +70,7 @@ var Player = /** @class */ (function (_super) {
         _this.sharp_knife = null;
         _this.die_audio = null;
         _this.day_back_music = null; // @A@
-        _this.debug_mode = true;
-        _this.hidden = false;
+        _this.debug_mode = false;
         _this.sec_list = [];
         _this.paused = false;
         _this.dir = 0;
@@ -145,13 +144,6 @@ var Player = /** @class */ (function (_super) {
                 if (!this.on_floor && touch.y < 0)
                     this.on_floor = true;
             }
-            if (other.node.group == 'mound') {
-                if (other.node.getComponent(cc.TiledTile).gid == this.color + this.base && touch.x /* && !touch.y*/) {
-                    this.node.getChildByName('eye').active = false;
-                    this.hidden = true;
-                    // this.last_x = this.node.x;
-                }
-            }
         }
         else if (other.node.group == 'coin') { // @@ 
             cc.audioEngine.playEffect(this.get_coin, false);
@@ -204,20 +196,6 @@ var Player = /** @class */ (function (_super) {
             cc.director.loadScene("lose");
         }, 0.3);
     };
-    Player.prototype.onEndContact = function (contact, self, other) {
-        //a bug happens when the color of mound is same as the color of player, not solved yet 
-        // fixed with mound. player should now check collisions with mound
-        if (this.getComponent(cc.RigidBody).linearVelocity.y != 0) {
-            this.node.getChildByName('eye').active = true;
-            this.hidden = false;
-        }
-        else if (other.node.group == 'mound') {
-            if (other.node.getComponent(cc.TiledTile).gid == this.color + this.base) {
-                this.node.getChildByName('eye').active = true;
-                this.hidden = false;
-            }
-        }
-    };
     Player.prototype.start = function () {
         this.coin = cc.sys.localStorage.getItem("coins");
         this.lego = cc.sys.localStorage.getItem("lego");
@@ -239,6 +217,14 @@ var Player = /** @class */ (function (_super) {
         cc.audioEngine.playMusic(this.day_back_music, true);
     };
     Player.prototype.update = function (dt) {
+        if (!this.node.active) {
+            cc.sys.localStorage.setItem("coins", this.coin);
+            cc.sys.localStorage.setItem("lego", this.lego);
+            cc.sys.localStorage.setItem("banana", this.banana);
+            cc.sys.localStorage.setItem("nowscore", this.score);
+            cc.sys.localStorage.setItem("nowscene", 'test');
+            cc.director.loadScene('lose');
+        }
         if (this.node.y <= -400) {
             // die
             // deploy white particles

@@ -110,6 +110,10 @@ export default class start_scene extends cc.Component {
         //cc.audioEngine.playEffect(this.press, false);
         //console.log(this.email_data, this.password_data);
         console.log('name = ', this.username);
+        if(this.username == ''){
+            alert('Username cannot be empty.');
+            return;
+        }
         firebase.auth().createUserWithEmailAndPassword(this.email_data, this.password_data).then( (result) => {
             // firebase.database().ref('/users').once("value").then( (snapshot)=> {
                 // if(snapshot.child(result.uid).exists() == false) {

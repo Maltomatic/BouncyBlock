@@ -60,6 +60,7 @@ var lose = /** @class */ (function (_super) {
         if ((this.uid != 'local') && (scene == 'test') && (score > h_score)) {
             firebase.database().ref('/users/' + this.uid + '/highscore').set(score, function () {
                 cc.sys.localStorage.setItem("highscore", score);
+                cc.find('Canvas/best').active = true;
             });
         }
         cc.find('score').getComponent(cc.Label).string = score.toString();

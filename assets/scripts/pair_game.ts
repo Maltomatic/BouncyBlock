@@ -17,8 +17,7 @@ export default class NewClass extends cc.Component {
         cc.audioEngine.pauseMusic(); // @A@
         firebase.auth().onAuthStateChanged((user) => {
             if(user){
-                this.uid = firebase.auth().currentUser.uid;
-                this.key = this.uid.substring(0, 5);
+                console.log("logged in");
             }else{
                 this.kick = true;
             }
@@ -26,6 +25,8 @@ export default class NewClass extends cc.Component {
     }
 
     start () {
+        this.uid = cc.sys.localStorage.getItem("uid");
+        this.key = this.uid.substring(0, 5);
         cc.find("Canvas/root/Create").on(cc.Node.EventType.MOUSE_DOWN, () => {
             if(this.kick){
                 alert("Multiplayer is not accessible when you are not signed in.");
@@ -39,8 +40,7 @@ export default class NewClass extends cc.Component {
             }else this.joinGame()
         }, this);
         cc.find("Canvas/root/back").on(cc.Node.EventType.MOUSE_DOWN, () => {
-            var key: string = this.uid.substring(0, 5);
-            firebase.database().ref('waiting_room/' + key).remove();
+            firebase.database().ref('waiting_room/' + this.key).remove();
             firebase.database().ref('in_game/' + this.uid).remove();
             this.invite_code.string = '';
             cc.director.loadScene('menu');

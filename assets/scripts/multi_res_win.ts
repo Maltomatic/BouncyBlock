@@ -29,22 +29,19 @@ export default class NewClass extends cc.Component {
         var self_score = cc.sys.localStorage.getItem('multi_self');
         var other_score = cc.sys.localStorage.getItem('multi_other');
         
-        cc.find('multi_self').getComponent(cc.Label).string = self_score.toString();
-        cc.find('multi_other').getComponent(cc.Label).string = other_score.toString();
+        cc.find('Canvas/multi_self').getComponent(cc.Label).string = self_score.toString();
+        cc.find('Canvas/multi_other').getComponent(cc.Label).string = other_score.toString();
         console.log(self_score, other_score);
 
         //callback
-        if(this.uid != 'local') {
-            firebase.database().ref('/users/' + this.uid + '/coins').set(parseInt(cc.sys.localStorage.getItem("coins")));
-            firebase.database().ref('/users/' + this.uid + '/thing/powerup').set(parseInt(cc.sys.localStorage.getItem("powerup")));
-            firebase.database().ref('/users/' + this.uid + '/thing/mute').set(parseInt(cc.sys.localStorage.getItem("mute")));
-            firebase.database().ref('/users/' + this.uid + '/thing/signal').set(parseInt(cc.sys.localStorage.getItem("signal")));
-        }
-        let menu = new cc.Component.EventHandler();
-        menu.target = this.node;
-        menu.component = "lose";
-        menu.handler = "loadmenu";
-        cc.find("Canvas/menu").getComponent(cc.Button).clickEvents.push(menu);
+        firebase.database().ref('/users/' + this.uid + '/coins').set(parseInt(cc.sys.localStorage.getItem("coins")));
+        firebase.database().ref('/users/' + this.uid + '/thing/powerup').set(parseInt(cc.sys.localStorage.getItem("powerup")));
+        firebase.database().ref('/users/' + this.uid + '/thing/mute').set(parseInt(cc.sys.localStorage.getItem("mute")));
+        firebase.database().ref('/users/' + this.uid + '/thing/signal').set(parseInt(cc.sys.localStorage.getItem("signal")));
+        
+        cc.find("Canvas/menu").on(cc.Node.EventType.MOUSE_DOWN, () => {
+            this.loadmenu();
+        }, this);
     }
 
 

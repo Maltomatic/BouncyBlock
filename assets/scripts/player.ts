@@ -88,7 +88,7 @@ export class Player extends cc.Component {
     @property(cc.AudioClip)
     night_back_music : cc.AudioClip = null;// @A@
 
-    debug_mode: boolean = true;
+    debug_mode: boolean = false;
     hidden: boolean = false;
 
     private sec_list = [];
@@ -173,10 +173,15 @@ export class Player extends cc.Component {
             if(touch.y && this.fly_state == -1){
                 this.stick = true;
                 this.fly_state = 0;
-                if(!this.on_floor && touch.y < 0) this.on_floor = true;
+                if(!this.on_floor && touch.y) this.on_floor = true;
             }
 
             if(other.node.group == 'mound') {
+                if(touch.y && !touch.x){
+                    contact.disabled = true;
+                    this.node.x -= 0.2*this.dir;
+                    this.dir = 0;
+                }
                 if((other.node.getComponent(cc.TiledTile).gid == this.color + this.base && touch.x) || this.invis) {
                     this.node.getChildByName('eye').active = false;
                     this.hidden = true;
@@ -224,6 +229,7 @@ export class Player extends cc.Component {
             this.node.getChildByName('color').active = false;
     }
     loser(){
+        this.unscheduleAllCallbacks();
         console.log("you died");
         cc.sys.localStorage.setItem("coins", this.coin);
         cc.sys.localStorage.setItem("powerup", this.powerup);
@@ -290,7 +296,7 @@ export class Player extends cc.Component {
             this.node.x -= this.prev_dir * 0.4;
             this.fly_state = -1;
         }else if(this.stick){
-            console.log("stick");
+            // console.log("stick");
             this.node.x += this.prev_dir * 0.4;
             this.stick = false;
         }
@@ -376,7 +382,7 @@ export class Player extends cc.Component {
         this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 600);
         this.fly_state = 1;
         if(!this.debug_mode) this.on_floor = false;
-        console.log(this.prev_dir + "fly state: " + this.fly_state);
+        // console.log(this.prev_dir + "fly state: " + this.fly_state);
     }
     update_coin(){  // @@ 
         this.coin_point.getComponent(cc.Label).string = this.coin.toString();

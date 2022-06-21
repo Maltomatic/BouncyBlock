@@ -37,6 +37,7 @@ export default class lose extends cc.Component {
         if((this.uid != 'local') && (scene == 'test') && (score > h_score)) {
             firebase.database().ref('/users/' + this.uid + '/highscore').set(score, ()=> {
                 cc.sys.localStorage.setItem("highscore", score);
+                cc.find('Canvas/best').active = true;
             });
 
         }

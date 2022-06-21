@@ -95,30 +95,30 @@ export class Section extends cc.Component {
 
                     var collider = FloorTile.node.addComponent(cc.PhysicsBoxCollider);
                     collider.offset = cc.v2(sz.width/2, sz.height/2);
-                    if(floor.getTiledTileAt(i, j-1, true).gid) collider.size = cc.size(47.8, 48);
+                    if(floor.getTiledTileAt(i, j-1, true).gid) collider.size = cc.size(47.6, 48);
                     else collider.size = sz;
                     collider.apply();
                 }
             }
         }
         // console.log("tile init complete, marking mounds")
-        // for(j = 3; j < layerSz.height; j++){
-        var FloorTile = floor.getTiledTileAt(layerSz.width-1, 7, true);
-        if(FloorTile.gid){
-            FloorTile.node.group = "mound";
-            var col = FloorTile.node.getComponent(cc.PhysicsBoxCollider);
-            col.size = cc.size(47.8, 48);
-            col.apply();
-            // console.log("shrink collider size of tile(" + 39 + ", " + 7 + ") to "+ col.size.width + ", "+ col.size.height);
+        for(j = 8; j > 2; j--){
+            var FloorTile = floor.getTiledTileAt(layerSz.width-1, j, true);
+            if(FloorTile.gid && floor.getTiledTileAt(layerSz.width-1, j-1, true).gid){
+                /*if(j == 3)*/ FloorTile.node.group = "mound";
+                var col = FloorTile.node.getComponent(cc.PhysicsBoxCollider);
+                col.size = cc.size(47.6, 48);
+                col.apply();
+                // console.log("shrink collider size of tile(" + 39 + ", " + 7 + ") to "+ col.size.width + ", "+ col.size.height);
+            }
         }
-        // }
         for(var i = 1; i < layerSz.width-1; i++){
             for(var j = 0; j < layerSz.height -1; j++){
                 var FloorTile = floor.getTiledTileAt(i, j, true);
-                if(FloorTile.gid != 0 && ((floor.getTiledTileAt(i+1, j, true).gid == 0 && floor.getTiledTileAt(i+1, j+1, true).gid != 0) || (floor.getTiledTileAt(i-1, j, true).gid == 0 && floor.getTiledTileAt(i-1, j+1, true).gid != 0))){
-                    FloorTile.node.group = "mound";
+                if(FloorTile.gid != 0 && floor.getTiledTileAt(i, j-1, true).gid && ((floor.getTiledTileAt(i+1, j, true).gid == 0) || (floor.getTiledTileAt(i-1, j, true).gid == 0))){
+                    /*if((floor.getTiledTileAt(i+1, j, true).gid == 0 && floor.getTiledTileAt(i+1, j+1, true).gid != 0) || (floor.getTiledTileAt(i-1, j, true).gid == 0 && floor.getTiledTileAt(i-1, j+1, true).gid != 0))*/ FloorTile.node.group = "mound";
                     var col = FloorTile.node.getComponent(cc.PhysicsBoxCollider);
-                    col.size = cc.size(47.8, 48);
+                    col.size = cc.size(47.6, 48);
                     col.apply();
                     // console.log("shrink collider size of tile(" + 39 + ", " + 7 + ") to "+ col.size.width + ", "+ col.size.height);
                 }
@@ -228,7 +228,7 @@ export class Section extends cc.Component {
             for(var j = 0; j < layer_size.height; j++){
                 var tile = coin_layer.getTiledTileAt(i, j, true);
                 //coin
-                console.log(tile.gid);
+                // console.log(tile.gid);
                 if(tile.gid == 268 + 61){  
                     var c = cc.instantiate(this.coin_pre);
                     c.x = section_count * 1920 + tile.node.x;

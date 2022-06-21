@@ -96,8 +96,7 @@ export class Player extends cc.Component {
     @property(cc.AudioClip)
     day_back_music : cc.AudioClip = null;// @A@
 
-    debug_mode: boolean = true;
-    hidden: boolean = false;
+    debug_mode: boolean = false;
 
     private sec_list = [];
     private paused: boolean = false;
@@ -177,15 +176,7 @@ export class Player extends cc.Component {
                 this.stick = true;
                 this.fly_state = 0;
                 if(!this.on_floor && touch.y < 0) this.on_floor = true;
-            }
-
-            if(other.node.group == 'mound') {
-                if(other.node.getComponent(cc.TiledTile).gid == this.color + this.base && touch.x/* && !touch.y*/) {
-                    this.node.getChildByName('eye').active = false;
-                    this.hidden = true;
-                    // this.last_x = this.node.x;
-                }
-            }    
+            }  
         } else if(other.node.group == 'coin'){ // @@ 
             cc.audioEngine.playEffect(this.get_coin, false); 
             this.coin++;
@@ -237,19 +228,6 @@ export class Player extends cc.Component {
             cc.director.loadScene("lose");
         }, 0.3);
     }
-    onEndContact(contact, self, other) {
-        //a bug happens when the color of mound is same as the color of player, not solved yet 
-        // fixed with mound. player should now check collisions with mound
-        if(this.getComponent(cc.RigidBody).linearVelocity.y != 0){
-            this.node.getChildByName('eye').active = true;
-            this.hidden = false;
-        }else if( other.node.group == 'mound') {
-            if(other.node.getComponent(cc.TiledTile).gid == this.color + this.base) {
-                this.node.getChildByName('eye').active = true;
-                this.hidden = false;
-            }
-        }
-    }
 
     start () {
         this.coin = cc.sys.localStorage.getItem("coins");
@@ -275,6 +253,14 @@ export class Player extends cc.Component {
     }
 
     update (dt) {
+        if(!this.node.active){
+            cc.sys.localStorage.setItem("coins", this.coin);
+            cc.sys.localStorage.setItem("lego", this.lego);
+            cc.sys.localStorage.setItem("banana", this.banana);
+            cc.sys.localStorage.setItem("nowscore", this.score);
+            cc.sys.localStorage.setItem("nowscene", 'test');
+            cc.director.loadScene('lose');
+        }
         if(this.node.y <= -400){
             // die
             // deploy white particles

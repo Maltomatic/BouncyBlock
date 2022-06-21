@@ -89,7 +89,7 @@ export class Player extends cc.Component {
     @property(cc.Node)
     mute_point : cc.Node = null; 
 
-    debug_mode: boolean = true;
+    debug_mode: boolean = false;
     hidden: boolean = false;
     private noisy: number = 0;
     private unhide: boolean = false;
@@ -112,7 +112,7 @@ export class Player extends cc.Component {
     private stick: boolean = false;
     private invis: boolean = false;
     private chameleon: string = null;
-    private id: number = 0;
+    private id: string = null;
     private room: string = null;
     section_count = 0;      // on contact with marker, if section_count * 1920 < this.node.x: init next section and section_count ++
 
@@ -139,7 +139,7 @@ export class Player extends cc.Component {
         this.strip = cc.find('Canvas/root').getComponent('root').color_strip;
         this.base = 1 + 6*this.strip;
         this.color = 1 + Math.floor(Math.random() * 4);
-        //// console.log(this.base +  Math.floor(Math.random() * 5));
+        // console.log(this.base +  Math.floor(Math.random() * 5));
         var color_str = this.color_list[this.base + this.color];
         var color = new cc.Color(255,255,255);
         this.Color.node.color = color.fromHEX(color_str);
@@ -161,22 +161,22 @@ export class Player extends cc.Component {
     }
 
     onBeginContact(contact, self, other){
-        console.log(other.tag);
+        // console.log(other.tag);
         var touch = contact.getWorldManifold().normal;
-        // // console.log("hit node with color " + other.node.getComponent(cc.TiledTile).gid);
+        // console.log("hit node with color " + other.node.getComponent(cc.TiledTile).gid);
         if(other.tag == 1000){
             //// console.log("hit marker");
             if(this.node.x >= this.section_count*1920){
-                //// console.log("init next section");
+                // console.log("init next section");
                 this.section_count++;
                 var rand = Math.floor(Math.random() * Math.min(2+this.section_count*3, 21));
-                //// console.log(rand);
-                //// console.log("To instantiate: " + this.sec_list[rand].name);
+                // console.log(rand);
+                // console.log("To instantiate: " + this.sec_list[rand].name);
                 var next_section = cc.instantiate(this.sec_list[rand]);
                 next_section.x = 1920 * this.section_count;
                 next_section.y = 0;
                 this.maplist.addChild(next_section);
-            } //else // console.log(this.node.x, this.section_count);
+            }
         }else if(other.node.group == 'ground' || other.node.group == 'mound'){
             // console.log(other.node.group + " (" + touch.x + ", " + touch.y + ")")
             if(touch.y && this.fly_state == -1){
@@ -253,18 +253,18 @@ export class Player extends cc.Component {
         this.node.getChildByName('color').active = false;
     }
     loser(){
-        if(this.id){
+        if(this.id == 'creator'){
             // self is creator
-            firebase.database().ref('in_game/' + this.room + '/joiner').set(-100, () =>{
-                firebase.database().ref('in_game/' + this.room + '/res/creator_res').set(this.score, ()=>{
+            firebase.database().ref('in_game/' + this.room + '/res/creator_res').set(this.score, ()=>{
+                firebase.database().ref('in_game/' + this.room + '/joiner').set(-100, () =>{
                     this.hiatus = true;
                     this.check_mail();
                 });
             });
         }else{
             // self is joiner
-            firebase.database().ref('in_game/' + this.room + '/creator').set(-100, () =>{
-                firebase.database().ref('in_game/' + this.room + '/res/joiner_res').set(this.score, ()=>{
+            firebase.database().ref('in_game/' + this.room + '/res/joiner_res').set(this.score, ()=>{
+                firebase.database().ref('in_game/' + this.room + '/creator').set(-100, () =>{
                     this.hiatus = true;
                     this.check_mail();
                 });
@@ -287,7 +287,7 @@ export class Player extends cc.Component {
     }
 
     start () {
-        this.id = cc.sys.localStorage.getItem('id');
+        var _id = parseInt(cc.sys.localStorage.getItem('id'));
         this.room = cc.sys.localStorage.getItem('room');
         this.coin = cc.sys.localStorage.getItem("coins");
         this.mute = cc.sys.localStorage.getItem("mute");
@@ -300,6 +300,8 @@ export class Player extends cc.Component {
         this.update_signal();
         this.update_powerup();
         this.playBGM();
+        if(_id == 1) this.id = 'creator';
+        else this.id = 'joiner';
         this.dir = 0;
         this.sec_list = [this.sec0, this.sec1, this.sec2, this.sec3, this.sec4,this.sec5,this.sec10,this.sec11,this.sec12,this.sec13,this.sec17,this.sec18,this.sec19];
         this.score = 0;
@@ -373,65 +375,46 @@ export class Player extends cc.Component {
 
     check_mail(){
         if(!this.hiatus){
-            var ref;
-            if(this.id == 1) ref = firebase.database().ref('in_game/' + this.room + '/creator');
-            else ref = firebase.database().ref('in_game/' + this.room + '/joiner');
+            var ref = firebase.database().ref('in_game/' + this.room + '/' + this.id);
 
             ref.once('value', (snapshot) => {
                 var rd = parseInt(snapshot.val());
                 console.log("read message value:" + rd);
                 if(rd < -50){
+                    console.log("opponent has died, log scores");
                     firebase.database().ref('in_game/' + this.room + '/res').once('value', (snap) => {
                         var self_score = this.score;
                         var other_score = 0;
-                        if(this.id){
-                            firebase.database().ref('in_game/' + this.room + 'res/creator_res').set(this.score, ()=>{
-                                other_score = parseInt(snap['joiner']);
-                                cc.sys.localStorage.setItem('multi_self', self_score);
-                                cc.sys.localStorage.setItem('multi_other', other_score);
-                                cc.sys.localStorage.setItem("coins", this.coin);
-                                cc.sys.localStorage.setItem("mute", this.mute);
-                                cc.sys.localStorage.setItem("signal", this.signal);
-                                if(self_score >= other_score){
-                                    var explode=this.node.getChildByName("star_explode");
-                                    explode.active = true;
-                                    explode.getComponent(cc.ParticleSystem).startColor = cc.color(0, 0, 0);
-                                    explode.getComponent(cc.ParticleSystem).endColor = cc.color(229, 229, 22);
-                                    explode.getComponent(cc.ParticleSystem).endColorVar = this.Color.node.color;
-                                    this.scheduleOnce(() => {
-                                        cc.director.loadScene('multi_win');
-                                    }, 0.3);
-                                }else{
-                                    this.die_particle();
+                        console.log(this.id + " logging scores");
+                        firebase.database().ref('in_game/' + this.room + '/res/' + this.id + '_res').set(this.score, ()=>{
+                            if(this.id == 'creator') other_score = parseInt(snap.child('joiner').val());
+                            else other_score = parseInt(snap.child('creator').val());
+                            cc.sys.localStorage.setItem('multi_self', self_score);
+                            cc.sys.localStorage.setItem('multi_other', other_score);
+                            console.log("immediate values: " + self_score, other_score);
+                            console.log("stored values: " + cc.sys.localStorage.getItem('multi_self'), cc.sys.localStorage.getItem('multi_other'));
+                            cc.sys.localStorage.setItem("coins", this.coin);
+                            cc.sys.localStorage.setItem("mute", this.mute);
+                            cc.sys.localStorage.setItem("signal", this.signal);
+                            if(self_score >= other_score){
+                                var explode=this.node.getChildByName("star_explode");
+                                explode.active = true;
+                                explode.getComponent(cc.ParticleSystem).startColor = cc.color(0, 0, 0);
+                                explode.getComponent(cc.ParticleSystem).endColor = cc.color(229, 229, 22);
+                                explode.getComponent(cc.ParticleSystem).endColorVar = this.Color.node.color;
+                                this.scheduleOnce(() => {
+                                    cc.director.loadScene('multi_win');
+                                }, 0.3);
+                            }else{
+                                this.die_particle();
+                                this.scheduleOnce(() => {
                                     cc.director.loadScene('multi_lose');
-                                }
-                            });
-                        }else{
-                            firebase.database().ref('in_game/' + this.room + 'res/joiner_res').set(this.score, ()=>{
-                                other_score = parseInt(snap['creator']);
-                                cc.sys.localStorage.setItem('multi_self', self_score);
-                                cc.sys.localStorage.setItem('multi_other', other_score);
-                                cc.sys.localStorage.setItem("coins", this.coin);
-                                cc.sys.localStorage.setItem("mute", this.mute);
-                                cc.sys.localStorage.setItem("signal", this.signal);
-                                if(self_score >= other_score){
-                                    var explode=this.node.getChildByName("star_explode");
-                                    explode.active = true;
-                                    explode.getComponent(cc.ParticleSystem).startColor = cc.color(0, 0, 0);
-                                    explode.getComponent(cc.ParticleSystem).endColor = cc.color(229, 229, 22);
-                                    explode.getComponent(cc.ParticleSystem).endColorVar = this.Color.node.color;
-                                    this.scheduleOnce(() => {
-                                        cc.director.loadScene('multi_win');
-                                    }, 0.3);
-                                }else{
-                                    this.die_particle();
-                                    cc.director.loadScene('multi_lose');
-                                }
-                            });
-                        }
+                                }, 0.3);
+                            }
+                        });
                     });
                 }else if(rd > 0){
-                    console.log("received message");
+                    console.log("received message in game");
                     ref.set((rd-1), () => {
                         this.check_mail();
                     });
@@ -452,18 +435,19 @@ export class Player extends cc.Component {
                             }
                         }, 3);
                     }
-                    this.check_mail();
                 }else this.check_mail();
             });
         }else{
-            if(this.id){
+            if(this.id == 'creator'){
                 firebase.database().ref('in_game/' + this.room + '/res/joiner_res').once('value', (snapshot)=>{
                     if(snapshot.exists()){
-                        firebase.database().ref('in_game/' + this.room).remove();
                         var self_score = this.score;
                         var other_score = parseInt(snapshot.val());
+                        firebase.database().ref('in_game/' + this.room).remove();
                         cc.sys.localStorage.setItem('multi_self', self_score);
                         cc.sys.localStorage.setItem('multi_other', other_score);
+                        console.log("immediate values: " + self_score, other_score);
+                        console.log("stored values: " + cc.sys.localStorage.getItem('multi_self'), cc.sys.localStorage.getItem('multi_other'));
                         cc.sys.localStorage.setItem("coins", this.coin);
                         cc.sys.localStorage.setItem("mute", this.mute);
                         cc.sys.localStorage.setItem("signal", this.signal);
@@ -477,8 +461,11 @@ export class Player extends cc.Component {
                         firebase.database().ref('in_game/' + this.room).remove();
                         var self_score = this.score;
                         var other_score = parseInt(snapshot.val());
+                        firebase.database().ref('in_game/' + this.room).remove();
                         cc.sys.localStorage.setItem('multi_self', self_score);
                         cc.sys.localStorage.setItem('multi_other', other_score);
+                        console.log("immediate values: " + self_score, other_score);
+                        console.log("stored values: " + cc.sys.localStorage.getItem('multi_self'), cc.sys.localStorage.getItem('multi_other'));
                         cc.sys.localStorage.setItem("coins", this.coin);
                         cc.sys.localStorage.setItem("mute", this.mute);
                         cc.sys.localStorage.setItem("signal", this.signal);
@@ -505,39 +492,37 @@ export class Player extends cc.Component {
         }
         
         
-        if(event.keyCode == cc.macro.KEY.enter){        // send message
-            if(this.data){
-                this.Color.node.color = new cc.Color(255,255,255);
-                this.data--;
-                this.update_data();
-                // if id = 1 write to joiner, else write to creator
-                if(this.id){
-                    // self is creator
-                    firebase.database().ref('in_game/' + this.room + '/joiner').once('value', (snapshot)=>{
-                        var ping = parseInt(snapshot.val());
-                        firebase.database().ref('in_game/' + this.room + '/joiner').set(ping+1);
-                    });
-                }else{
-                    // self is joiner
-                    firebase.database().ref('in_game/' + this.room + '/creator').once('value', (snapshot)=>{
-                        var ping = parseInt(snapshot.val());
-                        firebase.database().ref('in_game/' + this.room + '/creator').set(ping+1);
-                    });
-                }
-                this.noisy++;
-                var delay = 1 + Math.min(1.5, this.section_count/8);
-                if(this.on_boost) delay *= 0.3;
-                this.scheduleOnce(() => {
-                    this.noisy--;
-                    if(!this.noisy){
-                        var color_str = this.color_list[this.base + this.color];
-                        var color = new cc.Color(255,255,255);
-                        this.Color.node.color = color.fromHEX(color_str);
-                    }
-                }, delay);
+        if(event.keyCode == cc.macro.KEY.enter && this.data > 0){
+            this.Color.node.color = new cc.Color(255,255,255);
+            this.data--;
+            this.update_data();
+            // if id = 1 write to joiner, else write to creator
+            if(this.id == 'creator'){
+                // self is creator
+                firebase.database().ref('in_game/' + this.room + '/joiner').once('value', (snapshot)=>{
+                    var ping = parseInt(snapshot.val());
+                    firebase.database().ref('in_game/' + this.room + '/joiner').set(ping+1);
+                });
+            }else{
+                // self is joiner
+                firebase.database().ref('in_game/' + this.room + '/creator').once('value', (snapshot)=>{
+                    var ping = parseInt(snapshot.val());
+                    firebase.database().ref('in_game/' + this.room + '/creator').set(ping+1);
+                });
             }
+            this.noisy++;
+            var delay = 1 + Math.min(1.5, this.section_count/8);
+            if(this.on_boost) delay *= 0.3;
+            this.scheduleOnce(() => {
+                this.noisy--;
+                if(!this.noisy){
+                    var color_str = this.color_list[this.base + this.color];
+                    var color = new cc.Color(255,255,255);
+                    this.Color.node.color = color.fromHEX(color_str);
+                }
+            }, delay);
         }
-        if((event.keyCode == cc.macro.KEY.r) && this.powerup){ // ##
+        if((event.keyCode == cc.macro.KEY.r) && this.powerup > 0){ // ##
             // use color powerup
             var cl = this.Color.node.color;
             this.invis = true;
@@ -548,7 +533,7 @@ export class Player extends cc.Component {
                 this.invis = false;
             }, 5);
         }
-        if((event.keyCode == cc.macro.KEY.s) && this.signal){ // ##
+        if((event.keyCode == cc.macro.KEY.s) && this.signal > 0){ // ##
             // use bubble signal
             this.on_boost++;
             this.signal_point.color = cc.color(26, 219, 34);
@@ -559,7 +544,7 @@ export class Player extends cc.Component {
                 if(!this.on_boost) this.signal_point.color = cc.color(255, 255, 255);
             }, 5);
         }
-        if((event.keyCode == cc.macro.KEY.f) && this.mute){ // ##
+        if((event.keyCode == cc.macro.KEY.f) && this.mute > 0){ // ##
             // use bubble mute
             this.in_hiding++;
             this.mute_point.color = cc.color(26, 219, 34);
