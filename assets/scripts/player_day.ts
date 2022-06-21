@@ -133,6 +133,7 @@ export class Player extends cc.Component {
         this.color = 1 + Math.floor(Math.random() * 4);
         //console.log(this.base +  Math.floor(Math.random() * 5));
         var color_str = this.color_list[this.base + this.color];
+        console.log("color string: " + color_str);
         var color = new cc.Color(255,255,255);
         this.Color.node.color = color.fromHEX(color_str);
         //-------------------------------------------------
@@ -279,7 +280,7 @@ export class Player extends cc.Component {
             this.loser();
         }
         this.camera_track();
-        this.node.x += this.dir * 200 * dt;
+        this.node.x += this.dir * 250 * dt;
         if(this.fly_state == 1){
             this.node.x -= this.prev_dir * 0.4;
             this.fly_state = -1;

@@ -35,9 +35,10 @@ var root = /** @class */ (function (_super) {
     // private player = Player;
     // private sec = Section;
     root.prototype.onLoad = function () {
+        this.color_strip = cc.sys.localStorage.getItem("nowcolor");
+        console.log("using strip " + this.color_strip);
     };
     root.prototype.start = function () {
-        this.color_strip = cc.sys.localStorage.getItem("nowcolor");
         // this.color_strip = 1 + Math.floor(Math.random() * 5);
         //set background color according to different strips. 
         var skyColorList = [0, 30, 30, 60, 0, 30];

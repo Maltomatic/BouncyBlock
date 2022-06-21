@@ -203,6 +203,8 @@ var Player = /** @class */ (function (_super) {
         console.log("you died");
         cc.sys.localStorage.setItem("coins", this.coin);
         cc.sys.localStorage.setItem("powerup", this.powerup);
+        cc.sys.localStorage.setItem("nowscore", this.score);
+        cc.sys.localStorage.setItem("nowscene", 'test');
         this.node.active = false;
         this.scheduleOnce(function () {
             cc.director.loadScene("lose");
@@ -256,7 +258,7 @@ var Player = /** @class */ (function (_super) {
             this.loser();
         }
         this.camera_track();
-        this.node.x += this.dir * 200 * dt;
+        this.node.x += this.dir * 250 * dt;
         if (this.fly_state == 1) {
             this.node.x -= this.prev_dir * 0.4;
             this.fly_state = -1;

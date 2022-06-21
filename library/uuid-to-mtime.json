@@ -709,11 +709,6 @@
     "meta": 1655667942955,
     "relativePath": "scripts\\enemy_wrapper.ts"
   },
-  "201d1fb4-4e8f-44d0-b194-13f83e0f3203": {
-    "asset": 1655673838901,
-    "meta": 1655673841399,
-    "relativePath": "scripts\\parent.ts"
-  },
   "0dbe5cc8-1108-415e-b70a-8518ea63e28c": {
     "asset": 1655675832155,
     "meta": 1655675832339,
@@ -1525,8 +1520,8 @@
     "relativePath": "scenes\\menu.fire"
   },
   "04cfd6d9-41d6-4ada-8a5b-fc5bd8ed6a7d": {
-    "asset": 1655756506693,
-    "meta": 1655756557547,
+    "asset": 1655773956252,
+    "meta": 1655773956278,
     "relativePath": "scenes\\test.fire"
   },
   "a6bef644-141b-4dfa-a0dc-f3f20b790e0a": {
@@ -1614,21 +1609,6 @@
     "meta": 1655768272565,
     "relativePath": "scripts\\bird_player.ts"
   },
-  "3095119b-5903-4a1d-92e8-fa42e3425160": {
-    "asset": 1655768184418,
-    "meta": 1655768272670,
-    "relativePath": "scripts\\player_day.ts"
-  },
-  "a4fb5ce8-16f2-4ec9-b773-3d70ce77a8e4": {
-    "asset": 1655768268611,
-    "meta": 1655768272884,
-    "relativePath": "scripts\\player.ts"
-  },
-  "1e31aad1-8607-4726-b210-6ea79c600e2f": {
-    "asset": 1655768955656,
-    "meta": 1655769136487,
-    "relativePath": "scripts\\menu.ts"
-  },
   "95b01e3d-de6d-4484-8fec-3a82f1c92e17": {
     "asset": 1655769379064,
     "meta": 1655769903958,
@@ -1644,24 +1624,44 @@
     "meta": 1655771003514,
     "relativePath": "scripts\\loadgame.ts"
   },
-  "c2aff0ba-7329-4daf-9b7a-bb81a3ab84b1": {
-    "asset": 1655770484304,
-    "meta": 1655771003546,
-    "relativePath": "scripts\\lose.ts"
-  },
-  "a4ea169f-e7a5-48fe-a76a-3f69d22f0a2e": {
-    "asset": 1655770959102,
-    "meta": 1655771003694,
-    "relativePath": "scripts\\player_multi.ts"
-  },
-  "1eb0e55a-da22-4eda-a5e3-68ca9e265251": {
-    "asset": 1655770276558,
-    "meta": 1655771003711,
-    "relativePath": "scripts\\root.ts"
-  },
   "63accb88-d1a4-459b-9545-db9ffe601602": {
     "asset": 1655770997236,
     "meta": 1655771003811,
     "relativePath": "scripts\\store.ts"
+  },
+  "1eb0e55a-da22-4eda-a5e3-68ca9e265251": {
+    "asset": 1655771720548,
+    "meta": 1655771721984,
+    "relativePath": "scripts\\root.ts"
+  },
+  "1e31aad1-8607-4726-b210-6ea79c600e2f": {
+    "asset": 1655772862405,
+    "meta": 1655772865114,
+    "relativePath": "scripts\\menu.ts"
+  },
+  "c2aff0ba-7329-4daf-9b7a-bb81a3ab84b1": {
+    "asset": 1655773337394,
+    "meta": 1655773342767,
+    "relativePath": "scripts\\lose.ts"
+  },
+  "201d1fb4-4e8f-44d0-b194-13f83e0f3203": {
+    "asset": 1655773561399,
+    "meta": 1655773567528,
+    "relativePath": "scripts\\parent.ts"
+  },
+  "3095119b-5903-4a1d-92e8-fa42e3425160": {
+    "asset": 1655773550313,
+    "meta": 1655773567664,
+    "relativePath": "scripts\\player_day.ts"
+  },
+  "a4fb5ce8-16f2-4ec9-b773-3d70ce77a8e4": {
+    "asset": 1655773537589,
+    "meta": 1655773567752,
+    "relativePath": "scripts\\player.ts"
+  },
+  "a4ea169f-e7a5-48fe-a76a-3f69d22f0a2e": {
+    "asset": 1655773634748,
+    "meta": 1655773819212,
+    "relativePath": "scripts\\player_multi.ts"
   }
 }

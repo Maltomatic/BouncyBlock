@@ -333,7 +333,7 @@ export class Player extends cc.Component {
             this.loser();
         }
         this.camera_track();
-        this.node.x += this.dir * 200 * dt;
+        this.node.x += this.dir * 250 * dt;
         if(this.fly_state == 1){
             this.node.x -= this.prev_dir * 0.4;
             this.fly_state = -1;

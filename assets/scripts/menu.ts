@@ -14,7 +14,7 @@ export default class menu extends cc.Component {
     }
 
     start () {
-        this.playBGM();
+        if(!cc.audioEngine.isMusicPlaying()) this.playBGM();
         cc.debug.setDisplayStats(false);
         //cc.audioEngine.playMusic(this.bgm, true);
         let signout = new cc.Component.EventHandler();
@@ -46,7 +46,6 @@ export default class menu extends cc.Component {
                         if(data['thing']['color'][i]) s = s + '1';
                         else s = s + '0';
                     }
-
                     cc.sys.localStorage.setItem("color", s);
                 });
             }else{

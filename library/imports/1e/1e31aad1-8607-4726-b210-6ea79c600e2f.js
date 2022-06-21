@@ -38,7 +38,8 @@ var menu = /** @class */ (function (_super) {
         cc.audioEngine.playMusic(this.menu_music, true);
     };
     menu.prototype.start = function () {
-        this.playBGM();
+        if (!cc.audioEngine.isMusicPlaying())
+            this.playBGM();
         cc.debug.setDisplayStats(false);
         //cc.audioEngine.playMusic(this.bgm, true);
         var signout = new cc.Component.EventHandler();
