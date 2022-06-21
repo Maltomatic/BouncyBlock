@@ -162,7 +162,7 @@ export class Player extends cc.Component {
             if(this.node.x >= this.section_count*1920){
                 //console.log("init next section");
                 this.section_count++;
-                var rand = Math.floor(Math.random() * Math.min(2+this.section_count/2, 21))
+                var rand = Math.floor(Math.random() * Math.min(2+this.section_count*3, 21));
                 //console.log(rand);
                 //console.log("To instantiate: " + this.sec_list[rand].name);
                 var next_section = cc.instantiate(this.sec_list[rand]);

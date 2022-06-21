@@ -43,6 +43,7 @@ var lose = /** @class */ (function (_super) {
                 _this.online = true;
         });
         this.uid = cc.sys.localStorage.getItem('uid');
+        console.log(this.uid);
         this.playBGM();
         cc.debug.setDisplayStats(false);
         //cc.audioEngine.playMusic(this.bgm, true);

@@ -36,17 +36,11 @@ var NewClass = /** @class */ (function (_super) {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.win_music = null;
         _this.uid = null;
-        _this.online = false;
         return _this;
     }
     // LIFE-CYCLE CALLBACKS:
     NewClass.prototype.onload = function () {
-        var _this = this;
         cc.audioEngine.pauseMusic(); // @A@
-        firebase.auth().onAuthStateChanged(function (user) {
-            if (user)
-                _this.online = true;
-        });
     };
     NewClass.prototype.start = function () {
         this.uid = cc.sys.localStorage.getItem('uid');
@@ -57,9 +51,9 @@ var NewClass = /** @class */ (function (_super) {
         var other_score = cc.sys.localStorage.getItem('multi_other');
         cc.find('multi_self').getComponent(cc.Label).string = self_score.toString();
         cc.find('multi_other').getComponent(cc.Label).string = other_score.toString();
+        console.log(self_score, other_score);
         //callback
-        console.log(this.uid);
-        if (this.online) {
+        if (this.uid != 'local') {
             firebase.database().ref('/users/' + this.uid + '/coins').set(parseInt(cc.sys.localStorage.getItem("coins")));
             firebase.database().ref('/users/' + this.uid + '/thing/powerup').set(parseInt(cc.sys.localStorage.getItem("powerup")));
             firebase.database().ref('/users/' + this.uid + '/thing/mute').set(parseInt(cc.sys.localStorage.getItem("mute")));

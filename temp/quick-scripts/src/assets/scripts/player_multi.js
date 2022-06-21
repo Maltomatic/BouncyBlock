@@ -139,7 +139,7 @@ var Player = /** @class */ (function (_super) {
             if (this.node.x >= this.section_count * 1920) {
                 //// console.log("init next section");
                 this.section_count++;
-                var rand = Math.floor(Math.random() * Math.min(2 + this.section_count / 2, 13));
+                var rand = Math.floor(Math.random() * Math.min(2 + this.section_count * 3, 21));
                 //// console.log(rand);
                 //// console.log("To instantiate: " + this.sec_list[rand].name);
                 var next_section = cc.instantiate(this.sec_list[rand]);
@@ -234,7 +234,7 @@ var Player = /** @class */ (function (_super) {
         if (this.id) {
             // self is creator
             firebase.database().ref('in_game/' + this.room + '/joiner').set(-100, function () {
-                firebase.database().ref('in_game/' + _this.room + 'res/creator_res').set(_this.score, function () {
+                firebase.database().ref('in_game/' + _this.room + '/res/creator_res').set(_this.score, function () {
                     _this.hiatus = true;
                     _this.check_mail();
                 });
@@ -243,7 +243,7 @@ var Player = /** @class */ (function (_super) {
         else {
             // self is joiner
             firebase.database().ref('in_game/' + this.room + '/creator').set(-100, function () {
-                firebase.database().ref('in_game/' + _this.room + 'res/joiner_res').set(_this.score, function () {
+                firebase.database().ref('in_game/' + _this.room + '/res/joiner_res').set(_this.score, function () {
                     _this.hiatus = true;
                     _this.check_mail();
                 });
@@ -271,6 +271,7 @@ var Player = /** @class */ (function (_super) {
         this.mute = cc.sys.localStorage.getItem("mute");
         this.signal = cc.sys.localStorage.getItem("signal");
         this.powerup = cc.sys.localStorage.getItem("powerup");
+        this.data = 5;
         this.update_coin();
         this.update_data();
         this.update_mute();
@@ -280,7 +281,6 @@ var Player = /** @class */ (function (_super) {
         this.dir = 0;
         this.sec_list = [this.sec0, this.sec1, this.sec2, this.sec3, this.sec4, this.sec5, this.sec10, this.sec11, this.sec12, this.sec13, this.sec17, this.sec18, this.sec19];
         this.score = 0;
-        this.data = 5;
         //------------sparkle color------------------------
         this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).startColor = this.Color.node.color;
         this.node.getChildByName("sparkle").getComponent(cc.ParticleSystem).endColor = this.Color.node.color;
@@ -428,7 +428,7 @@ var Player = /** @class */ (function (_super) {
                         _this.scheduleOnce(function () {
                             _this.recv_msg--;
                             console.log("visible time up, messages left: " + _this.recv_msg);
-                            if (_this.recv_msg == 0) {
+                            if (!_this.recv_msg) {
                                 _this.unhide = false;
                                 var color_str = _this.color_list[_this.base + _this.color];
                                 var color = new cc.Color(255, 255, 255);
@@ -436,6 +436,7 @@ var Player = /** @class */ (function (_super) {
                             }
                         }, 3);
                     }
+                    _this.check_mail();
                 }
                 else
                     _this.check_mail();
@@ -501,7 +502,8 @@ var Player = /** @class */ (function (_super) {
         if (event.keyCode == cc.macro.KEY.enter) { // send message
             if (this.data) {
                 this.Color.node.color = new cc.Color(255, 255, 255);
-                this.data -= 1;
+                this.data--;
+                this.update_data();
                 // if id = 1 write to joiner, else write to creator
                 if (this.id) {
                     // self is creator
@@ -523,9 +525,11 @@ var Player = /** @class */ (function (_super) {
                     delay *= 0.3;
                 this.scheduleOnce(function () {
                     _this.noisy--;
-                    var color_str = _this.color_list[_this.base + _this.color];
-                    var color = new cc.Color(255, 255, 255);
-                    _this.Color.node.color = color.fromHEX(color_str);
+                    if (!_this.noisy) {
+                        var color_str = _this.color_list[_this.base + _this.color];
+                        var color = new cc.Color(255, 255, 255);
+                        _this.Color.node.color = color.fromHEX(color_str);
+                    }
                 }, delay);
             }
         }
@@ -543,19 +547,25 @@ var Player = /** @class */ (function (_super) {
         else if (event.keyCode == cc.macro.KEY.s) { // ##
             // use bubble signal
             this.on_boost++;
+            this.signal_point.color = cc.color(26, 219, 34);
             this.signal--;
             this.update_signal();
             this.scheduleOnce(function () {
                 _this.on_boost--;
+                if (!_this.on_boost)
+                    _this.signal_point.color = cc.color(255, 255, 255);
             }, 5);
         }
         else if (event.keyCode == cc.macro.KEY.f) { // ##
             // use bubble mute
             this.in_hiding++;
+            this.mute_point.color = cc.color(26, 219, 34);
             this.mute--;
             this.update_mute();
             this.scheduleOnce(function () {
                 _this.in_hiding--;
+                if (!_this.in_hiding)
+                    _this.mute_point.color = cc.color(255, 255, 255);
             }, 5);
         }
     };

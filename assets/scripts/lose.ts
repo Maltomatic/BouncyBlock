@@ -19,6 +19,7 @@ export default class lose extends cc.Component {
         });
         
         this.uid = cc.sys.localStorage.getItem('uid');
+        console.log(this.uid);
         this.playBGM();
         cc.debug.setDisplayStats(false);
         //cc.audioEngine.playMusic(this.bgm, true);

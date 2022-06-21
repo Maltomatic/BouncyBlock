@@ -636,7 +636,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -180,
+        -80,
         260,
         0,
         0,
@@ -2200,6 +2200,9 @@
     "banana_pre": {
       "__uuid__": "33375052-6995-4790-8486-f18ef76ea1a0"
     },
+    "data_pre": null,
+    "signal_pre": null,
+    "mute_pre": null,
     "_id": "9fYSDOLtBJn4nGiinKOkBN"
   },
   {
