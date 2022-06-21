@@ -81,6 +81,7 @@ var Player = /** @class */ (function (_super) {
         _this.signal = 0;
         _this.on_boost = 0;
         _this.sec_list = [];
+        _this.dead = false;
         _this.dir = 0;
         _this.prev_dir = 0;
         _this.fly_state = 0; // 0 for on ground, 1 for flying, -1 for falling
@@ -157,7 +158,7 @@ var Player = /** @class */ (function (_super) {
                     this.on_floor = true;
             }
             if (other.node.group == 'mound') {
-                if ((other.node.getComponent(cc.TiledTile).gid == this.color + this.base && touch.x) || this.invis) {
+                if (((other.node.getComponent(cc.TiledTile).gid == this.color + this.base && touch.x) || this.invis) && !this.noisy && !this.unhide) {
                     this.node.getChildByName('eye').active = false;
                     this.hidden = true;
                     if (this.invis)
@@ -231,6 +232,7 @@ var Player = /** @class */ (function (_super) {
     };
     Player.prototype.loser = function () {
         var _this = this;
+        this.dead = true;
         if (this.id == 'creator') {
             // self is creator
             firebase.database().ref('in_game/' + this.room + '/res/creator_res').set(this.score, function () {
@@ -315,7 +317,8 @@ var Player = /** @class */ (function (_super) {
             this.loser();
         }
         this.camera_track();
-        this.node.x += this.dir * 250 * dt;
+        if (!this.dead)
+            this.node.x += this.dir * 250 * dt;
         if (this.fly_state == 1) {
             this.node.x -= this.prev_dir * 0.4;
             this.fly_state = -1;
@@ -372,6 +375,8 @@ var Player = /** @class */ (function (_super) {
                         var other_score = 0;
                         console.log(_this.id + " logging scores");
                         firebase.database().ref('in_game/' + _this.room + '/res/' + _this.id + '_res').set(_this.score, function () {
+                            if (!snap.child('joiner_res').exists() || !snap.child('creator_res').val().exists())
+                                _this.check_mail();
                             if (_this.id == 'creator')
                                 other_score = parseInt(snap.child('joiner_res').val());
                             else
@@ -413,6 +418,7 @@ var Player = /** @class */ (function (_super) {
                         cc.audioEngine.playEffect(_this.notif, false);
                         _this.Color.node.color = new cc.Color(255, 255, 255);
                         _this.unhide = true;
+                        _this.hidden = false;
                         _this.scheduleOnce(function () {
                             _this.recv_msg--;
                             console.log("visible time up, messages left: " + _this.recv_msg);
@@ -511,6 +517,7 @@ var Player = /** @class */ (function (_super) {
                 });
             }
             this.noisy++;
+            this.hidden = false;
             var delay = 1 + Math.min(1.5, this.section_count / 8);
             if (this.on_boost)
                 delay *= 0.3;

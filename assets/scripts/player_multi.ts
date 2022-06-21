@@ -104,6 +104,7 @@ export class Player extends cc.Component {
     private on_boost: number = 0;
 
     private sec_list = [];
+    private dead: boolean = false;
 
     private dir: number = 0;
     private prev_dir: number = 0;
@@ -186,7 +187,7 @@ export class Player extends cc.Component {
             }
 
             if(other.node.group == 'mound') {
-                if((other.node.getComponent(cc.TiledTile).gid == this.color + this.base && touch.x) || this.invis) {
+                if(((other.node.getComponent(cc.TiledTile).gid == this.color + this.base && touch.x) || this.invis) && !this.noisy && !this.unhide) {
                     this.node.getChildByName('eye').active = false;
                     this.hidden = true;
                     if(this.invis) this.chameleon = this.color_list[other.node.getComponent(cc.TiledTile).gid];
@@ -253,6 +254,7 @@ export class Player extends cc.Component {
         this.node.getChildByName('color').active = false;
     }
     loser(){
+        this.dead = true;
         if(this.id == 'creator'){
             // self is creator
             firebase.database().ref('in_game/' + this.room + '/res/creator_res').set(this.score, ()=>{
@@ -336,7 +338,7 @@ export class Player extends cc.Component {
             this.loser();
         }
         this.camera_track();
-        this.node.x += this.dir * 250 * dt;
+        if(!this.dead) this.node.x += this.dir * 250 * dt;
         if(this.fly_state == 1){
             this.node.x -= this.prev_dir * 0.4;
             this.fly_state = -1;
@@ -387,6 +389,8 @@ export class Player extends cc.Component {
                         var other_score = 0;
                         console.log(this.id + " logging scores");
                         firebase.database().ref('in_game/' + this.room + '/res/' + this.id + '_res').set(this.score, ()=>{
+                            if(!snap.child('joiner_res').exists() || !snap.child('creator_res').val().exists()) this.check_mail();
+
                             if(this.id == 'creator') other_score = parseInt(snap.child('joiner_res').val());
                             else other_score = parseInt(snap.child('creator_res').val());
                             cc.sys.localStorage.setItem('multi_self', self_score);
@@ -424,6 +428,7 @@ export class Player extends cc.Component {
                         cc.audioEngine.playEffect(this.notif, false);
                         this.Color.node.color = new cc.Color(255,255,255);
                         this.unhide = true;
+                        this.hidden = false;
                         this.scheduleOnce(() => {
                             this.recv_msg--;
                             console.log("visible time up, messages left: " + this.recv_msg);
@@ -511,6 +516,7 @@ export class Player extends cc.Component {
                 });
             }
             this.noisy++;
+            this.hidden = false;
             var delay = 1 + Math.min(1.5, this.section_count/8);
             if(this.on_boost) delay *= 0.3;
             this.scheduleOnce(() => {
