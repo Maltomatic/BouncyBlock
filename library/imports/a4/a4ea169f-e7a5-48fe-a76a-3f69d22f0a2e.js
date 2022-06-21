@@ -86,7 +86,6 @@ var Player = /** @class */ (function (_super) {
         _this.fly_state = 0; // 0 for on ground, 1 for flying, -1 for falling
         _this.on_floor = true;
         _this.stick = false;
-        _this.stick2 = false;
         _this.invis = false;
         _this.chameleon = null;
         _this.id = null;
@@ -298,11 +297,6 @@ var Player = /** @class */ (function (_super) {
         cc.audioEngine.playMusic(this.multi_back_music, true);
     };
     Player.prototype.update = function (dt) {
-        if (this.stick2) {
-            this.node.x -= 0.4 * this.dir;
-            this.dir = 0;
-            this.stick2 = false;
-        }
         if (this.invis && !this.unhide) {
             if (!this.hidden) {
                 var cl = new cc.Color(0, 0, 0);
@@ -379,9 +373,9 @@ var Player = /** @class */ (function (_super) {
                         console.log(_this.id + " logging scores");
                         firebase.database().ref('in_game/' + _this.room + '/res/' + _this.id + '_res').set(_this.score, function () {
                             if (_this.id == 'creator')
-                                other_score = parseInt(snap.child('joiner').val());
+                                other_score = parseInt(snap.child('joiner_res').val());
                             else
-                                other_score = parseInt(snap.child('creator').val());
+                                other_score = parseInt(snap.child('creator_res').val());
                             cc.sys.localStorage.setItem('multi_self', self_score);
                             cc.sys.localStorage.setItem('multi_other', other_score);
                             console.log("immediate values: " + self_score, other_score);

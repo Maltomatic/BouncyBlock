@@ -110,7 +110,6 @@ export class Player extends cc.Component {
     private fly_state: number = 0;  // 0 for on ground, 1 for flying, -1 for falling
     private on_floor: boolean = true;
     private stick: boolean = false;
-    private stick2: boolean = false;
     private invis: boolean = false;
     private chameleon: string = null;
     private id: string = null;
@@ -193,7 +192,7 @@ export class Player extends cc.Component {
                     if(this.invis) this.chameleon = this.color_list[other.node.getComponent(cc.TiledTile).gid];
                     // this.last_x = this.node.x;
                 }
-            }
+            }    
         }else if(other.node.group == 'coin'){ // @@ 
             cc.audioEngine.playEffect(this.get_coin, false); 
             this.coin++;
@@ -320,11 +319,6 @@ export class Player extends cc.Component {
     }
 
     update (dt) {
-        if(this.stick2){
-            this.node.x -= 0.4 * this.dir;
-            this.dir = 0;
-            this.stick2 = false;
-        }
         if(this.invis && !this.unhide){
             if(!this.hidden){
                 var cl = new cc.Color(0, 0, 0);
@@ -393,8 +387,8 @@ export class Player extends cc.Component {
                         var other_score = 0;
                         console.log(this.id + " logging scores");
                         firebase.database().ref('in_game/' + this.room + '/res/' + this.id + '_res').set(this.score, ()=>{
-                            if(this.id == 'creator') other_score = parseInt(snap.child('joiner').val());
-                            else other_score = parseInt(snap.child('creator').val());
+                            if(this.id == 'creator') other_score = parseInt(snap.child('joiner_res').val());
+                            else other_score = parseInt(snap.child('creator_res').val());
                             cc.sys.localStorage.setItem('multi_self', self_score);
                             cc.sys.localStorage.setItem('multi_other', other_score);
                             console.log("immediate values: " + self_score, other_score);
