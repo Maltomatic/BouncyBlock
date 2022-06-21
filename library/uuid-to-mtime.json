@@ -664,11 +664,6 @@
     "meta": 1655666779105,
     "relativePath": "scripts\\lose_canvas.ts"
   },
-  "1eb0e55a-da22-4eda-a5e3-68ca9e265251": {
-    "asset": 1655409964843,
-    "meta": 1655666779996,
-    "relativePath": "scripts\\root.ts"
-  },
   "62469ddb-e363-4636-b98f-c9ccf13dfcbe": {
     "asset": 1655567602001,
     "meta": 1655666780035,
@@ -1409,11 +1404,6 @@
     "meta": 1655729713275,
     "relativePath": "model\\primitives.fbx"
   },
-  "a6bc94fb-bffc-4a7b-b4f4-dc58ca6beb38": {
-    "asset": 1655733080657,
-    "meta": 1655733081503,
-    "relativePath": "scripts\\loadgame.ts"
-  },
   "77477a70-be23-4af6-b183-bf7d2817badf": {
     "asset": 1655739281034,
     "meta": 1655739283552,
@@ -1540,14 +1530,9 @@
     "relativePath": "scenes\\test.fire"
   },
   "a6bef644-141b-4dfa-a0dc-f3f20b790e0a": {
-    "asset": 1655758940132,
-    "meta": 1655758940180,
+    "asset": 1655769999884,
+    "meta": 1655769999918,
     "relativePath": "scenes\\store.fire"
-  },
-  "63accb88-d1a4-459b-9545-db9ffe601602": {
-    "asset": 1655757233488,
-    "meta": 1655757576775,
-    "relativePath": "scripts\\store.ts"
   },
   "a9a033af-3c8b-426b-b93d-d584320b61a8": {
     "asset": 1655666733150,
@@ -1614,24 +1599,14 @@
     "meta": 1655758795701,
     "relativePath": "image\\menu_icon_2.png"
   },
-  "1e31aad1-8607-4726-b210-6ea79c600e2f": {
-    "asset": 1655759773146,
-    "meta": 1655759776919,
-    "relativePath": "scripts\\menu.ts"
-  },
-  "c2aff0ba-7329-4daf-9b7a-bb81a3ab84b1": {
-    "asset": 1655761403314,
-    "meta": 1655761410570,
-    "relativePath": "scripts\\lose.ts"
-  },
   "7ff71da8-d9d8-4808-8c2d-21bd531e83f4": {
-    "asset": 1655763427376,
-    "meta": 1655763427398,
+    "asset": 1655769919179,
+    "meta": 1655769919212,
     "relativePath": "scenes\\multi_win.fire"
   },
   "782a631f-0da4-4db6-a068-80669eb70e6c": {
-    "asset": 1655762203322,
-    "meta": 1655762211078,
+    "asset": 1655769941168,
+    "meta": 1655769941203,
     "relativePath": "scenes\\multi_lose.fire"
   },
   "e8f7891e-9689-4fd7-a194-48ae189b2f2b": {
@@ -1644,14 +1619,49 @@
     "meta": 1655768272670,
     "relativePath": "scripts\\player_day.ts"
   },
-  "a4ea169f-e7a5-48fe-a76a-3f69d22f0a2e": {
-    "asset": 1655767990694,
-    "meta": 1655768272809,
-    "relativePath": "scripts\\player_multi.ts"
-  },
   "a4fb5ce8-16f2-4ec9-b773-3d70ce77a8e4": {
     "asset": 1655768268611,
     "meta": 1655768272884,
     "relativePath": "scripts\\player.ts"
+  },
+  "1e31aad1-8607-4726-b210-6ea79c600e2f": {
+    "asset": 1655768955656,
+    "meta": 1655769136487,
+    "relativePath": "scripts\\menu.ts"
+  },
+  "95b01e3d-de6d-4484-8fec-3a82f1c92e17": {
+    "asset": 1655769379064,
+    "meta": 1655769903958,
+    "relativePath": "scripts\\multi_res_lose.ts"
+  },
+  "ddd62d41-e3fe-444b-9bd9-b85089892105": {
+    "asset": 1655769347995,
+    "meta": 1655769904005,
+    "relativePath": "scripts\\multi_res_win.ts"
+  },
+  "a6bc94fb-bffc-4a7b-b4f4-dc58ca6beb38": {
+    "asset": 1655770774768,
+    "meta": 1655771003514,
+    "relativePath": "scripts\\loadgame.ts"
+  },
+  "c2aff0ba-7329-4daf-9b7a-bb81a3ab84b1": {
+    "asset": 1655770484304,
+    "meta": 1655771003546,
+    "relativePath": "scripts\\lose.ts"
+  },
+  "a4ea169f-e7a5-48fe-a76a-3f69d22f0a2e": {
+    "asset": 1655770959102,
+    "meta": 1655771003694,
+    "relativePath": "scripts\\player_multi.ts"
+  },
+  "1eb0e55a-da22-4eda-a5e3-68ca9e265251": {
+    "asset": 1655770276558,
+    "meta": 1655771003711,
+    "relativePath": "scripts\\root.ts"
+  },
+  "63accb88-d1a4-459b-9545-db9ffe601602": {
+    "asset": 1655770997236,
+    "meta": 1655771003811,
+    "relativePath": "scripts\\store.ts"
   }
 }

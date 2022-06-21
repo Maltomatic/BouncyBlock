@@ -46,6 +46,18 @@ var Loadscene = /** @class */ (function (_super) {
         this.scheduleOnce(function () {
             cc.director.loadScene('menu');
         }, 3.1);
+        cc.sys.localStorage.setItem("uid", 'local');
+        cc.sys.localStorage.setItem("coins", 0);
+        cc.sys.localStorage.setItem("lego", 0);
+        cc.sys.localStorage.setItem("powerup", 0);
+        cc.sys.localStorage.setItem("banana", 0);
+        cc.sys.localStorage.setItem("mute", 0);
+        cc.sys.localStorage.setItem("signal", 0);
+        cc.sys.localStorage.setItem("highscore", 0);
+        cc.sys.localStorage.setItem("name", 0);
+        cc.sys.localStorage.setItem("email", 0);
+        cc.sys.localStorage.setItem("color", '010000');
+        cc.sys.localStorage.setItem("nowcolor", 1);
     };
     Loadscene = __decorate([
         ccclass

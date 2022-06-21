@@ -445,6 +445,7 @@ var Player = /** @class */ (function (_super) {
             if (this.id) {
                 firebase.database().ref('in_game/' + this.room + '/res/joiner_res').once('value', function (snapshot) {
                     if (snapshot.exists()) {
+                        firebase.database().ref('in_game/' + _this.room).remove();
                         var self_score = _this.score;
                         var other_score = parseInt(snapshot.val());
                         cc.sys.localStorage.setItem('multi_self', self_score);
@@ -464,6 +465,7 @@ var Player = /** @class */ (function (_super) {
             else {
                 firebase.database().ref('in_game/' + this.room + '/res/creator_res').once('value', function (snapshot) {
                     if (snapshot.exists()) {
+                        firebase.database().ref('in_game/' + _this.room).remove();
                         var self_score = _this.score;
                         var other_score = parseInt(snapshot.val());
                         cc.sys.localStorage.setItem('multi_self', self_score);

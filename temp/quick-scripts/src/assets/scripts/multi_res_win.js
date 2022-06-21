@@ -1,8 +1,14 @@
 "use strict";
-cc._RF.push(module, 'c2affC6cylNr5t6u4Gjq4Sx', 'lose');
-// scripts/lose.ts
+cc._RF.push(module, 'ddd621B4/5ES5vZuFCJiSEF', 'multi_res_win');
+// scripts/multi_res_win.ts
 
 "use strict";
+// Learn TypeScript:
+//  - https://docs.cocos.com/creator/manual/en/scripting/typescript.html
+// Learn Attribute:
+//  - https://docs.cocos.com/creator/manual/en/scripting/reference/attributes.html
+// Learn life-cycle callbacks:
+//  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -24,48 +30,40 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var _a = cc._decorator, ccclass = _a.ccclass, property = _a.property;
-var lose = /** @class */ (function (_super) {
-    __extends(lose, _super);
-    function lose() {
+var NewClass = /** @class */ (function (_super) {
+    __extends(NewClass, _super);
+    function NewClass() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.lose_back_music = null; // @A@
-        _this.flag = false;
+        _this.win_music = null;
         _this.uid = null;
         _this.online = false;
         return _this;
     }
-    lose.prototype.onload = function () {
-        cc.audioEngine.pauseMusic(); // @A@
-    };
-    lose.prototype.start = function () {
+    // LIFE-CYCLE CALLBACKS:
+    NewClass.prototype.onload = function () {
         var _this = this;
+        cc.audioEngine.pauseMusic(); // @A@
         firebase.auth().onAuthStateChanged(function (user) {
             if (user)
                 _this.online = true;
         });
+    };
+    NewClass.prototype.start = function () {
         this.uid = cc.sys.localStorage.getItem('uid');
         this.playBGM();
         cc.debug.setDisplayStats(false);
         //cc.audioEngine.playMusic(this.bgm, true);
-        var score = cc.sys.localStorage.getItem("nowscore");
-        var scene = cc.sys.localStorage.getItem("nowscene");
-        if (scene == 'night' && score > cc.sys.localStorage.getItem("highscore")) {
-            firebase.database().ref('/users/' + this.uid + '/highscore').set(parseInt(score), function () {
-                cc.sys.localStorage.setItem("highscore", score);
-            });
-        }
-        cc.find('score').getComponent(cc.Label).string = score.toString();
+        var self_score = cc.sys.localStorage.getItem('multi_self');
+        var other_score = cc.sys.localStorage.getItem('multi_other');
+        cc.find('multi_self').getComponent(cc.Label).string = self_score.toString();
+        cc.find('multi_other').getComponent(cc.Label).string = other_score.toString();
         //callback
-        console.log(this.online);
-        if (this.uid != 'local') { //  &&&& 原本是online, always false
+        console.log(this.uid);
+        if (this.online) {
             firebase.database().ref('/users/' + this.uid + '/coins').set(parseInt(cc.sys.localStorage.getItem("coins")));
-            firebase.database().ref('/users/' + this.uid + '/thing/lego').set(parseInt(cc.sys.localStorage.getItem("lego")));
             firebase.database().ref('/users/' + this.uid + '/thing/powerup').set(parseInt(cc.sys.localStorage.getItem("powerup")));
-            firebase.database().ref('/users/' + this.uid + '/thing/banana').set(parseInt(cc.sys.localStorage.getItem("banana")));
             firebase.database().ref('/users/' + this.uid + '/thing/mute').set(parseInt(cc.sys.localStorage.getItem("mute")));
-            firebase.database().ref('/users/' + this.uid + '/thing/signal').set(parseInt(cc.sys.localStorage.getItem("signal")), function () {
-                _this.flag = true;
-            });
+            firebase.database().ref('/users/' + this.uid + '/thing/signal').set(parseInt(cc.sys.localStorage.getItem("signal")));
         }
         var menu = new cc.Component.EventHandler();
         menu.target = this.node;
@@ -73,24 +71,22 @@ var lose = /** @class */ (function (_super) {
         menu.handler = "loadmenu";
         cc.find("Canvas/menu").getComponent(cc.Button).clickEvents.push(menu);
     };
-    lose.prototype.loadmenu = function () {
-        if (this.flag) {
-            //cc.audioEngine.playEffect(this.press, false);
-            cc.audioEngine.pauseMusic();
-            cc.director.loadScene("menu");
-        }
+    NewClass.prototype.loadmenu = function () {
+        //cc.audioEngine.playEffect(this.press, false);
+        cc.audioEngine.pauseMusic();
+        cc.director.loadScene("menu");
     };
-    lose.prototype.playBGM = function () {
-        cc.audioEngine.playMusic(this.lose_back_music, true);
+    NewClass.prototype.playBGM = function () {
+        cc.audioEngine.playMusic(this.win_music, false);
     };
     __decorate([
         property(cc.AudioClip)
-    ], lose.prototype, "lose_back_music", void 0);
-    lose = __decorate([
+    ], NewClass.prototype, "win_music", void 0);
+    NewClass = __decorate([
         ccclass
-    ], lose);
-    return lose;
+    ], NewClass);
+    return NewClass;
 }(cc.Component));
-exports.default = lose;
+exports.default = NewClass;
 
 cc._RF.pop();

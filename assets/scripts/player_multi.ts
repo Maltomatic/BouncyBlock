@@ -454,6 +454,7 @@ export class Player extends cc.Component {
             if(this.id){
                 firebase.database().ref('in_game/' + this.room + '/res/joiner_res').once('value', (snapshot)=>{
                     if(snapshot.exists()){
+                        firebase.database().ref('in_game/' + this.room).remove();
                         var self_score = this.score;
                         var other_score = parseInt(snapshot.val());
                         cc.sys.localStorage.setItem('multi_self', self_score);
@@ -468,6 +469,7 @@ export class Player extends cc.Component {
             }else{
                 firebase.database().ref('in_game/' + this.room + '/res/creator_res').once('value', (snapshot)=>{
                     if(snapshot.exists()){
+                        firebase.database().ref('in_game/' + this.room).remove();
                         var self_score = this.score;
                         var other_score = parseInt(snapshot.val());
                         cc.sys.localStorage.setItem('multi_self', self_score);

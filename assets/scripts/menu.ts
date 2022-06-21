@@ -50,17 +50,6 @@ export default class menu extends cc.Component {
                     cc.sys.localStorage.setItem("color", s);
                 });
             }else{
-                cc.sys.localStorage.setItem("uid", 'local');
-                cc.sys.localStorage.setItem("coins", 0);
-                cc.sys.localStorage.setItem("lego", 0);
-                cc.sys.localStorage.setItem("powerup", 0);
-                cc.sys.localStorage.setItem("banana", 0);
-                cc.sys.localStorage.setItem("mute", 0);
-                cc.sys.localStorage.setItem("signal", 0);
-                cc.sys.localStorage.setItem("highscore", 0);
-                cc.sys.localStorage.setItem("name", 0);
-                cc.sys.localStorage.setItem("email", 0);
-                cc.sys.localStorage.setItem("color", '010000');
                 // sign in button instead
                 cc.find("Canvas/out").getComponent(cc.Label).string = "sign in"
                 cc.find("Canvas/SignOut").scaleX = -1;

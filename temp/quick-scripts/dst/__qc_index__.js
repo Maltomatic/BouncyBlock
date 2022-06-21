@@ -25,6 +25,8 @@ require('./assets/scripts/lose');
 require('./assets/scripts/lose_canvas');
 require('./assets/scripts/menu');
 require('./assets/scripts/missile');
+require('./assets/scripts/multi_res_lose');
+require('./assets/scripts/multi_res_win');
 require('./assets/scripts/pair_game');
 require('./assets/scripts/parent');
 require('./assets/scripts/player');

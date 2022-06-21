@@ -35,22 +35,21 @@ var store = /** @class */ (function (_super) {
         _this.mute = 0;
         _this.signal = 0;
         _this.color = { 1: true, 2: false, 3: false, 4: false, 5: false };
+        _this.nowcolor = 1;
         _this.uid = null;
         return _this;
     }
-    store.prototype.onload = function () {
+    store.prototype.start = function () {
+        var _this = this;
         cc.debug.setDisplayStats(false);
         this.uid = cc.sys.localStorage.getItem('uid');
-    };
-    store.prototype.start = function () {
-        cc.debug.setDisplayStats(false);
         this.money = cc.sys.localStorage.getItem("coins");
         this.lego = cc.sys.localStorage.getItem("lego");
         this.powerup = cc.sys.localStorage.getItem("powerup");
         this.banana = cc.sys.localStorage.getItem("banana");
         this.mute = cc.sys.localStorage.getItem("mute");
         this.signal = cc.sys.localStorage.getItem("signal");
-        console.log(this.banana, this.signal, this.mute);
+        this.nowcolor = cc.sys.localStorage.getItem("nowcolor");
         var c = cc.sys.localStorage.getItem("color").split("");
         for (var i = 1; i <= 5; i++) {
             if (parseInt(c[i]))
@@ -70,15 +69,20 @@ var store = /** @class */ (function (_super) {
         cc.find('Canvas/mute/amount').getComponent(cc.Label).string = a.toString();
         a = this.signal;
         cc.find('Canvas/signal/amount').getComponent(cc.Label).string = a.toString();
-        cc.find('Canvas/color1/check').active = true;
-        if (this.color[2])
+        if (this.nowcolor == 1)
+            cc.find('Canvas/color1/check').active = true;
+        else if (this.nowcolor == 2)
             cc.find('Canvas/color2/check').active = true;
-        if (this.color[3])
+        else if (this.nowcolor == 3)
             cc.find('Canvas/color3/check').active = true;
-        if (this.color[4])
+        else if (this.nowcolor == 4)
             cc.find('Canvas/color4/check').active = true;
-        if (this.color[5])
+        else if (this.nowcolor == 5)
             cc.find('Canvas/color5/check').active = true;
+        for (var i = 1; i <= 5; i++) {
+            if (this.color[i])
+                cc.find('Canvas/color' + i.toString() + '/price').getComponent(cc.Label).string = 'free';
+        }
         var l = new cc.Component.EventHandler();
         l.target = this.node;
         l.component = "store";
@@ -104,6 +108,11 @@ var store = /** @class */ (function (_super) {
         signal.component = "store";
         signal.handler = "loadsignal";
         cc.find("Canvas/signal/button").getComponent(cc.Button).clickEvents.push(signal);
+        var color1 = new cc.Component.EventHandler();
+        color1.target = this.node;
+        color1.component = "store";
+        color1.handler = "loadcolor1";
+        cc.find("Canvas/color1").getComponent(cc.Button).clickEvents.push(color1);
         var color2 = new cc.Component.EventHandler();
         color2.target = this.node;
         color2.component = "store";
@@ -125,7 +134,7 @@ var store = /** @class */ (function (_super) {
         color5.handler = "loadcolor5";
         cc.find("Canvas/color5").getComponent(cc.Button).clickEvents.push(color5);
         cc.find("Canvas/SignOut").on(cc.Node.EventType.MOUSE_DOWN, function () {
-            cc.director.loadScene('menu');
+            _this.loadSignout();
         }, this);
     };
     store.prototype.loadpowerup = function () {
@@ -198,16 +207,58 @@ var store = /** @class */ (function (_super) {
             cc.find('Canvas/coins').getComponent(cc.Label).string = a.toString();
         }
     };
+    store.prototype.loadcolor1 = function () {
+        //cc.audioEngine.playEffect(this.press, false);
+        var price = 0;
+        if (this.money >= price && this.color[1] == false) {
+            this.money -= price;
+            this.color[1] = true;
+            this.nowcolor = 1;
+            //console.log(this.color);
+            firebase.database().ref('/users/' + this.uid + '/coins').set(this.money);
+            firebase.database().ref('/users/' + this.uid + '/thing/color').set(this.color);
+            cc.find('Canvas/coins').getComponent(cc.Label).string = this.money.toString();
+            cc.find('Canvas/color1/price').getComponent(cc.Label).string = 'free';
+            cc.find('Canvas/color1/check').active = true;
+            cc.find('Canvas/color2/check').active = false;
+            cc.find('Canvas/color3/check').active = false;
+            cc.find('Canvas/color4/check').active = false;
+            cc.find('Canvas/color5/check').active = false;
+        }
+        else if (this.color[1] == true) {
+            this.nowcolor = 1;
+            cc.find('Canvas/color1/check').active = true;
+            cc.find('Canvas/color2/check').active = false;
+            cc.find('Canvas/color3/check').active = false;
+            cc.find('Canvas/color4/check').active = false;
+            cc.find('Canvas/color5/check').active = false;
+        }
+    };
     store.prototype.loadcolor2 = function () {
         //cc.audioEngine.playEffect(this.press, false);
         var price = 150;
         if (this.money >= price && this.color[2] == false) {
             this.money -= price;
             this.color[2] = true;
+            this.nowcolor = 2;
+            //console.log(this.color);
             firebase.database().ref('/users/' + this.uid + '/coins').set(this.money);
             firebase.database().ref('/users/' + this.uid + '/thing/color').set(this.color);
-            cc.find('Canvas/color2/check').active = true;
             cc.find('Canvas/coins').getComponent(cc.Label).string = this.money.toString();
+            cc.find('Canvas/color2/price').getComponent(cc.Label).string = 'free';
+            cc.find('Canvas/color2/check').active = true;
+            cc.find('Canvas/color1/check').active = false;
+            cc.find('Canvas/color3/check').active = false;
+            cc.find('Canvas/color4/check').active = false;
+            cc.find('Canvas/color5/check').active = false;
+        }
+        else if (this.color[2] == true) {
+            this.nowcolor = 2;
+            cc.find('Canvas/color2/check').active = true;
+            cc.find('Canvas/color1/check').active = false;
+            cc.find('Canvas/color3/check').active = false;
+            cc.find('Canvas/color4/check').active = false;
+            cc.find('Canvas/color5/check').active = false;
         }
     };
     store.prototype.loadcolor3 = function () {
@@ -216,10 +267,25 @@ var store = /** @class */ (function (_super) {
         if (this.money >= price && this.color[3] == false) {
             this.money -= price;
             this.color[3] = true;
+            this.nowcolor = 3;
+            //console.log(this.color);
             firebase.database().ref('/users/' + this.uid + '/coins').set(this.money);
             firebase.database().ref('/users/' + this.uid + '/thing/color').set(this.color);
-            cc.find('Canvas/color3/check').active = true;
             cc.find('Canvas/coins').getComponent(cc.Label).string = this.money.toString();
+            cc.find('Canvas/color3/price').getComponent(cc.Label).string = 'free';
+            cc.find('Canvas/color3/check').active = true;
+            cc.find('Canvas/color1/check').active = false;
+            cc.find('Canvas/color2/check').active = false;
+            cc.find('Canvas/color4/check').active = false;
+            cc.find('Canvas/color5/check').active = false;
+        }
+        else if (this.color[3] == true) {
+            this.nowcolor = 3;
+            cc.find('Canvas/color3/check').active = true;
+            cc.find('Canvas/color1/check').active = false;
+            cc.find('Canvas/color2/check').active = false;
+            cc.find('Canvas/color4/check').active = false;
+            cc.find('Canvas/color5/check').active = false;
         }
     };
     store.prototype.loadcolor4 = function () {
@@ -228,10 +294,25 @@ var store = /** @class */ (function (_super) {
         if (this.money >= price && this.color[4] == false) {
             this.money -= price;
             this.color[4] = true;
+            this.nowcolor = 4;
+            //console.log(this.color);
             firebase.database().ref('/users/' + this.uid + '/coins').set(this.money);
             firebase.database().ref('/users/' + this.uid + '/thing/color').set(this.color);
-            cc.find('Canvas/color4/check').active = true;
             cc.find('Canvas/coins').getComponent(cc.Label).string = this.money.toString();
+            cc.find('Canvas/color4/price').getComponent(cc.Label).string = 'free';
+            cc.find('Canvas/color4/check').active = true;
+            cc.find('Canvas/color1/check').active = false;
+            cc.find('Canvas/color2/check').active = false;
+            cc.find('Canvas/color3/check').active = false;
+            cc.find('Canvas/color5/check').active = false;
+        }
+        else if (this.color[4] == true) {
+            this.nowcolor = 4;
+            cc.find('Canvas/color4/check').active = true;
+            cc.find('Canvas/color1/check').active = false;
+            cc.find('Canvas/color2/check').active = false;
+            cc.find('Canvas/color3/check').active = false;
+            cc.find('Canvas/color5/check').active = false;
         }
     };
     store.prototype.loadcolor5 = function () {
@@ -240,11 +321,25 @@ var store = /** @class */ (function (_super) {
         if (this.money >= price && this.color[5] == false) {
             this.money -= price;
             this.color[5] = true;
+            this.nowcolor = 5;
+            //console.log(this.color);
             firebase.database().ref('/users/' + this.uid + '/coins').set(this.money);
             firebase.database().ref('/users/' + this.uid + '/thing/color').set(this.color);
-            cc.find('Canvas/color5/check').active = true;
             cc.find('Canvas/coins').getComponent(cc.Label).string = this.money.toString();
-            console.log(this.color);
+            cc.find('Canvas/color5/price').getComponent(cc.Label).string = 'free';
+            cc.find('Canvas/color5/check').active = true;
+            cc.find('Canvas/color1/check').active = false;
+            cc.find('Canvas/color2/check').active = false;
+            cc.find('Canvas/color3/check').active = false;
+            cc.find('Canvas/color4/check').active = false;
+        }
+        else if (this.color[5] == true) {
+            this.nowcolor = 5;
+            cc.find('Canvas/color5/check').active = true;
+            cc.find('Canvas/color1/check').active = false;
+            cc.find('Canvas/color3/check').active = false;
+            cc.find('Canvas/color4/check').active = false;
+            cc.find('Canvas/color2/check').active = false;
         }
     };
     store.prototype.loadSignout = function () {
@@ -256,7 +351,11 @@ var store = /** @class */ (function (_super) {
         cc.sys.localStorage.setItem("banana", this.banana);
         cc.sys.localStorage.setItem("mute", this.mute);
         cc.sys.localStorage.setItem("signal", this.signal);
-        cc.director.loadScene('menu');
+        cc.sys.localStorage.setItem("nowcolor", this.nowcolor);
+        console.log(cc.sys.localStorage.getItem("nowcolor"));
+        this.scheduleOnce(function () {
+            cc.director.loadScene('menu');
+        }, 0.5);
     };
     store = __decorate([
         ccclass
