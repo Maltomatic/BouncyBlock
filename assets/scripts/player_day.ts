@@ -106,6 +106,7 @@ export class Player extends cc.Component {
     private fly_state: number = 0;  // 0 for on ground, 1 for flying, -1 for falling
     private on_floor: boolean = true;
     private stick: boolean = false;
+    private stick2: boolean = false;
     section_count = 0;      // on contact with marker, if section_count * 1920 < this.node.x: init next section and section_count ++
 
     score: number = 0;
@@ -170,13 +171,12 @@ export class Player extends cc.Component {
                 next_section.y = 0;
                 this.maplist.addChild(next_section);
             } //else console.log(this.node.x, this.section_count);
-        }else if(other.node.group == 'ground' || other.node.group == 'mound'){
-            console.log(other.node.group + " (" + touch.x + ", " + touch.y + ")")
+        }if(other.node.group == 'ground' || other.node.group == 'mound'){
             if(touch.y && this.fly_state == -1){
                 this.stick = true;
                 this.fly_state = 0;
-                if(!this.on_floor && touch.y < 0) this.on_floor = true;
-            }  
+                if(!this.on_floor && touch.y) this.on_floor = true;
+            }
         } else if(other.node.group == 'coin'){ // @@ 
             cc.audioEngine.playEffect(this.get_coin, false); 
             this.coin++;
@@ -253,6 +253,11 @@ export class Player extends cc.Component {
     }
 
     update (dt) {
+        if(this.stick2){
+            this.node.x -= 0.4 * this.dir;
+            this.dir = 0;
+            this.stick2 = false;
+        }
         if(!this.node.active){
             cc.sys.localStorage.setItem("coins", this.coin);
             cc.sys.localStorage.setItem("lego", this.lego);
@@ -328,9 +333,11 @@ export class Player extends cc.Component {
         
         if(event.keyCode == cc.macro.KEY.p){
             if(this.paused){
+                this.paused = false;
                 cc.audioEngine.resumeAll();
                 cc.director.resume();
             }else{
+                this.paused = true;
                 cc.audioEngine.pauseAll();
                 cc.director.pause();
             }            

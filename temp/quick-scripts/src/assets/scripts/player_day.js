@@ -78,6 +78,7 @@ var Player = /** @class */ (function (_super) {
         _this.fly_state = 0; // 0 for on ground, 1 for flying, -1 for falling
         _this.on_floor = true;
         _this.stick = false;
+        _this.stick2 = false;
         _this.section_count = 0; // on contact with marker, if section_count * 1920 < this.node.x: init next section and section_count ++
         _this.score = 0;
         _this.color = 0;
@@ -136,12 +137,11 @@ var Player = /** @class */ (function (_super) {
                 this.maplist.addChild(next_section);
             } //else console.log(this.node.x, this.section_count);
         }
-        else if (other.node.group == 'ground' || other.node.group == 'mound') {
-            console.log(other.node.group + " (" + touch.x + ", " + touch.y + ")");
+        if (other.node.group == 'ground' || other.node.group == 'mound') {
             if (touch.y && this.fly_state == -1) {
                 this.stick = true;
                 this.fly_state = 0;
-                if (!this.on_floor && touch.y < 0)
+                if (!this.on_floor && touch.y)
                     this.on_floor = true;
             }
         }
@@ -217,6 +217,11 @@ var Player = /** @class */ (function (_super) {
         cc.audioEngine.playMusic(this.day_back_music, true);
     };
     Player.prototype.update = function (dt) {
+        if (this.stick2) {
+            this.node.x -= 0.4 * this.dir;
+            this.dir = 0;
+            this.stick2 = false;
+        }
         if (!this.node.active) {
             cc.sys.localStorage.setItem("coins", this.coin);
             cc.sys.localStorage.setItem("lego", this.lego);
@@ -291,10 +296,12 @@ var Player = /** @class */ (function (_super) {
         }
         if (event.keyCode == cc.macro.KEY.p) {
             if (this.paused) {
+                this.paused = false;
                 cc.audioEngine.resumeAll();
                 cc.director.resume();
             }
             else {
+                this.paused = true;
                 cc.audioEngine.pauseAll();
                 cc.director.pause();
             }

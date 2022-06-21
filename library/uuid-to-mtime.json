@@ -670,8 +670,8 @@
     "relativePath": "scenes\\bird.fire"
   },
   "e19b5114-6ae0-44c7-aaf8-d3a9a5a14998": {
-    "asset": 1655775426591,
-    "meta": 1655775426612,
+    "asset": 1655795196927,
+    "meta": 1655795196941,
     "relativePath": "scenes\\day.fire"
   },
   "63f93d4f-8b5d-4ab3-827b-471e0cb9c419": {
@@ -1385,13 +1385,13 @@
     "relativePath": "scenes\\ongame.fire"
   },
   "ca4b2559-ca3b-47d0-b95b-17f8160ad309": {
-    "asset": 1655758909147,
-    "meta": 1655758909190,
+    "asset": 1655793446700,
+    "meta": 1655793446712,
     "relativePath": "scenes\\tutorial.fire"
   },
   "63c73803-efc9-413a-a6ef-556b860d4ad0": {
-    "asset": 1655756359271,
-    "meta": 1655756557542,
+    "asset": 1655793495686,
+    "meta": 1655793495702,
     "relativePath": "scenes\\menu.fire"
   },
   "04cfd6d9-41d6-4ada-8a5b-fc5bd8ed6a7d": {
@@ -1433,11 +1433,6 @@
     "asset": 1655758736859,
     "meta": 1655758795485,
     "relativePath": "image\\bk_game_rule_1.png"
-  },
-  "cc11c63c-b5d3-4f76-b114-d7c0094e0c7f": {
-    "asset": 1655758723138,
-    "meta": 1655758795488,
-    "relativePath": "image\\bk_game_rule_4.png"
   },
   "91997d30-72f9-442b-8858-0be4b6679af8": {
     "asset": 1655758727323,
@@ -1488,21 +1483,6 @@
     "asset": 1655771720548,
     "meta": 1655771721984,
     "relativePath": "scripts\\root.ts"
-  },
-  "1e31aad1-8607-4726-b210-6ea79c600e2f": {
-    "asset": 1655772862405,
-    "meta": 1655772865114,
-    "relativePath": "scripts\\menu.ts"
-  },
-  "201d1fb4-4e8f-44d0-b194-13f83e0f3203": {
-    "asset": 1655773561399,
-    "meta": 1655773567528,
-    "relativePath": "scripts\\parent.ts"
-  },
-  "e8f7891e-9689-4fd7-a194-48ae189b2f2b": {
-    "asset": 1655779516197,
-    "meta": 1655779909586,
-    "relativePath": "scripts\\bird_player.ts"
   },
   "95b01e3d-de6d-4484-8fec-3a82f1c92e17": {
     "asset": 1655784176738,
@@ -1634,34 +1614,54 @@
     "meta": 1655786354435,
     "relativePath": "maps\\section9.tmx"
   },
-  "3095119b-5903-4a1d-92e8-fa42e3425160": {
-    "asset": 1655786959696,
-    "meta": 1655787106528,
-    "relativePath": "scripts\\player_day.ts"
+  "cc11c63c-b5d3-4f76-b114-d7c0094e0c7f": {
+    "asset": 1655792113205,
+    "meta": 1655793409665,
+    "relativePath": "image\\bk_game_rule_4.png"
+  },
+  "1e31aad1-8607-4726-b210-6ea79c600e2f": {
+    "asset": 1655793470929,
+    "meta": 1655793472501,
+    "relativePath": "scripts\\menu.ts"
   },
   "a6bc94fb-bffc-4a7b-b4f4-dc58ca6beb38": {
-    "asset": 1655787144604,
-    "meta": 1655787145917,
+    "asset": 1655793507840,
+    "meta": 1655793509281,
     "relativePath": "scripts\\loadgame.ts"
   },
+  "e8f7891e-9689-4fd7-a194-48ae189b2f2b": {
+    "asset": 1655794280438,
+    "meta": 1655794282913,
+    "relativePath": "scripts\\bird_player.ts"
+  },
+  "201d1fb4-4e8f-44d0-b194-13f83e0f3203": {
+    "asset": 1655795116784,
+    "meta": 1655795118213,
+    "relativePath": "scripts\\parent.ts"
+  },
   "f86b1eb1-1093-461a-a9c8-46b312ad29da": {
-    "asset": 1655788930672,
-    "meta": 1655788932072,
+    "asset": 1655796095667,
+    "meta": 1655796120784,
     "relativePath": "scripts\\section_init.ts"
   },
   "9cb3f2d5-5b5e-407e-8ae8-94e03d54ed7f": {
-    "asset": 1655789396061,
-    "meta": 1655789397367,
+    "asset": 1655795768381,
+    "meta": 1655796120796,
     "relativePath": "scripts\\spider.ts"
   },
   "a4fb5ce8-16f2-4ec9-b773-3d70ce77a8e4": {
-    "asset": 1655790031973,
-    "meta": 1655790033247,
+    "asset": 1655796282006,
+    "meta": 1655796284744,
     "relativePath": "scripts\\player.ts"
   },
+  "3095119b-5903-4a1d-92e8-fa42e3425160": {
+    "asset": 1655796310335,
+    "meta": 1655796329061,
+    "relativePath": "scripts\\player_day.ts"
+  },
   "a4ea169f-e7a5-48fe-a76a-3f69d22f0a2e": {
-    "asset": 1655790319591,
-    "meta": 1655790326054,
+    "asset": 1655796327108,
+    "meta": 1655796329236,
     "relativePath": "scripts\\player_multi.ts"
   }
 }

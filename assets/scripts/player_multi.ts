@@ -183,21 +183,17 @@ export class Player extends cc.Component {
             if(touch.y && this.fly_state == -1){
                 this.stick = true;
                 this.fly_state = 0;
-                if(!this.on_floor && touch.y < 0) this.on_floor = true;
+                if(!this.on_floor && touch.y) this.on_floor = true;
             }
 
             if(other.node.group == 'mound') {
-                if(touch.y && !touch.x){
-                    contact.disabled = true;
-                    this.stick2 = true;
-                }
                 if((other.node.getComponent(cc.TiledTile).gid == this.color + this.base && touch.x) || this.invis) {
                     this.node.getChildByName('eye').active = false;
                     this.hidden = true;
                     if(this.invis) this.chameleon = this.color_list[other.node.getComponent(cc.TiledTile).gid];
                     // this.last_x = this.node.x;
                 }
-            }    
+            }
         }else if(other.node.group == 'coin'){ // @@ 
             cc.audioEngine.playEffect(this.get_coin, false); 
             this.coin++;

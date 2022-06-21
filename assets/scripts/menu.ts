@@ -40,6 +40,7 @@ export default class menu extends cc.Component {
                     cc.sys.localStorage.setItem("highscore", data['highscore']);
                     cc.sys.localStorage.setItem("name", data['name']);
                     cc.sys.localStorage.setItem("email", data['email']);
+                    cc.find("Canvas/username").getComponent(cc.Label).string = "Welcome, " + data['name'];
                     var s = "0";
                     for( let i = 1; i <= 5; i++) {
                         //console.log(data['thing']['color'][i]);
@@ -50,6 +51,7 @@ export default class menu extends cc.Component {
                 });
             }else{
                 // sign in button instead
+                cc.find('Canvas/username').active = false;
                 cc.find("Canvas/out").getComponent(cc.Label).string = "sign in"
                 cc.find("Canvas/SignOut").scaleX = -1;
                 signout.handler = "loadSignIn";

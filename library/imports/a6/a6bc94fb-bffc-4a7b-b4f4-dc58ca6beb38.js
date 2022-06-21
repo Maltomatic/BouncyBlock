@@ -42,7 +42,7 @@ var Loadscene = /** @class */ (function (_super) {
             // count -= 1;
             var str = cc.find('Canvas/load_background/str').getComponent(cc.Label);
             str.string = str.string + '.';
-        }, 0.3, 3);
+        }, 0.3, 2);
         this.scheduleOnce(function () {
             cc.director.loadScene('menu');
         }, 1);

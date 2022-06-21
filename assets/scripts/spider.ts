@@ -24,7 +24,7 @@ export class spider extends cc.Component {
         //this.node.scaleX = (this.moveDir >= 0) ? 1 : -1;
     }
      onBeginContact(contact , self , other){
-        if( (other.node.group == 'mound') && contact.getWorldManifold().normal.y == 0) {
+        if((other.node.group == 'mound') && contact.getWorldManifold().normal.y == 0) {
             
             this.moveDir *= -1;
             /*if( (this.getComponent(cc.RigidBody).linearVelocity.x > 0 && contact.getWorldManifold().normal.x == 1) || (this.getComponent(cc.RigidBody).linearVelocity.x < 0 && contact.getWorldManifold().normal.x == -1)) {

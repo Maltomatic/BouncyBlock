@@ -19,7 +19,7 @@ export class Loadscene extends cc.Component {
             // count -= 1;
             var str = cc.find('Canvas/load_background/str').getComponent(cc.Label);
             str.string = str.string + '.';
-        }, 0.3, 3);
+        }, 0.3, 2);
         this.scheduleOnce(()=> {
             cc.director.loadScene('menu');
         }, 1);

@@ -164,10 +164,12 @@ var Bird = /** @class */ (function (_super) {
         }
         if (event.keyCode == cc.macro.KEY.p) {
             if (this.paused) {
+                this.paused = false;
                 cc.audioEngine.resumeAll();
                 cc.director.resume();
             }
             else {
+                this.paused = true;
                 cc.audioEngine.pauseAll();
                 cc.director.pause();
             }

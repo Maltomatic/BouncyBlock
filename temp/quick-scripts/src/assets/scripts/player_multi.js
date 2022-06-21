@@ -154,14 +154,10 @@ var Player = /** @class */ (function (_super) {
             if (touch.y && this.fly_state == -1) {
                 this.stick = true;
                 this.fly_state = 0;
-                if (!this.on_floor && touch.y < 0)
+                if (!this.on_floor && touch.y)
                     this.on_floor = true;
             }
             if (other.node.group == 'mound') {
-                if (touch.y && !touch.x) {
-                    contact.disabled = true;
-                    this.stick2 = true;
-                }
                 if ((other.node.getComponent(cc.TiledTile).gid == this.color + this.base && touch.x) || this.invis) {
                     this.node.getChildByName('eye').active = false;
                     this.hidden = true;
